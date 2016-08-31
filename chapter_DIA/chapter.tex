@@ -1,0 +1,234 @@
+\chapter{Difference Image Analysis}
+
+Searches for time-varying and position-changing objects are undertaken by comparing a reference image of a particular region of the sky with a second image taken at the moment in which we are interested. Ideally, the reference image is taken with the same telescope using the same filter and CCD. The two images have to be aligned pixel by pixel and then subtracted to reveal any changes in light.
+
+To make a suitable subtraction of two images, one has to match the frames to exactly the same seeing. Image Difference is a technique to find a convolution kernel that best describes (in some minimization sense) the change in point spread function between the images. The idea is to degrade the good seeing image---our reference image---to match the seeing of our second image. Finding the proper kernel can be a delicate operation and there's plenty of literature on the subject. Methods range from PSF modeling through common Gaussian profiles to unmodeled PSF's to Information Theory and Fourier Domain.
+
+The first attempts at image subtraction relied on Fourier decomposition of the images, 
+but the technique suffered when noise levels were even moderate and the results were not always good.
+\citet{1998ApJ...503..325A} were the first to propose a solution in image space (as opposed to Fourier space). 
+They also summarize previous efforts in their introduction and references therein. 
+In that paper, they propose an optimization problem that we describe briefly as follows.
+
+We have an image $I$ and a reference image $R$, for which we want to find a convolution kernel $K$ such that
+
+\begin{align}
+I(x,y) & \approx (R \mathbin{*} K)(x,y) \\
+ & \approx \int \mathrm{d}u \mathrm{d}v {R (u,v) K(x-u,y-v)}
+\end{align}
+ 
+The integral symbol has to be understood in practice, as a sum over all the pixels $(x,y)$ on the image. 
+
+The kernel $K$ will try to correct for the PSF difference between the two images.
+It's worth noting here, that even though it could be practical to the reader to think so, the kernel $K$ is neither the PSF of the reference nor the PSF of the image.
+
+Usually, the reference image is the one with the best {\em seeing}, 
+because it can be done by median-stacking good images, or using Lucky Imaging [add ref] or some other method.
+
+To convert the problem into a linear one, we decompose the kernel into a linear combination of ``{\em basis}'' functions $B$.
+
+\begin{equation} \label{kernel_linear}
+K(u,v) = \sum_{i} a_{i} B_{i}(u,v)
+\end{equation}
+
+These $B_{i}$ could in principle be any reasonable set of functions. 
+The two most popular choices are modulated Gaussians and the Delta basis, which will be explained in further detail in section \ref{basis}.
+
+Using this linear combination, the convolution will be
+
+\begin{align}
+(R \mathbin{*} K)(x,y) & = \sum_{i} a_{i} \left( R \mathbin{*} B_{i} \right)(x,y) \\
+ & \equiv \sum_{i} a_{i} C_{i}(x,y)
+\end{align}
+
+where the last line defines $C_{i}(x,y)$.
+
+With this decomposition, we can find the set of $a_{i}$ that minimizes the square difference over all pixels.
+Define a cost function $Q$:
+
+\begin{align}
+Q &= \int \left( I(x,y) - (R \mathbin{*} K)(x,y) \right)^2 \\
+ & = \int \left( I(x,y) - \sum_{i} a_{i} C_{i}(x,y) \right)^2,
+\end{align}
+
+and let's minimize $Q$ over the set of $a$'s:
+
+\begin{align}
+\frac{\partial Q}{\partial a_{i}} = & 2 \int \left( I(x,y) - \sum_{j} a_{j} C_{j}(x,y) \right) \\
+                             & \times C_{i}(x,y) 
+\end{align}
+
+Setting the last equation to zero, gives us:
+
+\begin{align}
+\sum_{j} a_{j} \int \left( C_{j}(x,y)  C_{i}(x,y) \right) =  \int I(x,y) C_{i}(x,y) 
+\end{align}
+
+Which we can write more succinctly as a matrix equation:
+
+\begin{align} \label{matrix_eq}
+\sum_{j} M_{ij} a_{j}  =  b_{i}
+\end{align}
+
+where
+
+\begin{align} \label{matrix_def}
+M_{ij}  &=   \int  C_{i}(x,y)  C_{j}(x,y) \\
+b_{i} &=  \int I(x,y) C_{i}(x,y)  \nonumber
+\end{align}
+
+We can find the coefficients $a_{i}$ of the optimal kernel for the subtraction by inverting the system \eqref{matrix_eq}.
+
+\subsection*{Different basis functions}
+
+As stated above, any choice of basis in the linearization \eqref{kernel_linear} could work, but two particular choices are the most popular.
+
+The first one was proposed by \citet{1998ApJ...503..325A} and it consist of modulated centered Gaussians:
+
+\begin{equation}
+B_{n,d_n^{x}, d_n^{y}}(u,v) = e^{-(u^2+v^2)/2 \sigma_n^2} \times u^{d_n^{x}} v^{d_n^{y}}
+\end{equation}
+
+where the exponents in $u$ and $v$ add at most up to $D$, the degree of the modulation polynomial.
+
+This choice of linearization gives enough freedom to approximate the kernel as a sum of modulated Gaussians, which is suitable for many situations.
+The parameter $\sigma_n$ in each Gaussian is fixed beforehand by the user.
+
+The number of Gaussians used in the expansion is given by $n$, and for each one of them we have $(D_n + 1)(D_n + 2)/2$ terms in the modulating polynomial.
+That gives a total of $n(D_n + 1)(D_n + 2)/2$ unknown $a_i$ coefficients to solve for.
+
+A simpler basis was proposed by \citet{2008MNRAS.386L..77B} and it's effectively a Dirac Delta function for each pixel.
+
+\begin{equation}
+B_{i}(x,y) = \delta(x-i,y-j)
+\end{equation}
+
+This choice of basis makes every pixel value in the kernel be determined independently by the minimization process.
+Obviously, this allows for a greater variety of kernels than in the Gaussian case.
+It also comes at a cost: now the number of unknowns to invert for grows quadratically with the kernel side length.
+For a kernel of side 11 pixels, we have to create a matrix 121$\times$121 and then invert it. 
+
+As we will see at the end of the chapter, even calculating the elements of the matrix to invert is an expensive operation,
+so this absolute freedom in the kernel shape comes at the cost of a much higher numerical complexity.
+
+Despite this complexity, the Delta basis can account for situations that the Gaussian basis can't address.
+For example, if the images are very similar in PSF, then the compensating kernel of our problem should be an actual delta at the center 
+---the identity kernel---or a very peaky function.
+
+Bramich's method can actually return the correct kernel, while the Gaussian method will have trouble adjusting (potentially broad) Gaussians.
+
+Another issue that Delta basis corrects very well is for tiny misalignments between our reference image and the image we are processing.
+In fact, translations are included in the set of convolutions represented by displaced deltas on the kernel.
+Convolving with a kernel with a delta displaced $(\Delta x, \Delta y)$ pixels away from the center will effectively translate the image by that same amount,
+so misalignments due to small translations (the order of the kernel side) can be completely accounted for in the Delta basis.
+
+\subsection*{Add a varying background}
+
+Background variation can be treated separately or simultaneously with the PSF fitting.
+
+\subsubsection*{Independent background estimation}
+
+An independent background estimation can be done on each separate image before doing the PSF match.
+
+For a stellar field image, one can create an image $I_{B}$, from the image $I$ by excluding all pixels above a certain threshold on the background noise. This image $I_{B}$ will contain pixels belonging to the background only (sources removed).
+
+\begin{equation}
+I_{B}(x,y)  = \left\{ I(x,y) : |I(x,y) - \mu| < \sigma \right\}
+\end{equation}
+
+On this image $I_{B}$, find the best polynomial fit of degree $d$ to the image using a least square fit.
+
+Minimizing $Q$ over the $b_{ij}$ coefficients
+
+\begin{equation}
+Q = \int \left( I_{B}(x,y) - \sum_{i,j}^d b_{ij} x^i y^j \right) ^2
+\end{equation}
+
+will give the best polynomial fit to the background.
+
+\subsubsection*{Simultaneous PSF and background estimation}
+
+To do it simultaneously with the PSF matching, we simply add it to our previous $Q$. This will let us remove any remaining variation on our new image $I(x,y)$.
+
+\begin{align}
+I(x,y) & \approx (R \mathbin{*} K)(x,y) + B(x,y) 
+\end{align}
+
+Note however, that this $B$ is not the sourceless image $I_{B}$ defined in the previous section. This $B$ represents the optimal background approximation that can be expanded as a polynomial with unknown coefficients.
+
+$Q$ is defined now as
+
+\begin{align}
+Q &= \int \left( I(x,y) - (R \mathbin{*} K)(x,y) - B(x,y) \right)^2 \\
+ & = \int \left( I(x,y) - \sum_{i} a_{i} C_{i}(x,y) - \sum_{i} b_{i} x^i y^j \right)^2
+\end{align}
+
+We can pile up the $b$ coefficients onto a larger set of $a$'s and define new $C$'s accordingly.
+
+\begin{equation}
+C_{i}(x,y)  = \begin{cases} 
+(R \mathbin{*} K)(x,y)  &\mbox{when i,j refer to kernel}  \\ 
+x^i y^j & \mbox{when i,j refer to background}  
+\end{cases} 
+\end{equation}
+
+This leads us to the exact same (but extended) solution for the coefficients $a$, namely:
+
+\begin{align}
+\sum_{j} M_{ij} a_{j}  =  b_{i}
+\end{align}
+
+where
+
+\begin{align}
+M_{ij}  &=   \int  C_{i}(x,y)  C_{j}(x,y) \\
+b_{i} &=  \int I(x,y) C_{i}(x,y) 
+\end{align}
+
+as before.
+
+\subsection*{How to deal with bad pixels} \label{badpixels}
+
+The astronomical images can have pixel defects due to CCD defects or missing data from alignment. 
+Those pixels can, in principle, be in both the reference frame $R$ and the new image $I$. 
+
+Although it is advisable to use a reference image $R$ with few to none bad pixels for the reason that will be explained further on this section.
+
+As before, we now want to approximate the two images as follow
+
+\begin{align}
+I(x,y)\bigg|_{\Omega} & \approx (R \mathbin{*} K)(x,y)\bigg|_{\Omega}
+\end{align}
+
+But this time, we want to restrict the above only for the good pixels in the images.
+
+Bad pixels in $I$ and $R$ have to be excluded, but we also have to exclude those pixels in $R$ that {\em use} bad pixels in the convolution. This equivalent to dilate the bad pixels mask in $R$ with a kernel the same shape as the convolution kernel $K$. For this reason, it's better to have few bad pixels in $R$.
+
+The union of the bad pixel mask from $I$ and the dilated bad pixel mask from $R$ is the common bad pixel mask. We call $\Omega$ to its complement, so that $\Omega$ is the set of good pixels that will be used in the subtraction. Pixels outside $\Omega$ will be tainted by the bad pixels in either of the two images.
+
+This modification will now makes us define a new $Q$:
+
+\begin{align}
+Q = \int_{\Omega} \left( I(x,y) - (R \mathbin{*} K)(x,y) - B(x,y) \right)^2
+\end{align}
+
+That only differs from the previous one by the domain of integration (or sum).
+The definitions for $M$ and $b$ are similarly derived:
+
+\begin{align}
+M_{ij}  &=   \int_{\Omega}  C_{i}(x,y)  C_{j}(x,y) \\
+b_{i} &=  \int_{\Omega} I(x,y) C_{i}(x,y) 
+\end{align}
+
+\subsection{Partition your image for large FoV}
+
+When dealing with large field of views, it's better to partition the image into grids, and apply Image Differencing on each grid element.
+
+\subsection*{Cost of building matrix M and b}
+
+Recall that we have to solve the system of equations \eqref{matrix_eq} with definitions in \eqref{matrix_def}.
+
+This implies that each component of the matrix $M$ will involve an integration over the whole image.
+
+Therefore, not only the inversion problem is expensive, but even calculating the matrix can be an expensive operation.
+
