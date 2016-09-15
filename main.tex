@@ -58,6 +58,7 @@
 
 %Added by me
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\order}{\ensuremath{\mathcal{O}}}
 %End of added by me
 
 \newenvironment{ruledcenter}{%
@@ -136,12 +137,16 @@ Committee which precede all other material in the Masters Thesis/Recital
 Document or Doctoral Dissertation attest to the accuracy of this statement.}\end{singlespace}
 \end{acknowledgements}
 \begin{abstract}
-The first chapter of this document is a description of the content
-and the usage of the UTSAthesis package. The remaining chapters serve
-to illustrate some use of \LyX{} features for writing a thesis/dissertation. 
+The upcoming research in the Gravitational Wave domain has introduced new challenges to Astronomy and has opened a new window to the universe.
 
-The first line of the abstract has been indented as per required by
-the thesis/dissertation guideline.
+Our work here looks for a way to harness the power of multi-messenger astronomy to enhance and complement the incredible capabilities of the new generation of GW detectors, with the LSC leading the way.
+
+It will hopefully help newcomers to the field to understand the details and challenges of this new discipline and encourage research in the area. \textcolor{red}{[This is probably too pedantic]}
+
+In the first chapter, I introduce the concepts and frame on which my thesis developed.
+
+In the second chapter, I discuss the two main elements of a modern transient search. That is, Image Difference and Machine Learning classification.
+
 \end{abstract}
 
 \pageone{}
@@ -150,19 +155,127 @@ the thesis/dissertation guideline.
 
 After 100 years after the prediction of gravitational waves (GW from hereon)
 
-\section*{The LIGO Project}
+\section{Gravitational Waves}
+Gravitational waves are a particular kind of solution to the Einstein's field equations of General Relativity.
+
+In many situations we can consider, we are in a flat background situation, in which our metric does not differ much locally from the flat metric.
+For example, here on Earth, removed from any near strong gravitational warp like around black holes or massive stars, we can consider to a good approximation that we live in a almost flat spacetime. Nonetheless, it is worth studying the dynamics of small perturbations to flatness.
+
+To do that, we consider the metric $g = \eta + h$ in the linearized Einstein's field equations. Linearized here means that quadratic and higher factors of $h$ will be simply ignored, as they are assumed much smaller than the flat metric.
+
+Let's find out what condition this imposes on the small perturbation $h$.
+
+\begin{align}
+G_{\mu \nu}(\eta + h) = 8\pi T_{\mu \nu} = 0
+\end{align}
+
+%It is worth noting here that Einstein equations are not linear in nature, but they are second order on the metric derivatives and furthermore linear on the second order terms. This will allow us to derive from the linearized Einstein equations, a second order wave equation on the small perturbation $h$ that decouples from $\eta$.
+
+%Another issue to point out is that the vague definition of 'small perturbation' has to be of physical nature and not an artifact on the choice of the coordinate system. We will not worry about this issue on the present work, but it is worth keeping it in mind. Other concerns about coordinate system effects were historically raised and settled in time, particularly the many gauge choices done during the derivation.
+
+The Christoffel symbols are to first order in $h$ (and $\eta$ in Cartesian coordinates!):
+
+\begin{align}
+\Gamma_{abc} &= \frac{1}{2} \left( g_{ca,b} + g_{cb,a} - g_{ab,c} \right) \\
+  &= \frac{1}{2} \left( (\eta + h)_{ca,b} + (\eta + h)_{cb,a} - (\eta + h)_{ab,c} \right) \\
+ &=\frac{1}{2} \left( h_{ca,b} + h_{cb,a} - h_{ab,c} \right) 
+\end{align}
+
+At this point we must note that we will still call $g^{ab}$ the inverse of $g_{ab}$, which is $g^{ab} = \eta^{ab} - h^{ab}$ to first order in $h$. 
+
+And thus,
+\begin{align}
+\Gamma^{a}_{bc} &= g^{cd} \Gamma_{abd} \\
+ &=(\eta - h)^{cd} \Gamma_{abd} \\
+ &= \frac{1}{2} \eta^{cd} \left( h_{ca,b} + h_{cb,a} - h_{ab,c} \right) + \order(h^2)
+\end{align}
+
+Similarly, the Ricci tensor to first order in $h$ will be:
+
+\begin{align}
+R_{ab} &= \Gamma^{c}_{ab,c} - \Gamma^{c}_{cb,a} \\
+&= \frac{1}{2} \left( h_{a}{}^{c}{}_{,bc} + h_{b}{}^{c}{}_{,ac} - h_{ab,c}{}^{c} - h_{c}{}^{c}{}_{,ab} \right)
+\end{align}
+
+Which will finally lead us to the Einstein's tensor $G$:
+
+\begin{align}
+G_{ab} &= R_{ab} - \frac{1}{2}g_{ab}R \\
+&= R_{ab} - \frac{1}{2}\eta_{ab}R + \order(h^2) \\
+&= \frac{1}{2} \left( h_{ac,b}{}^{c} + h_{bc,a}{}^{c} - h_{ab,c}{}^{c} - h_{c}{}^{c}{}_{,ab} -\eta_{ab} \left( h_{cd,}{}^{cd} - h_{c}{}^{c}{}_{,d}{}^{d} \right) \right)
+\end{align}
+
+This can be brought to a shorter form defining $\bar{h}{}_{ab} = h_{ab} - \eta_{ab} h$
+
+Where $h = h_{c}{}^{c}$ is the trace of the metric tensor $h$.
+With this definition, the Einstein's field equation becomes:
+
+\begin{align}
+\bar{h}{}_{ab,c}{}^{c} + \bar{h}{}_{ac,b}{}^{c} + \bar{h}{}_{bc,a}{}^{c} -\eta_{ab} \bar{h}{}_{cd,}{}^{cd} = 0
+\end{align}
+
+\subsection{Gauge choices}
+
+There is a gauge freedom in General Relativity corresponding to the group of diffeomorphisms that can be used to simplify the equations even more. Just like the Gauge freedom in electrodynamics $A \rightarrow A + \partial \chi$ we can chose $h$ to satisfy $\bar{h}{}_{ab,}{}^{b} = 0$
+
+This Gauge is called the transverse traceless (TT) Gauge.
+
+In this Gauge, the linearized Einstein field equations, reduce to the usual wave equation for each component of $\bar{h}$:
+
+\begin{align}
+\bar{h}_{ab,c}{}^{c} = 0
+\end{align}
+
+In a 3+1 decomposition on the `Cartesian' coordinates this becomes even more evident:
+
+\begin{align}
+- \partial^{2}_{t}\bar{h}{}_{ab} + \partial^{2}_{x}\bar{h}{}_{ab} + \partial^{2}_{y}\bar{h}{}_{ab} + \partial^{2}_{z}\bar{h}{}_{ab} = 0
+\end{align}
+
+If we consider a wave propagating in the z direction, the most general form for a transverse traceless metric will be:
+
+\[
+\begin{bmatrix}
+-1 & 0 & 0 & 0 \\
+0 & a & b & 0 \\
+0 & b & - a & 0 \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix}
+\]
+
+There are then, only two independent components, known as $h_{+}$ and $h_{\times}$
+
+\[
+h_{+} = \begin{bmatrix}
+-1 & 0 & 0 & 0 \\
+0 & f_+ & 0 & 0 \\
+0 & 0 & -f_+ & 0 \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix},
+%
+h_{\times} = \begin{bmatrix}
+-1 & 0 & 0 & 0 \\
+0 & 0 & f_{\times} & 0 \\
+0 & f_{\times} & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix}
+\]
+
+These 
+
+\section{The LIGO-Virgo Collaboration}
 * Lengthy LIGO Description
 
-\section*{Multi-Messenger Astronomy}
-* The raise of and need for multi messenger astronomy
+\section{Multi-Messenger Astronomy}
+* The raise of and need for multi-messenger astronomy
 
-\section*{The TOROS Collaboration (or project?)}
+\section{The TOROS Collaboration (or project?)}
 * Lengthy TOROS Description (whatever it evolved into at this point)
 
 TOROS, the Transient Optical Robotic Observatory of the South, is a collaboration formed to respond to GW events as detected by the LVC.
 Its main purpose then is to detect transient events compatible with expected (or not) signatures of events that can give mutual birth to GW and optical triggers.
 
-Being in its early stages of development, and given the new nature of the multimessenger astronomy, the TOROS team is building up the tools and infrastructure that will make it capable in the future to promptly respond to this alerts.
+Being in its early stages of development, and given the new nature of the multi-messenger astronomy, the TOROS team is building up the tools and infrastructure that will make it capable in the future to promptly respond to this alerts.
 
 Several things can enter in consideration for this task, from software development to forging ties with existing observatories. 
 
@@ -176,7 +289,7 @@ At UT Rio Grande Valley, we developed extensive analysis and web code to allow f
 
 
 
-\section*{The Transient World}
+\section{The Transient World}
 
 \section{The Time-Domain Revolution in Astronomy}
 * GW20150914 and our contribution
