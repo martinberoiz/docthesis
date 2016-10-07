@@ -32,7 +32,7 @@ K(u,v) = \sum_{i} a_{i} B_{i}(u,v)
 \end{equation}
 
 These $B_{i}$ could in principle be any reasonable set of functions. 
-The two most popular choices are modulated Gaussians and the Delta basis, which will be explained in further detail in section \ref{basis}.
+%The two most popular choices are modulated Gaussians and the Delta basis, which will be explained in further detail in section \ref{basis}.
 
 Using this linear combination, the convolution will be
 
@@ -54,8 +54,7 @@ Q &= \int \left( I(x,y) - (R \mathbin{*} K)(x,y) \right)^2 \\
 and let's minimize $Q$ over the set of $a$'s:
 
 \begin{align}
-\frac{\partial Q}{\partial a_{i}} = & 2 \int \left( I(x,y) - \sum_{j} a_{j} C_{j}(x,y) \right) \\
-                             & \times C_{i}(x,y) 
+\frac{\partial Q}{\partial a_{i}} = & 2 \int \left( I(x,y) - \sum_{j} a_{j} C_{j}(x,y) \right) C_{i}(x,y) 
 \end{align}
 
 Setting the last equation to zero, gives us:
@@ -79,7 +78,7 @@ b_{i} &=  \int I(x,y) C_{i}(x,y)  \nonumber
 
 We can find the coefficients $a_{i}$ of the optimal kernel for the subtraction by inverting the system \eqref{matrix_eq}.
 
-\subsection*{Different basis functions}
+\section{Different basis functions}
 
 As stated above, any choice of basis in the linearization \eqref{kernel_linear} could work, but two particular choices are the most popular.
 
@@ -122,11 +121,11 @@ In fact, translations are included in the set of convolutions represented by dis
 Convolving with a kernel with a delta displaced $(\Delta x, \Delta y)$ pixels away from the center will effectively translate the image by that same amount,
 so misalignments due to small translations (the order of the kernel side) can be completely accounted for in the Delta basis.
 
-\subsection*{Add a varying background}
+\section{Add a varying background}
 
 Background variation can be treated separately or simultaneously with the PSF fitting.
 
-\subsubsection*{Independent background estimation}
+\subsection{Independent background estimation}
 
 An independent background estimation can be done on each separate image before doing the PSF match.
 
@@ -146,7 +145,7 @@ Q = \int \left( I_{B}(x,y) - \sum_{i,j}^d b_{ij} x^i y^j \right) ^2
 
 will give the best polynomial fit to the background.
 
-\subsubsection*{Simultaneous PSF and background estimation}
+\subsection{Simultaneous PSF and background estimation}
 
 To do it simultaneously with the PSF matching, we simply add it to our previous $Q$. This will let us remove any remaining variation on our new image $I(x,y)$.
 
@@ -187,7 +186,7 @@ b_{i} &=  \int I(x,y) C_{i}(x,y)
 
 as before.
 
-\subsection*{How to deal with bad pixels} \label{badpixels}
+\section{How to deal with bad pixels} \label{badpixels}
 
 The astronomical images can have pixel defects due to CCD defects or missing data from alignment. 
 Those pixels can, in principle, be in both the reference frame $R$ and the new image $I$. 
@@ -220,15 +219,34 @@ M_{ij}  &=   \int_{\Omega}  C_{i}(x,y)  C_{j}(x,y) \\
 b_{i} &=  \int_{\Omega} I(x,y) C_{i}(x,y) 
 \end{align}
 
-\subsection{Partition your image for large FoV}
+\section{Dealing with large fields of view}
 
-When dealing with large field of views, it's better to partition the image into grids, and apply Image Differencing on each grid element.
+When dealing with large field of views, a simple solution suggested by Bramich 2010, is to partition the image into grids, and apply Image Differencing on each grid element.
 
-\subsection*{Cost of building matrix M and b}
+Another solution is to include in the derivation, a space-varying kernel.
+This has the advantage of addressing the issue directly, but we have to quit to the niceties of having convolutions done with FFT.
+
+The derivation follows the usual least squares derivation, except this time we consider each kernel basis element modulated by a polynomial variation across the image. Following Miller (2008):
+
+\begin{align}
+K(u, v) &= \sum_n a_n(x,y) B_n(u, v) \\
+&= \sum_{n,i,j} a_{nij} x^i y^j B_n(u, v)
+\end{align}
+
+The new equations for $M$ and $b$ as in \ref{matrix_def} are the same, except that $C_{i}$ is now defined as:
+
+\begin{equation}
+C_I = \left( R \mathbin{*} x^i y^j B_n \right) (x,y)
+\end{equation}
+
+and $I$ is here the collective index $\{n,i,j\}$.
+Notice that the last equation involves an unusual type of ``convolution'' where the kernel is not constant. This prevents the use of FFT to speed up the calculation.
+
+\section{Cost of building matrix M and b}
 
 Recall that we have to solve the system of equations \eqref{matrix_eq} with definitions in \eqref{matrix_def}.
 
-This implies that each component of the matrix $M$ will involve an integration over the whole image.
+This implies that each component of the matrix $M$ will involve a convolution and an integration over the whole image.
 
 Therefore, not only the inversion problem is expensive, but even calculating the matrix can be an expensive operation.
 

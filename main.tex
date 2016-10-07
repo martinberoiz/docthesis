@@ -158,12 +158,17 @@ After 100 years after the prediction of gravitational waves (GW from hereon)
 \section{Gravitational Waves}
 Gravitational waves are a particular kind of solution to the Einstein's field equations of General Relativity.
 
-In many situations we can consider, we are in a flat background situation, in which our metric does not differ much locally from the flat metric.
-For example, here on Earth, removed from any near strong gravitational warp like around black holes or massive stars, we can consider to a good approximation that we live in a almost flat spacetime. Nonetheless, it is worth studying the dynamics of small perturbations to flatness.
+
+
+In many situations we can consider, we are in a flat background situation, in which our metric does not differ much locally from the Minkowski metric.
+Suppose we are far away removed from any strong source in an asymptotically flat spacetime.
+
+In such situation we can assume that locally our metric is the Minkowski metric plus some small deviation $h$. We want to study the dynamics of such small perturbation in a linearized Einstein field equation. 
+
 
 To do that, we consider the metric $g = \eta + h$ in the linearized Einstein's field equations. Linearized here means that quadratic and higher factors of $h$ will be simply ignored, as they are assumed much smaller than the flat metric.
 
-Let's find out what condition this imposes on the small perturbation $h$.
+Let's find out what condition this imposes on this small perturbation $h$.
 
 \begin{align}
 G_{\mu \nu}(\eta + h) = 8\pi T_{\mu \nu} = 0
@@ -218,55 +223,124 @@ With this definition, the Einstein's field equation becomes:
 
 There is a gauge freedom in General Relativity corresponding to the group of diffeomorphisms that can be used to simplify the equations even more. Just like the Gauge freedom in electrodynamics $A \rightarrow A + \partial \chi$ we can chose $h$ to satisfy $\bar{h}{}_{ab,}{}^{b} = 0$
 
-This Gauge is called the transverse traceless (TT) Gauge.
-
-In this Gauge, the linearized Einstein field equations, reduce to the usual wave equation for each component of $\bar{h}$:
+In this ``Lorentz Gauge'', the linearized Einstein field equations, reduce to the usual wave equation for each component of $\bar{h}$:
 
 \begin{align}
-\bar{h}_{ab,c}{}^{c} = 0
+\bar{h}_{ab,c}{}^{c} = \Box{\bar{h}{}_{ab}} = 0
 \end{align}
 
-In a 3+1 decomposition on the `Cartesian' coordinates this becomes even more evident:
+Further gauge choices can let us choose the trace of $\bar{h}$ to be zero and each $h_{0\mu}$ component to be zero for $\mu = 0,1,2,3$. Notice that once the trace of $\bar{h}$ is set to zero, it implies that $\bar{h}{}_{ab} = h_{ab}$
+
+\begin{align} \label{gaugecond}
+& \Box{h_{ab}} = 0 \\
+& h_{ab,}{}^{b} = 0 \\
+& h_{a}{}^{a} = 0 \\
+& h_{0 \mu} = 0; \; \mu=0,1,2,3
+\end{align}
+
+This is called the transverse traceless (TT) gauge. The reader can refer the full derivation for the gauge choices in Misner or Wald.
+
+With the conditions in (\ref{gaugecond}), we seek solutions in the form of plane waves of the form $h_{ab} = H_{ab}e^{\pm \imath k_{\mu}x^{\mu}}$.
+
+Our gauge conditions impose similar conditions on $k$ and $H$:
 
 \begin{align}
-- \partial^{2}_{t}\bar{h}{}_{ab} + \partial^{2}_{x}\bar{h}{}_{ab} + \partial^{2}_{y}\bar{h}{}_{ab} + \partial^{2}_{z}\bar{h}{}_{ab} = 0
+& k^{\mu} H_{\mu \nu} = 0 \\
+& H_{\mu}{}^{\mu} = 0 \\
+& H_{0 \mu} = 0; \; \mu=0,1,2,3
 \end{align}
 
-If we consider a wave propagating in the z direction, the most general form for a transverse traceless metric will be:
+This leaves $H$ with only two independent components. If we consider a wave propagating in the z direction, the most general form for a transverse traceless metric will be:
 
-\[
+\begin{equation}
+\begin{bmatrix}
+0 & 0 & 0 & 0 \\
+0 & h_{+} & h_{\times} & 0 \\
+0 & h_{\times} & -h_{+} & 0 \\
+0 & 0 & 0 & 0 \\
+\end{bmatrix}
+e^{\pm \imath k_{\mu}x^{\mu}}
+\end{equation}
+
+and the total metric $g$
+
+\begin{equation}
 \begin{bmatrix}
 -1 & 0 & 0 & 0 \\
-0 & a & b & 0 \\
-0 & b & - a & 0 \\
+0 & 1 + h_{+}e^{\pm \imath k_{\mu}x^{\mu}} & h_{\times} e^{\pm \imath k_{\mu}x^{\mu}} & 0 \\
+0 & h_{\times} e^{\pm \imath k_{\mu}x^{\mu}} & 1 - h_{+}e^{\pm \imath k_{\mu}x^{\mu}} & 0 \\
 0 & 0 & 0 & 1 \\
 \end{bmatrix}
-\]
+\end{equation}
 
-There are then, only two independent components, known as $h_{+}$ and $h_{\times}$
+The two independent polarizations are called ``h plus'' ($h_+$) and ``h cross'' ($h_{\times}$).
 
-\[
-h_{+} = \begin{bmatrix}
--1 & 0 & 0 & 0 \\
-0 & f_+ & 0 & 0 \\
-0 & 0 & -f_+ & 0 \\
-0 & 0 & 0 & 1 \\
-\end{bmatrix},
-%
-h_{\times} = \begin{bmatrix}
--1 & 0 & 0 & 0 \\
-0 & 0 & f_{\times} & 0 \\
-0 & f_{\times} & 0 & 0 \\
-0 & 0 & 0 & 1 \\
-\end{bmatrix}
-\]
+Because of the very `perturbative' nature of GW, these little disturbances are by nature small. Even the most powerful astronomical events, like a black hole merger will produce disturbances of $10^{-23}$ m at a few hundreds of Mpc of distance.
 
-These 
+%the direct detection of GWs will require similarly strong sources, extremely large masses moving with large accelerations in strong gravitational fields. 
+
+They travel at the speed of light and fade with the inverse of the distance.
+%Quadrupole radiation is the lowest allowed form and is thus usually the dominant form. In this case, the GW field strength is proportional to the second time derivative of the quadrupole moment of the source, and it falls off in amplitude inversely with distance from the source.
+
+%One cannot hope to detect any waves of terrestrial origin, whether naturally occurring or manmade; instead one must look for very massive compact astrophysical objects, moving at relativistic velocities. For example, strong sources of GWs that may exist in our galaxy or nearby galaxies are expected to produce wave strengths on Earth that do not exceed strain levels of one part in 1021.
+
+Perhaps the first confirmation of GW came 50 years after that GW were predicted with the work of Husel and Taylor. They studied the a Neutron Star Binary NSB for decades, for one of which we receive its pulses.
+They discovered that the slow rate of period decrease of the pulses for this system was precisely as the GW theory predicted.
+
+%GWs are oscillating perturbations to a flat, or Minkowski, space–time metric, and can be thought of equivalently as an oscillating strain in space–time or as an oscillating tidal force between free test masses.
+
+%As with electromagnetic waves, GWs travel at the speed of light and are transverse in character, i.e. the strain oscillations occur in directions orthogonal to the direction in which the wave is propagating.
+
+One early detector for GW was a metal bar pioneered by Weber.
+
+Another possible detector would be measure the relative distances of two masses separated a large distance and study their relative motion during a passing GW using very precise interferometry measurements.
+This is precisely what the first generation of interferometric GW detectors proposed to do since the early 90's.
+
+In the next section we offer a more detailed account of this incredible engineer and scientific endeavor.
+
 
 \section{The LIGO-Virgo Collaboration}
-* Lengthy LIGO Description
+
+%The initial LIGO detectors were designed to be sensitive to GWs in the frequency band 40–7000 Hz, and capable of detecting a GW strain amplitude as small as 1E-21 
+
+%at the targeted strain sensitivity of 1E-21, the resulting arm length change is only ∼10−18 m, a thousand times smaller than the diameter of a proton. Meeting this challenge involves the use of special interferometry techniques, state-of-the-art optics, highly stable lasers and multiple layers of vibration isolation
+
+%During the commissioning period, as the interferometer sensitivity was improved, several short science runs were carried out, culminating with the fifth science run (S5) at design sensitivity. The S5 run collected a full year of triple- detector coincident interferometer data during the period from November 2005 to September 2007.
+
+%We have identified a set of relatively minor improvements to the current instruments [98] that can yield a factor of 2 increase in strain sensitivity and a corresponding factor of 8 increase in the probed volume of the universe. The two most significant enhancements are higher laser power and a new, more efficient readout technique for the GW channel. Higher power is delivered by a new master oscillator-power amplifier system, emitting 35 W of single frequency 1064 nm light [99], 3.5 times the power of the initial LIGO lasers. For the readout, a small mode-cleaner cavity is inserted in the AS beam path, between the Faraday isolator and the length photodetectors. This cavity filters out RF sidebands and the higher order mode content of the AS port light, reducing the shot-noise power. Instead of RF heterodyning, signal detection is done by slightly offsetting the differential arm length from the dark fringe, and using the resulting carrier field as the local oscillator in a dc homodyne detection scheme. These improvements (known collectively as Enhanced LIGO) are currently being implemented and commissioned on H1 and L1, and a 1–2 year science run with these interferometers is expected to begin in mid-2009.
+
+%Significantly greater sensitivity improvements are possible with more extensive upgrades. Advanced LIGO will replace the existing interferometers with significantly improved technology to achieve a factor of at least 10 in sen- sitivity over the initial LIGO interferometers and to lower the seismic wall frequency down to 10 Hz.
+%The Advanced LIGO interferometers are configured like initial LIGO—a power-recycled Fabry–Perot Michelson— with the addition of a signal recycling mirror at the anti- symmetric output. Signal recycling gives the ability to tune the interferometer frequency response, so that the point of maximum response can be shifted away from zero frequency [9]. The laser wavelength stays at 1064 nm, but an additional high-power stage brings the laser power up to 200 W [102]. The test masses will be significantly larger—40 kg—in order to reduce radiation pressure noise and to allow larger beam sizes. Larger beams and better dielectric mirror coatings combine to reduce the test mass thermal noise by a factor of 5 compared with initial LIGO [103].
+%The test mass suspensions become significantly more intricate to provide much better performance. They incorporate four cascaded stages of passive isolation, instead of just one, including vertical isolation comparable to the horizontal isolation at all stages except one [104]. The test mass is suspended at the final stage with fused-silica fibers rather than steel wires; these fibers have extremely low mechanical loss and will reduce suspension thermal noise nearly a hundred-fold [105]. The current passive seismic isolation stacks that support the suspensions are replaced with two-stage active isolation platforms [106]. These stages are designed to actively reduce the ground vibration by a factor of ∼1000 in the 1–10 Hz band, and provide passive isolation at higher frequencies. The combination of the isolation platforms and the suspensions will reduce seismic noise to negligible levels above approximately 10 Hz.
+%The successful operation of Advanced LIGO is expected to transform the field from GW detection to GW astrophysics. We illustrate the potential using compact binary coalescences. Detection rate estimates for CBCs can be made using a combination of extrapolations from observed binary pulsars, stellar birth rate estimates and population synthesis models. There are large uncertainties inherent in all of these methods, however, leading to rate estimates that are uncertain by several orders of magnitude. We therefore quote a range of rates, spanning plausible pessimistic and optimistic estimates, as well as a likely rate. For a NS mass of 1.4M⊙ and a BH mass of 10M⊙, these rate estimates for Advanced LIGO are: 0.4– 400 yr−1, with a likely rate of 40 yr−1 for NS–NS binaries; 0.2–300 yr−1 , with a likely rate of 10 yr−1 for NS–BH binaries; 2–4000 yr−1 , with a likely rate of 30 yr−1 for BH–BH binaries.
+
+
+%LIGO was designed so that its data could be searched for GWs from many different sources. The sources can be broadly characterized as either transient or continuous in nature, and for each type, the analysis techniques depend on whether the gravitational waveforms can be accurately modeled or whether only less specific spectral characterizations are possible. We therefore organize the searches into four categories according to source type and analysis technique.
+%(i) Transient, modeled waveforms: the compact binary coalescence search. The name follows from the fact that the best understood transient sources are the final stages of binary inspirals [52], where each component of the binary may be a NS or a BH. For these sources the waveform can be calculated with good precision, and matched-filter analysis can be used.
+%(ii) Transient, unmodeled waveforms: the gravitational-wave bursts search. Transient systems, such as core-collapse supernovae [53], BH mergers and NS quakes, may produce GW bursts that can only be modeled imperfectly, if at all, and more general analysis techniques are needed.
+%(iii) Continuous, narrow-band waveforms: the continuous wave sources search. An example of a continuous source of GWs with a well-modeled waveform is a spinning NS (e.g. a pulsar) that is not perfectly symmetric about its rotation axis [54].
+%(iv) Continuous, broadband waveforms: the gravitational-wave background search. Processes operating in the early universe, for example, could have produced a background of GWs that is continuous but stochastic in character [55].
+
+
+LIGO, the Laser Interferometer Gravitational-Wave Observatory (Abramovici et al. (1992)), is an American observatory set to detect the GWs predicted by General Relativity. It actually consists of two separate observatories, one in the state of Washington and another one in Louisiana. Co-founded in 1992 by Kip Thorne and Ronald Drever of Caltech and Rainer Weiss of MIT, LIGO is a joint project between scientists at MIT, Caltech, and many other colleges and universities. The joint world-wide collaboration of scientists participating in the LIGO project is called the LIGO Scientific Collaboration, or LSC for short. Several professors working at the Center for Gravitational Wave Astronomy (CGWA) of the University of Texas Rio Grande Valley are part of the LSC.
+
+General Relativity predicts that very massive or energetic events will create traveling perturbations of the underlying spacetime metric in the form of grav- itational waves. These are linear disturbances to the background metric, that are propagated outwards with the speed of light. These tensorial transversal waves will modify the local metric as it travels through space.
+
+A spacetime metric measures the distance between pair of events or points, so as the metric perturbation wave passes by, it will modify the relative distance between points in space. One could then device an instrument set to detect these relative differences in distance for some test masses. In practice, the perturbations measured on Earth from distant astronomical objects that we hope to detect can be as small as $10^{-23}$ m.
+
+LIGO is an observatory set to detect these relative
+distance differences. The test masses for LIGO are two massive mirrors at the end of two perpendicular long arms (4 km long.) Each mirror weighs about 40 kg and each one of the arms can be thought, for simplicity, as an independent laser interferometer.
+
+When a GW passes at an angle to this set-up, the arms will stretch and shorten in opposite directions (one arm will stretch as the other shrinks), while the laser keeps traveling the arms unaffected. This causes minuscule differences in optical paths for the light and this in turn will result in the lasers being out of phase from each other. This difference in phase from the `lock' position indicates a change in the relative positions of the mirrors.
+
+Many other mundane situations can also produce this same effect, the most simple one being seismic activity of almost any strength. Additionally, noise from the instrument itself, from the laser beam and electronics, as well as many intrinsic vibration modes of the system complicates the output signal that will be analyzed.
+
 
 \section{Multi-Messenger Astronomy}
+
+%In physics, GW detection could provide information about strong-field gravitation, the untested domain of strongly curved space where Newtonian gravitation is no longer even a poor approximation. In astrophysics, the sources of GWs that LIGO might detect include binary NSs (like PSR 1913 + 16 but much later in their evolution); binary systems where a black hole (BH) replaces one or both of the NSs; a stellar core collapse which triggers a type II supernova; rapidly rotating, non-axisymmetric NSs; and possibly processes in the early universe that produce a stochastic background of GWs [3].
+
+
 * The raise of and need for multi-messenger astronomy
 
 \section{The TOROS Collaboration (or project?)}
