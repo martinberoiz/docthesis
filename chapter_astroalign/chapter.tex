@@ -1,6 +1,6 @@
-\chapter{Astroalign}
+\section{Astroalign}
 
-\section*{The Algorithm in a Nutshell}
+\subsection{The Algorithm in a Nutshell}
 
 The core idea of the algorithm consists on characterizing asterisms (for example triangles or quadrilaterals) by using quantities invariant to translation, rotation or even scaling and flipping. Similar asterisms will have similar invariant tuples in both images so a correspondence can be made between those invariant quantities. 
 
@@ -23,7 +23,7 @@ The idea for the algorithm can be summarized in a few steps
 \end{enumerate}
 
 
-\subsubsection*{Selecting Asterisms and Invariant Features}
+\subsection{Selecting Asterisms and Invariant Features}
 
 To find a correspondence we need to fix which figures will we search for in both images. 
 The simplest figure is the triangle. A triangle (with all different sides) can determine a unique transformation between two images. 
@@ -38,7 +38,7 @@ In fact any function of 2 independent length ratios is enough.
 
 So, for example the tuple $(\frac{L_2}{L_1}, \frac{L_1}{L_0})$ (where $L_2 > L_1 > L_0$) is a valid invariant tuple that fully describe the triangle up to translation, rotation and scaling, and even coordinate flipping.
 
-\subsubsection*{Analysis of the invariants}
+\subsubsection{Analysis of the invariants}
 
 Let's analyze here the example invariant set given in the previous section.
 
@@ -99,7 +99,7 @@ All these observations can be summarized in figure \ref{fig:inv_region}.
 
 %\lipsum
 
-\subsubsection{An Ideal Example}
+\subsection{An Ideal Example}
 
 Let's see how the algorithm performs on an ideal example.
 
@@ -144,7 +144,7 @@ Some of the correspondences won't be real ones. It could be that by chance there
 
 This is where the RANSAC algorithm comes in.
 
-\subsubsection{The RANSAC algorithm}
+\subsection{The RANSAC algorithm}
 
 From its Wikipedia page 
 
@@ -185,6 +185,6 @@ More can be used if we use a linear square minimization.
 
 %This candidate transformation $T$ will be tested against all the other triangle matches in a RANSAC algorithm.
 
-\subsubsection{Error propagation}
+\subsection{Error propagation}
 
 This is done by \citet{1995PASP..107.1119V}.

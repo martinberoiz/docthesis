@@ -1,0 +1,46 @@
+\chapter{Machine Learning}
+
+The subtraction techniques are very effective at  modeling PSF differences, nevertheless there are many defects left behind after a subtraction. This is also a well known issue in the difference image analysis. The fictitious (or bogus) sources arise primarily from PSF mismatch and mis-alignments of the images.
+
+These defects can easily confuse algorithms of source detection like SExtractor or similar that relies on excess of flux over the background. For that, it is needed to have a computerized agent capable of discriminating bogus sources from real transients on the subtracted image. 
+
+This is the task of a Machine Learning (ML) agent trained for that purpose. The real bogus classifier, as it is named in the literature relies on --usually morphological-- features to perform the classification.
+
+Machine Learning is such an extensive and intensive area of research with many applications in many fields.
+
+Since the ML field is so wide, to conduct a ML experiment one must make a few decisions. Even most importantly than the particular algorithm, for which there are hundreds and modifications are being published all the time, it's the data that drives the efficiency of the method.
+
+As the saying goes:
+
+\begin{quotation}
+Big data will beat a good algorithm \textcolor{red}{Find exact quote and author}
+\end{quotation}
+
+
+For our main test, I decide to train a Random Forest ML algorithm on a training set developed especially for this.
+
+The Random Forest algorithm is an `ensemble' method. Meaning it's a collection of other methods whose results will be averaged over somehow.
+
+In this case, a Random Forest is an `ensemble' of Decision Trees. A Decision Tree is basically a tree of nodes. Each node represent a bifurcation based on one feature. The features and branching threshold on each node are chosen maximizing the expected information gain (or entropy loss) on the training set. That is, how well the bifurcation separates the training data for each class.
+
+Random Forest bootstraps the data so that each subset of data will train a Decision Tree on a random subset of the features. After all Decision Trees are trained this way, the collection of Trees will give the final classification.
+
+A single Decision Tree suffers of great variance, even for big amounts of data. The bifurcations on the greedy algorithm are naturally very dependent on the training set. A small variation on it may create a complete different tree. Random Forest reduces this variance by averaging over many trees. This also creates more realistic and fuzzy class boundaries on the feature space.
+
+On the next section I explain how the training data was prepared.
+
+\section{Training Data}
+
+To 
+
+
+\section{Our test-drive with OIS + ML}
+
+	* Our test-drive with OIS + ML. Results of paper (hopefully)
+		* Test data we used (CSTAR)
+		* Processing our raw data (selecting images for a dataset, cleaning images, fixing headers, performing subtractions, identifying sources in subtractions, stamps)
+		* Getting samples for training (labeling data as RB, winnow, first run of ML)
+		* Feature exploration of data (SExtractor features, derived features, morphological features like Zernike, Chebyshev, Fourier, etc.)
+		* Random Forest + SMOTE + Cost Matrix (how well did this perform?)
+		* Is it reproducible in other data sets?
+
