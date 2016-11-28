@@ -19,7 +19,7 @@ Big data will beat a good algorithm \textcolor{red}{Find exact quote and author}
 
 For our main test, I decide to train a Random Forest ML algorithm on a training set developed especially for this.
 
-The Random Forest algorithm is an `ensemble' method. Meaning it's a collection of other methods whose results will be averaged over somehow.
+The Random Forest algorithm is an `ensemble' method. Meaning it is a collection of other methods whose results will be averaged over somehow.
 
 In this case, a Random Forest is an `ensemble' of Decision Trees. A Decision Tree is basically a tree of nodes. Each node represent a bifurcation based on one feature. The features and branching threshold on each node are chosen maximizing the expected information gain (or entropy loss) on the training set. That is, how well the bifurcation separates the training data for each class.
 
@@ -31,11 +31,84 @@ On the next section I explain how the training data was prepared.
 
 \section{Training Data}
 
-To 
+The main challenge to generate training data is the great unbalance between bogus sources due to imperfect subtraction and actual real transients.
 
+On a typical image, the number of bogus sources can be of a hundred, and the rate of real transients can be only a handful.
 
-\section{Our test-drive with OIS + ML}
+A very unbalanced training set can bring about spurious results. As an example, imagine a training set with 90 bogus and 10 reals. A classifier that classifies everything as bogus, would have a success rate for bogus classification of 90\%. An unbalanced training set could also create classifiers with large variance due to the small set of reals.
 
+To generate a balanced training set with comparable amounts of reals and bogus, I generate reals by selecting sources on an image and erasing them on the reference. That way, after a subtraction, those sources will appear as transient events, that is, objects in the image that don't have a corresponding object on the reference.
+
+The image set used for this purpose is CSTAR, but any other set will also do.
+
+The advantage of this method, compared to other methods like injecting fake sources, is that the `transients' obtained this way will have all the particular characteristics of the CCD and instrument from the image set in which we are interested to work. It will also have the characteristics of the subtraction method imperfections, but this is not exclusive to this method.
+
+The `bogus' set is also collected at the same time along with the `real' set.
+
+To have equal representation of sources of different magnitudes, the sources are first binned into 10 bins of \textcolor{red}{magnitude/flux?} and taken from different regions of the CCD.
+We partition the image in a 4 by 4 grid and we select one star from each region and we do so for each magnitude bin. \textcolor{red}{explain better!!!}
+
+\subsection{The CSTAR image-set preparation}
+
+The CSTAR image set is a high cadence set of images taken in the winter of 2010 in Antarctica, the South Pole. It comprises 6 months of data with an average cadence of \textcolor{red}{1 min ???? check}.
+
+Since the amount of data is so large, for the purpose of training, we created a subset of 626 images, with a cadence of about an hour during the best seeing month of June (May 31st to June 30th, 2010). The subset was named `cstar\_june\_selection'. The first 10 images of this set (named cstar\_june\_01) is used for training purposes and the rest can be used to search for transients. 
+
+The images are mostly clean, that is they were bias and flat corrected.
+Nevertheless, the images suffer from `bleeding' even though they have low exposure time. This bleeding is very significative for bright stars and less so for dimmer stars but still present nonetheless.
+
+The bled stars were covered and a separate mask was created for the covered pixels for future reference. This pixel mask also includes defective pixels (dead lines and columns in the CCD).
+
+The date-time information on the header was also updated according to \textcolor{red}{[ref]}.
+
+For each of these images, we aligned a reference image with it using the package `astroalign' (see section astroalign) and also performed a image subtraction using the delta basis method on a 4 by 4 grid.
+
+\section{The Classifier}
+
+As previously said, we trained a Random Forest classifier based on 7,624 examples of fabricated transients (as described in section data) and 7,624 bogus picked at random from the subtraction images. This totals 15,248 samples for training and validation.
+
+Several scores about the performance of the classifier on the training data are condensed in the scores table (\ref{mlscores}).
+
+\begin{table}
+\centering
+\begin{tabular}{| >{\itshape}l | l |}
+  \hline
+  accuracy & 0.9935 \\ \hline
+  precision & 0.9956 \\ \hline
+  recall & 0.9915 \\ \hline
+  F measure & 0.9936 \\ \hline
+\end{tabular}
+\caption{Scores}
+\label{mlscores}
+\end{table}
+
+On the training data, the performance is quite good, with all indicators scoring above 99 percent.
+
+In the confusion matrix (table \ref{mlconfusionmatrix}) we see that only 65 out of 7,624 of the reals were mis-classified as bogus, and only 33 bogus out of the 7,624 were mis-classified as reals. These very low numbers explain the very high performance scores of the classifier.
+
+\begin{table}
+\centering
+\begin{tabular}{ l|c|c| }
+\multicolumn{1}{r}{}
+ &  \multicolumn{1}{c}{real}
+ & \multicolumn{1}{c}{bogus} \\
+\cline{2-3}
+{\it Classified as} real & 7591 & 33 \\
+\cline{2-3}
+{\it Classified as} bogus & 65 & 7559 \\
+\cline{2-3}
+\end{tabular}
+\caption{Confusion Matrix}
+\label{mlconfusionmatrix}
+\end{table}
+
+The ROC curve is presented in figure ??.
+
+\section{Testing the classifier on real data}
+
+Once we have trained our classifier with training data, we wanted to also test it in a more real situation. For that we apply the classifier to the rest of the cstar\_june\_selection data set in search of actual transients of the image.
+
+\begin{comment}
 	* Our test-drive with OIS + ML. Results of paper (hopefully)
 		* Test data we used (CSTAR)
 		* Processing our raw data (selecting images for a dataset, cleaning images, fixing headers, performing subtractions, identifying sources in subtractions, stamps)
@@ -43,4 +116,6 @@ To
 		* Feature exploration of data (SExtractor features, derived features, morphological features like Zernike, Chebyshev, Fourier, etc.)
 		* Random Forest + SMOTE + Cost Matrix (how well did this perform?)
 		* Is it reproducible in other data sets?
+\end{comment}
+
 
