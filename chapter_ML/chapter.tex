@@ -33,13 +33,18 @@ On the next section I explain how the training data was prepared.
 
 The main challenge to generate training data is the great unbalance between bogus sources due to imperfect subtraction and actual real transients.
 
-On a typical image, the number of bogus sources can be of a hundred, and the rate of real transients can be only a handful.
+On a typical image, the number of bogus sources can be of a hundred, and the rate of real transients can be only a handful. 
 
-A very unbalanced training set can bring about spurious results. As an example, imagine a training set with 90 bogus and 10 reals. A classifier that classifies everything as bogus, would have a success rate for bogus classification of 90\%. An unbalanced training set could also create classifiers with large variance due to the small set of reals.
+The Machine Learning problem becomes one of `Information Retrieval'. We are mainly interested in only one class, the real transients, and we need to retrieve samples of that class from a sea of bogus transients.
+
+In a situation like that, a very unbalanced training set can bring about spurious results. As an example, imagine a training set with 90 bogus and 10 reals. The Zero Rule Classifier --that is the classifier that classifies everything as bogus-- would have a 90\% Precision and 100\% Recall for the bogus class. An unbalanced training set could also create classifiers with large variance due to the small set of real samples. \textcolor{red}{Add more about how the different scores behave in a very unbalanced training set with the Zero Rule classifier}
+
+`Recall' measures the fraction of samples of the relevant class that were recalled by the classifier out of the total number of reals in the set.
+The class we are mainly interested in for the Recall is that of the real transient examples.
 
 To generate a balanced training set with comparable amounts of reals and bogus, I generate reals by selecting sources on an image and erasing them on the reference. That way, after a subtraction, those sources will appear as transient events, that is, objects in the image that don't have a corresponding object on the reference.
 
-The image set used for this purpose is CSTAR, but any other set will also do.
+The image set used for this purpose is CSTAR, but any other set will also perform similarly.
 
 The advantage of this method, compared to other methods like injecting fake sources, is that the `transients' obtained this way will have all the particular characteristics of the CCD and instrument from the image set in which we are interested to work. It will also have the characteristics of the subtraction method imperfections, but this is not exclusive to this method.
 
@@ -57,7 +62,7 @@ Since the amount of data is so large, for the purpose of training, we created a 
 The images are mostly clean, that is they were bias and flat corrected.
 Nevertheless, the images suffer from `bleeding' even though they have low exposure time. This bleeding is very significative for bright stars and less so for dimmer stars but still present nonetheless.
 
-The bled stars were covered and a separate mask was created for the covered pixels for future reference. This pixel mask also includes defective pixels (dead lines and columns in the CCD).
+The bled stars were covered with the median and a separate mask was created for the covered pixels for future reference. This pixel mask also includes defective pixels (dead lines and columns in the CCD).
 
 The date-time information on the header was also updated according to \textcolor{red}{[ref]}.
 
@@ -67,7 +72,35 @@ For each of these images, we aligned a reference image with it using the package
 
 As previously said, we trained a Random Forest classifier based on 7,624 examples of fabricated transients (as described in section data) and 7,624 bogus picked at random from the subtraction images. This totals 15,248 samples for training and validation.
 
+The features used for this classifier were selected from the popular source extractor software SExtractor [Bertin ??]. We chose the features that had relation to the morphology of the source and some other features derived from them.
+The whole list is presented in table \ref{mlfeatures}.
+
 Several scores about the performance of the classifier on the training data are condensed in the scores table (\ref{mlscores}).
+
+\begin{table}
+\centering
+\begin{tabular}{|l| >{\itshape}l|}
+  \hline
+  x2 & Sum of the x squared values \\ \hline
+  y2 & Sum of the y squared values \\ \hline
+  xy & Sum of the product of x and y values \\ \hline
+  cxx, cyy, cxy & Same as x2, y2 and xy in the convolved image  \\ \hline
+  a, b, theta & semi-major axis, semi-minor axis and orientation of the best ellipse fit to the object \\ \hline
+  mag\_aper & Aperture magnitude of the object in the subtraction image \\ \hline     magerr\_aper & Error of mag\_aper \\ \hline
+  flux\_aper & Aperture flux in counts of the object in the subtraction image \\ \hline
+  fluxerr\_aper & Error of flux\_aper \\ \hline
+threshold & \\ \hline
+flux\_max & \\ \hline
+fwhm & Full width at half maximum \\ \hline
+deltax & Width in pixels of the object (X\_MAX - X\_MIN) \\ \hline
+deltay & Height in pixels of the object (Y\_MAX - Y\_MIN) \\ \hline
+ratio & $\min$(deltax, deltay)/ $\max$(deltax,deltay,1) \\ \hline
+roundness & a/b\\ \hline
+peak\_centroid & Distance in pixels from the pixel with highest count to the centroid of the object \\ \hline
+\end{tabular}
+\caption{Random Forest Features}
+\label{mlfeatures}
+\end{table}
 
 \begin{table}
 \centering
@@ -78,7 +111,7 @@ Several scores about the performance of the classifier on the training data are 
   recall & 0.9915 \\ \hline
   F measure & 0.9936 \\ \hline
 \end{tabular}
-\caption{Scores}
+\caption{Random Forest Scores}
 \label{mlscores}
 \end{table}
 
@@ -107,6 +140,16 @@ The ROC curve is presented in figure ??.
 \section{Testing the classifier on real data}
 
 Once we have trained our classifier with training data, we wanted to also test it in a more real situation. For that we apply the classifier to the rest of the cstar\_june\_selection data set in search of actual transients of the image.
+
+The Random Forest classifier will can only predict the class, but can also output a probability for that class.
+
+Setting the probability to 0.9, the classifier returns the most likely transient events. The rate of real transient in the images is of about 15 per image for this probability threshold.
+
+Some examples of these are shown in figure ??.
+
+For very faint events or events that comprise very few pixels in the image, we can have additional filters that weed them out. Although, some of this could be of astronomical interest and discarding them could result in its loss.
+
+
 
 \begin{comment}
 	* Our test-drive with OIS + ML. Results of paper (hopefully)

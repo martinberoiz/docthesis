@@ -79,7 +79,7 @@
 \usepackage{subfig}
 \makeatother
 
-  \providecommand{\definitionname}{Definition}
+\providecommand{\definitionname}{Definition}
 \providecommand{\theoremname}{Theorem}
 
 \begin{document}
@@ -99,7 +99,7 @@ All rights reserved. }
 \dedication{\emph{I would like to dedicate this thesis to ??????.}}
 
 
-\title{OPTICAL COUNTERPARTS TO GRAVITATIONAL WAVES}
+\title{\textbf{OPTICAL COUNTERPARTS TO GRAVITATIONAL WAVES}}
 
 
 \author{Martin Beroiz}
@@ -159,27 +159,25 @@ After 100 years after the prediction of gravitational waves (GW from hereon)
 \section{Gravitational Waves}
 Gravitational waves are a particular kind of solution to the Einstein's field equations of General Relativity.
 
-
-
 In many situations we can consider, we are in a flat background situation, in which our metric does not differ much locally from the Minkowski metric.
-Suppose we are far away removed from any strong source in an asymptotically flat spacetime.
+Suppose we are far away, removed from any strong source in an asymptotically flat spacetime.
 
-In such situation we can assume that locally our metric is the Minkowski metric plus some small deviation $h$. We want to study the dynamics of such small perturbation in a linearized Einstein field equation. 
+In such situation we can assume that locally our metric is the Minkowski metric $\eta$ plus some small deviation $h$. We want to study the dynamics of such small perturbation in a linearized Einstein field equation. 
 
 
 To do that, we consider the metric $g = \eta + h$ in the linearized Einstein's field equations. Linearized here means that quadratic and higher factors of $h$ will be simply ignored, as they are assumed much smaller than the flat metric.
 
-Let's find out what condition this imposes on this small perturbation $h$.
+Let's find out what condition the Einstein field equation $G_{\mu \nu}(\eta + h) = 8\pi T_{\mu \nu} = 0$ imposes on this small perturbation $h$.
 
-\begin{align}
-G_{\mu \nu}(\eta + h) = 8\pi T_{\mu \nu} = 0
-\end{align}
+%\begin{align}
+%G_{\mu \nu}(\eta + h) = 8\pi T_{\mu \nu} = 0
+%\end{align}
 
 %It is worth noting here that Einstein equations are not linear in nature, but they are second order on the metric derivatives and furthermore linear on the second order terms. This will allow us to derive from the linearized Einstein equations, a second order wave equation on the small perturbation $h$ that decouples from $\eta$.
 
 %Another issue to point out is that the vague definition of 'small perturbation' has to be of physical nature and not an artifact on the choice of the coordinate system. We will not worry about this issue on the present work, but it is worth keeping it in mind. Other concerns about coordinate system effects were historically raised and settled in time, particularly the many gauge choices done during the derivation.
 
-The Christoffel symbols are to first order in $h$ (and $\eta$ in Cartesian coordinates!):
+The Christoffel symbols to first order in $h$ are:
 
 \begin{align}
 \Gamma_{abc} &= \frac{1}{2} \left( g_{ca,b} + g_{cb,a} - g_{ab,c} \right) \\
@@ -382,14 +380,14 @@ At UT Rio Grande Valley, we developed extensive analysis and web code to allow f
 		* Discussion of both methods
 
 
-%\include{chapter_DIA/chapter}
+\include{chapter_DIA/chapter}
 
 \include{chapter_ML/chapter}
 		
 \chapter{Software Developed}
 \section{Pipeline}
 
-%\include{chapter_astroalign/chapter}
+\include{chapter_astroalign/chapter}
 
 
 \section{Optimal Image Subtraction}
