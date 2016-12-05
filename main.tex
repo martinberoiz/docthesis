@@ -140,7 +140,7 @@ Document or Doctoral Dissertation attest to the accuracy of this statement.}\end
 \begin{abstract}
 The upcoming research in the Gravitational Wave domain has introduced new challenges to Astronomy and has opened a new window to the universe.
 
-Our work here looks for a way to harness the power of multi-messenger astronomy to enhance and complement the incredible capabilities of the new generation of GW detectors, with the LSC leading the way.
+Our work here looks for a way to harness the power of multi-messenger astronomy to enhance and complement the incredible capabilities of the new generation of GW detectors, with LVC leading the way.
 
 It will hopefully help newcomers to the field to understand the details and challenges of this new discipline and encourage research in the area. \textcolor{red}{[This is probably too pedantic]}
 
@@ -154,9 +154,201 @@ In the second chapter, I discuss the two main elements of a modern transient sea
 
 \chapter{Introduction}
 
-After 100 years after the prediction of gravitational waves (GW from hereon)
+After 100 years after the prediction of Gravitational Waves (GW from hereon) LIGO made the first direct in situ detection of the first Gravitational Wave labeled GW150914. The history of GW ...
 
 \section{Gravitational Waves}
+
+\begin{comment}
+
+%Quadrupole radiation is the lowest allowed form and is thus usually the dominant form. In this case, the GW field strength is proportional to the second time derivative of the quadrupole moment of the source, and it falls off in amplitude inversely with distance from the source.
+
+%As with electromagnetic waves, GWs travel at the speed of light and are transverse in character, i.e. the strain oscillations occur in directions orthogonal to the direction in which the wave is propagating.
+\end{comment}
+
+General Relativity predicts that very massive or energetic events will create traveling perturbations of the underlying spacetime metric in the form of gravitational waves.
+These are linear disturbances to a flat background metric, that are propagated outwards with the speed of light fading with the inverse of the distance.
+These tensorial transversal waves will modify the local metric as it travels through space.
+
+Putting it in more technical terms, in an asymptotically flat spacetime, removed from any strong source so that one can assume an almost flat local solution, one can study weak perturbations to the flat Minkowski metric.
+In this regime, the linearized Einstein field equations admit wave solutions.
+These wave solutions are called Gravitational Waves.
+
+The GW metric has the form: (we refer the reader to Appendix \ref{gwderivation} for a more complete derivation of the metric)
+
+\begin{equation}
+h_{\mu \nu} = 
+\begin{bmatrix}
+0 & 0 & 0 & 0 \\
+0 & h_{+}e^{\pm \imath k_{\mu}x^{\mu}} & h_{\times} e^{\pm \imath k_{\mu}x^{\mu}} & 0 \\
+0 & h_{\times} e^{\pm \imath k_{\mu}x^{\mu}} & h_{+}e^{\pm \imath k_{\mu}x^{\mu}} & 0 \\
+0 & 0 & 0 & 0 \\
+\end{bmatrix}
+\end{equation}
+
+Since a spacetime metric is a measure of distance between pair of events, the metric perturbation wave will modify the relative distance between points in space as it passes by. 
+It is in fact an effective oscillating strain or tidal force between free test masses.
+One could then devise an instrument set to detect these relative differences in distance for such test masses.
+
+But because of the very `perturbative' nature of GW, these differences are very small. 
+To have any chance of detection, one must look into the extreme side of gravity: very massive compact astrophysical objects with big gravitational fields, moving at relativistic velocities.
+Even the most powerful astronomical events, like a black hole merger will produce disturbances of $10^{-23}$ m at a few hundreds Mpc of distance.
+
+Perhaps the first experimental evidence for the existence of GWs came 50 years after their prediction with the work of Husel and Taylor. For decades, they studied the pulses we receive from one Neutron Star (NS) in a Neutron Star Binary (NSB).
+They discovered that the slow rate of period decrease of the pulses precisely matched General Relativity predictions.
+
+Nonetheless, a direct detection of GW wouldn't come for another 50 years.
+In September 14, 2015, a GW detection labelled GW150914 was finally made by the LIGO Collaboration.
+
+Direct detection {\em in situ} of GW requires a transducer of GW in some other form measurable by common instruments.
+
+One pioneer work along this line was the work done by Joseph Weber in the late 1960s and early 70s. He proposed using a 2 meters in length and 1 meter in diameter aluminium cylinder, that would resonate with passing GW at 1660 Hz.
+These tiny resonant oscillations could in principle be measured. Even though ingenious, the carefully devised experiment could not yield positive reproducible results that convinced the scientific community.
+
+A whole other category of these instruments are the ones based in the interferometry of lasers running on two long arms. Several of this kind are built on different parts of the planet. A few are planned to be built in the future. Most notably is the case of Lisa, a proposed GW interferometer to be set in space trailing the Earth's orbit.
+
+Interferometer GW detectors transduce a GW warp in space to the shrinking and stretching of relative distances of masses put far apart in two or more long interferometers. 
+In the case of the Earth based observatories, each interferometer is one arm of an L shape facility.
+The masses are the end mirrors that reflect a laser beam pointed in each arm direction. 
+On normal circumstances, the beams from two different arms can be set to be on a dark or bright fringe of the interferometer diffraction pattern.
+When a GW passes by, it will alter the relative distances of the mirror masses, thus changing the optical path of the laser beams. This in turn, will translate into a shift in the diffraction pattern consistent with the deformation of space.
+
+In the following section I offer a more detailed account on the operation of the LIGO observatory.
+
+
+\section{The LIGO-Virgo Collaboration}
+
+\begin{comment}
+The following text is mine, but too convoluted
+
+The test masses for LIGO are two massive mirrors at the end of two perpendicular long arms (4 km long.) Each mirror weighs about 40 kg and each one of the arms can be thought, for simplicity, as an independent laser interferometer.
+
+When a GW passes at an angle to this set-up, the arms will stretch and shorten in opposite directions (one arm will stretch as the other shrinks), while the laser keeps traveling the arms unaffected. This causes minuscule differences in optical paths for the light and this in turn will result in the lasers being out of phase from each other. This difference in phase from the `lock' position indicates a change in the relative positions of the mirrors.
+
+Many other mundane situations can also produce this same effect, the most simple one being seismic activity of almost any strength. Additionally, noise from the instrument itself, from the laser beam and electronics, as well as many intrinsic vibration modes of the system complicates the output signal that will be analyzed.
+\end{comment}
+
+LIGO --the Laser Interferometer Gravitational-Wave Observatory-- (Abramovici et al. 1992) is an American observatory set to detect the GW predicted by General Relativity.
+
+It actually consists of two separate observatories, one in the state of Washington and another one in Louisiana.
+
+Co-founded in 1992 by Kip Thorne and Ronald Drever of Caltech and Rainer Weiss of MIT, LIGO is a joint project between scientists at MIT, Caltech, and many other colleges and universities.
+
+Virgo is a similar observatory in Europe. Originally a project from France and Italy, it soon became a collaboration from five different countries: France, Italy, the Netherlands, Poland, and Hungary. The Virgo observatory is located in the countryside near Pisa, Italy.
+
+Since 2007, LIGO and Virgo share their data in an umbrella collaboration named LVC, the LIGO-Virgo Collaboration.
+
+Even though, LIGO and Virgo have comparable noise levels and detection rates, only the two interferometers in LIGO were operational at the time of the GW150914 event. 
+In fact, Virgo was being upgraded to Advanced Virgo, which will have a sensitivity 10 times greater than Initial Virgo. 
+When the upgrade is finished, it will join LIGO in the joint collection of GW data. This will improve errors in the parameter estimation, especially localization errors will greatly improve.
+
+LIGO went through similar upgrades along the years.
+
+The initial LIGO detectors were designed to be sensitive to GWs in the frequency band 40-7000 Hz, and capable of detecting a GW strain amplitude as small as $10^{-21}$.
+
+To picture the order of magnitude of these displacements, consider that the change in length of one arm of the interferometer is only about $10^{-18}$ m, a thousand times smaller than the diameter of a proton.
+
+To reach this sensitivity, the detectors need highly stable lasers, multiple layers of vibration isolation and advanced optic techniques.
+
+From the initial period, LIGO had five short science runs (S1 to S5), each one improving over the previous one, culminating with S5 at design sensitivity. 
+The S5 run collected a full year of triple-detector coincident data from November 2005 to September 2007.
+
+Between Initial LIGO and Advanced LIGO more science were made under Enhanced LIGO, which provided enhancements that improved sensitivity by a factor of 2. 
+
+But the real revolution came with Advanced LIGO, a set of additions that improved LIGO sensitivity by a factor of 10 over Initial LIGO and widened the frequency range all the way down to 10 Hz (which is known as the seismic wall).
+
+
+Among the improvements is the upgrading of the laser wattage to 200 W. 
+An increase in the test masses to 40 kg in order to reduce radiation pressure noise and to allow larger beam sizes. 
+Larger beams and better dielectric mirror coatings combine to reduce the test mass thermal noise by a factor of 5 compared with initial LIGO.
+An improvement in vibration isolation, including vertical isolation comparable to the horizontal isolation all almost all stages.
+New suspension system based on fused silica rather than steel wires to reduce suspension thermal noise by almost a hundred.
+New two-stage active seismic isolation instead of the passive one-stage isolation brought the seismic noise to negligible levels above approximately 10 Hz.
+
+All these improvements combined gave Advanced LIGO a 10-fold increase in sensitivity. 
+This increase also means that fainter sources can now be detected, increasing the exploration volume for GW by a factor of a thousand.
+
+Advanced LIGO will have several observations runs, labelled O1 through OX, (similar to the scientific runs S1-S5) with gaps between them on which more improvements will be implemented until it reaches design sensitivity in OX. 
+
+The projected sensitivity for each of the runs is presented in table X
+
+\begin{comment}
+%The successful operation of Advanced LIGO is expected to transform the field from GW detection to GW astrophysics. We illustrate the potential using compact binary coalescences. Detection rate estimates for CBCs can be made using a combination of extrapolations from observed binary pulsars, stellar birth rate estimates and population synthesis models. There are large uncertainties inherent in all of these methods, however, leading to rate estimates that are uncertain by several orders of magnitude. We therefore quote a range of rates, spanning plausible pessimistic and optimistic estimates, as well as a likely rate. For a NS mass of 1.4M⊙ and a BH mass of 10M⊙, these rate estimates for Advanced LIGO are: 0.4– 400 yr−1, with a likely rate of 40 yr−1 for NS–NS binaries; 0.2–300 yr−1 , with a likely rate of 10 yr−1 for NS–BH binaries; 2–4000 yr−1 , with a likely rate of 30 yr−1 for BH–BH binaries.
+
+LIGO was designed so that its data could be searched for GWs from many different sources. The sources can be broadly characterized as either transient or continuous in nature, and for each type, the analysis techniques depend on whether the gravitational waveforms can be accurately modeled or whether only less specific spectral characterizations are possible. We therefore organize the searches into four categories according to source type and analysis technique.
+%(i) Transient, modeled waveforms: the compact binary coalescence search. The name follows from the fact that the best understood transient sources are the final stages of binary inspirals [52], where each component of the binary may be a NS or a BH. For these sources the waveform can be calculated with good precision, and matched-filter analysis can be used.
+(ii) Transient, unmodeled waveforms: the gravitational-wave bursts search. Transient systems, such as core-collapse supernovae [53], BH mergers and NS quakes, may produce GW bursts that can only be modeled imperfectly, if at all, and more general analysis techniques are needed.
+(iii) Continuous, narrow-band waveforms: the continuous wave sources search. An example of a continuous source of GWs with a well-modeled waveform is a spinning NS (e.g. a pulsar) that is not perfectly symmetric about its rotation axis [54].
+(iv) Continuous, broadband waveforms: the gravitational-wave background search. Processes operating in the early universe, for example, could have produced a background of GWs that is continuous but stochastic in character [55].
+\end{comment}
+
+\section{Multi-Messenger Astronomy}
+
+%In physics, GW detection could provide information about strong-field gravitation, the untested domain of strongly curved space where Newtonian gravitation is no longer even a poor approximation. In astrophysics, the sources of GWs that LIGO might detect include binary NSs (like PSR 1913 + 16 but much later in their evolution); binary systems where a black hole (BH) replaces one or both of the NSs; a stellar core collapse which triggers a type II supernova; rapidly rotating, non-axisymmetric NSs; and possibly processes in the early universe that produce a stochastic background of GWs [3].
+
+LIGO just pierced the GW window in the 10Hz to 7kHz frequency band.
+
+
+Similarly to the optical case, once other frequencies were explored more science could be done, with other detection methods like PTA (Pulsar Timing Array) and LISA will shed new light to other physical phenomena and physics.
+
+
+\section{The TOROS Collaboration (or project?)}
+* Lengthy TOROS Description (whatever it evolved into at this point)
+
+TOROS, the Transient Optical Robotic Observatory of the South, is a collaboration formed to respond to GW events as detected by the LVC.
+Its main purpose then is to detect transient events compatible with expected (or not) signatures of events that can give mutual birth to GW and optical triggers.
+
+Being in its early stages of development, and given the new nature of the multi-messenger astronomy, the TOROS team is building up the tools and infrastructure that will make it capable in the future to promptly respond to this alerts.
+
+Several things can enter in consideration for this task, from software development to forging ties with existing observatories. 
+
+My thesis will focus on several challenges in the development of the software infrastructure needed to process the observatory data. 
+
+At the moment of this writing, TOROS Collaboration consists of several astronomical institutions that showed interest in doing a search and possible follow-ups of candidates to interesting events.
+
+The list of participant institutions is as follows: (should I list them?)
+
+At UT Rio Grande Valley, we developed extensive analysis and web code to allow for the interaction between the institutions (just the broker page, really). 
+
+
+\section{The Transient World}
+
+\section{The Time-Domain Revolution in Astronomy}
+* GW20150914 and our contribution
+
+* The transient world
+	* The Time Domain revolution in Astronomy
+	* What are transients and which ones are we interested in
+
+	* How can we catch transients
+		* Previous work: Catalog Matching: Marica's pipeline and Shuang's work on the transient identification and comparison to my OIS code.
+		* Previous work: OIS + ML (the iPTF experience)
+		* Subsection on ML (Supervised vs. Unsupervised, overall view and some popular algorithms)
+		* Discussion of both methods
+
+
+\include{chapter_DIA/chapter}
+
+\include{chapter_ML/chapter}
+		
+\chapter{Software Developed}
+\section{Pipeline}
+
+\include{chapter_astroalign/chapter}
+
+
+\section{Optimal Image Subtraction}
+* Explanation Tools Developed (This would be a whole chapter)
+	* Pipeline Framework (corral)
+	* Reduction module for images
+	* Spin-off packages relevant to the Python astronomical community: *astroalign* and *ois* (Optimal Image Subtraction, name can change in the future)
+	
+\chapter{Conclusions}
+* The future of LIGO, TOROS and multi messenger astronomy
+
+
+\appendix
+\chapter{Derivation of the Gravitational Wave Equations} \label{gwderivation}
+
 Gravitational waves are a particular kind of solution to the Einstein's field equations of General Relativity.
 
 In many situations we can consider, we are in a flat background situation, in which our metric does not differ much locally from the Minkowski metric.
@@ -218,9 +410,9 @@ With this definition, the Einstein's field equation becomes:
 \bar{h}{}_{ab,c}{}^{c} + \bar{h}{}_{ac,b}{}^{c} + \bar{h}{}_{bc,a}{}^{c} -\eta_{ab} \bar{h}{}_{cd,}{}^{cd} = 0
 \end{align}
 
-\subsection{Gauge choices}
+\section{Gauge choices}
 
-There is a gauge freedom in General Relativity corresponding to the group of diffeomorphisms that can be used to simplify the equations even more. Just like the Gauge freedom in electrodynamics $A \rightarrow A + \partial \chi$ we can chose $h$ to satisfy $\bar{h}{}_{ab,}{}^{b} = 0$
+There is a gauge freedom in General Relativity corresponding to the group of diffeomorphisms, that can be used to simplify the equations even more. Just like the Gauge freedom in electrodynamics $A \rightarrow A + \partial \chi$ we can chose $h$ to satisfy $\bar{h}{}_{ab,}{}^{b} = 0$
 
 In this ``Lorentz Gauge'', the linearized Einstein field equations, reduce to the usual wave equation for each component of $\bar{h}$:
 
@@ -274,135 +466,7 @@ and the total metric $g$
 
 The two independent polarizations are called ``h plus'' ($h_+$) and ``h cross'' ($h_{\times}$).
 
-Because of the very `perturbative' nature of GW, these little disturbances are by nature small. Even the most powerful astronomical events, like a black hole merger will produce disturbances of $10^{-23}$ m at a few hundreds of Mpc of distance.
-
-%the direct detection of GWs will require similarly strong sources, extremely large masses moving with large accelerations in strong gravitational fields. 
-
-They travel at the speed of light and fade with the inverse of the distance.
-%Quadrupole radiation is the lowest allowed form and is thus usually the dominant form. In this case, the GW field strength is proportional to the second time derivative of the quadrupole moment of the source, and it falls off in amplitude inversely with distance from the source.
-
-%One cannot hope to detect any waves of terrestrial origin, whether naturally occurring or manmade; instead one must look for very massive compact astrophysical objects, moving at relativistic velocities. For example, strong sources of GWs that may exist in our galaxy or nearby galaxies are expected to produce wave strengths on Earth that do not exceed strain levels of one part in 1021.
-
-Perhaps the first confirmation of GW came 50 years after that GW were predicted with the work of Husel and Taylor. They studied the a Neutron Star Binary NSB for decades, for one of which we receive its pulses.
-They discovered that the slow rate of period decrease of the pulses for this system was precisely as the GW theory predicted.
-
-%GWs are oscillating perturbations to a flat, or Minkowski, space–time metric, and can be thought of equivalently as an oscillating strain in space–time or as an oscillating tidal force between free test masses.
-
-%As with electromagnetic waves, GWs travel at the speed of light and are transverse in character, i.e. the strain oscillations occur in directions orthogonal to the direction in which the wave is propagating.
-
-One early detector for GW was a metal bar pioneered by Weber.
-
-Another possible detector would be measure the relative distances of two masses separated a large distance and study their relative motion during a passing GW using very precise interferometry measurements.
-This is precisely what the first generation of interferometric GW detectors proposed to do since the early 90's.
-
-In the next section we offer a more detailed account of this incredible engineer and scientific endeavor.
-
-
-\section{The LIGO-Virgo Collaboration}
-
-%The initial LIGO detectors were designed to be sensitive to GWs in the frequency band 40–7000 Hz, and capable of detecting a GW strain amplitude as small as 1E-21 
-
-%at the targeted strain sensitivity of 1E-21, the resulting arm length change is only ∼10−18 m, a thousand times smaller than the diameter of a proton. Meeting this challenge involves the use of special interferometry techniques, state-of-the-art optics, highly stable lasers and multiple layers of vibration isolation
-
-%During the commissioning period, as the interferometer sensitivity was improved, several short science runs were carried out, culminating with the fifth science run (S5) at design sensitivity. The S5 run collected a full year of triple- detector coincident interferometer data during the period from November 2005 to September 2007.
-
-%We have identified a set of relatively minor improvements to the current instruments [98] that can yield a factor of 2 increase in strain sensitivity and a corresponding factor of 8 increase in the probed volume of the universe. The two most significant enhancements are higher laser power and a new, more efficient readout technique for the GW channel. Higher power is delivered by a new master oscillator-power amplifier system, emitting 35 W of single frequency 1064 nm light [99], 3.5 times the power of the initial LIGO lasers. For the readout, a small mode-cleaner cavity is inserted in the AS beam path, between the Faraday isolator and the length photodetectors. This cavity filters out RF sidebands and the higher order mode content of the AS port light, reducing the shot-noise power. Instead of RF heterodyning, signal detection is done by slightly offsetting the differential arm length from the dark fringe, and using the resulting carrier field as the local oscillator in a dc homodyne detection scheme. These improvements (known collectively as Enhanced LIGO) are currently being implemented and commissioned on H1 and L1, and a 1–2 year science run with these interferometers is expected to begin in mid-2009.
-
-%Significantly greater sensitivity improvements are possible with more extensive upgrades. Advanced LIGO will replace the existing interferometers with significantly improved technology to achieve a factor of at least 10 in sen- sitivity over the initial LIGO interferometers and to lower the seismic wall frequency down to 10 Hz.
-%The Advanced LIGO interferometers are configured like initial LIGO—a power-recycled Fabry–Perot Michelson— with the addition of a signal recycling mirror at the anti- symmetric output. Signal recycling gives the ability to tune the interferometer frequency response, so that the point of maximum response can be shifted away from zero frequency [9]. The laser wavelength stays at 1064 nm, but an additional high-power stage brings the laser power up to 200 W [102]. The test masses will be significantly larger—40 kg—in order to reduce radiation pressure noise and to allow larger beam sizes. Larger beams and better dielectric mirror coatings combine to reduce the test mass thermal noise by a factor of 5 compared with initial LIGO [103].
-%The test mass suspensions become significantly more intricate to provide much better performance. They incorporate four cascaded stages of passive isolation, instead of just one, including vertical isolation comparable to the horizontal isolation at all stages except one [104]. The test mass is suspended at the final stage with fused-silica fibers rather than steel wires; these fibers have extremely low mechanical loss and will reduce suspension thermal noise nearly a hundred-fold [105]. The current passive seismic isolation stacks that support the suspensions are replaced with two-stage active isolation platforms [106]. These stages are designed to actively reduce the ground vibration by a factor of ∼1000 in the 1–10 Hz band, and provide passive isolation at higher frequencies. The combination of the isolation platforms and the suspensions will reduce seismic noise to negligible levels above approximately 10 Hz.
-%The successful operation of Advanced LIGO is expected to transform the field from GW detection to GW astrophysics. We illustrate the potential using compact binary coalescences. Detection rate estimates for CBCs can be made using a combination of extrapolations from observed binary pulsars, stellar birth rate estimates and population synthesis models. There are large uncertainties inherent in all of these methods, however, leading to rate estimates that are uncertain by several orders of magnitude. We therefore quote a range of rates, spanning plausible pessimistic and optimistic estimates, as well as a likely rate. For a NS mass of 1.4M⊙ and a BH mass of 10M⊙, these rate estimates for Advanced LIGO are: 0.4– 400 yr−1, with a likely rate of 40 yr−1 for NS–NS binaries; 0.2–300 yr−1 , with a likely rate of 10 yr−1 for NS–BH binaries; 2–4000 yr−1 , with a likely rate of 30 yr−1 for BH–BH binaries.
-
-
-%LIGO was designed so that its data could be searched for GWs from many different sources. The sources can be broadly characterized as either transient or continuous in nature, and for each type, the analysis techniques depend on whether the gravitational waveforms can be accurately modeled or whether only less specific spectral characterizations are possible. We therefore organize the searches into four categories according to source type and analysis technique.
-%(i) Transient, modeled waveforms: the compact binary coalescence search. The name follows from the fact that the best understood transient sources are the final stages of binary inspirals [52], where each component of the binary may be a NS or a BH. For these sources the waveform can be calculated with good precision, and matched-filter analysis can be used.
-%(ii) Transient, unmodeled waveforms: the gravitational-wave bursts search. Transient systems, such as core-collapse supernovae [53], BH mergers and NS quakes, may produce GW bursts that can only be modeled imperfectly, if at all, and more general analysis techniques are needed.
-%(iii) Continuous, narrow-band waveforms: the continuous wave sources search. An example of a continuous source of GWs with a well-modeled waveform is a spinning NS (e.g. a pulsar) that is not perfectly symmetric about its rotation axis [54].
-%(iv) Continuous, broadband waveforms: the gravitational-wave background search. Processes operating in the early universe, for example, could have produced a background of GWs that is continuous but stochastic in character [55].
-
-
-LIGO, the Laser Interferometer Gravitational-Wave Observatory (Abramovici et al. (1992)), is an American observatory set to detect the GWs predicted by General Relativity. It actually consists of two separate observatories, one in the state of Washington and another one in Louisiana. Co-founded in 1992 by Kip Thorne and Ronald Drever of Caltech and Rainer Weiss of MIT, LIGO is a joint project between scientists at MIT, Caltech, and many other colleges and universities. The joint world-wide collaboration of scientists participating in the LIGO project is called the LIGO Scientific Collaboration, or LSC for short. Several professors working at the Center for Gravitational Wave Astronomy (CGWA) of the University of Texas Rio Grande Valley are part of the LSC.
-
-General Relativity predicts that very massive or energetic events will create traveling perturbations of the underlying spacetime metric in the form of grav- itational waves. These are linear disturbances to the background metric, that are propagated outwards with the speed of light. These tensorial transversal waves will modify the local metric as it travels through space.
-
-A spacetime metric measures the distance between pair of events or points, so as the metric perturbation wave passes by, it will modify the relative distance between points in space. One could then device an instrument set to detect these relative differences in distance for some test masses. In practice, the perturbations measured on Earth from distant astronomical objects that we hope to detect can be as small as $10^{-23}$ m.
-
-LIGO is an observatory set to detect these relative
-distance differences. The test masses for LIGO are two massive mirrors at the end of two perpendicular long arms (4 km long.) Each mirror weighs about 40 kg and each one of the arms can be thought, for simplicity, as an independent laser interferometer.
-
-When a GW passes at an angle to this set-up, the arms will stretch and shorten in opposite directions (one arm will stretch as the other shrinks), while the laser keeps traveling the arms unaffected. This causes minuscule differences in optical paths for the light and this in turn will result in the lasers being out of phase from each other. This difference in phase from the `lock' position indicates a change in the relative positions of the mirrors.
-
-Many other mundane situations can also produce this same effect, the most simple one being seismic activity of almost any strength. Additionally, noise from the instrument itself, from the laser beam and electronics, as well as many intrinsic vibration modes of the system complicates the output signal that will be analyzed.
-
-
-\section{Multi-Messenger Astronomy}
-
-%In physics, GW detection could provide information about strong-field gravitation, the untested domain of strongly curved space where Newtonian gravitation is no longer even a poor approximation. In astrophysics, the sources of GWs that LIGO might detect include binary NSs (like PSR 1913 + 16 but much later in their evolution); binary systems where a black hole (BH) replaces one or both of the NSs; a stellar core collapse which triggers a type II supernova; rapidly rotating, non-axisymmetric NSs; and possibly processes in the early universe that produce a stochastic background of GWs [3].
-
-
-Ligo just opened pierced the GW window in a certain frequency band. 
-Similarly to the optic``al case, once other frequencies were explored more science could be done, with other detection methods like PTA (Pulsar Timing Array) and LISA will shed new light to other physical phenomena and physiscs.
-
-* The raise of and need for multi-messenger astronomy
-
-\section{The TOROS Collaboration (or project?)}
-* Lengthy TOROS Description (whatever it evolved into at this point)
-
-TOROS, the Transient Optical Robotic Observatory of the South, is a collaboration formed to respond to GW events as detected by the LVC.
-Its main purpose then is to detect transient events compatible with expected (or not) signatures of events that can give mutual birth to GW and optical triggers.
-
-Being in its early stages of development, and given the new nature of the multi-messenger astronomy, the TOROS team is building up the tools and infrastructure that will make it capable in the future to promptly respond to this alerts.
-
-Several things can enter in consideration for this task, from software development to forging ties with existing observatories. 
-
-My thesis will focus on several challenges in the development of the software infrastructure needed to process the observatory data. 
-
-At the moment of this writing, TOROS Collaboration consists of several astronomical institutions that showed interest in doing a search and possible follow-ups of candidates to interesting events.
-
-The list of participant institutions is as follows: (should I list them?)
-
-At UT Rio Grande Valley, we developed extensive analysis and web code to allow for the interaction between the institutions (just the broker page, really). 
-
-
-\section{The Transient World}
-
-\section{The Time-Domain Revolution in Astronomy}
-* GW20150914 and our contribution
-
-* The transient world
-	* The Time Domain revolution in Astronomy
-	* What are transients and which ones are we interested in
-
-	* How can we catch transients
-		* Previous work: Catalog Matching: Marica's pipeline and Shuang's work on the transient identification and comparison to my OIS code.
-		* Previous work: OIS + ML (the iPTF experience)
-		* Subsection on ML (Supervised vs. Unsupervised, overall view and some popular algorithms)
-		* Discussion of both methods
-
-
-\include{chapter_DIA/chapter}
-
-\include{chapter_ML/chapter}
-		
-\chapter{Software Developed}
-\section{Pipeline}
-
-\include{chapter_astroalign/chapter}
-
-
-\section{Optimal Image Subtraction}
-* Explanation Tools Developed (This would be a whole chapter)
-	* Pipeline Framework (corral)
-	* Reduction module for images
-	* Spin-off packages relevant to the Python astronomical community: *astroalign* and *ois* (Optimal Image Subtraction, name can change in the future)
-	
-\chapter{Conclusions}
-* The future of LIGO, TOROS and multi messenger astronomy
-
-
-\appendix
-
-\chapter{Notations }
+\chapter{Notations}
 
 Here we show the use of multiple appendixes.
 
@@ -410,13 +474,7 @@ Here we show the use of multiple appendixes.
 
 Each appendix can have sub-sections as a regular chapter.
 
-
 \section{Additional Notations}
-
-
-\chapter{Ontologies}
-
-These is another appendix.
 
 \pagebreak{}
 
@@ -425,8 +483,39 @@ These is another appendix.
 \bibliography{sampleThesis}
 
 \begin{vita}
-This should be a one-page short vita.
+\section*{Education}
 
-There can be more paragraphs.\end{vita}
+\begin{itemize}
+  \item B.S. Physics, National Cordoba University (Argentina), 2007.
+  \item M.S. Physics, University of Texas at Brownsville, 2010.
+\end{itemize}
+
+\section*{Publications}
+
+\begin{itemize}
+\item \href{http://adsabs.harvard.edu/abs/2016ApJ...828L..16D}{\bf GW150914: First search for the electromagnetic counterpart of a gravitational-wave event by the TOROS collaboration} (2016). Mario C. Diaz et al; {\it The Astrophysical Journal Letters}, Volume 828, Issue 2, article id. L16, 6 pp.
+\item \href{http://adsabs.harvard.edu/abs/2016ApJ...826L..13A}{\bf Localization and broadband follow-up of the gravitational-wave transient GW150914} (2016). B. P. Abbott et al. {\it The Astrophysical Journal Letters}, Volume 826, Issue 1, article id. L13, pp
+\item \href{http://www.math.unm.edu/~lau/DMS1216866/tauFluids_BHLP.pdf}{\bf Multidomain, sparse, spectral-tau method for helically symmetric flow} (2014). M Beroiz, T Hagstrom, SR Lau, RH Price; {\it Computers and Fluids}  (2014), pp. 250-265.
+\item \href{http://iopscience.iop.org/1538-3881/147/5/100}{\bf Bright microwave pulses from PSR B0531+21 observed with a prototype transient survey receiver} April 2014. J. Andrew O'Dea, F. A. Jenet, Tsan-Huei Cheng, Chau M. Buu, Martin Beroiz, Sami W. Asmar, and J. W. Armstrong; {\it Astronomical Journal}, 147, 100.
+\item \href{http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=5555950}{\bf A Prototype Radio Transient Survey Instrument for Piggyback Deep Space Network Tracking}, May 2011. Chau M. Buu, Fredrick A. Jenet, John W. Armstrong, Sami W. Asmar, Martin Beroiz, Tsan-Huei Cheng, and J. Andrew O'Dea; {\it Proceedings of the IEEE} Volume 99, Number 5.
+\item \href{http://journals.aps.org/prd/abstract/10.1103/PhysRevD.76.024012}{\bf Gravitational instability of static spherically symmetric Einstein-Gauss-Bonnet black holes in five and six dimensions}, 2007. M. Beroiz, G. Dotti y R.J. Gleiser, {\it Physical Review D} 76, 024012 hep-th/0703074.
+\end{itemize}
+
+
+\section*{Scientific Meetings and Conferences}
+
+\begin{itemize}
+\item \href{http://adsabs.harvard.edu/abs/2016APS..APRR14005B}{Speaker at the APS April Meeting 2016}, abstract R14.005. "Results of optical follow-up observations of advanced LIGO triggers from O1 in the southern hemisphere". South Lake City, April 2016.
+\item \href{https://conference.scipy.org/scipy2014/schedule/presentation/1730/}{SciPy Conference 2014. Speaker at Mini Symposium in Astronomy}. "Transient detection and image analysis pipeline for TOROS project". Austin July 2014.
+\item Advances and Challenges in Computational General Relativity, Brown University, Providence, RI, May 20-22, 2011.
+\item Poster presentation 215th American Astronomical Society (AAS) Meeting, Washington DC, January 3-7, 2010 ``The X-ray Emission of SN1978K: Still Here After All These Years''  - Eric M. Schlegel, M. Beroiz.
+\item Poster presentation 215th American Astronomical Society (AAS) Meeting, Washington DC, January 3-7, 2010 ``Current Results at PALFA Pulsar Survey at Arecibo Observatory'' - M. Beroiz, K. Stovall, F. Jenet, J. Cordes, D. Lorimer, D. Backer, PALFALFA Consortium.
+\item Summer Provost Research Program at UTSA, 2009. Research on X-ray spectrum of Super Nova 1978K and Poster Presentation.
+\item UTB Summer School in Gravitational Wave Astronomy at South Padre Island TX, June 2008.
+\item Grav07, La Falda (Cordoba), Argentina. November 5-7, 2007.
+\item Poster Presentation at 92nd AFA (Physics Association Argentina) Annual Meeting, Salta, Argentina, September 24-27, 2007.
+\end{itemize}
+
+\end{vita}
 
 \end{document}
