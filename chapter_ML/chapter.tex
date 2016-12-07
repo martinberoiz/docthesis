@@ -37,9 +37,9 @@ On a typical image, the number of bogus sources can be of a hundred, and the rat
 
 The Machine Learning problem becomes one of `Information Retrieval'. We are mainly interested in only one class, the real transients, and we need to retrieve samples of that class from a sea of bogus transients.
 
-In a situation like that, a very unbalanced training set can bring about spurious results. As an example, imagine a training set with 90 bogus and 10 reals. The Zero Rule Classifier --that is the classifier that classifies everything as bogus-- would have a 90\% Precision and 100\% Recall for the bogus class. An unbalanced training set could also create classifiers with large variance due to the small set of real samples. \textcolor{red}{Add more about how the different scores behave in a very unbalanced training set with the Zero Rule classifier}
+In a situation like that, a very unbalanced training set can bring about spurious results. As an example, imagine a training set with 90 bogus and 10 reals. The Zero Rule Classifier --that is the classifier that classifies everything as bogus-- would have a 90\% Precision and 100\% Recall for the bogus class. An unbalanced training set could also create classifiers with large variance due to the small set of real samples.
 
-`Recall' measures the fraction of samples of the relevant class that were recalled by the classifier out of the total number of reals in the set.
+`Recall' measures the fraction of samples of the relevant class that were retrieved by the classifier out of the total number of reals in the set.
 The class we are mainly interested in for the Recall is that of the real transient examples.
 
 To generate a balanced training set with comparable amounts of reals and bogus, I generate reals by selecting sources on an image and erasing them on the reference. That way, after a subtraction, those sources will appear as transient events, that is, objects in the image that don't have a corresponding object on the reference.
@@ -141,7 +141,7 @@ The ROC curve is presented in figure ??.
 
 Once we have trained our classifier with training data, we wanted to also test it in a more real situation. For that we apply the classifier to the rest of the cstar\_june\_selection data set in search of actual transients of the image.
 
-The Random Forest classifier will can only predict the class, but can also output a probability for that class.
+The Random Forest classifier will not only predict the class, but can also output a probability for that class.
 
 Setting the probability to 0.9, the classifier returns the most likely transient events. The rate of real transient in the images is of about 15 per image for this probability threshold.
 
