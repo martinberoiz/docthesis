@@ -81,16 +81,16 @@ Several scores about the performance of the classifier on the training data are 
 \centering
 \begin{tabular}{|l| >{\itshape}l|}
   \hline
-  x2 & Sum of the x squared values \\ \hline
-  y2 & Sum of the y squared values \\ \hline
-  xy & Sum of the product of x and y values \\ \hline
+  x2 & Sum of the x squared values $\sum x^2 $ \\ \hline
+  y2 & Sum of the y squared values $\sum y^2 $\\ \hline
+  xy & Sum of the product of x and y values $\sum xy $\\ \hline
   cxx, cyy, cxy & Same as x2, y2 and xy in the convolved image  \\ \hline
   a, b, theta & semi-major axis, semi-minor axis and orientation of the best ellipse fit to the object \\ \hline
   mag\_aper & Aperture magnitude of the object in the subtraction image \\ \hline     magerr\_aper & Error of mag\_aper \\ \hline
   flux\_aper & Aperture flux in counts of the object in the subtraction image \\ \hline
   fluxerr\_aper & Error of flux\_aper \\ \hline
 threshold & \\ \hline
-flux\_max & \\ \hline
+flux\_max & Maximum value of the flux \\ \hline
 fwhm & Full width at half maximum \\ \hline
 deltax & Width in pixels of the object (X\_MAX - X\_MIN) \\ \hline
 deltay & Height in pixels of the object (Y\_MAX - Y\_MIN) \\ \hline
@@ -136,6 +136,8 @@ In the confusion matrix (table \ref{mlconfusionmatrix}) we see that only 65 out 
 \end{table}
 
 The ROC curve is presented in figure ??.
+
+\textcolor{red}{TO DO: Add analysis of feature importance}
 
 \section{Testing the classifier on real data}
 
