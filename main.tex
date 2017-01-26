@@ -14,8 +14,9 @@
  bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
  breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
  {hyperref}
+ 
 \usepackage{comment}
-
+\usepackage{graphicx}
 \makeatletter
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
@@ -140,9 +141,7 @@ Document or Doctoral Dissertation attest to the accuracy of this statement.}\end
 \begin{abstract}
 The upcoming research in the Gravitational Wave domain has introduced new challenges to Astronomy and has opened a new window to the universe.
 
-Our work here looks for a way to harness the power of multi-messenger astronomy to enhance and complement the incredible capabilities of the new generation of GW detectors, with LVC leading the way.
-
-It will hopefully help newcomers to the field to understand the details and challenges of this new discipline and encourage research in the area. \textcolor{red}{[This is probably too pedantic]}
+\textcolor{red}{Write abstract}
 
 In the first chapter, I introduce the concepts and frame on which my thesis developed.
 
@@ -234,11 +233,79 @@ In the following section I offer a more detailed account on the the operation of
 
 \section{The Transient World and the Time-Domain Revolution in Astronomy}
 
-Blue is from Hotwiring the transient universe: 
+In this so-called ``Information Age'', data is king.
+As we move away from the traditional one person project and manual way to deal with the information, the amount of data that needs processing becomes unmanageable by humans. 
+This is not to say that individual work has no place in science, 
+but that the collective gathering of information becomes more ubiquitous in science.
+
+Astronomy has not been immune to information overload. 
+The sizes of sky surveys have been increasing steadily and dramatically over the years.
+From 0.1 TB and about 10 to 100 events per night now, to about 30 TB and $10^5$ to $10^6$ events per night in the LSST era, the data load and the resources to process them become overwhelming if not done by automated agents.
+
+The big amount of data posses yet another challenge.
+The identification of interesting objects of study among countless other events on the sky.
+This `mining' or harvesting problem have been tackled by other disciplines by different techniques of many kinds.
+They are collectively called ``Data Mining'' or ``Machine Learning'' as well as other names depending on the specific field and purpose.
+Classification problems done by automated agents trained for that purpose are usually dealt within the techniques called ``Machine Learning'', and we will devote a great deal of this thesis on such field.
+
+Rare events interesting to a particular survey or telescope must then be identified against the stationary or slowly varying sky, and must be separated from other transients of a different kind.
+
+Perhaps, one of the most spectacular of these transient events because of its  display of brightness and energy, are the Gamma Ray Bursts (GRBs).
+
+The brightness of this flash of gamma-rays can temporarily overwhelm all other gamma-ray sources in the Universe. The burst can last from a fraction of a second to over a thousand seconds. 
+
+GRBs are explosions as energetic as $10^?$ ergs, liberated Gamma Rays and subsequent afterglows across the whole spectrum up to Radio frequencies.
+
+The afterglows for GRBs can be seen in the optical as a transient brightness excess, usually located near the galaxies that host them. GRBs can be at extremely distant galaxies, and therefore optical glows can sometimes be too faint to observe.
+
+Since the detection of the first few of these, now we have two space telescopes dedicated to find them.
+
+To detect the optical afterglow, GRB locations were communicated to other observatories that would promptly point their telescopes in that direction.
+A multi-band observation and spectrography is very valuable for the understanding and classification of these events.
+
+The value of multi-messenger astronomy of this kind was recognized right on the onset for the understanding and classification of these events.
+
+With the new GW detections of LIGO, a new kind of multimessenger Astronomy is born.
+LIGO will bring information of a completely new information carrier: the {\em graviton}.
+With GW information we can pierce into the high energetic and ultra relativistic regions in space, something that could not be done before.
+
+It is then very important to complement such information with the EM counterpart.
+Both, the GW and the EM information can bring up a more complete picture of the phenomena at hand.
+Together they can give us an understanding richer than the sum of their separate contributions.
+Even more, EM counterparts can most notably help where GW information fails harder, in localization.
+Localization by means of the EM counterpart, not only helps on this few parameters of the position in the sky, but will also help to separate the uncertainty correlation on the geometrical disposition of a merger, for example.
+This way, improving other estimates of the merge.
+
+Such classification of transient events is nowadays done with the aid of classification agents trained with Machine Learning techniques.
+
+
+\textcolor{blue}{As the data and event discovery rates increase dramatically, from about 0.1 TB and about 10 to 100 events per night now, to about 30 TB and $10^5$ to $10^6$ events per night in the LSST [4] era, available follow-up facilities would be simply overwhelmed, and unable to react to all potentially interesting events.}
+
+\begin{comment}
+The new enabling technologies will be automated or robotized.
+
+Rare events will be harvested, or mined in the jargon of big-data, from huge data sets.
+
+The time periods on which variability occurs range from seconds to tens or hundreds of days, as for Super Novae (SN).
+
+Gamma Ray Bursts (GRB) are transient events ...
+
+An important consideration on information retrieval, is how will data be process to detect the target objects in the survey.
+
+\end{comment}
+
+\subsection{Related Efforts}
+
+The Palomar Transient Factory (PTF), and its iterations: iPTF (the intermediate PTF) and the future Zwicky Transient Facility (ZTF).
+
+LSST is an ambitious project...
+
+Oggle and 
+
+(Blue is from Hotwiring the transient universe)
 
 \textcolor{blue}{Essentially every field of astrophysics is touched and enhanced with the exploration of the time domain, and many interesting phenomena can be only studied in the time domain.}
 
-\textcolor{blue}{As the data and event discovery rates increase dramatically, from about 0.1 TB and about 10 to 100 events per night now, to about 30 TB and $10^5$ to $10^6$ events per night in the LSST [4] era, available follow-up facilities would be simply overwhelmed, and unable to react to all potentially interesting events.}
 
 \textcolor{blue}{The essential enabling technologies will be automated, robust classification and decision making for the optimal use of follow-up facilities. Given the exponential growth of data rates, the traditional ``manual'' approach from the past will simply not scale to the next generation of surveys, especially if one is interested in the rarer transients.}
 
@@ -270,7 +337,6 @@ The process of winnowing out the contaminants and identifying the true members o
 
 \textcolor{blue}{the IVOA has settled on a flavor of XML called VOEvent for the transmission of astronomical events, and processing those would need XML streaming and filtering technologies.}
 
-* GW20150914 and our contribution
 
 * The transient world
 	* The Time Domain revolution in Astronomy
@@ -279,8 +345,6 @@ The process of winnowing out the contaminants and identifying the true members o
 	* How can we catch transients
 		* Previous work: Catalog Matching: Marica's pipeline and Shuang's work on the transient identification and comparison to my OIS code.
 		* Previous work: OIS + ML (the iPTF experience)
-		* Subsection on ML (Supervised vs. Unsupervised, overall view and some popular algorithms)
-		* Discussion of both methods
 
 \section{The LIGO-Virgo Collaboration}
 
@@ -499,15 +563,70 @@ The Vista Collaboration & \\
 \label{gw150914participants}
 \end{table}
 
-
-
 Several other institutions showed interest in the project after this achievement and since then the collaboration has grown.
 
 TOROS successfully participated of this campaign, where the first GW was detected, GW150914, and other two events with lower intensity were also detected, one in December ...
 
 Surprisingly, the first of them, GW150914, was detected just before O1 officially began. It was during an engineering run. Despite the premature nature of the alert, TOROS could scan a region of the LIGO localization map and contribute with other XX observatories to the EM search. The search did not show up any transient associated with the event.
 
+On the night of September 16, 2015, an LIGO alert for a GW arrived through the TOROS alert receiver system.
+
+We conducted unfiltered CCD observations (0.35--1$\mu$m) with the 1.5-m telescope at Estacion Astronomica Bosque Alegre (EABA) telescope.
+
+Because of the unexpected timing of the event, the alert was received 2 days later, and our observations started about 2.5 days after the alarm was received by LIGO.
+
+This unexpected detection --observed four days before the first scientific run of the detectors was scheduled to start-- constituted the first detection of the merger of a binary black hole (BBH) system and the first direct detection of gravitational waves. Due to the unexpected timing of the event, LVC provided spatial location information two days later, in the form of probability sky maps via a private GCN circular (Singer 2015, GCN\#18330). TOROS was one of 25 teams that participated in the search for an electromagnetic counterpart search in the southern hemisphere.
+
+On 2015 September 16, the LIGO Virgo Collaboration (LVC) provided two all-sky localization probability maps for the event, based on them.
+Both, the coherent Wave Burst (cWB; Klimenko et al. 2016) and the Omicron+LALInference Burst (oLIB; Lynch et al. 2015) search for unmodeled signals. The first one, a rapid localization analysis just searches for coherent power across both detectors while the second one, more refined, assumes a Sine-Gaussian content. The maps provided initial spatial localization of 50\% and 90\% confidence regions encompassing about 200 and 750 square degrees, respectively (Singer 2015, GCN\#18330).
+
+We started our imaging campaign immediately after
+receiving, on the night of 2015 September 16, utilizing the
+cWB map. Additional observations were obtained the
+following night, and a second epoch of imaging was acquired on 2015 December 5 \& 6. We used an Apogee Alta
+U9 camera with a field of view (FoV) of 12.'7 $\times$ 8.'5 and
+an effective plate scale of 0.''75pix after 3 $\times$ 3 binning. Since we wished to maximize our sensitivity, we conducted unfiltered (``white light'') observations spanning 0.35 < $\lambda/\mu$m < 1. We obtained individual exposures of 60 s with a median seeing (FWHM) of (2.8 $\pm$ 0.6)''. 
+We typically obtained 10 images per field, reaching 5$\sigma$ limiting magnitudes of r = 21.7 $\pm$ 0.3 mag.
+
+The LIGO localization regions span several hundred square degrees (see Fig. 1) and vary depending on the algorithm. For instance, the 90\% credible localization area for cWB covers to 310 square degrees while others span up to 750 square degrees (see table 1 in Abbott et al. 2016c). Regardless, all sky maps are consistent with a broad long arc in the Southern hemisphere and a smaller extension in the Northern hemisphere. The algorithm utilized for the CWB estimations produces reasonably accurate maps for BBH signals, but underestimates the extent of high-confidence regions (Essick et al. 2015). As seen in Fig. 1, the adoption of maps from alternative algorithms (not available at the time our observations started) significantly reduces the fraction of the high-confidence region probed by our small FoV.
+
 Despite the little area covered by TOROS, the O1 campaign allowed the collaboration to test the detection and response systems to the alerts.
+
+\begin{table}
+\centering
+\begin{tabular}{|*{7}{c|}}
+  \hline
+ Date & GWGC & RA & Dec & $t_{exp}$ & Tile & D \\ 
+ (Local Time) & ID & [Deg] & [Deg] & [s] & Number & [Mpc] \\ \hline
+2015-09-16 & IC1933 & 51.416101 & -52.78547 & 600 & 1,2,3,4 & 17.45 \\
+2015-09-16 & NGC1529 & 61.833301 & -62.89993 & 600 & 5,6,7,8 & 54.76 \\
+2015-09-16 & IC2038 & 62.225246 & -55.99074 & 600 & 9,10,11,12 & 7.00 \\
+2015-09-16 & IC2039 & 62.259901 & -56.01172 & 600 & 9,10,11,12 & 7.63 \\
+2015-09-17 & ESO058-018 & 102.593850 & -71.03123 & 1020 & 13 & 52.23 \\
+2015-09-17 & ESO084-015 & 65.550449 & -63.61097 & 1140 & 14 & 14.99 \\
+2015-09-17 & ESO119-005 & 72.072451 & -60.29376 & 1080 & 15 & 9.73 \\
+2015-09-17 & NGC1559 & 64.398901 & -62.78358 & 900 & 16 & 12.59 \\
+2015-09-17 & PGC016318 & 73.728898 & -61.56747 & 1020 & 17 & 9.54 \\
+2015-09-17 & PGC269445 & 100.209150 & -71.33026 & 1140 & 18 & 54.83 \\
+2015-09-17 & PGC280995 & 96.382499 & -69.15257 & 1140 & 19 & 55.08 \\
+2015-09-17 & PGC128075 & 64.859998 & -60.53844 & 720 & 20 & 63.71 \\
+2015-09-17 & PGC381152 & 63.584547 & -58.20726 & 1200 & 21 & 13.26 \\
+2015-09-17 & PGC075108 & 63.670349 & -58.13199 & 1200 & 21 & 13.29 \\ \hline
+\end{tabular}
+\caption{Targeted host galaxies}
+\label{o1targets}
+\end{table}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[scale=0.5]{pointings}
+\caption{cWB, LIB, BYST, LALinf Sky-maps re-scaled regions that mark TOROS targets (red dots).}
+\label{fig:pointings}
+\end{figure}
+
+
+
+
 
 \begin{comment}
 
@@ -627,7 +746,8 @@ using the VOEvent Transport Protocol.
 The VOEvent Transport Protocol is a simple TCP-based protocol for transporting VOEvent messages from authors, through brokers, to subscribers.
 
 VOEvent is the International Virtual Observatory Alliance (IVOA) recommended mechanism for describing astronomical transients.
-According to its main website (http://wiki.ivoa.net/twiki/bin/view/IVOA/IvoaVOEvent), it is an XML file notice that ``{\em defines the content and meaning of a standard information packet for representing, transmitting, publishing and archiving information about a transient celestial event, with the implication that timely follow-up is of interest.}'' 
+According to its main website \footnote{\href{http://wiki.ivoa.net/twiki/bin/view/IVOA/IvoaVOEvent}{http://wiki.ivoa.net/twiki/bin/view/IVOA/IvoaVOEvent}},
+it is an XML file notice that ``{\em defines the content and meaning of a standard information packet for representing, transmitting, publishing and archiving information about a transient celestial event, with the implication that timely follow-up is of interest.}'' 
 
 In our case, we registered two static IPs with GCN, one in Texas at UT RGV and another one for Cordoba in Argentina at IATE Institute.
 Only the one in Texas is functional at the moment, while the one in Cordoba is receiving but has problems sending out emails.
