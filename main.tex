@@ -153,7 +153,7 @@ In the second chapter, I discuss the two main elements of a modern transient sea
 
 \chapter{Introduction}
 
-In February 2016, celebrating the centenary anniversary of Einstein's first paper on gravitational waves(``Approximate integration of the field equations of gravitation''), the LVC collaboration announced the first ever direct detection of a gravitational wave, labeled GW150914.
+In February 2016, celebrating the centenary anniversary of Einstein's first paper on gravitational waves(``Approximate integration of the field equations of gravitation''), the LVC collaboration announced the first ever direct detection of a gravitational wave, coded GW150914.
 With this, a new window of the universe for the purely relativistic astronomical phenomena was opened. 
 
 The history of GW was not without controversies. From the discussion of whether GW would carry energy to the experiments of Joseph Weber, Gravitational Waves made its way from the theoretical realm into a stronghold position in Astrophysics.
@@ -200,7 +200,9 @@ h_{\mu \nu} =
 \end{bmatrix}
 \end{equation}
 
-\textcolor{red}{Talk about the two polarizations}
+Aside from the usual sinusoidal factors for the wave propagation, we note that the GW tensor has two independent modes, or `polarizations' $h_{+}$ and $h_{\times}$. 
+These polarizations are just like light polarization, except that these are at 45 degrees of each other, unlike the 90 degrees symmetry of light polarization.
+To be more clear, the effect on test particles of a purely $h_{\times}$ polarization would be the same as the $h_{+}$ polarization rotated 45 degrees.
 
 Since a spacetime metric is a measure of distance between pair of events, the metric perturbation wave will modify the relative distance between points in space as it passes by. 
 It is in fact an effective oscillating strain or tidal force between free test masses.
@@ -521,7 +523,8 @@ The next section is dedicated to the LVC O1 campaign and the TOROS participation
 On April 2014, TOROS signed a Memorandum Of Understanding (MOU) with the LIGO Virgo Collaboration, in order to participate in a program to perform follow-up observations of GW candidate events with the benefit of access to LVC proprietary information.
 
 The MOU signing was a very important step that allowed TOROS to participate in the O1 LIGO campaign with positive results.
-The MOU allowed TOROS to receive the LIGO alerts, which are private and confidential at the time of O1 and O2, and to be part of a publication as part of a broader collaboration with other institutions for the electromagnetic counterpart search of the first announced GW ever, namely GW150914.
+The MOU allowed TOROS to receive the LIGO alerts, which were private and confidential at the time of O1 and O2, 
+and to be part of a publication as part of a broader collaboration with other institutions for the electromagnetic counterpart search of the first announced GW ever, namely GW150914.
 
 Besides LIGO and Virgo Collaborations, other 24 institutions participated in the GW150914 event along with TOROS. These are detailed in table \ref{gw150914participants}.
 
@@ -569,7 +572,7 @@ TOROS successfully participated of this campaign, where the first GW was detecte
 
 Surprisingly, the first of them, GW150914, was detected just before O1 officially began. It was during an engineering run. Despite the premature nature of the alert, TOROS could scan a region of the LIGO localization map and contribute with other XX observatories to the EM search. The search did not show up any transient associated with the event.
 
-On the night of September 16, 2015, an LIGO alert for a GW arrived through the TOROS alert receiver system.
+On the night of September 16, 2015, a LIGO alert for a GW arrived through the TOROS alert receiver system.
 
 We conducted unfiltered CCD observations (0.35--1$\mu$m) with the 1.5-m telescope at Estacion Astronomica Bosque Alegre (EABA) telescope.
 
@@ -619,13 +622,18 @@ Despite the little area covered by TOROS, the O1 campaign allowed the collaborat
 
 \begin{figure}[!t]
 \centering
-\includegraphics[scale=0.5]{pointings}
+\includegraphics[scale=0.5]{figures/pointings}
 \caption{cWB, LIB, BYST, LALinf Sky-maps re-scaled regions that mark TOROS targets (red dots).}
 \label{fig:pointings}
 \end{figure}
 
 
-
+\begin{figure}[!t]
+\centering
+\includegraphics[scale=0.5]{figures/GW150914detection}
+\caption{GW150914 event observed by the LIGO Hanford (H1, left column panels) and Livingston (L1, right column panels) detectors. Top row is the strain signal. Second row is the GW strain projected onto each detector in the 35--350 Hz band. Solid lines show a numerical relativity waveform for a system with parameters consistent with those recovered from GW150914. Third row: Residuals after subtracting the filtered numerical relativity waveform from the filtered detector time series. Bottom row: A time frequency representation of the strain data.}
+\label{fig:GW150914ligosignal}
+\end{figure}
 
 
 \begin{comment}
@@ -698,7 +706,7 @@ At UT Rio Grande Valley, we developed extensive analysis and web code to allow f
 
 \end{comment}
 
-\include{chapter_O1/chapter}
+\include{chapter_Kilonova/chapter}
 
 \include{chapter_DIA/chapter}
 
