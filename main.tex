@@ -153,15 +153,18 @@ In the second chapter, I discuss the two main elements of a modern transient sea
 
 \chapter{Introduction}
 
-In February 2016, celebrating the centenary anniversary of Einstein's first paper on gravitational waves(``Approximate integration of the field equations of gravitation''), the LVC collaboration announced the first ever direct detection of a gravitational wave, coded GW150914.
+In February 2016, celebrating the centenary anniversary of Einstein's first paper on gravitational waves(``Approximate integration of the field equations of gravitation''), 
+the LVC collaboration announced the first ever direct detection of a gravitational wave, coded GW150914.
 With this, a new window of the universe for the purely relativistic astronomical phenomena was opened. 
 
-The history of GW was not without controversies. From the discussion of whether GW would carry energy to the experiments of Joseph Weber, Gravitational Waves made its way from the theoretical realm into a stronghold position in Astrophysics.
+The history of GW was not without controversies. From the discussion of whether GW would carry energy to the experiments of Joseph Weber, 
+Gravitational Waves made its way from the theoretical realm into a stronghold position in Astrophysics.
 
 The detection of GW150914 firmly established the base for a new kind of Astronomy.
 Years to come will turn GW detection, into a full field GW Astronomy.
 
-There is a new messenger in the universe that is purely relativistic in nature. The graviton and its wave counterpart will bring us information about high gravitational fields, compact massive objects, relativistic speed phenomena and more.
+There is a new messenger in the universe that is purely relativistic in nature. 
+The graviton and its wave counterpart will bring us information about high gravitational fields, compact massive objects, relativistic speed phenomena and more.
 It will let us probe into the physics of the extreme gravitational field astronomical bodies.
 
 The GW information will complete, refine and expand the understanding of our universe.
@@ -174,7 +177,6 @@ In the following sections, I offer a brief introduction of GWs and their relatio
 \section{Gravitational Waves}
 
 \begin{comment}
-
 %Quadrupole radiation is the lowest allowed form and is thus usually the dominant form. In this case, the GW field strength is proportional to the second time derivative of the quadrupole moment of the source, and it falls off in amplitude inversely with distance from the source.
 
 %As with electromagnetic waves, GWs travel at the speed of light and are transverse in character, i.e. the strain oscillations occur in directions orthogonal to the direction in which the wave is propagating.
@@ -339,7 +341,6 @@ The process of winnowing out the contaminants and identifying the true members o
 
 \textcolor{blue}{the IVOA has settled on a flavor of XML called VOEvent for the transmission of astronomical events, and processing those would need XML streaming and filtering technologies.}
 
-
 * The transient world
 	* The Time Domain revolution in Astronomy
 	* What are transients and which ones are we interested in
@@ -388,7 +389,6 @@ The S5 run collected a full year of triple-detector coincident data from Novembe
 Between Initial LIGO and Advanced LIGO more science were made under Enhanced LIGO, which provided enhancements that improved sensitivity by a factor of 2. 
 
 But the real revolution came with Advanced LIGO, a set of additions that improved LIGO sensitivity by a factor of 10 over Initial LIGO and widened the frequency range all the way down to 10 Hz (which is known as the seismic wall).
-
 
 Among the improvements is the upgrading of the laser wattage to 200 W. 
 An increase in the test masses to 40 kg in order to reduce radiation pressure noise and to allow larger beam sizes. 
@@ -514,12 +514,11 @@ Other interesting environment properties can be derived from the Kilonova detect
 
 But most importantly, the merger of a binary system involving a NS is very complex and several kind of factors can effect the radiation pattern and light-curve of the Kilonova as well as the GRW waveform. The optical light curve can serve as a probe into the core and shed light to the intricacies and details of the merge process.
 
-For a more detailed explanation of the Kilonova and a possible detection in the infrared, please refer to chapter \ref{kilonovachapter}.
+For a more detailed explanation of the Kilonova and a possible detection in the infrared, please refer to the section \ref{kilonovachapter}.
 
-The next section is dedicated to the LVC O1 campaign and the TOROS participation on it.
+\include{chapter_Kilonova/chapter}
 
-\subsection{The O1 LIGO Campaign}
-
+\chapter{The O1 campaign: Optical Search for GW150914}
 On April 2014, TOROS signed a Memorandum Of Understanding (MOU) with the LIGO Virgo Collaboration, in order to participate in a program to perform follow-up observations of GW candidate events with the benefit of access to LVC proprietary information.
 
 The MOU signing was a very important step that allowed TOROS to participate in the O1 LIGO campaign with positive results.
@@ -677,9 +676,10 @@ NS-NS/BH-NS mergers are also predicted to be accompanied by a more isotropic cou
 The most significant of those is no doubt, the Kilonova emission produced by rapid capturing of neutrons.
 Neutron capture has to be faster than the beta decay rate of the neutron and that's why it has to be rapid.
 This capture process is called r-process. R is for rapid.
-The r-process physics is quite complicated and involves a bunch of stuff, much of which is modeled to certain confidence, but many other elements are not well known. Several ingredients to the model are not considered fully. 
+The r-process physics is quite complicated and involves a bunch of stuff, much of which is modeled to certain confidence, 
+but many other elements are not well known. Several ingredients to the model are not considered fully. 
 
-Blinnikov et al. (1984) and Paczynski (1986) first suggested a connection be- tween NS-NS mergers and GRBs.
+Blinnikov et al. (1984) and Paczynski (1986) first suggested a connection between NS-NS mergers and GRBs.
 
 Even prior to the discovery of the first binary pulsar (Hulse \& Taylor 1975), Lattimer \& Schramm (1974, 1976) proposed that the merger of compact star binaries --in particular the collision of BH-NS systems-- could give rise to the r-process by the decompression of highly neutron-rich ejecta (e.g. Meyer 1989). 
 
@@ -706,7 +706,8 @@ At UT Rio Grande Valley, we developed extensive analysis and web code to allow f
 
 \end{comment}
 
-\include{chapter_Kilonova/chapter}
+
+\chapter{The O1 campaign: GW150914 Data Analysis}
 
 \include{chapter_DIA/chapter}
 
@@ -827,6 +828,10 @@ Each observatory then carries the observations for the successive nights and fil
 
 The website can also output a circular draft of all the targets observed by each telescope to be submitted to the GCN/TAN website for the rest of the community.
 
+\subsection{Corral Pipeline Framework}
+
+As part of the 
+
 \subsection{Further Processing}
 
 The previous steps are the normal workflow for the operations on a LIGO campaign.
@@ -861,6 +866,23 @@ The subtraction methods are explained in section \ref{ois_section}.
 Several algorithms are explained in the literature with a wide range of methods, from Fourier Transform, to PSF matching to using Information Theory.
 Some of them are explained and implemented in a Python module named `ois' developed by me for this project.
 
+\include{chapter_astroalign/chapter} \label{astroalign_section}
+
+\section{OIS Python Package} \label{ois_section}
+	
+OIS (Optimal Image Subtraction) is a Python module that implements several Difference Image Analysis methods as described in section X.
+
+It works on Numpy arrays, so that way is agnostic on the origin of the image. 
+
+Bad pixels that need to be ignored in the image are marked using Numpy's masked arrays (True on bad pixel).
+
+The interface to the user has two entry points: the module methods optimal\_system and subtract\_on\_grid. The latter is just a convenient method to partition the image in a certain grid and perform the former on each grid, taking into account pixels outside the grid when necessary.
+
+optimal\_system will return ...
+
+OIS has documentation on the popular documentation site readthedocs.io.
+OIS is released under MIT Licence and has a GitHub page on ...
+
 \section{Winnow - Human classification of Real/Bogus}
 
 Blue is from Hotwiring the Transient Universe:
@@ -878,24 +900,6 @@ on subtraction images, by voting on `real' or `bogus' categories.
 This voting allows to have good training sets to later train automatic classifiers to do the same task.
 The website was tested successfully with many undergraduate and graduate students, 
 and there are plans to apply it to high-school students as a way of citizen science project.
-
-\include{chapter_astroalign/chapter} \label{astroalign_section}
-
-\section{Optimal Image Subtraction} \label{ois_section}
-	
-OIS (Optimal Image Subtraction) is a Python module that implements several Difference Image Analysis methods as described in section X.
-
-It works on Numpy arrays, so that way is agnostic on the origin of the image. 
-
-Bad pixels that need to be ignored in the image are marked using Numpy's masked arrays (True on bad pixel).
-
-The interface to the user has two entry points: the module methods optimal\_system and subtract\_on\_grid. The latter is just a convenient method to partition the image in a certain grid and perform the former on each grid, taking into account pixels outside the grid when necessary.
-
-optimal\_system will return ...
-
-OIS has documentation on the popular documentation site readthedocs.io.
-OIS is released under MIT Licence and has a GitHub page on ...
-
 
     
 \chapter{Conclusions}
