@@ -175,6 +175,15 @@ Together they will uncover even more details of the inner mechanisms of the cele
 
 In the following sections, I offer a brief introduction of GWs and their relation to Optical Astronomy.
 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%			Gravitational Waves
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Gravitational Waves}
 
 \begin{comment}
@@ -246,37 +255,60 @@ Nautilus is a cryogenic, high Q-factor bar at a temperature of 0.1 K.
 This bar has already reached a strain sensitivity of $10^{-21}$ Hz${}^{-1/2}$ in the kHz region.
 (P. Astone et al., ``The Gravitational wave detector NAUTILUS operating at T = 0.1K'' Astropart. Phys. 7 (1997) 231-243.)
 
-
 A whole other category of GW detectors are those based on Michelson interferometry of lasers running on two or more kilometric long arms.
 Interferometer GW detectors transduce a GW warp in space to the shrinking and stretching of relative distances of masses put far apart in two or more --mostly perpendicular-- long interferometers. 
 In the case of the Earth based observatories, each interferometer is one arm several kilometers long, of an L shape facility.
 The masses are the end mirrors that reflect a laser beam pointed in each arm direction. 
 On normal circumstances, the beams from two different arms can be set to be (`locked') on a dark or bright fringe of the interferometer diffraction pattern.
-When a GW passes by, it will alter the relative distances of the mirror masses, thus changing the optical path of the laser beams. This in turn, will translate into a shift in the diffraction pattern consistent with the deformation of space.
+When a GW passes by, it will alter the relative distances of the mirror masses, thus changing the optical path of the laser beams. 
+This in turn, will translate into a shift in the diffraction pattern consistent with the deformation of space.
 
 Several of this kind are built on different parts of the planet. 
 Most notably among them are the LIGO observatory (see section \ref{ligosection}) and Virgo in Europe.
 GEO600 and TAMA are also detectors of this kind in Germany and Japan respectively.
 Indigo is a planned observatory that will be in India.
 
+The frequency range in which these Earth-based interferometers are sensitive depends mainly on the length of the arms.
+As a rule of thumb, the length of one arm is about half the shortest wavelength it can detect.
+A few kilometers long arms make them sensitive up to the kHz.
+As an example, aLIGO is now sensitive in the 10 Hz --7 kHz range.
+
 Besides the Earth-based GW interferometers, there are also advanced plans to build space based detectors.
-LISA (the Laser Interferometer Space Antenna) is a proposed GW interferometer to be set in space trailing the Earth's orbit.
+eLISA (the Evolved Laser Interferometer Space Antenna) is a proposed GW interferometer to be set in space trailing the Earth's orbit.
 Initially a NASA project, it is now an ESA mission.
-The project successfully launched the ``LISA pathfinder'' spacecraft, whose mission is to test technologies needed for the Evolved LISA (eLISA).
+eLISA will consist of three spacecrafts in an equilateral triangle configuration separated 2.5 million kilometers from each other.
+The project successfully launched so far the ``LISA pathfinder'' spacecraft, whose mission is to test technologies needed for the final mission.
 The final launch of eLISA is planned for 2034.
+LISA will detect GW in the low-frequency band of the spectrum, roughly from 1Hz to the mHz range.
+
+Other indirect methods of GW detection include the Pulsar Timing Array (PTA) effort.
+PTA searches for correlated delays in the pulses arrival times for an array of preselected millisecond pulsars.
+These delays can then be analyzed in search for signatures of passing GW.
+This type of projects aim to detect very low frequency GW, from $\mu$Hz to pHz. 
+Potential sources for this very low frequency signals are mergers of massive black hole binaries at the center of galaxies.
 
 %In the following section I offer a more detailed account on the the operation of the first of these Earth based interferometers, the LIGO observatory.
 
-\section{The Transient World and the Time-Domain Revolution in Astronomy}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%			The Transient Universe
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Transient Universe and the Time-Domain Revolution in Astronomy}
 
 In this so-called ``Information Age'', data is king.
-As we move away from the traditional one person project and manual way to deal with the information, the amount of data that needs processing becomes unmanageable by humans. 
-This is not to say that individual work has no place in science, 
-but that the collective gathering of information becomes more ubiquitous in science.
+As we move away from the traditional one person project and manual way to deal with the information, 
+the amount of data that needs processing becomes unmanageable by humans. 
+This is not to say that individual work has no place in science, but that the collective gathering of information have become ubiquitous.
 
 Astronomy has not been immune to information overload. 
 The sizes of sky surveys have been increasing steadily and dramatically over the years.
-From 0.1 TB and about 10 to 100 events per night now, to about 30 TB and $10^5$ to $10^6$ events per night in the LSST era, the data load and the resources to process them become overwhelming if not done by automated agents.
+From 0.1 TB and about 10 to 100 events per night now, to about 30 TB and $10^5$ to $10^6$ events per night in the LSST era, 
+the data load and the resources to process them become overwhelming if not done by automated agents.
 
 The big amount of data posses yet another challenge.
 The identification of interesting objects of study among countless other events on the sky.
@@ -286,9 +318,18 @@ Classification problems done by automated agents trained for that purpose are us
 
 Rare events interesting to a particular survey or telescope must then be identified against the stationary or slowly varying sky, and must be separated from other transients of a different kind.
 
-Perhaps, one of the most spectacular of these transient events because of its  display of brightness and energy, are the Gamma Ray Bursts (GRBs).
 
-The brightness of this flash of gamma-rays can temporarily overwhelm all other gamma-ray sources in the Universe. The burst can last from a fraction of a second to over a thousand seconds. 
+
+
+
+
+
+
+
+
+Perhaps, one of the most spectacular of these transient events because of its display of brightness and energy, are the Gamma Ray Bursts (GRBs).
+The brightness of this flash of gamma-rays can temporarily overwhelm all other gamma-ray sources in the Universe. 
+The burst can last from a fraction of a second to over a thousand seconds. 
 
 GRBs are explosions as energetic as $10^?$ ergs, liberated Gamma Rays and subsequent afterglows across the whole spectrum up to Radio frequencies.
 
@@ -381,6 +422,13 @@ The process of winnowing out the contaminants and identifying the true members o
 		* Previous work: Catalog Matching: Marica's pipeline and Shuang's work on the transient identification and comparison to my OIS code.
 		* Previous work: OIS + ML (the iPTF experience)
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%			LIGO Virgo
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The LIGO-Virgo Collaboration}
 
 \begin{comment}
