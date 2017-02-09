@@ -301,7 +301,7 @@ Potential sources for this very low frequency signals are mergers of massive bla
 \section{The Transient Universe and the Time-Domain Revolution in Astronomy}
 
 In this so-called ``Information Age'', data is king.
-As we move away from the traditional one person project and manual way to deal with the information, 
+As we move away from the traditional one person project and manual way to deal with information, 
 the amount of data that needs processing becomes unmanageable by humans. 
 This is not to say that individual work has no place in science, but that the collective gathering of information have become ubiquitous.
 
@@ -310,20 +310,63 @@ The sizes of sky surveys have been increasing steadily and dramatically over the
 From 0.1 TB and about 10 to 100 events per night now, to about 30 TB and $10^5$ to $10^6$ events per night in the LSST era, 
 the data load and the resources to process them become overwhelming if not done by automated agents.
 
-The big amount of data posses yet another challenge.
-The identification of interesting objects of study among countless other events on the sky.
+Buried in this huge amount of data, lie many interesting events.
+In fact, some of the latest advances in Astronomy are related to the discovery and analysis of transient events 
+that last from milliseconds, like Fast Radio Bursts, to a span of days or weeks like Super Nova (SN) explosions.
+Some of the events are recurring, with or without predictability of the next event, and some of them are only a one-time occurrence.
+The time scales and methods of detection are so varied as the phenomena under study.
+
+Time Domain analysis poses two main challenges to Astronomy.
+
+The first one deals with the huge amount of data.
+The identification of transients of interest has to be done among a multitude of other unrelated transient events.
+Furthermore, fake transients from the instruments or methods used to mine them, can confuse methods of source extraction.
+Rare events interesting to a particular survey or telescope must then be identified against the stationary 
+or slowly varying sky, and must be separated from other transients of a different kind.
+
 This `mining' or harvesting problem have been tackled by other disciplines by different techniques of many kinds.
 They are collectively called ``Data Mining'' or ``Machine Learning'' as well as other names depending on the specific field and purpose.
 Classification problems done by automated agents trained for that purpose are usually dealt within the techniques called ``Machine Learning'', and we will devote a great deal of this thesis on such field.
 
-Rare events interesting to a particular survey or telescope must then be identified against the stationary or slowly varying sky, and must be separated from other transients of a different kind.
+Catalogue based Vs. Difference Photometry based.
+
+The second challenge relates to the issue of multi-messenger astronomy.
+One event discovered with a certain messenger, could be studied in all the other frequencies.
+For this the transmission of the information on localization has to be sent faster than the typical duration of the event.
+This is especially true with afterglows of very energetic events.
+
+An event like a SN explosion may be first detected as a long GRB event in one of the space based Gamma Ray Telescopes orbiting Earth.
+This information needs to be quickly sent to the Astronomy community to study emission it in the optical, infrared, radio as well as the spectroscopy.
+
+It was actually GRBs, one of the first things to be studied in a multi-band fashion,
+and for this reason, they settled the infrastructure for an effective multi-messenger astronomy.
+
+GRBs are explosions as energetic as $10^?$ ergs, liberated Gamma Rays and subsequent afterglows across the whole spectrum up to radio frequencies.
+The afterglows for GRBs can be seen in the optical as a transient brightness excess, usually located near the galaxies that host them. 
+GRBs can be at extremely distant galaxies, and therefore optical glows can sometimes be too faint to observe.
+
+According to \textcolor{red}{Batse (Swift? look for ref)} data, GRBs seem to come from two distinct population.
+Histograms done on the time time to receive 90\% of the radiation, or $T_{90}$ seem to indicate the populations are
+divided into `long' and `short types'. Long GRBs last for longer than 2s, while short duration GRBs have $T_{90}$ values under 2s.
+
+Long GRBs are associated with Super Nova explosions \textcolor{red}{ref?}.
+This 
+
+Optical afterglows for GRBs ...
+
+To detect the optical afterglow, GRB locations were communicated to other observatories that would promptly point their telescopes in that direction.
+A multi-band observation and spectrography is very valuable for the understanding and classification of these events.
+
+VOEvent part.
+
+Just like in the case for GRBs, that has counterparts across all EM frequencies, other types of transient events will have the same characteristics.
+Most important for us, is the case of the Kilonova, a transient event with an optical afterglow, product of the merge of a binary with at least one NS.
 
 
 
 
 
-
-
+\begin{comment}
 
 
 
@@ -331,14 +374,7 @@ Perhaps, one of the most spectacular of these transient events because of its di
 The brightness of this flash of gamma-rays can temporarily overwhelm all other gamma-ray sources in the Universe. 
 The burst can last from a fraction of a second to over a thousand seconds. 
 
-GRBs are explosions as energetic as $10^?$ ergs, liberated Gamma Rays and subsequent afterglows across the whole spectrum up to Radio frequencies.
-
-The afterglows for GRBs can be seen in the optical as a transient brightness excess, usually located near the galaxies that host them. GRBs can be at extremely distant galaxies, and therefore optical glows can sometimes be too faint to observe.
-
 Since the detection of the first few of these, now we have two space telescopes dedicated to find them.
-
-To detect the optical afterglow, GRB locations were communicated to other observatories that would promptly point their telescopes in that direction.
-A multi-band observation and spectrography is very valuable for the understanding and classification of these events.
 
 The value of multi-messenger astronomy of this kind was recognized right on the onset for the understanding and classification of these events.
 
@@ -356,9 +392,8 @@ This way, improving other estimates of the merge.
 Such classification of transient events is nowadays done with the aid of classification agents trained with Machine Learning techniques.
 
 
-\textcolor{blue}{As the data and event discovery rates increase dramatically, from about 0.1 TB and about 10 to 100 events per night now, to about 30 TB and $10^5$ to $10^6$ events per night in the LSST [4] era, available follow-up facilities would be simply overwhelmed, and unable to react to all potentially interesting events.}
+As the data and event discovery rates increase dramatically, from about 0.1 TB and about 10 to 100 events per night now, to about 30 TB and $10^5$ to $10^6$ events per night in the LSST [4] era, available follow-up facilities would be simply overwhelmed, and unable to react to all potentially interesting events.
 
-\begin{comment}
 The new enabling technologies will be automated or robotized.
 
 Rare events will be harvested, or mined in the jargon of big-data, from huge data sets.
@@ -369,7 +404,7 @@ Gamma Ray Bursts (GRB) are transient events ...
 
 An important consideration on information retrieval, is how will data be process to detect the target objects in the survey.
 
-\end{comment}
+
 
 \subsection{Related Efforts}
 
@@ -414,15 +449,8 @@ The process of winnowing out the contaminants and identifying the true members o
 
 \textcolor{blue}{the IVOA has settled on a flavor of XML called VOEvent for the transmission of astronomical events, and processing those would need XML streaming and filtering technologies.}
 
-* The transient world
-	* The Time Domain revolution in Astronomy
-	* What are transients and which ones are we interested in
 
-	* How can we catch transients
-		* Previous work: Catalog Matching: Marica's pipeline and Shuang's work on the transient identification and comparison to my OIS code.
-		* Previous work: OIS + ML (the iPTF experience)
-
-
+\end{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
