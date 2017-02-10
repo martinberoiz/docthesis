@@ -196,6 +196,7 @@ General Relativity predicts that very massive or energetic events will create tr
 These are linear disturbances on a flat background metric, that are propagated outwards with the speed of light fading with the inverse of the distance.
 These tensorial transversal waves will modify the local metric as it travels through space.
 
+%Since GWs are weakly interacting, any waves produced will traverse the universe without being scattered or absorbed
 Putting it in more technical terms, in an asymptotically flat spacetime, removed from any strong source so that one can assume an almost flat local solution, one can study weak perturbations to the flat Minkowski metric.
 In this regime and choosing appropriate gauges, the linearized Einstein field equations present themselves in the form of a wave equation.
 Solutions to this wave equations are what people refer to as Gravitational Waves.
@@ -399,6 +400,8 @@ LIGO was designed so that its data could be searched for GWs from many different
 
 
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %			The Transient Universe
@@ -411,30 +414,49 @@ As we move away from the traditional one person project and manual way to deal w
 the amount of data that needs processing becomes unmanageable by humans. 
 This is not to say that individual work has no place in science, but that the collective gathering of information have become ubiquitous.
 
-Astronomy has not been immune to information overload. 
+%Astronomy has not been immune to information overload. 
 The sizes of sky surveys have been increasing steadily and dramatically over the years.
-From 0.1 TB and about 10 to 100 events per night now, to about 30 TB and $10^5$ to $10^6$ events per night in the LSST era, 
-the data load and the resources to process them become overwhelming if not done by automated agents.
+From a situation where data lies in the hundreds of MB and about a hundred events per night now, 
+we are heading to a regime of several tens of TB and the order of million events per night in the LSST era.
+The data load makes it unmanageable if not done by automated agents.
 
-Buried in this huge amount of data, lie many interesting events.
-In fact, some of the latest advances in Astronomy are related to the discovery and analysis of transient events 
-that last from milliseconds, like Fast Radio Bursts, to a span of days or weeks like Super Nova (SN) explosions.
-Some of the events are recurring, with or without predictability of the next event, and some of them are only a one-time occurrence.
+Buried in this huge amount of data, lie many short-lived events, or {\em transients}, that will only be registered for a short period of time.
+Some of the latest most interesting advances in Astronomy are related to the discovery and analysis of transient events 
+
+Transient events can last from milliseconds, like Fast Radio Bursts, to a span of days or weeks like Super Nova (SN) explosions.
+Some of these events are recurring, with or without predictability of the next event, and some of them are only a one-time occurrence.
 The time scales and methods of detection are so varied as the phenomena under study.
+Transient events are the exact opposite of static events, and they don't have a periodic variability.
+Their very nature demands a time-domain analysis.
 
-Basically every area of Astronomy has been enhanced by the time domain analysis of transient events, 
-and this phenomena can only be studied in the field of time domain.
+\begin{comment}
+List of transients:
+- soft gamma repeater (SGR) flares; these are highly magnetized (1015G) neutron stars that emit ?-ray flares sporadically
+
+\end{comment}
+
+%Basically every area of Astronomy has been enhanced by the time domain analysis of transient events, 
+%and this phenomena can only be studied in the field of time domain.
+
 Nonetheless, time domain astronomy poses at least two big main challenges.
+The first one deals with the huge amount of data and the process of recovering interesting transients form it. 
+This is a {\em Data Mining} process.
 
-The first one deals with the huge amount of data.
+The second challenge has to do with the prompt dissemination of a transient discovery
+to the scientific community to do follow-up observations in different bands of the spectrum.
+The huge interest in Gamma Ray Bursts propelled most of the infrastructure that we have now to deal with this issue.
+We cover multi-messenger Astronomy (MMA) and some examples of it in the following sections.
+
+\subsection{Mining Transients}
+
 The identification of transients of interest has to be done among a multitude of other unrelated transient events.
 Furthermore, fake transients from the instruments or methods used to mine them, can confuse methods of source extraction.
-Rare events interesting to a particular survey or telescope must then be identified against the stationary 
+\textcolor{blue}{copy-paste}Rare events interesting to a particular survey or telescope must then be identified against the stationary 
 or slowly varying sky, and must be separated from other transients of a different kind.
 
-This `mining' or harvesting problem have been tackled by other disciplines by different techniques of many kinds.
+This `mining' or harvesting problem is not exclusive of Astronomy and have been tackled by other disciplines by different techniques of many kinds.
 They are collectively called ``Data Mining'' or ``Machine Learning'' as well as other names depending on the specific field and purpose.
-Classification problems done by automated agents trained for that purpose are usually dealt within the techniques called ``Machine Learning'', and we will devote a great deal of this thesis on such field.
+Classification problems done by automated agents trained for that purpose are usually dealt within the techniques called ``Machine Learning'', and we will devote a great deal of this thesis on this field.
 
 \textcolor{blue}{copy-paste}However, there is yet another twist - how to identify the target objects of interest among the background of millions of other potential variable or transient objects? ... this results in a pool of candidates contaminated with other variables or transients. Reducing that contamination requires additional observational data either to determine the full shape of the transient or variable lightcurve, or to determine the velocity and acceleration vectors of a solar system object, or to determine the spectral energy distribution of the object through observations at multiple wavelengths or in multiple filters.
 The process of winnowing out the contaminants and identifying the true members of the target sample is the heart of ``classification''.
@@ -442,7 +464,10 @@ The process of winnowing out the contaminants and identifying the true members o
 Catalogue based Vs. Difference Photometry based.
 \textcolor{blue}{copy-paste}A final consideration when planning a synoptic survey is how to process the data to detect the target objects in the survey. Briefly summarized, methods for detection of variables or transients boil down to generating a catalog of objects which are `different' (in brightness or position) in an image acquired from the survey telescope from what is expected for that region of sky. One common method is to create a `template image' from a series of images previously obtained of the same field, match this template to the image from the telescope being searched for variables or transients, and then to subtract the two to create a difference image. The matching process must include matching the point-spread function of the template and science image, as well as aligning their coordinate systems. Source detection algorithms are then run on the difference image to look for objects which varied in brightness or position between the template and science image. Another common method is to create calibrated catalogs from each image directly, match objects from the catalogs created from each image with the same objects from the other catalogs using spatial correlations, and again look for things which vary in brightness or position. Each method has its advantages and disadvantages, among which are: difference imaging is typically more computationally expensive but does well at removing extended non-variable objects such as galaxies, can detect variability in non-stellar profiles, and can perform better in crowded fields, while catalog searches require more accurate calibration but do not require template images and can be used to search for variability in data from different telescopes.
 
-The second challenge relates to the issue of multi-messenger astronomy.
+
+\subsection{Multi-Messenger Astronomy}
+
+The second challenge relates to the issue of multi-messenger Astronomy.
 One event discovered with a certain messenger, could be studied in all the other frequencies.
 For this the transmission of the information on localization has to be sent faster than the typical duration of the event.
 This is especially true with afterglows of very energetic events.
@@ -456,16 +481,44 @@ This information needs to be quickly sent to the Astronomy community to study em
 It was actually GRBs, one of the first things to be studied in a multi-band fashion,
 and for this reason, they settled the infrastructure for an effective multi-messenger astronomy.
 
+Gamma Ray Busts were first discovered by the Vela satellites, a set of 6 pair of satellites (Vela 1a,b through Vela 6a,b) 
+launched by the United States to orbit the Earth. 
+The original purpose of the array of satellites was to monitor the nuclear activities of other countries during the Cuba Missile Crisis in the 60's.
+The satellites were designed to detect the hard-to-shield high energy signature emissions ($\gamma$ and X rays) of nuclear detonations.
+Instead of this, they found strange very energetic bursts of gamma rays coming from outer space. (R. W. Klebesadel, I. B. Strong, and R. A. Olson, ApJ (Letters) 182, L85 (1973).)
+%It was no long until they found that the isotropic distribution of them, were of extragalactic origin
+
+%optical supernova glow for months
+
+After a long debate, data finally showed that their isotropic distribution on the sky was due to their extragalactic origin.
+Nevertheless, the distance to these events remained elusive.
+To find an estimate of the distance at which these bursts happened, 
+it was necessary to find a counterpart whose distance was easier to infer.
+
+This settled the energies liberated in this bursts to be
+
 GRBs are explosions as energetic as $10^?$ ergs, liberated Gamma Rays and subsequent afterglows across the whole spectrum up to radio frequencies.
 The afterglows for GRBs can be seen in the optical as a transient brightness excess, usually located near the galaxies that host them. 
 GRBs can be at extremely distant galaxies, and therefore optical glows can sometimes be too faint to observe.
 
-According to \textcolor{red}{Batse (Swift? look for ref)} data, GRBs seem to come from two distinct population.
+According to \textcolor{red}{Batse} data, GRBs seem to come from two distinct population.
 Histograms done on the time time to receive 90\% of the radiation, or $T_{90}$ seem to indicate the populations are
 divided into `long' and `short types'. Long GRBs last for longer than 2s, while short duration GRBs have $T_{90}$ values under 2s.
 
-Long GRBs are associated with Super Nova explosions \textcolor{red}{ref?}.
+Long GRBs are associated with massive star collapse (E. Waxman and J.N. Bahcall, ApJ 541, 707 (2000).) 
+producing $\gamma$-rays then subsequent X-rays and optical afterglows
 This 
+
+%Long GRB events are assumed to be produced by massive star collapse, and GW searches by LIGO and Virgo use their unmodeled burst search pipelines
+%F. Acernese et al (Virgo Collaboration), Class. Quantum Grav. 25, 225001 (2008).
+%B. Abbott et al (LIGO Scientific Collaboration), Phys. Rev. D 72, 042002 (2005).%B. Abbott et al (LIGO Scientific Collaboration), Phys. Rev. D 77, 062004 (2008).%B. Abbott et al (LIGO Scientific Collaboration and the Virgo Collaboration), ApJ 715,
+
+%The coalescence of a neutron star - neutron star, or neutron star - black hole binary system is suspected to be the source of the short GRBs; the LIGO-Virgo compact binary coalescence and burst pipelines are both used to search for GWs from short GRBs
+%J. Abadie et al (LIGO Scientific Collaboration and the Virgo Collaboration), ApJ 715, 1453 (2010).
+
+%Swift reference http://swift.gsfc.nasa.gov/docs/swift/swiftsc.html%Fermi reference http://fermi.gsfc.nasa.gov/
+
+A double neutron star (NS) or NS/blackhole merger could be the source of short GRBs (E. Nakar, Phys. Rep. 442, 166 (2007).)
 
 Optical afterglows for GRBs ...
 
@@ -477,8 +530,16 @@ VOEvent part.
 Just like in the case for GRBs, that has counterparts across all EM frequencies, other types of transient events will have the same characteristics.
 Most important for us, is the case of the Kilonova, a transient event with an optical afterglow, product of the merge of a binary with at least one NS.
 
+% Add: GW can trigger searches for optical counterparts, but the inverse is also true. 
+% There are efforts to search for GW in ligo data triggered by optical observstions.
+% E. Thrane et al, Phys. Rev. D 83, 083004 (2011).
 
 \begin{comment}
+Long and short GRB afterglows peak a few minutes after the prompt EM/GW emission
+(D.A. Kann et al, arXiv:0804.1959v2 (2008).)(D.A. Kann et al, ApJ 720, 1513 (2010).)
+and it is critical to have EM observations as soon as possible after the GW trigger validation. 
+Kilo-novae model afterglows peak about a day after the GW emission (B. D. Metzger et al MNRAS 406, 2650 (2010).)
+so EM observations a day after the GW trigger would be an important validation for these type of events.
 
 Perhaps, one of the most spectacular of these transient events because of its display of brightness and energy, are the Gamma Ray Bursts (GRBs).
 The brightness of this flash of gamma-rays can temporarily overwhelm all other gamma-ray sources in the Universe. 
@@ -488,7 +549,7 @@ Since the detection of the first few of these, now we have two space telescopes 
 
 The value of multi-messenger astronomy of this kind was recognized right on the onset for the understanding and classification of these events.
 
-With the new GW detections of LIGO, a new kind of multimessenger Astronomy is born.
+With the new GW detections of LIGO, a new kind of multi-messenger Astronomy is born.
 LIGO will bring information of a completely new information carrier: the {\em graviton}.
 With GW information we can pierce into the high energetic and ultra relativistic regions in space, something that could not be done before.
 
@@ -527,21 +588,16 @@ Variability of the sky usually refers to changes in brightness, \textcolor{blue}
 \textcolor{blue}{Due to hardware limitations (smaller telescopes, smaller fields of view), most past surveys have focused on one primary science goal. Still, the data from many of these projects has been adopted to search for many other kinds of variable or transient objects. Three surveys which were originally designed to search for potentially hazardous NEOs - the Lowell Observatory Near Earth Object Survey (LONEOS)[6], the Near-Earth Asteroid Tracking (NEAT) survey [22] and the Catalina Sky Survey (CSS)[17] - have (respectively) been used to discover RR Lyrae [20], joined in collaboration with the Palomar-Quest survey [10] to provide supernova candidates for the Nearby Supernova Factory [2], and serve as the source of data searched for all kinds of variability in the Catalina Real-Time Transient Survey (CRTS) [11].}
 
 
-
-
 \textcolor{blue}{It is interesting to see the progression that has occurred, from searching for a particular target population (such as Type Ia SNe or Near Earth Objects or Trans-Neptunian Objects) to searching for a wide variety of objects. Current or imminent synoptic surveys, such as the Palomar Transient Factory [18], [23], Skymapper [16] and PanStarrs1 (PS) [9], and significantly larger future synoptic surveys, such as PanStarrs-4 and the Large Synoptic Survey Telescope (LSST) [15], [19], will be searching for all kinds of known transients and variables, as well as previously unknown objects where the requirements for understanding these `unknown unknowns' are still developing.}
 
-
 \textcolor{blue}{Balancing the requirements for detecting and identifying a wide range of transients and variables is challenging, but these surveys are planning to meet the challenge with multi-color observations (typically some or all of u, g, r, i, z and y filters) over large portions of the sky (approximately 20,000 square degrees). Very large fields of view (7-10 square degrees) will allow these surveys to cover the sky on a rapid observational cadence; while the base plan is to cover all of the visible sky every few days (for LSST) or subsets of the visible sky every few days (PS4), it is likely that an entire range of revisit times between a few hours to several days may be explored for greater sensitivity to variability at a wider range of timescales. Data processing will be intensive - difference imaging will be used to detect transients and variables, and then software pipelines will run to identify moving objects, linking their detections into orbits. Accurate calibration of photometry and astrometry on a global reference scale requires more processing. LSST will send out public VOEvents describing the millions of transient and variable detections each night. Huge databases (upwards of 12 PB for LSST at the end of its 10 year survey) of objects and all of their detections will be created and available for queries. Users will be able to use this database to identify and classify the target samples of interest to them, as well as access the VOEvent stream to get real-time updates on targets.}
-
-
 
 \textcolor{blue}{Thus we expect the infrastructure for astronomical transients to allow end-users to select in advance what types of events they want, and we expect specialist ``event brokers'' that disseminate only certain kinds of transients to their target audiences. Such dissemination should happen quickly, so that the essential telescope resources can be directed for follow-up, and we expect these decisions to be taken automatically by machines.}
 
 \textcolor{blue}{the IVOA has settled on a flavor of XML called VOEvent for the transmission of astronomical events, and processing those would need XML streaming and filtering technologies.}
 
-
 \end{comment}
+
 
 
 
