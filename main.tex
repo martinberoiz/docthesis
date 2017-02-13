@@ -484,6 +484,20 @@ Especially so if the transients of interest are rare and data is highly contamin
 
 We will cover Machine Learning classifiers in future chapters.
 
+\begin{comment}
+
+Variability of the sky usually refers to changes in brightness, \textcolor{blue}{but the position or color of the object could vary instead or as well.}
+
+\textcolor{blue}{copy-paste}However, there is yet another twist - how to identify the target objects of interest among the background of millions of other potential variable or transient objects? ... this results in a pool of candidates contaminated with other variables or transients. Reducing that contamination requires additional observational data either to determine the full shape of the transient or variable lightcurve, or to determine the velocity and acceleration vectors of a solar system object, or to determine the spectral energy distribution of the object through observations at multiple wavelengths or in multiple filters.
+The process of winnowing out the contaminants and identifying the true members of the target sample is the heart of ``classification''.
+
+This advantage can be also a curse when we want to isolate a particular kind of transient interesting to our project.
+As we said before, transients of many kinds look about the same on an image.
+This means that capturing transient events on an image is not enough.
+For example, moving objects and objects in our solar system have to be regarded as contamination if we are interested in extragalactic phenomena.
+
+\end{comment}
+
 \subsection{Multi-Messenger Astronomy}
 
 The second challenge relates to the issue of multi-messenger Astronomy.
@@ -491,14 +505,12 @@ One event discovered with a certain messenger, could be studied in all the other
 For this the transmission of the information on localization has to be sent faster than the typical duration of the event.
 This is especially true with afterglows of very energetic events.
 
-\textcolor{blue}{copy-paste} More than ten years ago, the gamma-ray burst (GRB) community ignited the excitement over transient astronomical events. 
-GRBs were an enigma until ultra-fast event dissemination allowed optical identification of afterglows, leading to rich data and rich science.
-
 An event like a SN explosion may be first detected as a long GRB event in one of the space based Gamma Ray Telescopes orbiting Earth.
 This information needs to be quickly sent to the Astronomy community to study emission it in the optical, infrared, radio as well as the spectroscopy.
 
-It was actually GRBs, one of the first things to be studied in a multi-band fashion,
-and for this reason, they settled the infrastructure for an effective multi-messenger astronomy.
+It was actually GRBs what ignited excitement in the astronomy community about transient astronomical events, 
+it was one of the first objects to be studied in a multi-band fashion, 
+and it triggered most of the infrastructure we see today to deal effectively with multi-messenger astronomy.
 
 Gamma Ray Busts were first discovered by the Vela satellites, a set of 6 pair of satellites (Vela 1a,b through Vela 6a,b) 
 launched by the United States to orbit the Earth. 
@@ -514,9 +526,37 @@ Nevertheless, the distance to these events remained elusive.
 To find an estimate of the distance at which these bursts happened, 
 it was necessary to find a counterpart whose distance was easier to infer.
 
+%GRBs were an enigma until ultra-fast event dissemination allowed optical identification of afterglows.
+
+\begin{comment}
+
+From Bloom's book:  Joshua S. Bloom. ?What Are Gamma-Ray Bursts?.
+To settle the questions about the peculiarities of the data collected over multiple telescopes, a single experiment was required, whose sky coverage and trigger efficiencies were well modeled, capable of detecting GRBs to significantly fainter levels than before. Such an experiment had been in construction at Marshall Space Flight Center (in Huntsville, Alabama) throughout most of the 1980s, having been accepted for funding by NASA in the late 1970s. The Burst and Transient Source Experiment (BATSE) was launched by space shuttle Atlantis on April 5, 1991, on board the Compton Gamma-ray Observatory (CGRO; along with three other high-energy experiments). BATSE was about ten times more sensitive than previous GRB missions, allowing it to find roughly one burst a day for what would be its nine-year mission.
+For the first time, a single satellite would be capable of positioning a GRB to ~10 degrees on the sky.
+
+It was abundantly clear in 1995 that new observations would be needed to settle the distance scale debate once and for all. Just as always, the main hope remained to find a precise location of classical GRBs and associate those positions with known objects. Since the single-satellite precision of BATSE was about as good as that detector configuration could provide, the key was to find counterpart events at other wavebands. It was known from precise IPN locations that no long-lived (weeks to months) optical transient accompanied the events. But thanks to the nearly instantaneous relay of new GRB positions from BATSE, several groups began construction of optical telescopes awaiting email alerts from GRB satellites; this new generation of telescopes was capable of rapidly observing new GRB positions. If GRBs were accompanied by optical flashes lasting just a few minutes, the robotic ?on-call? telescopes would have a chance of catching the fleeting light. Theory of GRB emission mechanisms, developed in the early 1990s, also predicted radio transients from GRBs (chapter 3); as such, some groups began a search at radio wavebands with premier facilities like the Very Large Array (VLA) in New Mexico. None of the early searches of BATSE positions proved fruitful.
+
+While GRBs were not the main scientific priority of a new Italian-Dutch experiment, the ``Satellite per Astronomia a Raggi X'' (commonly known as BeppoSAX), it did carry a Gamma-Ray Burst Monitor (GRBM) that stared at the same place on the sky as the X-ray-coded mask imagers (collectively called the Wide-Field X-ray Camera [WFC]); those instruments were capable of seeing roughly 1/15th of the sky at any time. 
+Launched in April 1996, BeppoSAX demonstrated that summer that a burst triggered in the GRBM and seen in the WFC field of view could be localized to about 5?10 arcminute radius. 
+Such localization accuracy was often obtained with the IPN, but BeppoSAX had the ability to determine such positions in a matter of a few hours, whereas IPN localizations typically took days to determine. 
+The speed of finding a precise GRB position would prove to be a crucial capability.
+
+On February 28, 1997, BeppoSAX localized a GRB using the WFC and the GRBM and found a good-enough position to command the satellite to repoint to allow its Narrow-field X-ray Instruments (NFI) to image the GRB region. Just eight hours after the GRB, two of the NFI cameras detected a bright, new X-ray source consistent with the WFC position. Three days later, that source had vanished.
+
+Not only had the BeppoSAX team found the first afterglow of a GRB, the X-ray afterglow was positioned well enough (to 50 arcseconds in radius) to allow for sensitive searches of counterparts at other wavelengths. Just twenty hours after the GRB, a group led by Jan van Paradijs at Amsterdam University, the Netherlands, obtained a set of ?deep?* optical images of the WFC error location from La Palma Observatory on the Canary Islands (Spain). One week later, my collaborator (Nial Tanvir) obtained the next set of images of that field from the same observatory.25 A faint source in the NFI error box had vanished between those two epochs: it was the discovery of the first fading optical (i.e., visible-light) afterglow of a GRB. The optical position, determined to better than 1 arcsecond, was by far the best localization of any GRB, including the March 5th (SGR) event.
+
+As the optical afterglow faded, the Hubble Space Telescope (HST) was trained on the position and found a blue blob around the fading afterglow. To most, this ``nebulosity'' looked a lot like a faint low-surface brightness galaxy, thus confirming the extragalactic hypothesis; but to the stalwarts of the Galactic model, it looked like an NS-blown bubble (confirming the opposite). Despite some claims from a few that the afterglow appeared to be moving on the sky (a nominal expectation of the Galactic model) and that the nebulosity changed color and shape (only possible in the Galactic model), all doubts about the distance scale of classical GRBs would be soon laid to rest.
+On May 8, 1997, BeppoSAX spotted another GRB, and an optical afterglow was promptly discovered consistent in location and time with another fading X-ray afterglow. Astronomers at the California Institute of Technology (Caltech) obtained a spectrum of the optical afterglow using the Keck II 10-meter telescope in Hawaii; this telescope (and its twin Keck I) was the largest optical telescope in the world at the time. A quick inspection of that data led to one of the biggest discoveries in modern astrophysics: notched out of an otherwise smooth spectrum were a series of absorption lines, characteristic of iron and magnesium in gaseous form. But instead of seeing lines at the specific wavelengths as they would appear in a laboratory, they all appeared shifted to significantly redder wavelengths.* This redshift effect was immediately recognized as an effect due to the expansion of the Universe,* and, given a reasonably well-prescribed mapping between the redshift measurement and distance, this observation established that GRB 970508 must have occurred from a distance of more than about 5 billion parsec (i.e., 5 Gpc) away. Some gas cloud in a distant galaxy lay between us and the GRB,26 and its absorbing metals provided enough of a unique fingerprint to measure an unambiguous redshift.
+
+In one fell swoop of the telescope, the thirty-year marathon to measure the distance scale of classical GRBs was won. The cosmological distance scale, the disfavored choice of so many for so long, had triumphed.? To top it off, the first radio afterglow of a GRB was found following GRB 970508. A detailed inspection of the way in which the radio afterglow behaved, coupled with the then-known distance, strongly suggested that the afterglow-emitting surface was expanding at a rate close to the speed of light. This relativistic expansion, which we will explore in §2.2.1, was a basic prediction of most cosmological theories of GRBs?another triumph for observers and theorists alike.
+
+
+
+
+
 This settled the energies liberated in this bursts to be
 
-GRBs are explosions as energetic as $10^?$ ergs, liberated Gamma Rays and subsequent afterglows across the whole spectrum up to radio frequencies.
+GRBs are explosions as energetic as $10^{51}$-$10^{52}$ ergs, liberated Gamma Rays and subsequent afterglows across the whole spectrum up to radio frequencies.
 The afterglows for GRBs can be seen in the optical as a transient brightness excess, usually located near the galaxies that host them. 
 GRBs can be at extremely distant galaxies, and therefore optical glows can sometimes be too faint to observe.
 
@@ -545,6 +585,8 @@ A double neutron star (NS) or NS/blackhole merger could be the source of short G
 
 Optical afterglows for GRBs ...
 
+\end{comment}
+
 To detect the optical afterglow, GRB locations were communicated to other observatories that would promptly point their telescopes in that direction.
 A multi-band observation and spectrography is very valuable for the understanding and classification of these events.
 
@@ -572,32 +614,29 @@ The burst can last from a fraction of a second to over a thousand seconds.
 
 The value of multi-messenger astronomy of this kind was recognized right on the onset for the understanding and classification of these events.
 
-Variability of the sky usually refers to changes in brightness, \textcolor{blue}{but the position or color of the object could vary instead or as well.}
+\textcolor{blue}{LSST will send out public VOEvents describing the millions of transient and variable detections each night. 
+Huge databases (upwards of 12 PB for LSST at the end of its 10 year survey) of objects and all of their detections will be created and available for queries. 
+Users will be able to use this database to identify and classify the target samples of interest to them, as well as access the VOEvent stream to get real-time updates on targets.}
 
-
-\textcolor{blue}{copy-paste}However, there is yet another twist - how to identify the target objects of interest among the background of millions of other potential variable or transient objects? ... this results in a pool of candidates contaminated with other variables or transients. Reducing that contamination requires additional observational data either to determine the full shape of the transient or variable lightcurve, or to determine the velocity and acceleration vectors of a solar system object, or to determine the spectral energy distribution of the object through observations at multiple wavelengths or in multiple filters.
-The process of winnowing out the contaminants and identifying the true members of the target sample is the heart of ``classification''.
-
-
-This advantage can be also a curse when we want to isolate a particular kind of transient interesting to our project.
-As we said before, transients of many kinds look about the same on an image.
-This means that capturing transient events on an image is not enough.
-For example, moving objects and objects in our solar system have to be regarded as contamination if we are interested in extragalactic phenomena.
-
-
-\textcolor{blue}{Other objects display primarily astrometric variability rather than photometric variability - objects in our solar system display motions visible on timescales between seconds to hours}
-
-\textcolor{blue}{Due to hardware limitations (smaller telescopes, smaller fields of view), most past surveys have focused on one primary science goal. Still, the data from many of these projects has been adopted to search for many other kinds of variable or transient objects. Three surveys which were originally designed to search for potentially hazardous NEOs - the Lowell Observatory Near Earth Object Survey (LONEOS)[6], the Near-Earth Asteroid Tracking (NEAT) survey [22] and the Catalina Sky Survey (CSS)[17] - have (respectively) been used to discover RR Lyrae [20], joined in collaboration with the Palomar-Quest survey [10] to provide supernova candidates for the Nearby Supernova Factory [2], and serve as the source of data searched for all kinds of variability in the Catalina Real-Time Transient Survey (CRTS) [11].}
-
-\textcolor{blue}{It is interesting to see the progression that has occurred, from searching for a particular target population (such as Type Ia SNe or Near Earth Objects or Trans-Neptunian Objects) to searching for a wide variety of objects. Current or imminent synoptic surveys, such as the Palomar Transient Factory [18], [23], Skymapper [16] and PanStarrs1 (PS) [9], and significantly larger future synoptic surveys, such as PanStarrs-4 and the Large Synoptic Survey Telescope (LSST) [15], [19], will be searching for all kinds of known transients and variables, as well as previously unknown objects where the requirements for understanding these `unknown unknowns' are still developing.}
-
-\textcolor{blue}{Balancing the requirements for detecting and identifying a wide range of transients and variables is challenging, but these surveys are planning to meet the challenge with multi-color observations (typically some or all of u, g, r, i, z and y filters) over large portions of the sky (approximately 20,000 square degrees). Very large fields of view (7-10 square degrees) will allow these surveys to cover the sky on a rapid observational cadence; while the base plan is to cover all of the visible sky every few days (for LSST) or subsets of the visible sky every few days (PS4), it is likely that an entire range of revisit times between a few hours to several days may be explored for greater sensitivity to variability at a wider range of timescales. Data processing will be intensive - difference imaging will be used to detect transients and variables, and then software pipelines will run to identify moving objects, linking their detections into orbits. Accurate calibration of photometry and astrometry on a global reference scale requires more processing. LSST will send out public VOEvents describing the millions of transient and variable detections each night. Huge databases (upwards of 12 PB for LSST at the end of its 10 year survey) of objects and all of their detections will be created and available for queries. Users will be able to use this database to identify and classify the target samples of interest to them, as well as access the VOEvent stream to get real-time updates on targets.}
-
-\textcolor{blue}{Thus we expect the infrastructure for astronomical transients to allow end-users to select in advance what types of events they want, and we expect specialist ``event brokers'' that disseminate only certain kinds of transients to their target audiences. Such dissemination should happen quickly, so that the essential telescope resources can be directed for follow-up, and we expect these decisions to be taken automatically by machines.}
+\textcolor{blue}{Thus we expect the infrastructure for astronomical transients to allow end-users to select in advance what types of events they want, and we expect specialist ``event brokers'' that disseminate only certain kinds of transients to their target audiences. 
+Such dissemination should happen quickly, so that the essential telescope resources can be directed for follow-up, and we expect these decisions to be taken automatically by machines.}
 
 \textcolor{blue}{the IVOA has settled on a flavor of XML called VOEvent for the transmission of astronomical events, and processing those would need XML streaming and filtering technologies.}
 
 \end{comment}
+
+
+ 
+In the same way as long GRBs prompted the follow-up observations across the spectrum,
+a new type of event associated with short GRBs can also prompt a new kind of MMA.
+Short GRBs are now believed to have originators in the merger of compact objects.
+Along with the GW produced in these mergers, an companion EM thermal radiation will radiate isotropically from the merger.
+This EM counterpart, is believed to shine about a thousand times brighter than a Nova, and it was named accordingly 
+`Kilonova'\footnote{It is also reference in the literature under the names xx and xx.}.
+
+If there is a chance to detect the relatively faint Kilonova, it will be greatly helped if we have prompt information of its GW counterpart, or its associated GRB.
+Its detection will most likely be a result of MMA.
+
 
 
 With the new GW detections of LIGO, a new kind of multi-messenger Astronomy is born.
