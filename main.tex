@@ -153,7 +153,7 @@ In the second chapter, I discuss the two main elements of a modern transient sea
 
 \chapter{Introduction}
 
-In February 2016, celebrating the centenary anniversary of Einstein's first paper on gravitational waves(``Approximate integration of the field equations of gravitation''), 
+In February 2016, celebrating the centenary anniversary of Einstein's first paper on gravitational waves (``Approximate integration of the field equations of gravitation''), 
 the LVC collaboration announced the first ever direct detection of a gravitational wave, coded GW150914.
 With this, a new window of the universe for the purely relativistic astronomical phenomena was opened. 
 
@@ -939,9 +939,22 @@ Li \& Paczynski (1998, LP98) first showed that the radioactive ejecta from a NS-
 \end{comment}
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%			MACHINE LEARNING
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \include{chapter_ML/chapter}
 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%			O1 Observations
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{The O1 campaign: Optical Observations of GW150914}
 
 On April 2014, TOROS signed a Memorandum Of Understanding (MOU) with the LIGO Virgo Collaboration, in order to participate 
@@ -952,26 +965,48 @@ The MOU allowed TOROS to receive the LIGO alerts, which were private and confide
 and to be part of a publication as part of a broader collaboration with other institutions for the electromagnetic counterpart search of the first announced GW ever, namely GW150914.
 
 The O1 campaign was a 4 month run, officially started on September 18, 2015 and ended on January 12, 2016.
-Two detectors were operational during the whole run, the H1 L1 network, operating with a BNS range of about 60 Mpc.
-The Virgo detector was being upgraded during O1 so it was not part of the detectors operating during O1.
+Two detectors were operational during the whole run, the H1-L1 network, operating with a BNS range of about 60 Mpc.
+The Virgo detector was being upgraded during O1 so it was not part of the operating detectors during the run.
 During O1, 3 alerts were issued for 3 different events.
 
-The first one was from an event detected by LIGO instruments on September 14, 2015 at 09:50:45 UTC. (\citet{2016PhRvL.116f1102A})
+The first one was from an event detected by LIGO instruments on September 14, 2015 at 09:50:45 UTC (\citet{2016PhRvL.116f1102A}).
 The event was designated after confirmation, with the code GW150914.
+This was also the first confirmed Binary BH merger ever detected through its gravitational waves.
+TOROS observed several regions of the sky during the night that we received the alert.
 
-The second one, LVT151012 (\citet{2016PhRvX...6d1015A})
+GW150914 reached the LIGO instruments with a significance greater than 5.3$\sigma$
+and a combined signal to noise ratio (SNR) of 23.7.
+The GW signal matched with a template for a binary with primary mass of $36.2^{+5.2}_{-3.8} M_{\odot}$ 
+and a secondary mass of $29.1^{+3.7}_{-4.4} M_{\odot}$.
+The final mass of the system after merger $62.3^{+3.7}_{-3.1} M_{\odot}$ with a final spin $0.68^{+0.05}_{0.06}$,
+that represents a total radiated energy of $3.0^{+0.5}_{-0.4} M_{\odot} c^2$.
+The luminosity distance to the merger is $420^{+150}_{-180}$Mpc, or a redshift $z=0.09^{+0.03}_{-0.04}$.
 
-And the third one, GW151226
+The second one, LVT151012 (\citet{2016PhRvX...6d1015A}) did not cross the 5$\sigma$ significance threshold,
+but, according to the authors ``it is more likely to have resulted from a gravitational-wave signal than from an instrumental or environmental noise transient'' .
+LVT151012 has a significance of $1.7 \sigma$ and a combined SNR of 9.7.
+If it is a result of a BBH merger, it would be a system with 23 and 13 $M_{\odot}$.
 
+The third and last confirmed event for O1, GW151226, had a significance over $5.3 \sigma$ and a combined SNR of 13.0.
+The GW signal was consistent with a template match for a binary system with masses 14.2 and 7.5 $M_{\odot}$.
+The final mass of the merger is $20.8 M_{\odot}$, which means that $1 M_{\odot}$ was radiated away as gravitational radiation.
+
+TOROS did not participate in the optical search for LVT151012 or GW151226.
+The remaining of this chapter refer to this observation campaign and its results.
 
 \section{GW150914}
 
-Besides LIGO and Virgo Collaborations, other 24 institutions participated in the GW150914 event along with TOROS. These are detailed in table \ref{gw150914participants}.
+As mentioned before, GW150914 was detected on September 14, 2015, that is 4 days before O1 officially began.
+Because LIGO was on the engineering run E7 at the moment of the detection, the alert was not sent to MOU observatories until two days after.
+On the night of September 16, 2015, the LIGO alert arrived through the TOROS alert receiver system.
+Despite the premature arrival of the alert, TOROS could scan a region of the LIGO localization map 
+and contribute to the EM counterpart search. 
 
+Besides LIGO and Virgo Collaborations, other 24 institutions participated in the optical counterpart search for the GW150914 event along with TOROS.
+These are detailed in table \ref{gw150914participants}.
 
 \begin{table}
 \centering
-%\begin{tabular}{|p{14cm}|c|}
 \begin{tabular}{|l|c|}
 \hline
 Institution name & Band \\ \hline
@@ -1007,15 +1042,10 @@ The Vista Collaboration & \\
 \label{gw150914participants}
 \end{table}
 
-Several other institutions showed interest in the project after this achievement and since then the collaboration has grown.
+%The search did not show up any transient associated with the event,
 
-TOROS successfully participated of this campaign, where the first GW was detected, GW150914, and other two events with lower intensity were also detected, one in December ...
-
-Surprisingly, the first of them, GW150914, was detected just before O1 officially began. It was during an engineering run. Despite the premature nature of the alert, TOROS could scan a region of the LIGO localization map and contribute with other XX observatories to the EM search. The search did not show up any transient associated with the event.
-
-On the night of September 16, 2015, a LIGO alert for a GW arrived through the TOROS alert receiver system.
-
-We conducted unfiltered CCD observations (0.35--1$\mu$m) with the 1.5-m telescope at Estacion Astronomica Bosque Alegre (EABA) telescope.
+We conducted unfiltered CCD observations (0.35--1$\mu$m) with the 1.5-m telescope 
+at Estacion Astronomica Bosque Alegre (EABA) telescope in Cordoba, Argentina.
 
 Because of the unexpected timing of the event, the alert was received 2 days later, and our observations started about 2.5 days after the alarm was received by LIGO.
 
@@ -1138,8 +1168,24 @@ At UT Rio Grande Valley, we developed extensive analysis and web code to allow f
 
 \end{comment}
 
+\section{Results}
+
+The observation campaign for the GW150914 left us with a visit of XX fields and XX targets.
+The probability covered was less than 0.01\%.
+
+The TOROS collaboration conducted a prompt search for the electromagnetic counterpart of the 
+first gravitational-wave event reported by LIGO using the 1.5-m telescope of Estacion Astrofisica Bosque Alegre (EABA) in Cordoba, Argentina. 
+Our search spanned two nights, during which we targeted 21 fields containing nearby (D < 60 Mpc) luminous (MB <  21 mag) 
+galaxies with high probabilities of hosting the event. We covered 0.62 square degrees and reached a 5$\sigma$ limiting AB magnitude of r = 21.7.
+
 
 \chapter{The O1 campaign: GW150914 Data Analysis}
+
+\section{Results}
+
+We used a combination of difference-imaging techniques and machine-learning procedures to detect and classify potential transients. 
+No bona fide events were found, a result that is consistent with the low probability of detecting stellar or extragalactic variability 
+given our temporal and areal coverage, and with the later classification of the GW event as a merger of two stellar-mass black holes.
 		
 \chapter{Software Developed}
 \section{Pipeline}
