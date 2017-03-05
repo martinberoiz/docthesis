@@ -1,6 +1,20 @@
 \chapter{Training a Classifier Agent}
 
-The subtraction techniques are very effective at  modeling PSF differences, nevertheless there are many defects left behind after a subtraction. This is also a well known issue in the difference image analysis. The fictitious (or bogus) sources arise primarily from PSF mismatch and mis-alignments of the images.
+The subtraction techniques are very effective at  modeling PSF differences, nevertheless there are many defects left behind after a subtraction. This is also a well known issue in the difference image analysis. 
+The bogus residual sources arise primarily from PSF mismatch and mis-alignments of the images.
+Several examples of this kind are shown on figure \ref{fig:subtraction_errors}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{figures/subtraction_error}
+\caption{Some examples of subtraction errors due to misalignment and wrong PSF matching.
+The top row shows typical morphology of residuals for different types of mimatches.
+The bottom row shows cross sections of the top row showing the object profiles in blue and green and the subtraction in red.
+First column corresponds to a displacement of the object with respect to the reference. 
+The second column represents objects with different PSF.
+The third column is the more typical kind of bogus residual, a combination of displacement and PSF mismatch.}
+\label{fig:subtraction_errors}
+\end{figure}
 
 These defects can easily confuse algorithms of source detection like SExtractor or similar that relies on excess of flux over the background. For that, it is needed to have a computerized agent capable of discriminating bogus sources from real transients on the subtracted image. 
 
@@ -8,14 +22,14 @@ This is the task of a Machine Learning (ML) agent trained for that purpose. The 
 
 Machine Learning is such an extensive and intensive area of research with many applications in many fields.
 
-Since the ML field is so wide, to conduct a ML experiment one must make a few decisions. Even most importantly than the particular algorithm, for which there are hundreds and modifications are being published all the time, it's the data that drives the efficiency of the method.
+Since the ML field is so wide, to conduct a ML experiment one must make a few decisions. Even most importantly than the particular algorithm, 
+for which there are hundreds and modifications are being published all the time, it's the data that drives the efficiency of the method.
 
 As the saying goes:
 
 \begin{quotation}
 Big data will beat a good algorithm \textcolor{red}{Find exact quote and author}
 \end{quotation}
-
 
 For our main test, I decide to train a Random Forest ML algorithm on a training set developed especially for this.
 
