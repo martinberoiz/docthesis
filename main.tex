@@ -960,8 +960,8 @@ Several examples of this kind are shown on figure \ref{fig:subtraction_errors}
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.5]{figures/subtraction_error}
-\caption{Some examples of subtraction errors due to misalignment and wrong PSF matching.
+\includegraphics[scale=0.4]{figures/subtraction_error}
+\caption{Some examples of subtraction errors due to misalignment and wrong PSF matching for an idealized object with a Gaussian profile.
 The top row shows typical morphology of residuals for different types of mimatches.
 The bottom row shows cross sections of the top row showing the object profiles in blue and green and the subtraction in red.
 First column corresponds to a displacement of the object with respect to the reference. 
@@ -972,7 +972,7 @@ The third column is the more typical kind of bogus residual, a combination of di
 
 These defects can easily confuse algorithms of source detection like SExtractor or similar that relies on excess of flux over the background. For that, it is needed to have a computerized agent capable of discriminating bogus sources from real transients on the subtracted image. 
 
-This is the task of a Machine Learning (ML) agent trained for that purpose. The real bogus classifier, as it is named in the literature relies on --usually morphological-- features to perform the classification.
+This is the task of a Machine Learning (ML) agent trained for that purpose. The real bogus classifier, as it is named in the literature relies on --mostly morphological-- features to perform the classification.
 
 Machine Learning is such an extensive and intensive area of research with many applications in many fields.
 
@@ -1040,7 +1040,7 @@ For each of these images, we aligned a reference image with it using the package
 
 As previously said, we trained a Random Forest classifier based on 7,624 examples of fabricated transients (as described in section data) and 7,624 bogus picked at random from the subtraction images. This totals 15,248 samples for training and validation.
 
-The features used for this classifier were selected from the popular source extractor software SExtractor [Bertin ??]. We chose the features that had relation to the morphology of the source and some other features derived from them.
+The features used for this classifier were selected from the popular source extractor software SExtractor (\citet{1996A&AS..117..393B}). We chose the features that had relation to the morphology of the source and some other features derived from them.
 The whole list is presented in table \ref{mlfeatures}.
 
 Several scores about the performance of the classifier on the training data are condensed in the scores table (\ref{mlscores}).
@@ -1172,12 +1172,12 @@ but, according to the authors ``it is more likely to have resulted from a gravit
 LVT151012 has a significance of $1.7 \sigma$ and a combined SNR of 9.7.
 If it is a result of a BBH merger, it would be a system with 23 and 13 $M_{\odot}$.
 
-The third and last confirmed event for O1, GW151226, had a significance over $5.3 \sigma$ and a combined SNR of 13.0.
+The third and last confirmed event for O1, GW151226 (\citet{2016PhRvL.116x1103A}), had a significance over $5.3 \sigma$ and a combined SNR of 13.0.
 The GW signal was consistent with a template match for a binary system with masses 14.2 and 7.5 $M_{\odot}$.
 The final mass of the merger is $20.8 M_{\odot}$, which means that $1 M_{\odot}$ was radiated away as gravitational radiation.
 
 TOROS did not participate in the optical search for LVT151012 or GW151226.
-The remaining of this chapter refer to this observation campaign and its results.
+The remaining of this chapter refer to the observation campaign for the GW150914 event follow-up search and its results.
 
 \section{GW150914}
 
@@ -1197,30 +1197,30 @@ These are detailed in table \ref{gw150914participants}.
 Institution name & Band \\ \hline
 The LIGO Scientific Collaboration & GW \\
 The Virgo Collaboration & GW \\
-The Australian Square Kilometer Array Pathfinder (ASKAP) Collaboration & \\
-The Bootes Collaboration & \\
-The Dark Energy Survey And The Dark Energy Camera GW-EM Collaborations & \\
+The Australian Square Kilometer Array Pathfinder (ASKAP) Collaboration & Radio \\
+The Bootes Collaboration & Optical \\
+The Dark Energy Survey And The Dark Energy Camera GW-EM Collaborations & Optical/NIR \\
 The Fermi GBM Collaboration & $\gamma$-rays \\
 The Fermi LAT Collaboration & $\gamma$-rays \\
-The Gravitational Wave Inaf Team (Grawita) & \\
-The Integral Collaboration & \\
+The Gravitational Wave Inaf Team (Grawita) & Optical/NIR \\
+The Integral Collaboration &  $\gamma$-rays \\
 The Intermediate Palomar Transient Factory (iPTF) Collaboration & Optical \\
-The Interplanetary Network & \\
-The J-Gem Collaboration & \\
+The Interplanetary Network & $\gamma$-rays \\
+The J-Gem Collaboration & Optical \\
 The La Silla-Quest Survey & Optical \\
-The Liverpool Telescope Collaboration & \\
+The Liverpool Telescope Collaboration & Optical \\
 The Low Frequency Array (LOFAR) Collaboration & Radio \\
-The Master Collaboration & \\
-The Maxi Collaboration & \\
-The Murchison Wide-field Array (MWA) Collaboration & \\
-The Pan-STARRS Collaboration & \\
+The Master Collaboration & Optical \\
+The Maxi Collaboration & X-ray \\
+The Murchison Wide-field Array (MWA) Collaboration & Radio \\
+The Pan-STARRS Collaboration & Optical \\
 The PESSTO Collaboration & Optical \\
-The Pi Of The Sky Collaboration & \\
-The SkyMapper Collaboration & \\
+The Pi Of The Sky Collaboration & Optical \\
+The SkyMapper Collaboration & Optical \\
 The Swift Collaboration & $\gamma$-rays \\
-The Tarot, Zadko, Algerian National Observatory, And C2PU Collaboration & \\
+The Tarot, Zadko, Algerian National Observatory, And C2PU Collaboration & Optical \\
 The TOROS Collaboration & Optical \\
-The Vista Collaboration & \\ 
+The Vista Collaboration & Optical and Infrared \\ 
 \hline
 \end{tabular}
 \caption{Participating Institutions in the GW150914 EM Counterpart Search}
@@ -1364,7 +1364,50 @@ Our search spanned two nights, during which we targeted 21 fields containing nea
 galaxies with high probabilities of hosting the event. We covered 0.62 square degrees and reached a 5$\sigma$ limiting AB magnitude of r = 21.7.
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%			O1 ANALYSIS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{The O1 campaign: GW150914 Data Analysis}
+
+
+\section{Difference Imaging Analysis}
+
+To search for potential transients on the images taken as described in the last chapter, we performed a difference image analysis (DIA) on them.
+
+Common methods of DIA like HOTPANTS (\citet{2015ascl.soft04004B}) or ISIS use the method developed by \citet{1998ApJ...503..325A}.
+The method uses a kernel, combination of 2 or more Gaussians, modulated by a polynomial to match and scale the point-spread-function (PSF) between two epochs.
+This leads to difficulties in fitting irregular shaped PSFs that depart considerably from the Gaussian profile.
+
+Our method follows the work of \citet{2008MNRAS.386L..77B} and \citet{2008PASP..120..449M} in a Python implementation of the 
+algorithms\footnote{For more information on the package implementation, see section \ref{ois_section}.}.
+The method uses a `Dirac delta' basis across the entire frame, so that each pixel in the kernel is fit independently.
+With this method there are no free parameters to adjust like with the multi-Gaussian method, so the user does not need to estimate parameters (which can lead to poor PSF matching).
+The method uses the information from all the pixels on the image, wether is a background pixel or a source pixel,
+so we don't need to select specific stars to take stamps around.
+Although using all the pixels in the image gives the advantage of the algorithm run automatically without any input from the user, the use of stamps has some advantages.
+The main one being the speed-up calculation, since the optimization is done only on a restricted set of pixels (those of the stamp set) 
+and another advantage is that the user can manually exclude bad sources or outliers during the optimization.
+A compromise between the two can be met if the program chooses sources automatically like in \citet{2008PASP..120..449M}.
+We did not use stamps but it is a planned update to be done in the future.
+
+The optimal kernel, or its coefficients, for the convolution is done by the least-squares method.
+Even though the Python module can do a simultaneous background estimation to be subtracted, 
+we could see that for images with large extended objects on the image, the background was introducing large depressions of negative pixels and we turned background estimation on those.
+
+The reference images were taken a posteriori a few months after the alert, on December 2015, using the same telescope in Bosque Alegre.
+The reference images were taken with about the same exposure time for all fields and the same binning.
+Once the kernel is found, we convolve the reference image with it and subtract any remaining background given by the module OIS when needed.
+This modified reference is then subtracted to the original image to get the subtracted images.
+
+On this subtracted images, we ran SExtractor to extract posibles sources.
+
+\section{Real-Bogus classification and detection of potential transients}
+
+To 
+
 
 \section{Results}
 
