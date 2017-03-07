@@ -154,7 +154,7 @@ In the second chapter, I discuss the two main elements of a modern transient sea
 \chapter{Introduction}
 
 In February 2016, celebrating the centenary anniversary of Albert Einstein's first paper on gravitational 
-waves\footnote{``Approximate integration of the field equations of gravitation'' - A. Einstein. (1916)}, 
+waves (\citet{1916SPAW.......688E})\footnote{``Approximate integration of the field equations of gravitation'' - A. Einstein. (1916)}, 
 the LVC collaboration announced the first ever direct detection of a gravitational wave, coded GW150914.
 With this, a new window of the universe for the purely relativistic astronomical phenomena was opened. 
 
@@ -289,6 +289,7 @@ This type of projects aim to detect very low frequency GW, from $\mu$Hz to pHz.
 Potential sources for this very low frequency signals are mergers of massive black hole binaries at the center of galaxies.
 
 %In the following section I offer a more detailed account on the the operation of the first of these Earth based interferometers, the LIGO observatory.
+
 
 
 
@@ -1140,7 +1141,7 @@ For very faint events or events that comprise very few pixels in the image, we c
 %			O1 Observations
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{The O1 campaign: Optical Observations of GW150914}
+\chapter{Observations for GW150914 Optical Counterparts}
 
 On April 2014, TOROS signed a Memorandum Of Understanding (MOU) with the LIGO Virgo Collaboration, in order to participate 
 in a program to perform follow-up observations of GW candidate events with the benefit of access to LVC proprietary information.
@@ -1181,11 +1182,23 @@ The remaining of this chapter refer to the observation campaign for the GW150914
 
 \section{GW150914}
 
-As mentioned before, GW150914 was detected on September 14, 2015, that is 4 days before O1 officially began.
+As mentioned before, GW150914 was detected on September 14, 2015, that is 4 days before O1 officially began (see figure \ref{fig:GW150914ligosignal}).
 Because LIGO was on the engineering run E7 at the moment of the detection, the alert was not sent to MOU observatories until two days after.
 On the night of September 16, 2015, the LIGO alert arrived through the TOROS alert receiver system.
 Despite the premature arrival of the alert, TOROS could scan a region of the LIGO localization map 
 and contribute to the EM counterpart search. 
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{figures/GW150914detection}
+\caption{GW150914 event observed by the LIGO Hanford (H1, left column panels) and Livingston (L1, right column panels) detectors. 
+Top row is the strain signal. Second row is the GW strain projected onto each detector in the 35--350 Hz band. 
+Solid lines show a numerical relativity waveform for a system with parameters consistent with those recovered from GW150914. 
+Third row: Residuals after subtracting the filtered numerical relativity waveform from the filtered detector time series. 
+Bottom row: A time frequency representation of the strain data.}
+\label{fig:GW150914ligosignal}
+\end{figure}
+
 
 Besides LIGO and Virgo Collaborations, other 24 institutions participated in the optical counterpart search for the GW150914 event along with TOROS.
 These are detailed in table \ref{gw150914participants}.
@@ -1232,6 +1245,7 @@ The Vista Collaboration & Optical and Infrared \\
 We conducted unfiltered CCD observations (0.35--1$\mu$m) with the 1.5-m telescope 
 at Estacion Astronomica Bosque Alegre (EABA) telescope in Cordoba, Argentina.
 
+
 Because of the unexpected timing of the event, the alert was received 2 days later, and our observations started about 2.5 days after the alarm was received by LIGO.
 
 This unexpected detection --observed four days before the first scientific run of the detectors was scheduled to start-- constituted the first detection of the merger of a binary black hole (BBH) system and the first direct detection of gravitational waves. Due to the unexpected timing of the event, LVC provided spatial location information two days later, in the form of probability sky maps via a private GCN circular (Singer 2015, GCN\#18330). TOROS was one of 25 teams that participated in the search for an electromagnetic counterpart search in the southern hemisphere.
@@ -1246,8 +1260,6 @@ following night, and a second epoch of imaging was acquired on 2015 December 5 \
 U9 camera with a field of view (FoV) of 12.'7 $\times$ 8.'5 and
 an effective plate scale of 0.''75pix after 3 $\times$ 3 binning. Since we wished to maximize our sensitivity, we conducted unfiltered (``white light'') observations spanning 0.35 < $\lambda/\mu$m < 1. We obtained individual exposures of 60 s with a median seeing (FWHM) of (2.8 $\pm$ 0.6)''. 
 We typically obtained 10 images per field, reaching 5$\sigma$ limiting magnitudes of r = 21.7 $\pm$ 0.3 mag.
-
-The LIGO localization regions span several hundred square degrees (see Fig. 1) and vary depending on the algorithm. For instance, the 90\% credible localization area for cWB covers to 310 square degrees while others span up to 750 square degrees (see table 1 in Abbott et al. 2016c). Regardless, all sky maps are consistent with a broad long arc in the Southern hemisphere and a smaller extension in the Northern hemisphere. The algorithm utilized for the CWB estimations produces reasonably accurate maps for BBH signals, but underestimates the extent of high-confidence regions (Essick et al. 2015). As seen in Fig. 1, the adoption of maps from alternative algorithms (not available at the time our observations started) significantly reduces the fraction of the high-confidence region probed by our small FoV.
 
 Despite the little area covered by TOROS, the O1 campaign allowed the collaboration to test the detection and response systems to the alerts.
 
@@ -1276,24 +1288,7 @@ Despite the little area covered by TOROS, the O1 campaign allowed the collaborat
 \label{o1targets}
 \end{table}
 
-\begin{figure}[!t]
-\centering
-\includegraphics[scale=0.5]{figures/pointings}
-\caption{cWB, LIB, BYST, LALinf Sky-maps re-scaled regions that mark TOROS targets (red dots).}
-\label{fig:pointings}
-\end{figure}
 
-
-\begin{figure}
-\centering
-\includegraphics[scale=0.5]{figures/GW150914detection}
-\caption{GW150914 event observed by the LIGO Hanford (H1, left column panels) and Livingston (L1, right column panels) detectors. 
-Top row is the strain signal. Second row is the GW strain projected onto each detector in the 35--350 Hz band. 
-Solid lines show a numerical relativity waveform for a system with parameters consistent with those recovered from GW150914. 
-Third row: Residuals after subtracting the filtered numerical relativity waveform from the filtered detector time series. 
-Bottom row: A time frequency representation of the strain data.}
-\label{fig:GW150914ligosignal}
-\end{figure}
 
 
 \begin{comment}
@@ -1353,6 +1348,58 @@ At UT Rio Grande Valley, we developed extensive analysis and web code to allow f
 
 \end{comment}
 
+\section{Target Selection}
+
+The LIGO localization regions span several hundred square degrees (see Fig. 1) and vary depending on the algorithm. For instance, the 90\% credible localization area for cWB covers to 310 square degrees while others span up to 750 square degrees (see table 1 in Abbott et al. 2016c). Regardless, all sky maps are consistent with a broad long arc in the Southern hemisphere and a smaller extension in the Northern hemisphere. The algorithm utilized for the CWB estimations produces reasonably accurate maps for BBH signals, but underestimates the extent of high-confidence regions (Essick et al. 2015). As seen in Fig. 1, the adoption of maps from alternative algorithms (not available at the time our observations started) significantly reduces the fraction of the high-confidence region probed by our small FoV.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{figures/pointings}
+\caption{cWB, LIB, BYST, LALinf Sky-maps re-scaled regions that mark TOROS targets (red dots).}
+\label{fig:pointings}
+\end{figure}
+
+As mentioned before, the target selection is done with a separate script.
+This script makes use of the sky-map provided in the alert notice and the 
+Gravitational Waves Galaxy Catalog (GWGGC) (A List of Galaxies for Gravitational Wave Searches, Darren J. White et al, 2011)
+
+The White's catalog is a homogeneous list of 53,255 galaxies within 100Mpc.
+It is a compilation from 4 different catalogs: an updated version of the Tully Nearby Galaxy Catalog,
+the Catalog of Neighboring Galaxies, the V8k catalogue and HyperLEDA.
+
+GWGC contains information on sky position, distance, blue magnitude, major and minor diameters, position angle, and galaxy type.
+Also included in the catalog are 150 Milky Way globular clusters.
+
+The authors claim (ref) that GWGC is more complete --within 100 Mpc-- than other catalogs,
+due to their use of more up-to-date input catalogs
+and the fact that they don't make a blue luminosity cut.
+
+Another catalog along these lines is the Glade GW Catalog. Glade Catalog has xxxx galaxies listed, this many more than CWGC and extends up to XX Mpc.
+Nonetheless many distances are inferred by Machine Learning Methods, and completitude of the Catalog... bla bla
+
+The target selection is based on two main criteria: the localization (un)certainty on the target pixel in the all-sky map given by LIGO at the time of the alert,
+and several filter cuts on distance, blue luminosity and apparent magnitude.
+
+This marriage between GW and Optical parameters of observability ensures the targets are visible at each telescope site, and that they have some significant probability of being the host.
+The list of filter cuts are summarized in table \ref{obsfilters}.
+
+\begin{table}
+\centering
+\begin{tabular}{|l|c|}
+  \hline
+ Parameter & Limit value \\ \hline
+Observability from location & $30^{\circ} > \delta > -70^{\circ}$ for EABA \\ \hline
+Apparent Magnitude & $B \le 21$ mag \\ \hline
+Distance  & $D < 60$ Mpc \\ \hline
+Absolute Magnitude & $MB \le -21$ mag \\ \hline
+\end{tabular}
+\caption{Parameter Cuts}
+\label{obsfilters}
+\end{table}
+
+
+\section{Image Reduction}
+
 \section{Results}
 
 The observation campaign for the GW150914 left us with a visit of XX fields and XX targets.
@@ -1370,7 +1417,7 @@ galaxies with high probabilities of hosting the event. We covered 0.62 square de
 %			O1 ANALYSIS
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{The O1 campaign: GW150914 Data Analysis}
+\chapter{Data Analysis for GW150914 Optical Counterparts}
 
 
 \section{Difference Imaging Analysis}
@@ -1406,15 +1453,27 @@ On this subtracted images, we ran SExtractor to extract posibles sources.
 
 \section{Real-Bogus classification and detection of potential transients}
 
-To 
 
-
-\section{Results}
 
 We used a combination of difference-imaging techniques and machine-learning procedures to detect and classify potential transients. 
 No bona fide events were found, a result that is consistent with the low probability of detecting stellar or extragalactic variability 
 given our temporal and areal coverage, and with the later classification of the GW event as a merger of two stellar-mass black holes.
-		
+
+
+\section{Results}
+
+The fact that we did not find any genuine transient in our search is not surprising given the small area surveyed (\textasciitilde{}0.62 sq. degrees) 
+and the low cadence of the observations (with only two epochs per target, separated by 73$\pm$3d). 
+Based on our temporal sampling and photometric precision, we scaled the results of Oelkers et al. (2015, 2016) 
+to estimate that only 1 in \textasciitilde{}3,030 stars in our fields
+would exhibit variability detectable at the 5$\sigma$ level over this timescale. 
+Given that only 4,200 stars were detected across all fields by DAOPHOT, we would only expect to detect \textasciitilde{}1 variable star.
+Regarding extragalactic transients, based on supernova Ia rate for R < 21 mag of 10 events per square degree per year
+(Pain et al. 1996; Garnavich et al. 2004) and a 30\% fraction of SN Ia among local SNe (Guillochon et al. 2016), 
+we estimate an 11\% probability of finding such an object across all our fields. 
+Finally, our result is consistent with the LIGO detection of a binary black hole merger, for which no optical EM counterpart is expected.
+
+
 \chapter{Software Developed}
 \section{Pipeline}
 
@@ -1759,6 +1818,7 @@ Each appendix can have sub-sections as a regular chapter.
 \section*{Publications}
 
 \begin{itemize}
+\item \href{https://arxiv.org/abs/1701.05566}{\bf Corral Framework: Trustworthy and Fully Functional Data Intensive Parallel Astronomical Pipelines} (2017) Juan B. Cabral, Bruno Sánchez, Martín Beroiz, Mariano Domínguez, Marcelo Lares, Sebastián Gurovich, Pablo Granitto; {\it submitted to Astronomy and Computing}.
 \item \href{http://adsabs.harvard.edu/abs/2016ApJ...828L..16D}{\bf GW150914: First search for the electromagnetic counterpart of a gravitational-wave event by the TOROS collaboration} (2016). Mario C. Diaz et al; {\it The Astrophysical Journal Letters}, Volume 828, Issue 2, article id. L16, 6 pp.
 \item \href{http://adsabs.harvard.edu/abs/2016ApJ...826L..13A}{\bf Localization and broadband follow-up of the gravitational-wave transient GW150914} (2016). B. P. Abbott et al. {\it The Astrophysical Journal Letters}, Volume 826, Issue 1, article id. L13, pp
 \item \href{http://www.math.unm.edu/~lau/DMS1216866/tauFluids_BHLP.pdf}{\bf Multidomain, sparse, spectral-tau method for helically symmetric flow} (2014). M Beroiz, T Hagstrom, SR Lau, RH Price; {\it Computers and Fluids}  (2014), pp. 250-265.
