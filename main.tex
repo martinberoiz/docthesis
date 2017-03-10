@@ -1104,8 +1104,6 @@ In the confusion matrix (table \ref{mlconfusionmatrix}) we see that only 65 out 
 \label{mlconfusionmatrix}
 \end{table}
 
-The ROC curve is presented in figure ??.
-
 \textcolor{red}{TO DO: Add analysis of feature importance}
 
 \section{Testing the classifier on real data}
@@ -1446,19 +1444,99 @@ we could see that for images with large extended objects on the image, the backg
 
 The reference images were taken a posteriori a few months after the alert, on December 2015, using the same telescope in Bosque Alegre.
 The reference images were taken with about the same exposure time for all fields and the same binning.
-Once the kernel is found, we convolve the reference image with it and subtract any remaining background given by the module OIS when needed.
-This modified reference is then subtracted to the original image to get the subtracted images.
+The references images were aligned pixel to pixel to the science images with the software Astroalign (see section \ref{astroalign_section} for more details on this Python module).
 
-On this subtracted images, we ran SExtractor to extract posibles sources.
 
 \section{Real-Bogus classification and detection of potential transients}
 
+Once aligned we perform the same procedure as with the CSTAR image set.
+We erase stars on the reference images to create fictitious transients after a subtraction is made.
+We perform the subtraction using the Python module OIS (see section \ref{ois_section}).
+Some of the tiles have to be 
+
+Once the subtraction is done, we pass SExtractor on the subtraction image to recover these fabricated transients and their associated SExtractor parameters.
+One difference with the procedure done with CSTAR is that we do not separate sources into bins of flux, because we have relatively much fewer stars in the field.
+
+For each transient we generate this way we add an equal amount of subtraction bogus artifact, to keep the training set balanced in number.
+We worked with 1511 examples of `real' transients and 1511 examples of `bogus' subtraction artifacts
+taken from tiles 13, 14, 16, 17, 18, 19 and 20 (see table \ref{o1targets}).
+With these we trained a classifier.
+
+The classifier had very good score statistics, but not as good as the one with CSTAR, most likely because of the lower sampling of `transient' examples.
+Nonetheless all performance statistics score above 90\%. 
+
+The particular Random Forest algorithm we used is the one provided in {\em scikit-learn} (\citet{2012arXiv1201.0490P}), a popular Python package for Machine Learning analysis.
+We have 10 Decision Trees in the ensemble, each one with a `Gini impurity' criterion to decide on the split of the branches.
+Each tree decides based on the square root of the number of features. On our case, with the features in table \ref{mlfeatures}, 
+the algorithm will branch its decisions based on 4 features randomly chosen.
+
+% self, n_estimators=10, criterion='gini', max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features='auto', max_leaf_nodes=None, min_impurity_split=1e-07, bootstrap=True, oob_score=False, n_jobs=1, random_state=None, verbose=0, warm_start=False, class_weight=None
+
+Several scores of the training are given on table \ref{gwscores} including the confusion matrix of the training.
+The receiver operating characteristic (ROC) curve is presented in figure \ref{fig:roc_gw150914}.
+
+\begin{comment}
+\begin{table}
+\centering
+\begin{tabular}{ l|c|c| }
+\multicolumn{1}{r}{}
+ &  \multicolumn{1}{c}{real}
+ & \multicolumn{1}{c}{bogus} \\
+\cline{2-3}
+{\it Classified as} real & 1390 & 121 \\
+\cline{2-3}
+{\it Classified as} bogus & 144 & 1367 \\
+\cline{2-3}
+\end{tabular}
+\caption{Confusion Matrix}
+\label{gwconfusionmatrix}
+\end{table}
+\end{comment}
+
+\begin{table}
+\centering
+\begin{tabular}{| >{\itshape}l | l |}
+  \hline
+  accuracy & 0.9123 \\ \hline
+  precision & 0.9186 \\ \hline
+  recall & 0.9046 \\ \hline
+  F measure & 0.9116 \\ \hline
+  Confusion Matrix & \begin{tabular}{ l|c|c| }
+\multicolumn{1}{r}{}
+ &  \multicolumn{1}{c}{real}
+ & \multicolumn{1}{c}{bogus} \\
+\cline{2-3}
+{\it Classified as} real & 1390 & 121 \\
+\cline{2-3}
+{\it Classified as} bogus & 144 & 1367 \\
+\cline{2-3}
+\end{tabular} \\ \hline
+\end{tabular}
+\caption{Random Forest Scores}
+\label{gwscores}
+\end{table}
 
 
-We used a combination of difference-imaging techniques and machine-learning procedures to detect and classify potential transients. 
+
+Applying this Real-Bogus classifier on subtraction images for that day, resulted in zero potential transient candidates in all images 
+with probability of being real over 90\%, and only 40 above 80\%.
+There were 226 potential candidates with probability over 50\%.
+As a final discrimination against spurious detections, we required an object to be detected in at least 5 of 10 realizations
+of a given field in order to be considered a bona fide astrophysical transient. 
+None of the objects in either set passed this requirement. 
+Further visual inspection revealed most of them to be subtraction residuals or cosmetic defects in the detector. 
+We therefore conclude that no transients were present in the 21 fields we targeted, to a 5$\sigma$ limiting magnitude of r = 21.7.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{figures/roc_gw150914}
+\caption{The ROC curve for the Random Forest classifier trained with transients generated from the images.}
+\label{fig:roc_gw150914}
+\end{figure}
+
+
 No bona fide events were found, a result that is consistent with the low probability of detecting stellar or extragalactic variability 
 given our temporal and areal coverage, and with the later classification of the GW event as a merger of two stellar-mass black holes.
-
 
 \section{Results}
 
