@@ -61,6 +61,22 @@
 %Added by me
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \newcommand{\order}{\ensuremath{\mathcal{O}}}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,fit, backgrounds}
+
+\linespread{1.2}
+% Define block styles for pipeline flowchart
+\tikzstyle{decision} = [diamond, draw, fill=green!20, 
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=10em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse, fill=red!20, node distance=3cm,
+    text width=5em, text centered, minimum height=2em]
+\tikzstyle{obse} = [draw, rectangle, fill=green!30, node distance=3cm,
+    text width=5em, text centered, rounded corners, minimum height=2em]
+    
+\usepackage{minted}
 %End of added by me
 
 \newenvironment{ruledcenter}{%
@@ -950,13 +966,222 @@ Li \& Paczynski (1998, LP98) first showed that the radioactive ejecta from a NS-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%			MACHINE LEARNING
+%	                     PIPELINE
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Training a Classifier Agent}
 
-The subtraction techniques are very effective at  modeling PSF differences, nevertheless there are many defects left behind after a subtraction. This is also a well known issue in the difference image analysis. 
-The bogus residual sources arise primarily from PSF mismatch and mis-alignments of the images.
+\chapter{Building a pipeline software for TOROS}
+
+Since the ultimate goal of the TOROS Project is the robotization of the telescope,
+it is important to have in place a software `pipeline' that accompanies the process
+at all stages, from receiving the alert to propose new transient candidates.
+
+The whole operation of TOROS processing can be divided in several stages
+as in the diagram of figure \ref{fig:flowchart}.
+
+\begin{figure}
+\centering
+\scalebox{0.8}{
+\begin{tikzpicture}[node distance = 2.2cm]
+    % Place nodes
+    \node [cloud] (ligo) {LVC Alert System};
+    \node [cloud, below of=ligo] (robot) {TOROS Alert Robot};
+    \node [xshift=-3cm, left of=robot] (collabx) {\ldots};
+    \node [xshift=3cm, right of=robot] (collaby) {\ldots};
+    \node [block, below of=robot] (skymap) {Retrieve Skymap};
+    \node [block, below of=skymap] (targets) {Target Selection (Scheduler)};
+    \node [block, below of=targets] (broker) {Broker Website};
+    \node [obse, below of=broker] (obsx) {Observatory X};
+    \node [obse, left of=obsx, xshift=-1.5cm, yshift=0.5cm] (obsy) {Observatory Y};
+    \node [below of=obsy] (ldots) {\ldots};
+    \node [block, below of=obsx] (images) {Take Images \& Data Reduction};
+    \node [block, right of=images, xshift=8em] (refimages) {A posteriori Images \& Data Reduction};
+    \node[block, below of=refimages] (align) {Alignment};
+    \node [block, below of=images] (dia) {Difference Image Analysis};
+    \node [block, below of=dia] (realbogus) {Real/Bogus ML};
+    \node [block, below of=realbogus] (science) {Science};
+    % Draw edges
+    \path [line] (ligo) -- (robot);
+    \path [line] (ligo) -- (collabx);
+    \path [line] (ligo) -- (collaby);
+    \path [line] (robot) -- (skymap);
+    \path [line] (skymap) -- (targets);
+    \path [line] (targets) -- (broker);
+    \path [line] (broker) -- (obsx);
+    \path [line] (broker) -- (obsy);
+    \path [line] (obsy) -- (ldots);
+    \path [line] (obsx) -- (images);
+    \path [line] (obsx) to[out=0, in=90] (refimages);
+    \path [line] (images) -- (dia);
+    \path [line] (refimages) -- (align);
+    \path [line] (align) -- (dia);
+    \path [line] (dia) -- (realbogus);
+    \path [line] (realbogus) -- (science);
+\end{tikzpicture}
+}
+\caption{The pipeline flowchart.}
+\label{fig:flowchart}
+\end{figure}
+
+In the following sections, I explain the different components of the pipeline diagram.
+
+\section{TOROS Alert Robot}
+
+The first step of the process starts with the alert receiver robot.
+
+The alert receiver is hosted in a virtual machine server provided by UTRGV IT Services.
+It is a Python script that runs uninterruptedly waiting for a signal from the 
+Gamma-Ray burst Coordinates Network (GCN) and the Transient Astronomy Network (TAN),
+a service of NASA delivered on a specific port reserved for this purpose.
+
+The GCN/TAN network is a distribution network of transient events notices dependent on Goddard NASA.
+As its name suggest it was primarily intended for the distribution of GRBs but also other transient notices
+from Fermi, Swift and other spacecrafts to the rest of the Astronomy community. 
+Most notices are sent in real-time, while the event is still ongoing, 
+others are delayed due to telemetry down-link delays.
+
+The subsequent reports of follow-up observations made by ground-based observers, are done by submitting circulars to that same site.
+This makes the GCN/TAN network {\em ``a one-stop shopping network for follow-up sites and GRB and transient researchers.''}
+
+The LIGO-Virgo Collaboration makes use of the GCN network to disseminate the event
+notices to the participating observatories searching for EM counterparts.
+
+The notice comes in the form of a Virtual Observatory Event (VOE) file,
+and it is distributed as a message to predefined static IPs and ports,
+using the VOEvent Transport Protocol.
+
+\textcolor{blue}{VOEvent is an IVOA Recommendation -- that is, it has been adopted as an international standard. As with many other IVOA standards, VOEvent is based on XML, the Extensible Markup Language [9]. XML is ubiquitous in worldwide web technologies and simply provides a structured way to build a nested hierarchy of elements, to attach attributes to those elements, and to assign values to each. An additional constraint on many IVOA standards, including VOEvent, is a schema to apply rules on the arrangement and numbers of each element and attribute and on their allowed values. XML Schema [10] can be an often-entertaining technology for the designers of a standard. Providing a battle-hardened VOEvent schema [11] is a priority of the VOEvent v2.0 development effort. A well-crafted schema permits the validation of documents (in this case VOEvent messages, also referred to as ``packets'') against the requirements of the standard, and can even be used to automatically create software to parse such messages.}
+
+The VOEvent Transport Protocol is a simple TCP-based protocol for transporting VOEvent messages from authors, through brokers, to subscribers.
+
+VOEvent is the International Virtual Observatory Alliance (IVOA) recommended mechanism for describing astronomical transients.
+According to its main website \footnote{\href{http://wiki.ivoa.net/twiki/bin/view/IVOA/IvoaVOEvent}{http://wiki.ivoa.net/twiki/bin/view/IVOA/IvoaVOEvent}},
+it is an XML file notice that ``{\em defines the content and meaning of a standard information packet for representing, transmitting, publishing and archiving information about a transient celestial event, with the implication that timely follow-up is of interest.}'' 
+
+In our case, we registered two static IPs with GCN, one in Texas at UT RGV and another one for Cordoba in Argentina at IATE Institute.
+Only the one in Texas is functional at the moment, while the one in Cordoba is receiving but has problems sending out emails.
+
+The VOEvent is received by a continuously running script that listens on the specific port and creates an alert email involving the heads and some staff at each TOROS partner.
+
+The listening is done mainly by the PyGCN module developed by Leo Singer, which handles the reception GCN notices from LVC. The rest of email sending is done by usual Python tools for that task.
+
+Right now, the script does a minimum process to deliver the XML body of the VOEvent by email to predetermined recipients.
+Future improvements on this side should include the automatic download of the skymaps
+to be attached to the email along with the VO Event notice.
+
+It could also pre-process the skymap to extract most likely galaxy hosts for observing targets.
+
+Right now, this is done on a separate script that requires human intervention.
+
+\section{Target Selection}
+
+As mentioned before, the target selection is done with a separate script.
+This script makes use of the sky-map provided in the alert notice and the 
+Gravitational Waves Galaxy Catalog (GWGGC) (\citet{2011CQGra..28h5016W})
+
+The White's catalog is a homogeneous list of 53,255 galaxies within 100Mpc.
+It is a compilation from 4 different catalogs: an updated version of the Tully Nearby Galaxy Catalog,
+the Catalog of Neighboring Galaxies, the V8k catalogue and HyperLEDA.
+
+GWGC contains information on sky position, distance, blue magnitude, major and minor diameters, position angle, and galaxy type.
+Also included in the catalog are 150 Milky Way globular clusters.
+
+The authors claim that GWGC is more complete --within 100 Mpc-- than other catalogs,
+due to their use of more up-to-date input catalogs
+and the fact that they don't make a blue luminosity cut.
+
+%Another catalog along these lines is the Glade GW Catalog. Glade Catalog has xxxx galaxies listed, this many more than CWGC and extends up to XX Mpc.
+%Nonetheless many distances are inferred by Machine Learning Methods, and completitude of the Catalog... bla bla
+
+The target selection for our optical search is based on three main criteria: 
+the localization (un)certainty on the target pixel in the all-sky map given by LIGO at the time of the alert,
+the visibility of the targets at the moment of the event by our several telescopes, 
+and several filter cuts on distance, blue luminosity and apparent magnitude.
+
+This marriage between GW and Optical parameters of observability ensures the targets are visible at each telescope site, 
+and that they have some significant probability of being the host.
+The list of filter cuts are summarized in table \ref{obsfilters}.
+
+\begin{table}
+\centering
+\begin{tabular}{|l|c|}
+  \hline
+ Parameter & Limit value \\ \hline
+Observability from location & $30^{\circ} > \delta > -70^{\circ}$ for EABA \\ \hline
+Apparent Magnitude & $B \le 21$ mag \\ \hline
+Distance  & $D < 60$ Mpc \\ \hline
+Absolute Magnitude & $MB \le -21$ mag \\ \hline
+\end{tabular}
+\caption{Parameter Cuts}
+\label{obsfilters}
+\end{table}
+
+
+\section{The Broker}
+
+Once the list of targets is done, we need to communicate the targets to each telescope.
+This is done through a broker website written in Python using the Django\footnote{\url{https://www.djangoproject.com}} web framework (see figure \ref{fig:brokerhead}).
+Each telescope representative has assigned a username and password to access a website hosted on UTRGV servers.
+This website has a simple interface of tables for each observatory and a list of targets observable from each location, obtained by the target selection method on the previous step.
+
+Each telescope admin then selects targets from the list, to reserve them for his or her observatory (see figure \ref{fig:brokerdetail}). 
+The website enforces that the list of targets be unique and that no two observatories are observing the same target.
+It does so, by ignoring targets previously selected by others on the query.
+
+Each observatory then carries the observations for the successive nights and file a report of the observations when these are done.
+
+The website can also output a circular draft of all the targets observed by each telescope to be submitted to the GCN/TAN website for the rest of the community.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.2]{figures/broker_header}
+\caption{A portion of the Broker website with target assignments.}
+\label{fig:brokerhead}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.2]{figures/broker_obsdetail}
+\caption{An example of a detail table of targets assigned to the Mamalluca Observatory.}
+\label{fig:brokerdetail}
+\end{figure}
+
+
+\section{Data Reduction}
+
+This step in the pipeline is specific to the data processing techniques used in each observatory.
+For the purpose of testing the capabilities and efficiency of the rest of  the pipeline we conducted a test run on an image set.
+
+The Difference Image Analysis and Machine Learning Real-Bogus classifier parts are tested over an image data set collected by CSTAR.
+The CSTAR image set is a high cadence set of images taken in the winter of 2010 in Antarctica, the South Pole. 
+It comprises 6 months of data with an median cadence of 42 s.
+
+\subsection{The CSTAR image-set preparation}
+
+Since the amount of data is so large, for the purpose of training, we created a subset of 626 images, 
+with a cadence of about an hour during the best seeing month of June (May 31st to June 30th, 2010). 
+The subset was named `cstar\_june\_selection'. 
+The first 10 images of this set (named cstar\_june\_01) is used for training purposes and the rest can be used to search for transients. 
+
+The images are mostly clean, that is they were bias and flat corrected.
+Nevertheless, the images suffer from `bleeding' even though they have low exposure time.
+This bleeding is very significative for bright stars and less so for dimmer stars but still present nonetheless.
+
+The bled stars were covered with the median and a separate mask was created for the covered pixels for future reference.
+This pixel mask also includes defective pixels (dead lines and columns in the CCD).
+
+The date-time information on the header was also updated according to \textcolor{red}{[ref]}.
+
+For each of these images, we aligned a reference image with it using the package `astroalign' (see section astroalign) 
+and also performed a image subtraction using the delta basis method on a 4 by 4 grid.
+
+\section{Optimal Subtraction}
+
+\section{Training a Real/Bogus Classifier Agent}
+
+The subtraction techniques are very effective at  modeling PSF differences, nevertheless there are many defects left behind after a subtraction. 
+This is also a well known issue in the difference image analysis. 
+The bogus residual sources arise primarily from PSF mismatch and misalignments of the images.
 Several examples of this kind are shown on figure \ref{fig:subtraction_errors}
 
 \begin{figure}
@@ -971,9 +1196,11 @@ The third column is the more typical kind of bogus residual, a combination of di
 \label{fig:subtraction_errors}
 \end{figure}
 
-These defects can easily confuse algorithms of source detection like SExtractor or similar that relies on excess of flux over the background. For that, it is needed to have a computerized agent capable of discriminating bogus sources from real transients on the subtracted image. 
+These defects can easily confuse algorithms of source detection like SExtractor or similar that relies on excess of flux over the background.
+For that, it is needed to have a computerized agent capable of discriminating bogus sources from real transients on the subtracted image. 
 
-This is the task of a Machine Learning (ML) agent trained for that purpose. The real bogus classifier, as it is named in the literature relies on --mostly morphological-- features to perform the classification.
+This is the task of a Machine Learning (ML) agent trained for that purpose. The real bogus classifier, as it is named in the literature 
+relies on --mostly morphological-- features to perform the classification.
 
 Machine Learning is such an extensive and intensive area of research with many applications in many fields.
 
@@ -1022,21 +1249,6 @@ The `bogus' set is also collected at the same time along with the `real' set.
 To have equal representation of sources of different magnitudes, the sources are first binned into 10 bins of \textcolor{red}{magnitude/flux?} and taken from different regions of the CCD.
 We partition the image in a 4 by 4 grid and we select one star from each region and we do so for each magnitude bin. \textcolor{red}{explain better!!!}
 
-\subsection{The CSTAR image-set preparation}
-
-The CSTAR image set is a high cadence set of images taken in the winter of 2010 in Antarctica, the South Pole. It comprises 6 months of data with an average cadence of \textcolor{red}{1 min ???? check}.
-
-Since the amount of data is so large, for the purpose of training, we created a subset of 626 images, with a cadence of about an hour during the best seeing month of June (May 31st to June 30th, 2010). The subset was named `cstar\_june\_selection'. The first 10 images of this set (named cstar\_june\_01) is used for training purposes and the rest can be used to search for transients. 
-
-The images are mostly clean, that is they were bias and flat corrected.
-Nevertheless, the images suffer from `bleeding' even though they have low exposure time. This bleeding is very significative for bright stars and less so for dimmer stars but still present nonetheless.
-
-The bled stars were covered with the median and a separate mask was created for the covered pixels for future reference. This pixel mask also includes defective pixels (dead lines and columns in the CCD).
-
-The date-time information on the header was also updated according to \textcolor{red}{[ref]}.
-
-For each of these images, we aligned a reference image with it using the package `astroalign' (see section astroalign) and also performed a image subtraction using the delta basis method on a 4 by 4 grid.
-
 \section{The Classifier}
 
 As previously said, we trained a Random Forest classifier based on 7,624 examples of fabricated transients (as described in section data) and 7,624 bogus picked at random from the subtraction images. This totals 15,248 samples for training and validation.
@@ -1058,7 +1270,7 @@ Several scores about the performance of the classifier on the training data are 
   mag\_aper & Aperture magnitude of the object in the subtraction image \\ \hline     magerr\_aper & Error of mag\_aper \\ \hline
   flux\_aper & Aperture flux in counts of the object in the subtraction image \\ \hline
   fluxerr\_aper & Error of flux\_aper \\ \hline
-threshold & \\ \hline
+%threshold & \\ \hline
 flux\_max & Maximum value of the flux \\ \hline
 fwhm & Full width at half maximum \\ \hline
 deltax & Width in pixels of the object (X\_MAX - X\_MIN) \\ \hline
@@ -1118,21 +1330,14 @@ Some examples of these are shown in figure ??.
 
 For very faint events or events that comprise very few pixels in the image, we can have additional filters that weed them out. Although, some of this could be of astronomical interest and discarding them could result in its loss.
 
+\section{Results}
 
+We created a pipeline that is capable of responding to alerts sent by LVC.
+It will do so by parsing the VOEvent file for the alert, capturing metadata of the alert, download the skymaps for the localization uncertainty
+and creating targets for the telescopes, based on criteria of potential host galaxy, visibility at the time of the event and probability of hosting the event.
 
-\begin{comment}
-	* Our test-drive with OIS + ML. Results of paper (hopefully)
-		* Test data we used (CSTAR)
-		* Processing our raw data (selecting images for a dataset, cleaning images, fixing headers, performing subtractions, identifying sources in subtractions, stamps)
-		* Getting samples for training (labeling data as RB, winnow, first run of ML)
-		* Feature exploration of data (SExtractor features, derived features, morphological features like Zernike, Chebyshev, Fourier, etc.)
-		* Random Forest + SMOTE + Cost Matrix (how well did this perform?)
-		* Is it reproducible in other data sets?
-\end{comment}
-
-
-
-
+The mock run on CSTAR data showed that the difference image analysis together with Real-Bogus trained on the same data set 
+can be used to select possible candidates of counterpart transients.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1515,8 +1720,6 @@ The receiver operating characteristic (ROC) curve is presented in figure \ref{fi
 \caption{Random Forest Scores}
 \label{gwscores}
 \end{table}
-
-
 
 Applying this Real-Bogus classifier on subtraction images for that day, resulted in zero potential transient candidates in all images 
 with probability of being real over 90\%, and only 40 above 80\%.
