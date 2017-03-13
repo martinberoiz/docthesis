@@ -1023,6 +1023,11 @@ as in the diagram of figure \ref{fig:flowchart}.
 \label{fig:flowchart}
 \end{figure}
 
+The pipeline is written entirely in Python, following the latest trend in Astronomy.
+We used popular Python packages like numpy, scipy, astropy and other when necessary.
+In the case of aligning images and performing image subtraction, I developed tow Python modules
+specific to do that, since there were no existing python modules with that functionality at the time of this writing.
+
 In the following sections, I explain the different components of the pipeline diagram.
 
 \section{TOROS Alert Robot}
@@ -1146,15 +1151,39 @@ The website can also output a circular draft of all the targets observed by each
 \label{fig:brokerdetail}
 \end{figure}
 
+For the web pages developed to support the collaboration, we used the popular Python web framework Django
+and a light database on Sqlite 3.
+
+Sqlite provides a lightweight database solution that does not require complex server-client operations, and it stores all data in a simple file.
+Thus, the database is easy to browse and modify.
+The database handles information for the GW Galaxy Catalog, the user information as well as permissions and login information,
+Observatories data.
 
 \section{Data Reduction}
 
 This step in the pipeline is specific to the data processing techniques used in each observatory.
 For the purpose of testing the capabilities and efficiency of the rest of  the pipeline we conducted a test run on an image set.
 
+The following stages of the pipeline deal with the specific analysis to identify candidates to optical counterparts of GW.
+
+The first part deals with the Difference Image Analysis.
+For that two images, one taken at the epoch of interest and another one used as a reference. Ideally, the reference is an archive image or a stack of several others to improve signal to noise ratio, cosmic rays and other contaminants on the image.
+
+In the case for our campaign for O1, we had to use a-posteriori references taken a few months after the event.
+
+Before performing the subtraction, both images have to be aligned pixel by pixel.
+Software to perform the alignments was done using a method described in section \ref{astroalign_section}.
+I describe there a method based on asterism matching inspired in astrometry.net.
+
+The subtraction methods are explained in section \ref{ois_section}.
+Several algorithms are explained in the literature with a wide range of methods, from Fourier Transform, to PSF matching to using Information Theory.
+Some of them are explained and implemented in a Python module named `ois' developed by me for this project.
+
 The Difference Image Analysis and Machine Learning Real-Bogus classifier parts are tested over an image data set collected by CSTAR.
 The CSTAR image set is a high cadence set of images taken in the winter of 2010 in Antarctica, the South Pole. 
 It comprises 6 months of data with an median cadence of 42 s.
+
+
 
 \subsection{The CSTAR image-set preparation}
 
