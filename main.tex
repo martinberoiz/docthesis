@@ -1116,7 +1116,9 @@ along with prior probability distributions of source parameters.
 It will not use the GW parameters from the reconstruction of the wave-form, like costly post-Newtonian GW wave-form calculations.
 
 LIGO has other three localization estimation codes: LALINFERENCE\_MCMC, LALINFERENCE\_NEST and LALINFERENCE\_BAMBI.
-These three codes are stochastic samplers that estimate the full GW parameter space and then marginalize over every parameter that is not the sky location.
+The LIGO Algorithm Library (LAL) is a collection of routines for various pipelines inside LIGO for which LAL Inference is specific to parameter estimation.
+These three codes are stochastic MCMC samplers that estimate the full GW parameter space, 
+they can give a localization skymaps by marginalizing over every parameter that is not the sky location.
 The LALINFERENCE localization estimations may take days to complete, and weeks if the spin of the compact objects is taken into account.
 These are far more computationally expensive than BAYESTAR, but they will improve the estimations for the localization, 
 especially when the GW signal is very weak in one detector.
@@ -1265,7 +1267,6 @@ and also performed a image subtraction using the delta basis method on a 4$\time
 
 \section{Optimal Subtraction}
 
-
 The following stages of the pipeline deal with the specific analysis to identify candidates to optical counterparts of GW.
 
 The first part deals with the Difference Image Analysis.
@@ -1285,6 +1286,7 @@ Some of them are explained and implemented in a Python module named `ois' develo
 The Difference Image Analysis and Machine Learning Real-Bogus classifier parts are tested over an image data set collected by CSTAR.
 The CSTAR image set is a high cadence set of images taken in the winter of 2010 in Antarctica, the South Pole. 
 It comprises 6 months of data with an median cadence of 42 s.
+
 \section{Training a Real/Bogus Classifier Agent}
 
 The subtraction techniques are very effective at  modeling PSF differences, nevertheless there are many defects left behind after a subtraction. 
@@ -1863,98 +1865,10 @@ Finally, our result is consistent with the LIGO detection of a binary black hole
 
 
 \chapter{Software Developed}
-\subsection{Target Selection}
 
-As mentioned before, the target selection is done with a separate script.
-This script makes use of the sky-map provided in the alert notice and the 
-Gravitational Waves Galaxy Catalog (GWGC) (A List of Galaxies for Gravitational Wave Searches, Darren J. White et al, 2011)
-
-The White's catalog is a homogeneous list of 53,255 galaxies within 100Mpc.
-It is a compilation from 4 different catalogs: an updated version of the Tully Nearby Galaxy Catalog,
-the Catalog of Neighboring Galaxies, the V8k catalogue and HyperLEDA.
-
-GWGC contains information on sky position, distance, blue magnitude, major and minor diameters, position angle, and galaxy type.
-Also included in the catalog are 150 Milky Way globular clusters.
-
-The authors claim (ref) that GWGC is more complete --within 100 Mpc-- than other catalogs,
-due to their use of more up-to-date input catalogs
-and the fact that they don't make a blue luminosity cut.
-
-Another catalog along these lines is the Glade GW Catalog. Glade Catalog has xxxx galaxies listed, this many more than CWGC and extends up to XX Mpc.
-Nonetheless many distances are inferred by Machine Learning Methods, and completitude of the Catalog... bla bla
-
-The target selection is based on two main criteria: the localization (un)certainty on the target pixel in the all-sky map given by LIGO at the time of the alert,
-and several filter cuts on distance, blue luminosity and apparent magnitude.
-
-This marriage between GW and Optical parameters of observability ensures the targets are visible at each telescope site, and that they have some significant probability of being the host.
-The list of filter cuts are summarized in table \ref{obsfilters}.
-
-\begin{table}
-\centering
-\begin{tabular}{|l|c|}
-  \hline
- Parameter & Limit value \\ \hline
-Observability from location & $30^{\circ} > \delta > -70^{\circ}$ for EABA \\ \hline
-Apparent Magnitude & $B \le 21$ mag \\ \hline
-Distance  & $D < 60$ Mpc \\ \hline
-Absolute Magnitude & $MB \le -21$ mag \\ \hline
-\end{tabular}
-\caption{Parameter Cuts}
-\label{obsfilters}
-\end{table}
-
-\subsection{The Broker}
-
-Once the list of targets is done, we need to communicate the targets to each telescope.
-This is done through a broker website written in Django.
-Each telescope representative has assigned a username and password to access a website hosted on UTRGV servers.
-This website has a simple interface of tables for each observatory and a list of targets observable from each location, obtained by the target selection method on the previous step.
-
-Each telescope admin then selects targets from the list, to reserve them for his or her observatory. 
-The website enforces that the list of targets be unique and that no two observatories are observing the same target.
-It does so, by ignoring targets previously selected by others on the query.
-
-Each observatory then carries the observations for the successive nights and file a report of the observations when these are done.
-
-The website can also output a circular draft of all the targets observed by each telescope to be submitted to the GCN/TAN website for the rest of the community.
-
-\subsection{Corral Pipeline Framework}
+\section{Corral Pipeline Framework}
 
 As part of the 
-
-\subsection{Further Processing}
-
-The previous steps are the normal workflow for the operations on a LIGO campaign.
-
-The pipeline is not fully automatized or optimized for all of the stages, and there are still gaps where human intervention is needed.
-Most notably is the target selction or scheduling, and the loading of the observation targets to the broker website.
-Making them automatic, would require a REST framework on the Django website and a transfer protocol mechanism,
-which are beyond the computational abilities of who writes this thesis.
-It is my hope that the software developed so far could be picked up by a web developer that can connect the parts in a seamless way.
-
-The pipeline is written entirely in Python, following the latest trend in Astronomy.
-For the web pages developed to support the collaboration, we used the popular Python web framework Django
-and a light database on Sqlite 3.
-
-Sqlite provides a lightweight database solution that does not require complex server-client operations, and it stores all data in a simple file.
-Thus, the database is easy to browse and modify.
-The database handles information for the GW Galaxy Catalog, the user information as well as permissions and login information,
-Observatories data.
-
-The following stages of the pipeline deal with the specific analysis to identify candidates to optical counterparts of GW.
-
-The first part deals with the Difference Image Analysis.
-For that two images, one taken at the epoch of interest and another one used as a reference. Ideally, the reference is an archive image or a stack of several others to improve signal to noise ratio, cosmic rays and other contaminants on the image.
-
-In the case for our campaign for O1, we had to use a-posteriori references taken a few months after the event.
-
-Before performing the subtraction, both images have to be aligned pixel by pixel.
-Software to perform the alignments was done using a method described in section \ref{section:astroalign}.
-I describe there a method based on asterism matching inspired in astrometry.net.
-
-The subtraction methods are explained in section \ref{section:ois}.
-Several algorithms are explained in the literature with a wide range of methods, from Fourier Transform, to PSF matching to using Information Theory.
-Some of them are explained and implemented in a Python module named `ois' developed by me for this project.
 
 \include{chapter_astroalign/chapter} \label{section:astroalign}
 
