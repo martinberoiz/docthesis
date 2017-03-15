@@ -1102,23 +1102,42 @@ Although this is done by the alert receiver robot, we explain these steps in mor
 
 \section{Skymaps}
 
-There are different types of skymaps provided by LVC.
-They come from different parts of the LVC pipeline and they are done with different levels of information.
+LIGO relies on triangulation to localize the originator of the signal in the sky.
+With two detectors running, the localization will contain a degeneracy separated by 180${}^{\circ}$ 
+and it may not be a simply connected region.
+A third detector would break the degeneracy and cut in a third the localization uncertainty area (\citet{2014ApJ...795..105S}).
 
-Even though the last ones are the most precise, by the time they are released most of the observations are already done.
+Soon after a coincident detection is made on the operating detectors, 
+a rapid sky localization is made with BAYESTAR (\citet{2016PhRvD..93b4013S}).
+BAYESTAR is a rapid Bayesian position reconstruction code that will produce accurate sky maps in less than a minute after any BNS merger detection.
+
+The rapid response is achieved by using only information of the coincident triggers: the phases, times of arrival and amplitudes, 
+along with prior probability distributions of source parameters.
+It will not use the GW parameters from the reconstruction of the wave-form, like costly post-Newtonian GW wave-form calculations.
+
+LIGO has other three localization estimation codes: LALINFERENCE\_MCMC, LALINFERENCE\_NEST and LALINFERENCE\_BAMBI.
+These three codes are stochastic samplers that estimate the full GW parameter space and then marginalize over every parameter that is not the sky location.
+The LALINFERENCE localization estimations may take days to complete, and weeks if the spin of the compact objects is taken into account.
+These are far more computationally expensive than BAYESTAR, but they will improve the estimations for the localization, 
+especially when the GW signal is very weak in one detector.
+
+At the time of the detection, observatories will rely on the position estimation of BAYESTAR.
+By the time the LALINFERENCE maps are released, most of the observations would be already done.
+
+The retrieval of the BAYESTAR sky map is done through a authenticated HTML GET request to the Grace Database of the GCN/TAN website.
 
 \section{Target Selection}
 
 The target selection is done with a separate module imported from the alert receiver robot.
 Having it in a separate module allows us to run it independently, in case of failure of the robot.
 
-The skymaps provided with the alert typically cover an order of \textasciitilde100 square degrees for the 90\% confidence region.
+The skymaps provided with the alert typically cover an order of \textasciitilde200 square degrees for the 60\% confidence region (\citet{2014ApJ...795..105S}).
 For telescopes that have not wide enough field of views to tile the region in a few pointings, it becomes an absolute necessity 
 to adopt some kind of target selection strategy to maximize the chances of discovery.
 
 The goal is to prioritize pointing directions in order of interest.
 The important role of galaxy catalogs was noted early in \citet{2011CQGra..28h5016W}, where they presented
-the Gravitational Waves Galaxy Catalog (GWGGC).
+the Gravitational Waves Galaxy Catalog (GWGC).
 The GWGC catalog is a homogeneous list of 53,255 galaxies within 100Mpc.
 It is a compilation from 4 different catalogs: an updated version of the Tully Nearby Galaxy Catalog,
 the Catalog of Neighboring Galaxies, the V8k catalogue and HyperLEDA.
@@ -1134,7 +1153,7 @@ In \citet{2014ApJ...784....8H} they find that the use of galaxy catalogs can imp
 to a factor of 4 relative to follow-up strategies that do not utilize this kind of catalogs.
 
 Our target selection (scheduler) module makes use of the sky-map provided in the alert notice and the 
-GWGGC catalog.
+GWGC catalog.
 
 %Another catalog along these lines is the Glade GW Catalog. Glade Catalog has xxxx galaxies listed, this many more than CWGC and extends up to XX Mpc.
 %Nonetheless many distances are inferred by Machine Learning Methods, and completitude of the Catalog... bla bla
@@ -1197,18 +1216,55 @@ to be submitted to the GCN/TAN website for the rest of the community.
 \section{Data Reduction}
 
 The data reduction step of the pipeline is specific to the data processing techniques used in each observatory 
-and we will not cover this on this section.
-Instead, for the purpose of testing the Optimal Subtraction and Real-Bogus Classifier steps, we discuss here the use of a test image set.
+and we will not cover them on this section.
+Instead, for the purpose of testing the Optimal Subtraction and Real-Bogus Classifier steps, we discuss here the preparation of a test image set 
+from the Chinese Telescope ARray, CSTAR.
 
-The Chinese Small Telescope ARray (CSTAR) is the first Chinese astronomical instrument 
-on the Antarctic ice cap (\citet{2010RAA....10..279Z}).
+CSTAR is a set of Chinese telescopes on the Antarctic ice cap (\citet{2010RAA....10..279Z}).
+CSTAR was deployed in Dome A on the Antarctic Plateau (87.3667${}^{\circ}$S, 77.3500${}^{\circ}$E),
+and had several observation runs from 2008 to 2011 when it was sent back to China for upgrades.
 
+Dome A provides unique observation conditions.
+It is located at an altitude of 4,200 m and its atmospheric conditions are excellent giving less than 0.4 mag extinction for 70\% of the time.
+The temperature ranges from -80${}^{\circ}$C to -60${}^{\circ}$C and it has uninterrupted dark conditions for 6 months.
 
+The image set that we used was taken during the Antarctic winter of 2010.
+The original array of CSTAR telescopes consisted of four similar telescopes with different filters on them.
+Three of them had standard SDSS {\em gri} filters and the fourth one was a {\em clear} filter.
+Only the images from filter {\em i} are usable since the other 3 telescopes failed to return data.
+The telescopes are a Schmidt-Cassegrain with 145 mm aperture and a 20.1 square degrees field of view.
+They are equipped with an ANDOR DV435 1K$\times$1K frame-transfer CCD with a pixel size of 13$\mu$m.
+The telescopes do not track and have no moving parts.
+They are pointed to the South Celestial Pole and the exposure time is such that the drift time covers less than a pixel.
+The CSTAR 2010 {\em i} set has a median exposure time of 42 s.
 
+The entire data set for the winter of 2010 consists of 251,818 images spanning from April 30 2010 to September 27 2010.
+Since the amount of data is so large, for the purpose of training, we created a subset of 626 images, 
+with a cadence of about an hour during the best seeing month of June (May 31st to June 30th, 2010). 
+The subset was named `cstar\_june\_selection'. 
+The first 10 images of this set (named cstar\_june\_01) is used for training purposes and the rest can be used to search for transients. 
 
+The images we worked with were preprocessed, i.e. they were bias and flat corrected.
+The CCD had a few dead columns and rows and bright stars suffer from `bleeding' (see figure \ref{bleeding}) even though they have low exposure time.
+This bleeding is very significative for bright stars and less so for dimmer stars but still present nonetheless.
 
-This step in the pipeline is specific to the data processing techniques used in each observatory.
-For the purpose of testing the capabilities and efficiency of the rest of the pipeline we conducted a test run on an image set.
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{figures/bleedingexample}
+\caption{An example of the bleeding of bright stars on the CSTAR image set.}
+\label{fig:bleeding}
+\end{figure}
+
+The bled stars were covered with the median and a separate mask was created for the covered pixels for future reference.
+This pixel mask also includes defective pixels (dead lines and columns in the CCD).
+
+The date-time information on the header was also updated according to \textcolor{red}{[ref]}.
+
+For each of these images, we aligned a reference image with it using the package `astroalign' (see section \ref{section:astroalign}) 
+and also performed a image subtraction using the delta basis method on a 4$\times$4 grid.
+
+\section{Optimal Subtraction}
+
 
 The following stages of the pipeline deal with the specific analysis to identify candidates to optical counterparts of GW.
 
@@ -1229,28 +1285,6 @@ Some of them are explained and implemented in a Python module named `ois' develo
 The Difference Image Analysis and Machine Learning Real-Bogus classifier parts are tested over an image data set collected by CSTAR.
 The CSTAR image set is a high cadence set of images taken in the winter of 2010 in Antarctica, the South Pole. 
 It comprises 6 months of data with an median cadence of 42 s.
-
-\subsection{The CSTAR image-set preparation}
-
-Since the amount of data is so large, for the purpose of training, we created a subset of 626 images, 
-with a cadence of about an hour during the best seeing month of June (May 31st to June 30th, 2010). 
-The subset was named `cstar\_june\_selection'. 
-The first 10 images of this set (named cstar\_june\_01) is used for training purposes and the rest can be used to search for transients. 
-
-The images are mostly clean, that is they were bias and flat corrected.
-Nevertheless, the images suffer from `bleeding' even though they have low exposure time.
-This bleeding is very significative for bright stars and less so for dimmer stars but still present nonetheless.
-
-The bled stars were covered with the median and a separate mask was created for the covered pixels for future reference.
-This pixel mask also includes defective pixels (dead lines and columns in the CCD).
-
-The date-time information on the header was also updated according to \textcolor{red}{[ref]}.
-
-For each of these images, we aligned a reference image with it using the package `astroalign' (see section astroalign) 
-and also performed a image subtraction using the delta basis method on a 4 by 4 grid.
-
-\section{Optimal Subtraction}
-
 \section{Training a Real/Bogus Classifier Agent}
 
 The subtraction techniques are very effective at  modeling PSF differences, nevertheless there are many defects left behind after a subtraction. 
@@ -1638,7 +1672,7 @@ The LIGO localization regions span several hundred square degrees (see Fig. 1) a
 
 As mentioned before, the target selection is done with a separate script.
 This script makes use of the sky-map provided in the alert notice and the 
-Gravitational Waves Galaxy Catalog (GWGGC) (A List of Galaxies for Gravitational Wave Searches, Darren J. White et al, 2011)
+Gravitational Waves Galaxy Catalog (GWGC) (A List of Galaxies for Gravitational Wave Searches, Darren J. White et al, 2011)
 
 The White's catalog is a homogeneous list of 53,255 galaxies within 100Mpc.
 It is a compilation from 4 different catalogs: an updated version of the Tully Nearby Galaxy Catalog,
@@ -1829,70 +1863,11 @@ Finally, our result is consistent with the LIGO detection of a binary black hole
 
 
 \chapter{Software Developed}
-\section{Pipeline}
-
-Since the ultimate goal of the TOROS Project is the robotization of the telescope,
-it is important to have in place a software `pipeline' that accompanies the process
-at all stages, from receiving the alert to propose new transient candidates.
-
-The whole operation of TOROS processing can be divided in several stages (Tania ref)
-as pictured in figure ??.
-
-The first stage consists on ...
-
-\subsection{Alert Receiver Robot}
-
-The first step of the process starts with the alert receiver robot.
-
-The alert receiver is hosted in a virtual machine server provided by UTRGV IT Services.
-It is a Python script that runs uninterruptedly waiting for a signal from the 
-GCN service of NASA delivered on a specific port reserved for this purpose.
-
-The Gamma-Ray burst Coordinates Network (GCN) and the Transient Astronomy Network (TAN), collectively called the GCN/TAN network,
-is a distribution network of transient events notices dependent on Goddard NASA.
-As its name suggest it was primarily intended for the distribution of GRBs but also other transient notices
-from Fermi and Swift spacecrafts to the rest of the Astronomy community. 
-Most notices are sent in real-time, while the event is still ongoing, 
-others are delayed due to telemetry down-link delays.
-
-The subsequent reports of follow-up observations made by ground-based observers, are done by submitting circulars to that same site.
-This makes the GCN/TAN network ``a one-stop shopping network for follow-up sites and GRB and transient researchers.''
-
-The LIGO-Virgo Collaboration makes use of the GCN network to disseminate the event
-notices to the participating observatories searching for EM counterparts.
-
-The notice comes in the form of a Virtual Observatory Event (VOE) file,
-and it is distributed as a message to predefined static IPs and ports,
-using the VOEvent Transport Protocol.
-
-\textcolor{blue}{VOEvent is an IVOA Recommendation -- that is, it has been adopted as an international standard. As with many other IVOA standards, VOEvent is based on XML, the Extensible Markup Language [9]. XML is ubiquitous in worldwide web technologies and simply provides a structured way to build a nested hierarchy of elements, to attach attributes to those elements, and to assign values to each. An additional constraint on many IVOA standards, including VOEvent, is a schema to apply rules on the arrangement and numbers of each element and attribute and on their allowed values. XML Schema [10] can be an often-entertaining technology for the designers of a standard. Providing a battle-hardened VOEvent schema [11] is a priority of the VOEvent v2.0 development effort. A well-crafted schema permits the validation of documents (in this case VOEvent messages, also referred to as ``packets'') against the requirements of the standard, and can even be used to automatically create software to parse such messages.}
-
-The VOEvent Transport Protocol is a simple TCP-based protocol for transporting VOEvent messages from authors, through brokers, to subscribers.
-
-VOEvent is the International Virtual Observatory Alliance (IVOA) recommended mechanism for describing astronomical transients.
-According to its main website \footnote{\href{http://wiki.ivoa.net/twiki/bin/view/IVOA/IvoaVOEvent}{http://wiki.ivoa.net/twiki/bin/view/IVOA/IvoaVOEvent}},
-it is an XML file notice that ``{\em defines the content and meaning of a standard information packet for representing, transmitting, publishing and archiving information about a transient celestial event, with the implication that timely follow-up is of interest.}'' 
-
-In our case, we registered two static IPs with GCN, one in Texas at UT RGV and another one for Cordoba in Argentina at IATE Institute.
-Only the one in Texas is functional at the moment, while the one in Cordoba is receiving but has problems sending out emails.
-
-The VOEvent is received by a continuously running script that listens on the specific port and creates an alert email involving the heads and some staff at each TOROS partner.
-
-The listening is done mainly by the PyGCN module developed by Leo Singer, which handles the reception GCN notices from LVC. The rest of email sending is done by usual Python tools for that task.
-
-Right now, the script does a minimum process to deliver the XML body of the VOEvent by email to predetermined recipients.
-Future improvements on this side should include the automatic download of the skymaps
-to be attached to the email along with the VO Event notice.
-
-It could also pre-process the skymap to extract most likely galaxy hosts for observing targets.
-
-Right now, this is done on a separate script that requires human intervention.
-
 \subsection{Target Selection}
 
 As mentioned before, the target selection is done with a separate script.
 This script makes use of the sky-map provided in the alert notice and the 
-Gravitational Waves Galaxy Catalog (GWGGC) (A List of Galaxies for Gravitational Wave Searches, Darren J. White et al, 2011)
+Gravitational Waves Galaxy Catalog (GWGC) (A List of Galaxies for Gravitational Wave Searches, Darren J. White et al, 2011)
 
 The White's catalog is a homogeneous list of 53,255 galaxies within 100Mpc.
 It is a compilation from 4 different catalogs: an updated version of the Tully Nearby Galaxy Catalog,
