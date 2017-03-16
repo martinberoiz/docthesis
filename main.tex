@@ -1107,7 +1107,7 @@ With two detectors running, the localization will contain a degeneracy separated
 and it may not be a simply connected region.
 A third detector would break the degeneracy and cut in a third the localization uncertainty area (\citet{2014ApJ...795..105S}).
 
-Soon after a coincident detection is made on the operating detectors, 
+Soon after a coincident detection on the operating detectors, 
 a rapid sky localization is made with BAYESTAR (\citet{2016PhRvD..93b4013S}).
 BAYESTAR is a rapid Bayesian position reconstruction code that will produce accurate sky maps in less than a minute after any BNS merger detection.
 
@@ -1123,10 +1123,19 @@ The LALINFERENCE localization estimations may take days to complete, and weeks i
 These are far more computationally expensive than BAYESTAR, but they will improve the estimations for the localization, 
 especially when the GW signal is very weak in one detector.
 
-At the time of the detection, observatories will rely on the position estimation of BAYESTAR.
+Another LAL code for unmodeled bursts is the LAL Inference Burst, or LIB \textcolor{red}{(Lynch et al. 2015)}.
+This LAL code, unlike the others in LAL Inference, has low latency. It assumes a sinusoidally modulated Gaussian as the wave-form.
+Even though this assumption may not be the true signal, it can produce localizations for a wide variety of waveforms, including compact object mergers.
+
+The coherent WaveBurst (cWB) (\citet{2016PhRvD..93d2004K}) is another real-time detection and localization estimation code
+that makes little to no assumptions on source models.
+To estimate localization, they use a maximum likelihood approach on their calculated likelihood for bursts, restricted to the $(\theta, \phi)$ variables for positioning.
+The code allows for very low latency (only a few minutes).
+
+At the time of the detection, observatories will rely on the position estimation of BAYESTAR, cWB or LIB.
 By the time the LALINFERENCE maps are released, most of the observations would be already done.
 
-The retrieval of the BAYESTAR sky map is done through a authenticated HTML GET request to the Grace Database of the GCN/TAN website.
+The retrieval of the low latency sky maps is done through a authenticated HTML GET request to the Grace Database of the GCN/TAN website.
 
 \section{Target Selection}
 
@@ -1222,6 +1231,8 @@ and we will not cover them on this section.
 Instead, for the purpose of testing the Optimal Subtraction and Real-Bogus Classifier steps, we discuss here the preparation of a test image set 
 from the Chinese Telescope ARray, CSTAR.
 
+\subsection{CSTAR}
+
 CSTAR is a set of Chinese telescopes on the Antarctic ice cap (\citet{2010RAA....10..279Z}).
 CSTAR was deployed in Dome A on the Antarctic Plateau (87.3667${}^{\circ}$S, 77.3500${}^{\circ}$E),
 and had several observation runs from 2008 to 2011 when it was sent back to China for upgrades.
@@ -1262,11 +1273,156 @@ This pixel mask also includes defective pixels (dead lines and columns in the CC
 
 The date-time information on the header was also updated according to \textcolor{red}{[ref]}.
 
-For each of these images, we aligned a reference image with it using the package `astroalign' (see section \ref{section:astroalign}) 
-and also performed a image subtraction using the delta basis method on a 4$\times$4 grid.
+Because the CSTAR telescope points to the South Celestial Pole and has no tracking, the images show the Earth rotation and minor translations with respect to each other.
+We then re-aligned the reference image to each one of the 626 image in the cstar\_june set using the package `astroalign' (see section \ref{section:astroalign}).
 
 \section{Optimal Subtraction}
 
+Searches for time-varying and position-changing objects are undertaken by comparing a reference image of a particular region of the sky 
+with a second image taken at the moment in which we are interested. 
+The two images have to be aligned pixel by pixel and then subtracted to reveal any changes in light.
+In our case, we used a reference image constructed by stacking several `best' images from June and then we aligned this to each of the frames in the data set.
+
+To make a suitable subtraction of two images, one has to match the frames to exactly the same seeing. 
+Image Difference is a technique to find a convolution kernel that best describes (in some minimization sense) the change in point spread function between the images. 
+The idea is to degrade the good seeing image---our reference image---to match the seeing of our second image. 
+Finding the proper kernel can be a delicate operation and there's plenty of literature on the subject. 
+Methods range from PSF modeling through common Gaussian profiles to unmodeled PSF's to Information Theory and Fourier Domain.
+
+The first attempts at image subtraction relied on Fourier decomposition of the images, 
+but the technique suffered when noise levels were even moderate and the results were not always good.
+\citet{1998ApJ...503..325A} were the first to propose a solution in image space (as opposed to Fourier space). 
+They also summarize previous efforts in their introduction and references therein. 
+In that paper, they propose an optimization problem that we describe briefly as follows.
+
+We have an image $I$ and a reference image $R$, for which we want to find a convolution kernel $K$ such that 
+the convolution of $R$ with $K$ best approximates $I$.
+
+\begin{align} \label{diaeq}
+I(x,y) & \approx (R \mathbin{*} K)(x,y) \\
+ & \approx \int \mathrm{d}u \mathrm{d}v {R (u,v) K(x-u,y-v)}
+\end{align}
+ 
+The integral symbol has to be understood in practice, as a sum over all the pixels on the image. 
+
+The kernel $K$ will try to correct for the PSF difference between the two images.
+It's worth noting here, that even though it could be practical to the reader to think so, 
+the kernel $K$ is neither the PSF of the reference nor the PSF of the image.
+
+Ideally, the reference image is the one with the best {\em seeing}, 
+because it can be done by median-stacking good images, or using Speckle Imaging (\citet{1978JOSA...68.1651F}) or some other method.
+
+The inversion problem \ref{diaeq} can be computationally very expensive to invert, especially for an arbitrary shape of the kernel.
+To convert the problem into a linear one, we decompose the kernel into a linear combination of ``{\em basis}'' kernels $B$.
+
+\begin{equation} \label{kernel_linear}
+K(u,v) = \sum_{i} a_{i} B_{i}(u,v)
+\end{equation}
+
+These $B_{i}$ could in principle be any reasonable set of functions. 
+
+Using this linear combination, the convolution will be
+
+\begin{align}
+(R \mathbin{*} K)(x,y) & = \sum_{i} a_{i} \left( R \mathbin{*} B_{i} \right)(x,y) \\
+ & \equiv \sum_{i} a_{i} C_{i}(x,y)
+\end{align}
+
+where the last line defines $C_{i}(x,y)$.
+
+With this decomposition, we can find the set of $a_{i}$ that minimizes the square difference over all pixels.
+Define a cost function $Q$:
+
+\begin{align}
+Q &= \int \left( I(x,y) - (R \mathbin{*} K)(x,y) \right)^2 \\
+ & = \int \left( I(x,y) - \sum_{i} a_{i} C_{i}(x,y) \right)^2,
+\end{align}
+
+and let's minimize $Q$ over the set of $a$'s:
+
+\begin{align}
+\frac{\partial Q}{\partial a_{i}} = & 2 \int \left( I(x,y) - \sum_{j} a_{j} C_{j}(x,y) \right) C_{i}(x,y) 
+\end{align}
+
+Setting the last equation to zero, gives us:
+
+\begin{align}
+\sum_{j} a_{j} \int \left( C_{j}(x,y)  C_{i}(x,y) \right) =  \int I(x,y) C_{i}(x,y) 
+\end{align}
+
+Which we can write more succinctly as a matrix equation:
+
+\begin{align} \label{matrix_eq}
+\sum_{j} M_{ij} a_{j}  =  b_{i}
+\end{align}
+
+where
+
+\begin{align} \label{matrix_def}
+M_{ij}  &=   \int  C_{i}(x,y)  C_{j}(x,y) \\
+b_{i} &=  \int I(x,y) C_{i}(x,y)  \nonumber
+\end{align}
+
+We can find the coefficients $a_{i}$ of the optimal kernel for the subtraction by inverting the system \eqref{matrix_eq}.
+
+This very simple description captures the essence of a collection of algorithms that try to degrade the reference to match the image to subtract.
+For a more extended discussion of this method, we refer the reader to appendix \ref{appendix:dia}.
+
+\citet{1998ApJ...503..325A} was the first to introduce this least-squares method to find an optimal image. 
+He proposed the use of multi-Gaussian functions with modulating polynomials as the kernel basis.
+
+\begin{equation}
+B_{n,d_n^{x}, d_n^{y}}(u,v) = e^{-(u^2+v^2)/2 \sigma_n^2} \times u^{d_n^{x}} v^{d_n^{y}}
+\end{equation}
+
+This basis works well when the PSF differences are approximately Gaussian, but in many situations the modulated Gaussian ansatz can be too restrictive.
+Many PSF differences can not be modeled accurately, especially when there is very little difference between the image and its reference.
+The method can not fit for the $\sigma$ spread for the Gaussian functions and it has to be determined empirically from the data.
+
+\citet{1998ApJ...503..325A} also introduced the simultaneous fit of background differences between the images.
+Background estimation can be done previous to the subtraction or be included in the least-squares optimization.
+
+In \citet{1998ApJ...503..325A} and \citet{2000A&AS..144..363A}, they also discuss the issue of PSF spatial variation.
+The spatial variation is done by further expanding each coefficient into a polynomial on the $(x, y)$ position on the image.
+This makes the number of spatial dependance coefficients proportional to the original number of free parameters.
+The introduction of yet more coefficients to adjust could make the method computationally prohibitive.
+In \citet{2000A&AS..144..363A}, they propose an approximation to the problem using for the calculation 
+only pixels on {\em stamps} around sources and considering a nearly constant PSF on each stamp.
+
+HOTPANTS (\citet{2015ascl.soft04004B}) and its predecesor ISIS (\citet{2000A&AS..144..363A}) are implementations of this method written in C.
+
+\citet{2008MNRAS.386L..77B} proposed a similar method in which every pixel of the kernel is fit independently.
+This is equivalent to choosing a basis of Kronecker Delta centered on each pixel.
+The obvious advantage of this method is the great flexibility of the kernel shape.
+This method can account (and correct) for small misalignments of the order of the kernel side.
+On the down side, the kernel shape is more sensitive to the noise outside the sources.
+The cost to pay for the great flexibility in the kernel is the number of parameters to fit. 
+They are significantly much more than those of \citet{1998ApJ...503..325A} growing with the square of the kernel side, 
+this results in that the multi-Gaussian basis can be significantly faster.
+
+The \citet{2008MNRAS.386L..77B} method can also accommodate for a simultaneous fit of background and a spatial varying kernels.
+To tackle the problem of spatially variable PSF he proposes dividing the image on a grid and perform a subtraction on each grid element.
+In \citet{2008PASP..120..449M} they propose a method similar to \citet{1998ApJ...503..325A} with the use of {\em stamps} to deal with PSF variation.
+Althought, introducing new coefficients for space variation is more costly on the Delta basis because of the larger number of original variables to fit in the kernel.
+
+These methods based on least-square optimization can be fooled with saturated stars and bad pixels on the image.
+To avoid this, one can use a mask to exclude certain pixels from the calculation. 
+For a more complete description of the treatment of bad pixels, see appendix \ref{appendix:dia}.
+
+The bottleneck on these methods is the calculation of the matrix to invert. 
+The inversion itself can be done very quickly with any algebra package,
+but the number of operations for each element of the matrix system scales quadratically with the number of free parameters.
+This is something to take into account when choosing the number of Gaussians and the polynomial degree or the kernel side for the Delta basis.
+
+The implementation of these set of algorithms became a Python module named ois\footnote{\url{https://github.com/toros-astro/ois}}.
+For more details on the Python implementation we refer the reader to section \ref{section:ois}.
+
+
+
+Figure \ref{} shows some examples of the difference images
+
+
+\begin{comment}
 The following stages of the pipeline deal with the specific analysis to identify candidates to optical counterparts of GW.
 
 The first part deals with the Difference Image Analysis.
@@ -1286,6 +1442,7 @@ Some of them are explained and implemented in a Python module named `ois' develo
 The Difference Image Analysis and Machine Learning Real-Bogus classifier parts are tested over an image data set collected by CSTAR.
 The CSTAR image set is a high cadence set of images taken in the winter of 2010 in Antarctica, the South Pole. 
 It comprises 6 months of data with an median cadence of 42 s.
+\end{comment}
 
 \section{Training a Real/Bogus Classifier Agent}
 
