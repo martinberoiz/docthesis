@@ -1417,10 +1417,42 @@ This is something to take into account when choosing the number of Gaussians and
 The implementation of these set of algorithms became a Python module named ois\footnote{\url{https://github.com/toros-astro/ois}}.
 For more details on the Python implementation we refer the reader to section \ref{section:ois}.
 
-
+For our set of images, I applied the \citet{2008MNRAS.386L..77B} method on a 4$\times$4 grid.
+We also simultaneously fit and subtracted a third degree polynomial background.
+We used a kernel side of 11 pixels, which correspond to 2.9'. 
+This is more than enough to accommodate for PSF differences: the FWHM from a typical image ranges between 1 and 2 pixels.
 
 Figure \ref{} shows some examples of the difference images
 
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{figures/kernels}
+\caption{The optimal convolution kernels for the subtraction on each of the regions of the grid.}
+\label{fig:kernels}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{figures/subtwaxes}
+\caption{A typical subtraction image. The axis are added to show the position on the sky.
+Also superimposed are marked in dark grey the masking on some bled stars and bad columns and rows.}
+\label{fig:subtraction}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{figures/subthist}
+\caption{Histogram of the subtraction (not all pixel values shown).
+The pixel values are distributed around zero.}
+\label{fig:subthist}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{figures/bkgdetail}
+\caption{The background fit.}
+\label{fig:bkgdetail}
+\end{figure}
 
 \begin{comment}
 The following stages of the pipeline deal with the specific analysis to identify candidates to optical counterparts of GW.
