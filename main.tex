@@ -75,7 +75,7 @@
     text width=5em, text centered, minimum height=2em]
 \tikzstyle{obse} = [draw, rectangle, fill=green!30, node distance=3cm,
     text width=5em, text centered, rounded corners, minimum height=2em]
-    
+
 \usepackage{minted}
 %End of added by me
 
@@ -176,18 +176,16 @@ With this, a new window of the universe for the purely relativistic astronomical
 
 The history of GW was not without controversies. 
 From the discussion of whether GW would carry energy to the experiments of Joseph Weber, 
-Gravitational Waves made its way from the theoretical realm into a stronghold position in Astrophysics. \textcolor{red}{Either expand or remove}
+Gravitational Waves made its way from the theoretical realm into a stronghold position in Astrophysics (see for example \citet{2016arXiv161008803C}).
 
-The detection of GW150914 firmly established the base for a new kind of Astronomy.
-Years to come will turn GW detection, into a full field GW Astronomy.
-
-The graviton and its wave counterpart will from now on be a new --purely relativistic in nature-- messenger of the universe.
-It will bring us information about high gravitational fields, compact massive objects, relativistic speed phenomena and more.
+The detection of the first Gravitational Wave GW150914 firmly established the foundations for the Gravitational Wave Astronomy.
+%The graviton and its wave counterpart will from now on be a new --purely relativistic in nature-- messenger of the universe.
+Gravitational Waves (GW from here on) will bring us information about strong gravitational fields, compact massive objects and more.
 It will let us probe into the physics of the extreme gravitational field celestial bodies.
 
 The GW information will complete, refine and expand the understanding of our universe.
 It will complement our telescopes in every light frequency band. 
-For this reason, Optical Astronomy has become an even more important partner in this search.
+For this reason, Electro-Magnetic (EM) and Optical Astronomy has become an even more important partner in this search.
 Together they will uncover even more details of the inner mechanisms of the celestial bodies and their interactions.
 
 In the following sections, I offer a brief introduction of GWs and their relation to Optical Astronomy.
@@ -209,12 +207,18 @@ In the following sections, I offer a brief introduction of GWs and their relatio
 %As with electromagnetic waves, GWs travel at the speed of light and are transverse in character, i.e. the strain oscillations occur in directions orthogonal to the direction in which the wave is propagating.
 \end{comment}
 
-General Relativity predicts that very massive or energetic events will create traveling perturbations of the underlying spacetime metric in the form of gravitational waves.
+General Relativity predicts that very massive or energetic events will create traveling perturbations of the underlying spacetime metric in the form of {\em gravitational waves}.
 These are linear disturbances on a flat background metric, that are propagated outwards with the speed of light fading with the inverse of the distance.
 These tensorial transversal waves will modify the local metric as it travels through space.
 
 %Since GWs are weakly interacting, any waves produced will traverse the universe without being scattered or absorbed
-Putting it in more technical terms, in an asymptotically flat spacetime, removed from any strong source so that one can assume an almost flat local solution, one can study weak perturbations to the flat Minkowski metric.
+Putting it in more technical terms, in an asymptotically flat spacetime, removed from any strong source so that one can assume an almost flat local solution, one can study weak-field perturbations to the flat Minkowski metric.
+In mathematical form, we study the spacetime metric $g$ as Minkowski flat metric $\eta$ plus a perturbation $h$.
+
+\begin{equation}
+g_{\mu \nu} = \eta_{\mu \nu} + h_{\mu \nu}
+\end{equation} 
+
 In this regime and choosing appropriate gauges, the linearized Einstein field equations present themselves in the form of a wave equation.
 Solutions to this wave equations are what people refer to as Gravitational Waves.
 
@@ -234,7 +238,7 @@ Aside from the usual sinusoidal factors for the wave propagation, we note that t
 These polarizations are just like light polarization, except that these are at 45 degrees of each other, unlike the 90 degrees symmetry of light polarization.
 To be more clear, the effect on test particles of a purely $h_{\times}$ polarization would be the same as the $h_{+}$ polarization rotated 45 degrees.
 
-Since a spacetime metric is a measure of distance between pair of events, the metric perturbation wave will modify the relative distance between points in space as it passes by. 
+Since a spacetime metric is a measure for the distance between pair of events, the metric perturbation wave will modify the relative distance between points in space as it passes by. 
 It is in fact an effective oscillating strain or tidal force between free test masses.
 It is in principle possible then, to devise an instrument to detect these relative differences in distance for such test masses.
 
@@ -260,7 +264,7 @@ In September 14, 2015, a GW detection labeled GW150914 was finally detected by t
 Direct detection {\em in situ} of GW requires a transducer of GW in some other form measurable by common instruments.
 
 One pioneer work along this line was the work done by Joseph Weber in the late 1960s and early 70s. 
-He proposed using a 2 meters in length and 1 meter in diameter aluminium cylinder, that would resonate with passing GW at 1660 Hz.
+He proposed using a 2 meters in length and 1 meter in diameter aluminum cylinder, that would resonate with passing GW at 1660 Hz.
 In his paper, he states that the strain oscillations on the cylinder would be of about one part in $10^{16}$.
 Although very small, these tiny resonant oscillations could in principle be measured.
 But even though ingenious, the carefully devised experiment could not yield positive reproducible results 
@@ -274,7 +278,7 @@ This bar has already reached a strain sensitivity of $10^{-21}$ Hz${}^{-1/2}$ in
 
 A whole other category of GW detectors are those based on Michelson interferometry of lasers running on two or more kilometric long arms.
 Interferometer GW detectors transduce a GW warp in space to the shrinking and stretching of relative distances of masses put far apart in two or more --mostly perpendicular-- long interferometers. 
-In the case of the Earth based observatories, each interferometer is one arm several kilometers long, of an L shape facility.
+In the case of Earth based observatories, each interferometer is one arm several kilometers long, of an L shape facility.
 The test masses are the end mirrors on each arm that reflect a laser beam pointed in each arm direction. 
 On normal circumstances, the beams from two different arms can be set to be (`locked') on a dark or bright fringe of the interferometer diffraction pattern.
 When a GW passes by, it will alter the relative distances of the mirror masses, thus changing the optical path of the laser beams. 
@@ -296,15 +300,13 @@ Initially a NASA project, it is now an ESA mission.
 eLISA will consist of three spacecrafts in an equilateral triangle configuration separated 2.5 million kilometers from each other.
 The project successfully launched so far the ``LISA pathfinder'' spacecraft, whose mission is to test technologies needed for the final mission.
 The final launch of eLISA is planned for 2034.
-LISA will detect GW in the low-frequency band of the spectrum, roughly from 1Hz to the mHz range.
+LISA will detect GW in the low-frequency band of the spectrum, roughly from the mHz to about 1 Hz in range.
 
 Other indirect methods of GW detection include the Pulsar Timing Array (PTA) effort.
 PTA searches for correlated delays in the pulses arrival times for an array of preselected millisecond pulsars.
 These delays can then be analyzed in search for signatures of passing GW.
-This type of projects aim to detect very low frequency GW, from $\mu$Hz to pHz. 
+This type of projects aim to detect very low frequency GW, from pHz to $\mu$Hz. 
 Potential sources for this very low frequency signals are mergers of massive black hole binaries at the center of galaxies.
-
-%In the following section I offer a more detailed account on the the operation of the first of these Earth based interferometers, the LIGO observatory.
 
 
 
@@ -341,7 +343,7 @@ Virgo is a similar observatory in Europe.
 Originally a project from France and Italy, it soon became a collaboration from five different countries: France, Italy, the Netherlands, Poland, and Hungary. 
 The Virgo observatory is located in the countryside near Pisa, Italy.
 
-Since 2007, LIGO and Virgo share their data in an umbrella collaboration named LVC, the LIGO-Virgo Collaboration.
+Since 2007, The LIGO Scientific Collaboration (LSC) and Virgo joined efforts in an umbrella collaboration named LVC, the LIGO-Virgo Collaboration.
 
 Even though, LIGO and Virgo have comparable noise levels and detection rates, only the two interferometers in LIGO were operational at the time of the GW150914 event. 
 In fact, Virgo was being upgraded to Advanced Virgo, which will have a sensitivity 10 times greater than Initial Virgo. 
@@ -349,7 +351,7 @@ When the upgrade is finished, it will join LIGO in the joint collection of GW da
 
 LIGO went through similar upgrades along the years.
 
-Each LIGO observatory consists of two long arms, 4 km long of an isolated, vacuum tube where the lasers run and hit the mirror test masses.
+Each LIGO observatory consists of two long arms, 4 km long, of an isolated vacuum tube where the lasers run and hit the mirror test masses.
 The initial LIGO detectors were designed to be sensitive to GWs in the frequency band 40-7000 Hz, and capable of detecting a GW strain amplitude as small as one part in $10^{21}$.
 
 To picture the order of magnitude of these displacements, consider that the change in length of one arm of the interferometer 
@@ -380,7 +382,7 @@ All these improvements combined gave Advanced LIGO a 10-fold increase in sensiti
 This increase also means that fainter sources can now be detected, increasing the exploration volume for GW by a factor of a thousand.
 
 Advanced LIGO will have several observations runs, labelled O1, O2, etc. (similar to the scientific runs S1-S5) 
-with gaps between them on which more improvements will be implemented until it reaches design sensitivity.
+with gaps between them on which more improvements will be implemented until it reaches design sensitivity in 2020.
 
 The projected sensitivity for each of the runs is presented in table \ref{ligoruns} (\citet{2016LRR....19....1A, 2014ApJ...795..105S})
 
@@ -417,6 +419,14 @@ The projected sensitivity for each of the runs is presented in table \ref{ligoru
 \textcolor{red}{Needs to add: Observables of LIGO, especially Compact Binary Mergers. Rates, etc.}
 
 
+\begin{comment}
+De Mario:
+
+EN mi sugerencia 1.1 es como lo tenes, 1.2 es distintas fuentes astrofisica, 1.3 es LIGO y VIRGO y los detectores que convendria que fueran explicados un poco mas tecnicamente (mirar papar de detección) y 1.4 deberia ser una discusion de la deteccion y lo que significa?por ejemplo hay predicciones de rates de fusion de estrellas de neutrones tenes que hablar de eso?mira papers de  Belczinski y de Vicki Kalogera?
+\end{comment}
+
+
+
 %The detectors provided unprecedented sensitivity to gravitational waves over a range of frequencies from 30 Hz to several kHz [1], 
 %which covers the frequencies of gravitational waves emitted during the late inspiral, merger, and ringdown of stellar-mass binary black holes (BBHs).
 
@@ -440,7 +450,7 @@ LIGO was designed so that its data could be searched for GWs from many different
 %			The Transient Universe
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Transient Universe}
+\chapter{The Transient Universe}
 
 In this so-called ``Information Age'', data is king.
 As we move away from the traditional one person project and manual way to deal with information, 
@@ -468,7 +478,7 @@ List of transients:
 - M-dwarf flares occur and disappear within minutes but recur often although unpredictably
 \end{comment}
 
-Transient events are present in --and enhanced knowledge of-- almost every field of Astronomy.
+Transient events are present in --and enhanced the knowledge of-- almost every field of Astronomy.
 They are most often unpredictable, they do not have periodic variability, and will only last for a relatively short period of time, 
 this make it necessary to study them in the field of time domain.
 
@@ -481,7 +491,7 @@ to the scientific community to do follow-up observations in different bands of t
 The huge interest in Gamma Ray Bursts propelled most of the infrastructure that we have now to deal with this issue.
 We cover {\em multi-messenger Astronomy} (MMA) and some examples of it in the following sections.
 
-\subsection{Mining Transients}
+\section{Mining Transients}
 
 The identification of transients in data sets hast to be done against the static or slowly varying background sky.
 Fortunately for us, a huge portion of transients, even though they may be fundamentally different phenomena, look about the same at the instance of discovery.
@@ -491,8 +501,8 @@ There are basically two main methods to unbury transients from images.
 Both of the transient retrieval methods require a comparison with a reference and a search that tries to find unexpected objects for that region of the sky.
 
 The first kind is based on catalogs. 
-In this method, a calibrated catalog of sources is done on a new image and compared against a reference catalog.
-Then we search for correlation in both sets of catalogued objects, looking for either spatial position matches or intensity matches.
+In this method, a calibrated catalog of sources is done on a new image and is compared against a reference catalog.
+Then they search for correlations in both sets of catalogued objects, looking for either spatial position matches or intensity matches.
 The unmatched sources --by position or intensity-- are potential candidates to transients.
 
 The second method uses a reference image, but relies on a carefully done subtraction against the new image.
@@ -501,59 +511,50 @@ After the subtraction is done, a source-detection algorithm is run over the subt
 These residual sources are the candidates for transients.
 
 Each method has its advantages and disadvantages, difference image is typically more computationally expensive but 
-performs well around extended objects such as galaxies, it can detect variability in non-stellar profiles, and can perform better in crowded fields.
-It also has the biggest disadvantage of leaving many spurious residual objects from poorly subtracted star profiles. 
+performs well around extended objects such as galaxies. It can detect variability in non-stellar profiles, and can perform better in crowded fields.
+It also has the biggest disadvantage of leaving behind many spurious residual objects from poorly subtracted star profiles. 
 This can be compensated by Machine Learning methods, as we shall see later.
 
 The best advantage of catalog-based methods is that they don't require reference images and are typically computationally less intensive.
-It has also the advantage that can handle better catalogs from different telescopes.
+It also has the advantage of being able to better handle differences in catalogs from different telescopes.
 The disadvantage is that it requires more careful photometric and astrometric calibration and does not perform as well near extended objects.
 
-In either case, the task remain to identify interesting transients after we `mined' our images looking for potential candidates.
+In either case, the task remains to identify interesting transients after we `mined' our images looking for potential candidates.
 Such classification of transient events is nowadays done with the aid of classification agents trained with Machine Learning techniques.
 Machine Learning classifiers can sort out the relevant transients from a pile of thousands in an effective and fast way, 
 enabling rapid follow-ups that would be impossible with a manual approach. 
-Especially so if the transients of interest are rare and data is highly contaminated.
+Especially so, if the transients of interest are rare and data is highly contaminated.
 
-We will cover Machine Learning classifiers in future chapters.
+% We will cover Machine Learning classifiers in future chapters.
 
-\begin{comment}
 
-Variability of the sky usually refers to changes in brightness, \textcolor{blue}{but the position or color of the object could vary instead or as well.}
-
-\textcolor{blue}{copy-paste}However, there is yet another twist - how to identify the target objects of interest among the background of millions of other potential variable or transient objects? ... this results in a pool of candidates contaminated with other variables or transients. Reducing that contamination requires additional observational data either to determine the full shape of the transient or variable lightcurve, or to determine the velocity and acceleration vectors of a solar system object, or to determine the spectral energy distribution of the object through observations at multiple wavelengths or in multiple filters.
-The process of winnowing out the contaminants and identifying the true members of the target sample is the heart of ``classification''.
-
-This advantage can be also a curse when we want to isolate a particular kind of transient interesting to our project.
-As we said before, transients of many kinds look about the same on an image.
-This means that capturing transient events on an image is not enough.
-For example, moving objects and objects in our solar system have to be regarded as contamination if we are interested in extragalactic phenomena.
-
-\end{comment}
-
-\subsection{Multi-Messenger Astronomy}
+\section{Multi-Messenger Astronomy}
 
 The second challenge relates to the issue of multi-messenger Astronomy.
-One event discovered with a certain messenger, could be studied in all the other frequencies.
-For this the transmission of the information on localization has to be sent faster than the typical duration of the event.
+One event discovered with a certain messenger, can be studied in all the other frequencies.
+For this to be possible, the transmission of the information about the localization has to be sent faster than the typical duration of the event.
 This is especially true with afterglows of very energetic events.
 
-An event like a SN explosion may be first detected as a long GRB event in one of the space based Gamma Ray Telescopes orbiting Earth.
-This information needs to be quickly sent to the Astronomy community to study emission it in the optical, infrared, radio as well as the spectroscopy.
+An event like a SN explosion may be first detected as a long GRB event (\citet{2006ARA&A..44..507W}) in one of the space based Gamma Ray Telescopes orbiting Earth.
+Stellar core collapse during a SN releases roughly $10^{52}$ ergs of gravitational binding energy in less than one second.
+The released radiation starts with bright $\gamma$-rays and subsequent afterglows across the whole spectrum up to radio frequencies.
+Localization information of the GRB needs to be quickly sent to the Astronomy community to study its emission across the EM spectrum.
 
 It was actually GRBs what ignited excitement in the astronomy community about transient astronomical events, 
 it was one of the first objects to be studied in a multi-band fashion, 
-and it triggered most of the infrastructure we see today to deal effectively with multi-messenger astronomy.
+and it triggered the building for most of the infrastructure we see today to deal effectively with multi-messenger astronomy.
+
+GRBs are explosions as energetic as $10^{51}$-$10^{52}$ ergs , 
 
 Gamma Ray Busts were first discovered by the Vela satellites, a set of 6 pair of satellites (Vela 1a,b through Vela 6a,b) 
 launched by the United States to orbit the Earth. 
 The original purpose of the array of satellites was to monitor the nuclear activities of other countries during the Cuba Missile Crisis in the 60's.
 The satellites were designed to detect the hard-to-shield high energy signature emissions ($\gamma$ and X rays) of nuclear detonations.
-Instead of this, they found strange very energetic bursts of gamma rays coming from outer space (\citet{1973ApJ...182L..85K}).
+Instead of this, they found strange, very energetic bursts of gamma rays coming from outer space (\citet{1973ApJ...182L..85K}).
 
 The many GRBs detected in the first few decades rapidly show that the direction they were coming were isotropically distributed in the sky.
-Although suggestive, this alone was not enough to conclude the extragalactic origin of GRBs. 
-Given the huge scale of energies involved, many people favored the idea that GRBs \textcolor{red}{were being produced in the halo of our Milky Way. (re check)}
+Although suggestive, this alone was not enough to conclude the extragalactic origin of GRBs.
+Given the huge scale of energies involved, many people favored the idea that GRBs were being produced in the outer halo of our Milky Way.
 More data was needed to resolve this issue.
 
 In the late 1970s, NASA approved the construction of a new telescope that would be ten times more sensitive than previous GRB detectors in space 
@@ -570,12 +571,12 @@ This was already possible with the network of GRB detectors in space at the time
 but it involved cross-analyzing data from diverse sensors and the process took several days to finish.
 It was known at the time that there were no optical counterparts after a week of the event.
 If we wanted to find optical afterglows, we would need to find more accurate localization much faster.
-BeppoSAX did precisely that, it reduced the time of localization to only a few hours.
+BeppoSAX did precisely that reducing the time of localization to only a few hours.
 
 This reduction in the time of localization opened the game for telescopes around the globe to try to find optical and radio afterglows.
 On February 28, 1997 BeppoSAX localized a GRB with an X-ray counterpart that vanished after 3 days.
 Twenty hours after the GRB event, a group from the Netherlands lead by Jan van Paradijs, 
-used La Palma telescope in Canary Islands, Spain to image the region.
+used La Palma telescope in Canary Islands, Spain, to image the region.
 This was the first time an optical afterglow could pinpoint the sky position down to the unprecedented precision of 1 arcsecond.
 Hubble Space Telescope (HST) imaged the region and a blue blob appeared. 
 Unfortunately this was not enough to confirm or deny an extragalactic origin.
@@ -590,41 +591,12 @@ Furthermore, radio follow-up observations, along with the estimated distance fro
 strongly suggested that the emitting surface was expanding at close the speed of light.
 The distance estimation greatly helped understanding the intrinsic luminosity and possible mechanisms for it.
 
-\textcolor{red}{Find if MMA also made the link between long GRBs and stellar core collapse}
-
 So much more was there to find about GRB970508 and GRBs in general, 
-but the foundations of MMA were laid for the future.
+but the foundations of MMA were laid.
 GRBs were a complete enigma until fast event dissemination enabled for multi-band identification of afterglows.
 
 
 \begin{comment}
-
-From Bloom's book:  Joshua S. Bloom. What Are Gamma-Ray Bursts?.
-To settle the questions about the peculiarities of the data collected over multiple telescopes, a single experiment was required, whose sky coverage and trigger efficiencies were well modeled, capable of detecting GRBs to significantly fainter levels than before. Such an experiment had been in construction at Marshall Space Flight Center (in Huntsville, Alabama) throughout most of the 1980s, having been accepted for funding by NASA in the late 1970s. The Burst and Transient Source Experiment (BATSE) was launched by space shuttle Atlantis on April 5, 1991, on board the Compton Gamma-ray Observatory (CGRO; along with three other high-energy experiments). BATSE was about ten times more sensitive than previous GRB missions, allowing it to find roughly one burst a day for what would be its nine-year mission.
-For the first time, a single satellite would be capable of positioning a GRB to ~10 degrees on the sky.
-
-It was abundantly clear in 1995 that new observations would be needed to settle the distance scale debate once and for all. Just as always, the main hope remained to find a precise location of classical GRBs and associate those positions with known objects. Since the single-satellite precision of BATSE was about as good as that detector configuration could provide, the key was to find counterpart events at other wavebands. It was known from precise IPN locations that no long-lived (weeks to months) optical transient accompanied the events. But thanks to the nearly instantaneous relay of new GRB positions from BATSE, several groups began construction of optical telescopes awaiting email alerts from GRB satellites; this new generation of telescopes was capable of rapidly observing new GRB positions. If GRBs were accompanied by optical flashes lasting just a few minutes, the robotic on-call telescopes would have a chance of catching the fleeting light. Theory of GRB emission mechanisms, developed in the early 1990s, also predicted radio transients from GRBs (chapter 3); as such, some groups began a search at radio wavebands with premier facilities like the Very Large Array (VLA) in New Mexico. None of the early searches of BATSE positions proved fruitful.
-
-While GRBs were not the main scientific priority of a new Italian-Dutch experiment, the ``Satellite per Astronomia a Raggi X'' (commonly known as BeppoSAX), it did carry a Gamma-Ray Burst Monitor (GRBM) that stared at the same place on the sky as the X-ray-coded mask imagers (collectively called the Wide-Field X-ray Camera [WFC]); those instruments were capable of seeing roughly 1/15th of the sky at any time. 
-Launched in April 1996, BeppoSAX demonstrated that summer that a burst triggered in the GRBM and seen in the WFC field of view could be localized to about 5-10 arcminute radius. 
-Such localization accuracy was often obtained with the IPN, but BeppoSAX had the ability to determine such positions in a matter of a few hours, whereas IPN localizations typically took days to determine. 
-The speed of finding a precise GRB position would prove to be a crucial capability.
-
-On February 28, 1997, BeppoSAX localized a GRB using the WFC and the GRBM and found a good-enough position to command the satellite to repoint to allow its Narrow-field X-ray Instruments (NFI) to image the GRB region. Just eight hours after the GRB, two of the NFI cameras detected a bright, new X-ray source consistent with the WFC position. Three days later, that source had vanished.
-
-Not only had the BeppoSAX team found the first afterglow of a GRB, the X-ray afterglow was positioned well enough (to 50 arcseconds in radius) to allow for sensitive searches of counterparts at other wavelengths. Just twenty hours after the GRB, a group led by Jan van Paradijs at Amsterdam University, the Netherlands, obtained a set of deep optical images of the WFC error location from La Palma Observatory on the Canary Islands (Spain). One week later, my collaborator (Nial Tanvir) obtained the next set of images of that field from the same observatory. A faint source in the NFI error box had vanished between those two epochs: it was the discovery of the first fading optical (i.e., visible-light) afterglow of a GRB. The optical position, determined to better than 1 arcsecond, was by far the best localization of any GRB, including the March 5th (SGR) event.
-
-As the optical afterglow faded, the Hubble Space Telescope (HST) was trained on the position and found a blue blob around the fading afterglow. To most, this ``nebulosity'' looked a lot like a faint low-surface brightness galaxy, thus confirming the extragalactic hypothesis; but to the stalwarts of the Galactic model, it looked like an NS-blown bubble (confirming the opposite). Despite some claims from a few that the afterglow appeared to be moving on the sky (a nominal expectation of the Galactic model) and that the nebulosity changed color and shape (only possible in the Galactic model), all doubts about the distance scale of classical GRBs would be soon laid to rest.
-
-On May 8, 1997, BeppoSAX spotted another GRB, and an optical afterglow was promptly discovered consistent in location and time with another fading X-ray afterglow. Astronomers at the California Institute of Technology (Caltech) obtained a spectrum of the optical afterglow using the Keck II 10-meter telescope in Hawaii; this telescope (and its twin Keck I) was the largest optical telescope in the world at the time. A quick inspection of that data led to one of the biggest discoveries in modern astrophysics: notched out of an otherwise smooth spectrum were a series of absorption lines, characteristic of iron and magnesium in gaseous form. But instead of seeing lines at the specific wavelengths as they would appear in a laboratory, they all appeared shifted to significantly redder wavelengths.* This redshift effect was immediately recognized as an effect due to the expansion of the Universe, and, given a reasonably well-prescribed mapping between the redshift measurement and distance, this observation established that GRB 970508 must have occurred from a distance of more than about 5 billion parsec (i.e., 5 Gpc) away. Some gas cloud in a distant galaxy lay between us and the GRB,26 and its absorbing metals provided enough of a unique fingerprint to measure an unambiguous redshift.
-
-In one fell swoop of the telescope, the thirty-year marathon to measure the distance scale of classical GRBs was won. The cosmological distance scale, the disfavored choice of so many for so long, had triumphed. To top it off, the first radio afterglow of a GRB was found following GRB 970508. A detailed inspection of the way in which the radio afterglow behaved, coupled with the then-known distance, strongly suggested that the afterglow-emitting surface was expanding at a rate close to the speed of light. This relativistic expansion, which we will explore in 2.2.1, was a basic prediction of most cosmological theories of GRBs?another triumph for observers and theorists alike.
-
-------------------------------------------------------------
-
-GRBs are explosions as energetic as $10^{51}$-$10^{52}$ ergs, liberated Gamma Rays and subsequent afterglows across the whole spectrum up to radio frequencies.
-The afterglows for GRBs can be seen in the optical as a transient brightness excess, usually located near the galaxies that host them. 
-GRBs can be at extremely distant galaxies, and therefore optical glows can sometimes be too faint to observe.
 
 According to \textcolor{red}{Batse} data, GRBs seem to come from two distinct population.
 Histograms done on the time time to receive 90\% of the radiation, or $T_{90}$ seem to indicate the populations are
@@ -633,31 +605,23 @@ divided into `long' and `short types'. Long GRBs last for longer than 2s, while 
 Long GRBs are associated with massive star collapse (E. Waxman and J.N. Bahcall, ApJ 541, 707 (2000).) 
 producing $\gamma$-rays then subsequent X-rays and optical afterglows
 
-
 %Long GRB events are assumed to be produced by massive star collapse, and GW searches by LIGO and Virgo use their unmodeled burst search pipelines
 %F. Acernese et al (Virgo Collaboration), Class. Quantum Grav. 25, 225001 (2008).
 %B. Abbott et al (LIGO Scientific Collaboration), Phys. Rev. D 72, 042002 (2005).
 %B. Abbott et al (LIGO Scientific Collaboration), Phys. Rev. D 77, 062004 (2008).
 %B. Abbott et al (LIGO Scientific Collaboration and the Virgo Collaboration), ApJ 715,
 
-%The coalescence of a neutron star - neutron star, or neutron star - black hole binary system is suspected to be the source of the short GRBs; the LIGO-Virgo compact binary coalescence and burst pipelines are both used to search for GWs from short GRBs
+%The coalescence of a neutron star - neutron star, or neutron star - black hole binary system is suspected to be the source of the short GRBs; 
+%the LIGO-Virgo compact binary coalescence and burst pipelines are both used to search for GWs from short GRBs
 %J. Abadie et al (LIGO Scientific Collaboration and the Virgo Collaboration), ApJ 715, 1453 (2010).
-
-%Since the detection of the first few of these, now we have two space telescopes dedicated to find them.
-%Swift reference http://swift.gsfc.nasa.gov/docs/swift/swiftsc.html
-%Fermi reference http://fermi.gsfc.nasa.gov/
-
-A double neutron star (NS) or NS/blackhole merger could be the source of short GRBs (E. Nakar, Phys. Rep. 442, 166 (2007).)
-
-To detect the optical afterglow, GRB locations were communicated to other observatories that would promptly point their telescopes in that direction.
-A multi-band observation and spectrography is very valuable for the understanding and classification of these events.
 
 \end{comment}
 
 The prompt dissemination of GRB discoveries became so important that sparked the creation of a collective centre for transient discovery notification.
-The Gamma-Ray burst Coordinates Network (GCN) and the Transient Astronomy Network (TAN), 
-collectively called the GCN/TAN network\footnote{https://gcn.gsfc.nasa.gov},
-is a distribution network of transient events notices dependent on Goddard NASA.
+The gamma-ray burst coordinates network (GCN) started with the BATSE coordinates distribution network (BACODINE). 
+The GCN, along with the Transient Astronomy Network 
+(collectively called the GCN/TAN network\footnote{https://gcn.gsfc.nasa.gov}),
+is now a distribution network of transient event notices dependent on Goddard NASA.
 
 The GCN/TAN disseminates transient event information mostly in real time, while the event is still ongoing, or with short delay depending on the instrument,  
 detected by various spacecrafts (Swift, Fermi, MAXI, INTEGRAL, IPN, and others).
@@ -666,51 +630,33 @@ It also serves as a repository for the follow-up observation reports submitted b
 Although the creation of GCN/TAN was propelled by the interest in GRBs, now it serves as a point of communication for all sort of transient events.
 In the LIGO-Virgo era, GCN/TAN now also serves GW detection notices to some selected observatory partners (of which TOROS is one).
 
-With the new GW detections of LIGO, a new kind of multi-messenger Astronomy is at hand.
-LIGO will bring information of a completely new information carrier: the {\em graviton}.
+%With the new GW detections of LIGO, a new kind of multi-messenger Astronomy is at hand.
+%LIGO will bring information of a completely new information carrier: the {\em graviton}.
 
 In the same way that long GRBs sparked the multi-band follow-up observations across the spectrum,
 a new type of event associated with short GRBs can also prompt a new kind of MMA.
-Short GRBs are believed to have originators in the merger of compact objects (degenerate stars).
+Short GRBs are believed to have originators in the merger of compact objects (\citet{2007PhR...442..166N}).
 Compact object mergers are also the originators of the expected GW signals that LIGO will detect.
 Along with the GW produced in these mergers, a companion EM thermal radiation will radiate isotropically from the merger.
 This EM counterpart, is believed to shine about a thousand times brighter than a Nova, and it was named accordingly 
-`Kilonova'\footnote{It is also reference in the literature under the name {\em macronova}}.
-Just as in the case for GRBs, Kilonovas can narrow the localization of GW to a few arcseconds.
+`Kilonova'\footnote{It is also referenced in the literature under the name {\em macronova}}.
+Models of Kilonovae afterglows peak about a day after the GW emission (\citet{2010MNRAS.406.2650M})
+and last for about a week.
+Just as for the case for GRBs, Kilonovae can narrow the localization of GW to a few arcseconds.
 
-Conversely, if there is a chance to detect the relatively faint Kilonova, it will be greatly helped if we have prompt information of its GW counterpart, or its associated GRB.
+Conversely, if there is a chance to detect the relatively faint Kilonova, 
+it will be greatly helped if we have prompt information of its GW counterpart, or its associated GRB.
 
 It is then very important to complement such information with the EM counterpart.
-Both, the GW and the EM information can bring up a more complete picture of the phenomena at hand.
-Together they can give us an understanding richer than the sum of their separate contributions.
-Even more, EM counterparts can most notably help where GW information fails harder, in localization.
+Both, the GW and the EM information contribute with different pieces of the puzzle, 
+they can paint a more complete picture of the phenomena.
+EM counterparts can most notably help where GW information fails harder, in localization.
 Localization by means of the EM counterpart, not only helps on this few parameters of the position in the sky, 
-but will also help to separate the uncertainty correlation on the geometrical disposition of a merger, for example.
-This way, improving other estimates for the parameters of the merge.
+but will also help to separate the uncertainty degeneracy on the geometrical disposition of a merger.
+This way, improving other estimates for the parameters of the merge, such as masses and spins involved, 
+as well as the luminosity distance.
 
 
-\textcolor{red}{Add: GW can trigger searches for optical counterparts, but the inverse is also true.}
-% There are efforts to search for GW in ligo data triggered by optical observations.
-% E. Thrane et al, Phys. Rev. D 83, 083004 (2011).
-
-\begin{comment}
-
-Long and short GRB afterglows peak a few minutes after the prompt EM/GW emission
-(\citet{2011ApJ...734...96K, 2010ApJ...720.1513K})
-and it is critical to have EM observations as soon as possible after the GW trigger validation. 
-Kilo-novae model afterglows peak about a day after the GW emission (\citet{2010MNRAS.406.2650M})
-so EM observations a day after the GW trigger would be an important validation for these type of events.
-
-\textcolor{blue}{LSST will send out public VOEvents describing the millions of transient and variable detections each night. 
-Huge databases (upwards of 12 PB for LSST at the end of its 10 year survey) of objects and all of their detections will be created and available for queries. 
-Users will be able to use this database to identify and classify the target samples of interest to them, as well as access the VOEvent stream to get real-time updates on targets.}
-
-\textcolor{blue}{Thus we expect the infrastructure for astronomical transients to allow end-users to select in advance what types of events they want, and we expect specialist ``event brokers'' that disseminate only certain kinds of transients to their target audiences. 
-Such dissemination should happen quickly, so that the essential telescope resources can be directed for follow-up, and we expect these decisions to be taken automatically by machines.}
-
-\textcolor{blue}{the IVOA has settled on a flavor of XML called VOEvent for the transmission of astronomical events, and processing those would need XML streaming and filtering technologies.}
-
-\end{comment}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -758,7 +704,6 @@ Devoid of any other external source of heating, the ejecta would be so cold when
 that the whole transient would be basically invisible.
 It is the continued heating of the ejecta by external processes what can brighten the Kilonova.
 
-%At a minimum, the ejecta receives heating from the radioactive decay of heavy nuclei synthesized in the ejecta by the r-process.
 As we mentioned before, the primary heating mechanism is the radioactive heating by r-process nuclei decay.
 This alone is enough to heat the environment to shine as much as 1,000 times brighter than a Nova.
 Nonetheless other contributions to the main heating rate of the ejecta are important to determine 
@@ -805,7 +750,6 @@ Energy input from such long-lived remnants could substantially enhance the kilon
 
 \begin{comment}
 
-
 The variety of sources which contribute to heating the ejecta, particularly on timescales when the ejecta is first becoming transparent, 
 will determine the specific characteristics of the light-curve of the Kilonova.
 
@@ -838,9 +782,76 @@ In addition to the blue and red components, recent NS-NS merger simulations show
 
 \end{comment}
 
-Tanvir \& Metzger
+\subsection{Model Simulation of Light-curves}
 
-Later that year, \citet{2013Natur.500..547T} and \citet{2013ApJ...774L..23B} presented evidence for excess infrared emission following the short GRB 130603B on a timescale of about one week using the Hubble Space Telescope. If confirmed by future observations, this discovery would be the first evidence directly relating NS mergers to short GRBs, and hence to the direct production of r-process nuclei.
+See figure \ref{fig:KNlightcurve}.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{figures/kilonova_lightcurves}
+\caption{Kilonova light curves for a composite ejecta including a lanthanide-poor disk wind from a HMNS remnant with lifetime 100 ms, 
+and a lanthanide-rich torus of dynamical ejecta. 
+Colored curves show the optical light curves as a function of observer inclination from the rotation axis, 
+while black curves show near infrared emission. Figure from \citet{2015MNRAS.450.1777K}.}
+\label{fig:KNlightcurve}
+\end{figure}
+
+\subsection{Observational Evidence}
+
+In 2013, \citet{2013Natur.500..547T} and \citet{2013ApJ...774L..23B} reported evidence 
+that suggests a companion Kilonova to the short GRB 130603B (see figure \ref{fig:tanvir}).
+GRB 130603B was detected on BATSE with a $T_{90}$ of about 0.18 s and a redshift $z$ = 0.356.
+It was also detected by Konus-Wind with a duration $T_{90}$ of 0.09 s.
+The localization of the GRB to its host galaxy was done by a optical afterglow detected at the William Herschel Telescope 2.7 hours after the event.
+This optical afterglow faded away afterwards, marking the link to GRB 130603B.
+
+\citet{2013Natur.500..547T} imaged the localization area with the Hubble Space Telescope (HST) during a whole orbit in two epochs, 
+9 days after and 30 days after the burst. They used both the optical F606W filter (0.6 $\mu$m) and the nIR F160W filter (1.6 $\mu$m).
+Using differential photometry (see section \ref{section:dia}) for the two epochs, they found a very faint excess of flux at the host galaxy.
+Their photometry analysis gave a magnitude R606,AB > 28.25 (2$\sigma$ upper limit) and H160,AB = 25.73 $\pm$ 0.20.
+
+\citet{2013ApJ...774L..23B} also imaged the area with HST for two different epochs, one 9.4 days after and another one \textasciitilde30 days later.
+Using differential photometry, they found a point source 
+with magnitude r = 21.56 $\pm$ 0.02 mag at 8.2 hr and r $\gtrsim$ 24.8 mag (3$\sigma$) at 32.2 hr.
+
+Even though the source was very faint, the magnitude and color observed by HST 
+were in accordance to the prediction of numerical merger models for a Kilonova.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{figures/tanvir_kilonova}
+\caption{HST imaging of the location of SGRB 130603B. The left-hand panel shows the host and surrounding field. The next panels show in sequence the first epoch and second epoch imaging, and difference (upper row F606W/optical and lower row F160W/nIR). From \citet{2013Natur.500..547T}.}
+\label{fig:tanvir}
+\end{figure}
+
+There were two other searches for NIR emission for the afterglow of GRB 060614 by \citet{2015ApJ...811L..22J} and \citet{2015NatCo...6E7323Y}.
+They are indicative of possible r-process emission of a Kilonova.
+
+Finding a Kilonova companion to a GW NS-NS merger or BH-NS would be a direct confirmation of the association 
+between Kilonovae, the r-process during a compact object merger, and the short kind of GRBs.
+
+
+\subsection{Conclusion}
+
+In summary, Kilonova emission is an ideal EM counterpart to the LIGO observations.
+As previously said, unlike SGRBs, Kilonova emission is isotropic. 
+Even though short GRBs emission is also present during the BNS merger, the r-process emission in the jet and other merger neutron ejecta, is fairly isotropic.
+The chances to detect the GRB jet are very limited by the collimation of the jet and our line of sight, but r-process radiation is not. 
+
+The Kilonovae are bright.
+It was based on their derived peak luminosities, of approximately 1,000 times brighter than a nova, that Metzger et al. (2010) first introduced the term `kilonova' to describe this EM counterparts.
+
+Another fundamental element that the multi-messenger astronomy contributes with,
+is the identification of host galaxies.
+The inference of the distance to the GW event using redshift of host galaxy will greatly reduce degeneracy in the GW parameter estimation,
+especially of the binary inclination with respect to the line of sight.
+It will also give a better estimate of the energies involved in the merger.
+Other interesting environment properties can be derived from the Kilonova detection, like age of the stellar population and possible displacements due to SN birth kicks.
+
+But most importantly, the merger of a binary system involving a NS is very complex and several kind of factors can effect the radiation pattern and light-curve of the Kilonova as well as the GRW waveform. 
+The optical light curve can serve as a probe into the core and shed light to the intricacies and details of the merge process.
+
+\begin{comment}
 
 Rate of GRBs from NS-NS mergers is low, less than once per year all-sky. (e.g. \citet{2012ApJ...746...48M})
 We should not expect the first --or even the first several dozen-- GW chirps from NS-NS/BH-NS mergers to be accompanied by a GRB.
@@ -859,31 +870,10 @@ The precise maximum detection distance depends mainly of the masses involved in 
 BNS and BH-NS mergers have long been proposed as the process leading to short-hard gamma-ray bursts (SGRBs) 
 (\citet{1989Natur.340..126E, 1992ApJ...395L..83N}), but unfortunately this emission is beamed and thus can only be observed in a small fraction of the events.
 
-Mergers with NS are also predicted to be accompanied by a more isotropic EM counterpart, commonly known as a `Kilonova'. Kilonovae are day to week-long thermal, supernova-like transients, which are powered by the radioactive decay of heavy, neutron-rich elements synthesized in the expanding merger ejecta (\citet{1998ApJ...507L..59L}). 
+Mergers with NS are also predicted to be accompanied by a more isotropic EM counterpart, commonly known as a `Kilonova'. 
+Kilonovae are day to week-long thermal, supernova-like transients, which are powered by the radioactive decay of heavy, neutron-rich elements synthesized in the expanding merger ejecta (\citet{1998ApJ...507L..59L}). 
 
-%Lattimer \& Schramm in 1974, were the first to propose a BH-NS merger as a suitable environment for the r-process and its radiation emission.
-
-%Needless to say, is that Kilonovas are an ideal counterpart to the LIGO observations.
-%We detail the reasons in the following paragraphs.
-
-Kilonova emission is an ideal EM counterpart to the LIGO observations for the reasons we summarize in the following paragraphs.
-
-As previously said, unlike SGRBs, Kilonova emission is isotropic. 
-Even though short GRBs emission, is also present during the BNS merger, the r-process emission in the jet and other merger neutron ejecta, is fairly isotropic.
-The chances to detect the GRB jet are very limited by the collimation of the jet and our line of sight, but r-process radiation is not. 
-
-The Kilonovae are bright.
-It was based on their derived peak luminosities, of approximately 1,000 times brighter than a nova, that Metzger et al. (2010) first introduced the term `kilonova' to describe this EM counterparts.
-
-Another fundamental element that the multi-messenger astronomy contributes with,
-is the identification of host galaxies.
-The inference of the distance to the GW event using redshift of host galaxy will greatly reduce degeneracy in the GW parameter estimation,
-especially of the binary inclination with respect to the line of sight.
-It will also give a better estimate of the energies involved in the merger.
-Other interesting environment properties can be derived from the Kilonova detection, like age of the stellar population and possible displacements due to SN birth kicks.
-
-But most importantly, the merger of a binary system involving a NS is very complex and several kind of factors can effect the radiation pattern and light-curve of the Kilonova as well as the GRW waveform. 
-The optical light curve can serve as a probe into the core and shed light to the intricacies and details of the merge process.
+\end{comment}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -891,7 +881,7 @@ The optical light curve can serve as a probe into the core and shed light to the
 %			TOROS
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The TOROS Project}
+\chapter{The TOROS Project}
 
 In 2011, scientists from the Center for Gravitational Wave Astronomy (CGWA) at 
 The University of Texas at Brownsville (UTB) 
@@ -970,7 +960,7 @@ Li \& Paczynski (1998, LP98) first showed that the radioactive ejecta from a NS-
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Building a software pipeline for TOROS}
+\section{Building a software pipeline for TOROS}
 
 Since the ultimate goal of the TOROS Project is the robotization of the telescope,
 it is important to have in place a software `pipeline' that accompanies the process
@@ -1031,6 +1021,15 @@ specific to do that, since there were no existing python modules with that funct
 In the following sections, I explain the different components of the pipeline diagram.
 
 \section{TOROS Alert Robot}
+
+\begin{comment}
+\textcolor{blue}{LSST will send out public VOEvents describing the millions of transient and variable detections each night. 
+Huge databases (upwards of 12 PB for LSST at the end of its 10 year survey) of objects and all of their detections will be created and available for queries. 
+Users will be able to use this database to identify and classify the target samples of interest to them, as well as access the VOEvent stream to get real-time updates on targets.}
+
+\textcolor{blue}{the IVOA has settled on a flavor of XML called VOEvent for the transmission of astronomical events, and processing those would need XML streaming and filtering technologies.}
+\end{comment}
+
 
 The first step of the process starts with the alert receiver robot.
 
@@ -1276,7 +1275,7 @@ The date-time information on the header was also updated according to \textcolor
 Because the CSTAR telescope points to the South Celestial Pole and has no tracking, the images show the Earth rotation and minor translations with respect to each other.
 We then re-aligned the reference image to each one of the 626 image in the cstar\_june set using the package `astroalign' (see section \ref{section:astroalign}).
 
-\section{Optimal Subtraction}
+\section{Optimal Subtraction} \label{section:dia}
 
 Searches for time-varying and position-changing objects are undertaken by comparing a reference image of a particular region of the sky 
 with a second image taken at the moment in which we are interested. 
@@ -1452,6 +1451,13 @@ The pixel values are distributed around zero.}
 \includegraphics[scale=0.6]{figures/bkgdetail}
 \caption{The background fit.}
 \label{fig:bkgdetail}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=1.0]{figures/subtdetail}
+\caption{A detail of the subtraction image showing an excess of light (blue circle) on the subtracted image.}
+\label{fig:subtdetail}
 \end{figure}
 
 \begin{comment}
@@ -1901,15 +1907,7 @@ Absolute Magnitude & $MB \le -21$ mag \\ \hline
 
 \section{Image Reduction}
 
-\section{Results}
 
-The observation campaign for the GW150914 left us with a visit of XX fields and XX targets.
-The probability covered was less than 0.01\%.
-
-The TOROS collaboration conducted a prompt search for the electromagnetic counterpart of the 
-first gravitational-wave event reported by LIGO using the 1.5-m telescope of Estacion Astrofisica Bosque Alegre (EABA) in Cordoba, Argentina. 
-Our search spanned two nights, during which we targeted 21 fields containing nearby (D < 60 Mpc) luminous (MB <  21 mag) 
-galaxies with high probabilities of hosting the event. We covered 0.62 square degrees and reached a 5$\sigma$ limiting AB magnitude of r = 21.7.
 
 
 
@@ -1918,7 +1916,7 @@ galaxies with high probabilities of hosting the event. We covered 0.62 square de
 %			O1 ANALYSIS
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Data Analysis for GW150914 Optical Counterparts}
+%\chapter{Data Analysis for GW150914 Optical Counterparts}
 
 
 \section{Difference Imaging Analysis}
@@ -2040,6 +2038,15 @@ No bona fide events were found, a result that is consistent with the low probabi
 given our temporal and areal coverage, and with the later classification of the GW event as a merger of two stellar-mass black holes.
 
 \section{Results}
+
+The observation campaign for the GW150914 left us with a visit of XX fields and XX targets.
+The probability covered was less than 0.01\%.
+
+The TOROS collaboration conducted a prompt search for the electromagnetic counterpart of the 
+first gravitational-wave event reported by LIGO using the 1.5-m telescope of Estacion Astrofisica Bosque Alegre (EABA) in Cordoba, Argentina. 
+Our search spanned two nights, during which we targeted 21 fields containing nearby (D < 60 Mpc) luminous (MB <  21 mag) 
+galaxies with high probabilities of hosting the event. We covered 0.62 square degrees and reached a 5$\sigma$ limiting AB magnitude of r = 21.7.
+
 
 The fact that we did not find any genuine transient in our search is not surprising given the small area surveyed (\textasciitilde{}0.62 sq. degrees) 
 and the low cadence of the observations (with only two epochs per target, separated by 73$\pm$3d). 
