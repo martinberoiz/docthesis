@@ -1291,32 +1291,25 @@ We then re-aligned the reference image to each one of the 626 image in the cstar
 Searches for time-varying and position-changing objects are undertaken by comparing a reference image of a particular region of the sky 
 with a second image taken at the moment in which we are interested. 
 The two images have to be aligned pixel by pixel and then subtracted to reveal any changes in light.
-In our case, we used a reference image constructed by stacking several `best' images from June and then we aligned this to each of the frames in the data set.
+In our case, we used a reference image constructed by stacking several CSTAR images from the best-{\em seeing} month of June 
+and then we aligned this to each of the frames in the data set.
 
-To make a suitable subtraction of two images, one has to match the frames to exactly the same seeing. 
+To make a suitable subtraction of the two images, one has to match the frames to exactly the same {\em seeing}. 
 Image Difference, also known as Optimal Subtraction or Differential Photometry, is a technique to find a convolution kernel that best describes 
 (in some minimization sense) the change in point spread function between the images. 
-The idea is to degrade the good seeing image---our reference image---to match the seeing of our second image. 
-Finding the proper kernel can be a delicate operation and there's plenty of literature on the subject. 
-Methods range from PSF modeling through common Gaussian profiles to unmodeled PSF's to Information Theory and Fourier Domain.
+The idea is to degrade the good {\em seeing} image ---our reference image--- to match the {\em seeing} of our second image. 
+Finding the proper convolution kernel can be a delicate operation and there's plenty of literature on the subject. 
+Methods range from PSF modeling through common Gaussian profiles; to unmodeled PSF's; to Information Theory; and Fourier Domain.
 
-The first attempts at image subtraction relied on Fourier decomposition of the images, 
-but the technique suffered when noise levels were even moderate and the results were not always good.
-
-\textcolor{red}{Add the convolution in Fourier method from Bruno's paper.}
-
-\citet{1998ApJ...503..325A} were the first to propose a solution in image space (as opposed to Fourier space). 
-They also summarize previous efforts in their introduction and references therein. 
-In that paper, they propose an optimization problem that we describe briefly as follows.
-
+The general problem can be stated as follows. 
 We have an image $I$ and a reference image $R$, for which we want to find a convolution kernel $K$ such that 
 the convolution of $R$ with $K$ best approximates $I$.
 
-\begin{align} \label{diaeq}
+\begin{align} \label{thdiaeq}
 I(x,y) & \approx (R \mathbin{*} K)(x,y) \\
  & \approx \int \mathrm{d}u \mathrm{d}v {R (u,v) K(x-u,y-v)}
 \end{align}
- 
+
 The integral symbol has to be understood in practice, as a sum over all the pixels on the image. 
 
 The kernel $K$ will try to correct for the PSF difference between the two images.
@@ -1326,10 +1319,25 @@ the kernel $K$ is neither the PSF of the reference nor the PSF of the image.
 Ideally, the reference image is the one with the best {\em seeing}, 
 because it can be done by median-stacking good images, or using Speckle Imaging (\citet{1978JOSA...68.1651F}) or some other method.
 
-The inversion problem \ref{diaeq} can be computationally very expensive to invert, especially for an arbitrary shape of the kernel.
-To convert the problem into a linear one, we decompose the kernel into a linear combination of ``{\em basis}'' kernels $B$.
+The inversion problem \ref{thdiaeq} can be computationally very expensive to invert directly.
 
-\begin{equation} \label{kernel_linear}
+The first attempt at image subtraction goes back to \citet{1995ASPC...77..297P}. 
+They solved the equation in Fourier domain, where the convolution transforms into a simple multiplication.
+
+\begin{align}
+\tilde{I} = \tilde{R} \tilde{K} \\
+K = \mathcal{F}^{-1} \left \{ \tilde{I} / \tilde{R} \right \}
+\end{align}
+
+Unfortunately, the solution is not numerically stable because it is very sensitive to high frequency noise.
+Even with moderate levels of noise the results were not always good.
+
+\citet{1998ApJ...503..325A} were the first to propose a solution in image space (as opposed to Fourier space). 
+%They also summarize previous efforts in their introduction and references therein. 
+In their paper, they propose an optimization solution by converting the convolution inversion into a linear problem.
+First, they decompose the kernel into a linear combination of ``{\em basis}'' kernels $B$.
+
+\begin{equation} \label{thkernel_linear}
 K(u,v) = \sum_{i} a_{i} B_{i}(u,v)
 \end{equation}
 
@@ -1349,7 +1357,7 @@ Define a cost function $Q$:
 
 \begin{align}
 Q &= \int \left( I(x,y) - (R \mathbin{*} K)(x,y) \right)^2 \\
- & = \int \left( I(x,y) - \sum_{i} a_{i} C_{i}(x,y) \right)^2,
+ & = \int \left( I(x,y) - \sum_{i} a_{i} C_{i}(x,y) \right)^2, \nonumber
 \end{align}
 
 and let's minimize $Q$ over the set of $a$'s:
@@ -1366,38 +1374,38 @@ Setting the last equation to zero, gives us:
 
 Which we can write more succinctly as a matrix equation:
 
-\begin{align} \label{matrix_eq}
+\begin{align} \label{thmatrix_eq}
 \sum_{j} M_{ij} a_{j}  =  b_{i}
 \end{align}
 
 where
 
-\begin{align} \label{matrix_def}
+\begin{align} \label{thmatrix_def}
 M_{ij}  &=   \int  C_{i}(x,y)  C_{j}(x,y) \\
 b_{i} &=  \int I(x,y) C_{i}(x,y)  \nonumber
 \end{align}
 
-We can find the coefficients $a_{i}$ of the optimal kernel for the subtraction by inverting the system \eqref{matrix_eq}.
+We can find the coefficients $a_{i}$ of the optimal kernel for the subtraction by inverting the system \eqref{thmatrix_eq}--\eqref{thmatrix_def}.
 
 This very simple description captures the essence of a collection of algorithms that try to degrade the reference to match the image to subtract.
-For a more extended discussion of this method, we refer the reader to appendix \ref{appendix:dia}.
+For a more extended discussion of this method and enhancements, we refer the reader to appendix \ref{appendix:dia}.
 
-\citet{1998ApJ...503..325A} was the first to introduce this least-squares method to find an optimal image. 
-He proposed the use of multi-Gaussian functions with modulating polynomials as the kernel basis.
+\citet{1998ApJ...503..325A} were the first to introduce this least-squares method to find an optimal image. 
+They propose the use of multi-Gaussian functions with modulating polynomials as the kernel basis.
 
 \begin{equation}
 B_{n,d_n^{x}, d_n^{y}}(u,v) = e^{-(u^2+v^2)/2 \sigma_n^2} \times u^{d_n^{x}} v^{d_n^{y}}
 \end{equation}
 
 This basis works well when the PSF differences are approximately Gaussian, but in many situations the modulated Gaussian ansatz can be too restrictive.
-Many PSF differences can not be modeled accurately, especially when there is very little difference between the image and its reference.
-The method can not fit for the $\sigma$ spread for the Gaussian functions and it has to be determined empirically from the data.
+Many PSF differences can not be modeled accurately this way, especially when there is very little difference between the image and its reference.
+Another drawback is that the method can not fit for the $\sigma$ spread for the Gaussian functions and it has to be determined empirically from the data.
 
 \citet{1998ApJ...503..325A} also introduced the simultaneous fit of background differences between the images.
 Background estimation can be done previous to the subtraction or be included in the least-squares optimization.
 
 In \citet{1998ApJ...503..325A} and \citet{2000A&AS..144..363A}, they also discuss the issue of PSF spatial variation.
-The spatial variation is done by further expanding each coefficient into a polynomial on the $(x, y)$ position on the image.
+The spatial variation is accounted for by further expanding each coefficient into a polynomial on the $(x, y)$ position on the image.
 This makes the number of spatial dependance coefficients proportional to the original number of free parameters.
 The introduction of yet more coefficients to adjust could make the method computationally prohibitive.
 In \citet{2000A&AS..144..363A}, they propose an approximation to the problem using for the calculation 
@@ -1409,17 +1417,19 @@ HOTPANTS (\citet{2015ascl.soft04004B}) and its predecesor ISIS (\citet{2000A&AS.
 This is equivalent to choosing a basis of Kronecker Delta centered on each pixel.
 The obvious advantage of this method is the great flexibility of the kernel shape.
 This method can account (and correct) for small misalignments of the order of the kernel side.
-On the down side, the kernel shape is more sensitive to the noise outside the sources.
+%On the down side, the kernel shape is more sensitive to the noise outside the sources.
 The cost to pay for the great flexibility in the kernel is the number of parameters to fit. 
-They are significantly much more than those of \citet{1998ApJ...503..325A} growing with the square of the kernel side, 
-this results in that the multi-Gaussian basis can be significantly faster.
+They are significantly more than those of \citet{1998ApJ...503..325A} growing with the square of the kernel side.
+%this results in that the multi-Gaussian basis can be significantly faster.
 
 The \citet{2008MNRAS.386L..77B} method can also accommodate for a simultaneous fit of background and a spatial varying kernels.
-To tackle the problem of spatially variable PSF he proposes dividing the image on a grid and perform a subtraction on each grid element.
-In \citet{2008PASP..120..449M} they propose a method similar to \citet{1998ApJ...503..325A} with the use of {\em stamps} to deal with PSF variation.
-Althought, introducing new coefficients for space variation is more costly on the Delta basis because of the larger number of original variables to fit in the kernel.
+To tackle the problem of PSF spatial variability he proposes dividing the image on a grid and perform a subtraction on each grid element.
 
-These methods based on least-square optimization can be fooled with saturated stars and bad pixels on the image.
+In \citet{2008PASP..120..449M} they propose a method similar to \citet{1998ApJ...503..325A} with the use of {\em stamps} to deal with PSF variation.
+It's worth noting that introducing new coefficients for space variation is more costly on the Delta basis because of the larger number of original variables to fit in the kernel.
+
+One particular problem with all these methods based on least-square optimization, 
+is that they can be fooled with saturated stars and bad pixels on the image.
 To avoid this, one can use a mask to exclude certain pixels from the calculation. 
 For a more complete description of the treatment of bad pixels, see appendix \ref{appendix:dia}.
 
@@ -1428,22 +1438,20 @@ The inversion itself can be done very quickly with any algebra package,
 but the number of operations for each element of the matrix system scales quadratically with the number of free parameters.
 This is something to take into account when choosing the number of Gaussians and the polynomial degree or the kernel side for the Delta basis.
 
-The implementation of these set of algorithms became a Python module named ois\footnote{\url{https://github.com/toros-astro/ois}}.
-For more details on the Python implementation we refer the reader to section \ref{section:ois}.
+The implementation of these set of algorithms spun the creation of a new Python module named {\em ois}\footnote{\url{https://github.com/toros-astro/ois}}.
+For more details on the {\em ois} Python implementation we refer the reader to section \ref{section:ois}.
 
 For our set of images, I applied the \citet{2008MNRAS.386L..77B} method on a 4$\times$4 grid.
 We also simultaneously fit and subtracted a third degree polynomial background.
-We used a kernel side of 11 pixels, which correspond to 2.9'. 
-This is more than enough to accommodate for PSF differences: the FWHM from a typical image ranges between 1 and 2 pixels.
+We used a kernel side of 11 pixels, which correspond to 2.9' aperture on the sky. 
+This is more than enough to accommodate for PSF differences: the FWHM from a typical image is only a few pixels wide.
 
-Figure \ref{} shows some examples of the difference images
+Figures \ref{fig:subtraction} and \ref{fig:subtdetail} show an example of a difference image, 
+and its pixel value histogram in figure \ref{fig:subthist}.
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.6]{figures/kernels}
-\caption{The optimal convolution kernels for the subtraction on each of the regions of the grid.}
-\label{fig:kernels}
-\end{figure}
+The optimal convolution kernels for each of the grid element, for a typical subtraction is shown in figure \ref{fig:kernels}.
+A simultaneously polynomial fit to the background is shown on figure \ref{fig:bkgdetail}.
+
 
 \begin{figure}
 \centering
@@ -1451,6 +1459,13 @@ Figure \ref{} shows some examples of the difference images
 \caption{A typical subtraction image. The axis are added to show the position on the sky.
 Also superimposed are marked in dark grey the masking on some bled stars and bad columns and rows.}
 \label{fig:subtraction}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=1.0]{figures/subtdetail}
+\caption{A detail of the subtraction image showing an excess of light (blue circle) on the subtracted image.}
+\label{fig:subtdetail}
 \end{figure}
 
 \begin{figure}
@@ -1463,39 +1478,17 @@ The pixel values are distributed around zero.}
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.6]{figures/bkgdetail}
-\caption{The background fit.}
-\label{fig:bkgdetail}
+\includegraphics[scale=0.6]{figures/kernels}
+\caption{The optimal convolution kernels for the subtraction on each of the regions of the grid.}
+\label{fig:kernels}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[scale=1.0]{figures/subtdetail}
-\caption{A detail of the subtraction image showing an excess of light (blue circle) on the subtracted image.}
-\label{fig:subtdetail}
+\includegraphics[scale=0.6]{figures/bkgdetail}
+\caption{The background fit.}
+\label{fig:bkgdetail}
 \end{figure}
-
-\begin{comment}
-The following stages of the pipeline deal with the specific analysis to identify candidates to optical counterparts of GW.
-
-The first part deals with the Difference Image Analysis.
-For that two images, one taken at the epoch of interest and another one used as a reference. 
-Ideally, the reference is an archive image or a stack of several others to improve signal to noise ratio, cosmic rays and other contaminants on the image.
-
-In the case for our campaign for O1, we had to use a-posteriori references taken a few months after the event.
-
-Before performing the subtraction, both images have to be aligned pixel by pixel.
-Software to perform the alignments was done using a method described in section \ref{section:astroalign}.
-I describe there a method based on asterism matching inspired in astrometry.net.
-
-The subtraction methods are explained in section \ref{section:ois}.
-Several algorithms are explained in the literature with a wide range of methods, from Fourier Transform, to PSF matching to using Information Theory.
-Some of them are explained and implemented in a Python module named `ois' developed by me for this project.
-
-The Difference Image Analysis and Machine Learning Real-Bogus classifier parts are tested over an image data set collected by CSTAR.
-The CSTAR image set is a high cadence set of images taken in the winter of 2010 in Antarctica, the South Pole. 
-It comprises 6 months of data with an median cadence of 42 s.
-\end{comment}
 
 \section{Training a Real/Bogus Classifier Agent}
 
