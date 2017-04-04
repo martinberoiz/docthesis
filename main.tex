@@ -1016,9 +1016,12 @@ Package Name & Description \\ \hline
 NumPy & Collection of Numerical routines for Python \\ \hline
 SciPy &  Python-based ecosystem of open-source software for mathematics, science, and engineering. \\ \hline
 Astropy &  ``The Astropy Project is a community effort to develop a single core package for Astronomy in Python and foster interoperability between Python astronomy packages.'' \\ \hline
+photutils & Tools for detecting and performing photometry of astronomical sources \\ \hline
+sep & A rewrite of SExtractor. A C library and Python module for Source Extraction and Photometry \\ \hline
 matplotlib & General visualization and graphing outines \\ \hline
-APLpy & module based on matplotlib, to produce publication-quality plots of astronomical imaging data in FITS format \\ \hline
-PyGCN & module to connect to the GCN/TAN network \\ \hline
+APLpy & Module based on matplotlib, to produce publication-quality plots of astronomical imaging data in FITS format \\ \hline
+scikit-learn & Tools for data mining and data analysis \\ \hline
+PyGCN & Module to connect to the GCN/TAN network \\ \hline
 Django & Web Framework for backend web development \\ \hline
 \end{tabular}
 \caption{Some of the scientific packages available for Python}
@@ -1495,13 +1498,13 @@ The pixel values are distributed around zero.}
 The subtraction techniques are very effective at  modeling PSF differences, nevertheless there are many defects left behind after a subtraction. 
 This is also a well known issue in the difference image analysis. 
 The bogus residual sources arise primarily from PSF mismatch and misalignments of the images.
-Several examples of this kind are shown on figure \ref{fig:subtraction_errors}
+Several simulated examples of this kind are shown in figure \ref{fig:subtraction_errors}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{figures/subtraction_error}
 \caption{Some examples of subtraction errors due to misalignment and wrong PSF matching for an idealized object with a Gaussian profile.
-The top row shows typical morphology of residuals for different types of mimatches.
+The top row shows typical morphology of residuals for different types of mismatches.
 The bottom row shows cross sections of the top row showing the object profiles in blue and green and the subtraction in red.
 First column corresponds to a displacement of the object with respect to the reference. 
 The second column represents objects with different PSF.
@@ -1509,40 +1512,80 @@ The third column is the more typical kind of bogus residual, a combination of di
 \label{fig:subtraction_errors}
 \end{figure}
 
-These defects can easily confuse algorithms of source detection like SExtractor or similar that relies on excess of flux over the background.
+These defects can easily confuse algorithms of source detection like SExtractor (\citet{1996A&AS..117..393B}) or similar, that relies on excess of flux over the background.
 For that, it is needed to have a computerized agent capable of discriminating bogus sources from real transients on the subtracted image. 
 
-This is the task of a Machine Learning (ML) agent trained for that purpose. The real bogus classifier, as it is named in the literature 
-relies on --mostly morphological-- features to perform the classification.
+This is the task for a Machine Learning (ML) agent. 
+Machine Learning in its {\em supervised} variant, is the general name given to a set of algorithms that can 
+figure out (or ``learn'') how to classify instances by generalizing from given examples.
+To be able to generalize over the given examples, a classifier must rely on some knowledge or assumptions beyond the given data.
+This is referred as ``Bias''. A classifier with a large bias is very restrictive about what kind of decisions it can make on its own hypothesis space.
+On the upside, this usually makes the classification robust to a new set of examples. 
+That is, the efficiency of the classification has little ``Variance'' over different sets of examples.
 
-Machine Learning is such an extensive and intensive area of research with many applications in many fields.
+The inverse situation is also true, classifiers with little ``Bias'' (large freedom when choosing decision boundaries) 
+have big ``Variance'' of efficiency on different data sets. 
+Little bias leads to the overfit of noisy features of the training examples that are not typical of larger sample sets.
+For example, fitting 10 noisy points with a 10 degree polynomial has very little bias but huge variance.
+On the other hand, a linear fit to the same points has a large bias, but it may well have very little variance for different sets of similar example points.
+The moral is that a good classifier must have a good balance between Bias and Variance.
 
-Since the ML field is so wide, to conduct a ML experiment one must make a few decisions. Even most importantly than the particular algorithm, 
-for which there are hundreds and modifications are being published all the time, it's the data that drives the efficiency of the method.
+Machine Learning is such an extensive and intensive area of research.
+It is used in web search, spam filters, recommender systems, ad placement, credit scoring, fraud detection, stock trading, drug design and many others.
+Because the field is so wide, to conduct a ML experiment one must first make a few decisions. 
+Even most importantly than the particular algorithm, 
+for which there are hundreds, and even more are being published all the time, it's the data that drives the efficiency of the method.
 
-As the saying goes:
+%\begin{quotation}
+%\em
+%As a rule of thumb, a dumb algorithm with lots and lots of data beats a clever one with modest amounts of it.
+%\par\raggedleft--- \textup{Lewis Carroll}, Alice in Wonderland.
+%\end{quotation}
 
-\begin{quotation}
-Big data will beat a good algorithm \textcolor{red}{Find exact quote and author}
-\end{quotation}
+This is especially true if you want to beat the ``curse of dimensionality''.
+Since your example data should sample ample portions of the feature space you are using to classify,
+more data means more exploratory and generalization power.
+It is generally true that a dumb algorithm with lots of data beats a clever one with modest amounts of it.
+
+Despite the great diversity of the many ML algorithms available,
+most of them are in essence a fit of a boundary decision on some feature space. 
+The boundary can be very sophisticatedly constructed, but they will perform marginally better 
+than a rougher simpler boundary if the data classes are well separated to begin with.
+Contrary to what one would expect, the choice of the ML algorithm is not crucial in obtaining a good classification.
+The main actors for a good performance in ML classification is the amount and quality of data and the feature selection.
 
 For our main test, I decide to train a Random Forest ML algorithm on a training set developed especially for this.
+The real bogus classifier, as it is referred to in the literature (\citet{2012PASP..124.1175B}),
+relies on --mostly morphological-- features to perform the discrimination between ``real'' and ``bogus'' transients.
 
-The Random Forest algorithm is an `ensemble' method. Meaning it is a collection of other methods whose results will be averaged over somehow.
+The Random Forest algorithm is an `ensemble' method.
+Ensemble methods collect several other methods and put them to vote on the class. 
+The final classification is given by the combined votes for each classifier.
+This has the advantage of reducing the variance while only slightly increasing the bias due to combined bias of each model.
+Most of the time, the decrease in variance vastly compensates for the increase in bias, yielding an overall better classification.
 
-In this case, a Random Forest is an `ensemble' of Decision Trees. A Decision Tree is basically a tree of nodes. Each node represent a bifurcation based on one feature. The features and branching threshold on each node are chosen maximizing the expected information gain (or entropy loss) on the training set. That is, how well the bifurcation separates the training data for each class.
+In this case, a Random Forest is an `ensemble' of Decision Trees. 
+A Decision Tree is basically a tree of nodes. 
+Each node represent a bifurcation based on one feature. 
+The features and branching threshold on each node are chosen maximizing the expected information gain (or entropy loss) on the training set. 
+That is, how well the bifurcation separates the training data for each class.
 
-Random Forest bootstraps the data so that each subset of data will train a Decision Tree on a random subset of the features. After all Decision Trees are trained this way, the collection of Trees will give the final classification.
+Random Forest bootstraps the data so that each subset of data will train a Decision Tree on a random subset of the features. 
+After all Decision Trees are trained this way, the collection of Trees will give the final classification.
 
-A single Decision Tree suffers of great variance, even for big amounts of data. The bifurcations on the greedy algorithm are naturally very dependent on the training set. A small variation on it may create a complete different tree. Random Forest reduces this variance by averaging over many trees. This also creates more realistic and fuzzy class boundaries on the feature space.
+A single Decision Tree suffers of great variance, even for big amounts of data. 
+The bifurcations on the greedy algorithm are naturally very dependent on the training set. 
+A small variation on it may create a complete different tree. 
+Random Forest reduces this variance by averaging over many trees. 
+This also creates more realistic and fuzzy class boundaries on the feature space.
 
 On the next section I explain how the training data was prepared.
 
-\section{Training Data}
+\subsection{The Training Data and the Classifier}
 
 The main challenge to generate training data is the great unbalance between bogus sources due to imperfect subtraction and actual real transients.
 
-On a typical image, the number of bogus sources can be of a hundred, and the rate of real transients can be only a handful. 
+On a typical image, the number of bogus sources can be about a hundred, and the rate of real transients are usually $\lesssim$ 5. 
 
 The Machine Learning problem becomes one of `Information Retrieval'. We are mainly interested in only one class, the real transients, and we need to retrieve samples of that class from a sea of bogus transients.
 
@@ -1551,23 +1594,49 @@ In a situation like that, a very unbalanced training set can bring about spuriou
 `Recall' measures the fraction of samples of the relevant class that were retrieved by the classifier out of the total number of reals in the set.
 The class we are mainly interested in for the Recall is that of the real transient examples.
 
-To generate a balanced training set with comparable amounts of reals and bogus, I generate reals by selecting sources on an image and erasing them on the reference. That way, after a subtraction, those sources will appear as transient events, that is, objects in the image that don't have a corresponding object on the reference.
-
-The image set used for this purpose is CSTAR, but any other set will also perform similarly.
+To generate a balanced training set with comparable amounts of reals and bogus, I generate reals by selecting sources on an image and erasing them on the reference. 
+That way, after a subtraction, those sources will pop up in the subtraction as transient events, that is, objects in the image that don't have a corresponding object on the reference.
 
 The advantage of this method, compared to other methods like injecting fake sources, is that the `transients' obtained this way will have all the particular characteristics of the CCD and instrument from the image set in which we are interested to work. It will also have the characteristics of the subtraction method imperfections, but this is not exclusive to this method.
 
 The `bogus' set is also collected at the same time along with the `real' set.
 
-To have equal representation of sources of different magnitudes, the sources are first binned into 10 bins of \textcolor{red}{magnitude/flux?} and taken from different regions of the CCD.
-We partition the image in a 4 by 4 grid and we select one star from each region and we do so for each magnitude bin. \textcolor{red}{explain better!!!}
+To have equal representation of sources of different magnitudes, the sources we use to fake the real transients are first binned into 10 bins of flux
+and we pick about the same number of them from each flux bin.
+We do a similar partition for the regions of the CCD. We partition the image in a 4 by 4 grid and choose equal number of sources for each portion of the CCD.
+One image can be used to generate about a hundred synthetic `real' examples, and the same amount of bogus from subtraction artifacts.
 
-\section{The Classifier}
+We generated a training set with 7,624 examples of fabricated transients and 7,624 bogus. 
+This totals 15,248 samples for training and validation.
 
-As previously said, we trained a Random Forest classifier based on 7,624 examples of fabricated transients (as described in section data) and 7,624 bogus picked at random from the subtraction images. This totals 15,248 samples for training and validation.
+The features used for this classifier were selected from some of the parameters available in the source extractor software SExtractor. 
+We chose those features that had relation to the morphology of the source. We also constructed new features from those.
+The whole list of features is presented in table \ref{mlfeatures}.
 
-The features used for this classifier were selected from the popular source extractor software SExtractor (\citet{1996A&AS..117..393B}). We chose the features that had relation to the morphology of the source and some other features derived from them.
-The whole list is presented in table \ref{mlfeatures}.
+Random Forest can also provide an importance score based on how up in the tree structure it is position within a tree.
+The features with most discriminative power are selected as first decision nodes.
+In figure \ref{fig:featureimportance} we show a graph listing the importance for each of the features along with one standard deviation.
+The importance was calculated with a single Random Forest classifier with 10,000 trees and a maximum depth of 10.
+We can see that the first 10 or so features carry the most information, but except for the flux, most of them are equally important.
+We can also see that we could drop the last 4 (delta\_x, delta\_y, ratio and threshold) without significantly affecting the overall performance.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{figures/featureimportance}
+\caption{The relative `importance' of each feature calculated with Random Forest algorithm.}
+\label{fig:featureimportance}
+\end{figure}
+
+In figure \ref{ig:rbfeathist} we can see the histograms for the real population and the bogus populations separated, for the 4 most 
+important features given by the Random Forest fit.
+We can see that none of the features by itself clearly separates the data, as it is usual the case for typical features.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{figures/hist_rbfeatures}
+\caption{Histograms for the 4 most important features as given by the Random Forest fit, separated by the real and bogus population.}
+\label{fig:rbfeathist}
+\end{figure}
 
 Several scores about the performance of the classifier on the training data are condensed in the scores table (\ref{mlscores}).
 
@@ -1600,22 +1669,11 @@ peak\_centroid & Distance in pixels from the pixel with highest count to the cen
 \centering
 \begin{tabular}{| >{\itshape}l | l |}
   \hline
-  accuracy & 0.9935 \\ \hline
-  precision & 0.9956 \\ \hline
-  recall & 0.9915 \\ \hline
-  F measure & 0.9936 \\ \hline
-\end{tabular}
-\caption{Random Forest Scores}
-\label{mlscores}
-\end{table}
-
-On the training data, the performance is quite good, with all indicators scoring above 99 percent.
-
-In the confusion matrix (table \ref{mlconfusionmatrix}) we see that only 65 out of 7,624 of the reals were mis-classified as bogus, and only 33 bogus out of the 7,624 were mis-classified as reals. These very low numbers explain the very high performance scores of the classifier.
-
-\begin{table}
-\centering
-\begin{tabular}{ l|c|c| }
+  Accuracy & 0.9935 \\ \hline
+  Precision & 0.9956 \\ \hline
+  Recall & 0.9915 \\ \hline
+  F-measure & 0.9936 \\ \hline
+  Confusion Matrix & \begin{tabular}{ l|c|c| }
 \multicolumn{1}{r}{}
  &  \multicolumn{1}{c}{real}
  & \multicolumn{1}{c}{bogus} \\
@@ -1624,14 +1682,17 @@ In the confusion matrix (table \ref{mlconfusionmatrix}) we see that only 65 out 
 \cline{2-3}
 {\it Classified as} bogus & 65 & 7559 \\
 \cline{2-3}
+\end{tabular} \\ \hline
 \end{tabular}
-\caption{Confusion Matrix}
-\label{mlconfusionmatrix}
+\caption{Random Forest Scores}
+\label{mlscores}
 \end{table}
 
-\textcolor{red}{TO DO: Add analysis of feature importance}
+On the training data, the performance is quite good, with all indicators scoring above 99 percent.
 
-\section{Testing the classifier on real data}
+In the confusion matrix we see that only 65 out of 7,624 of the reals were mis-classified as bogus, and only 33 bogus out of the 7,624 were mis-classified as reals. These very low numbers explain the very high performance scores of the classifier.
+
+\subsection{Testing the classifier on real data}
 
 Once we have trained our classifier with training data, we wanted to also test it in a more real situation. For that we apply the classifier to the rest of the cstar\_june\_selection data set in search of actual transients of the image.
 
