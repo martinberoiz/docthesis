@@ -1586,10 +1586,13 @@ On the next section I explain how the training data was prepared.
 The main challenge to generate training data is the great unbalance between bogus sources due to imperfect subtraction and actual real transients.
 
 On a typical image, the number of bogus sources can be about a hundred, and the rate of real transients are usually $\lesssim$ 5. 
+The Machine Learning problem becomes one of `Information Retrieval'. 
+We are mainly interested in only one class, the real transients, and we need to retrieve samples of that class from a sea of bogus transients.
 
-The Machine Learning problem becomes one of `Information Retrieval'. We are mainly interested in only one class, the real transients, and we need to retrieve samples of that class from a sea of bogus transients.
-
-In a situation like that, a very unbalanced training set can bring about spurious results. As an example, imagine a training set with 90 bogus and 10 reals. The Zero Rule Classifier --that is the classifier that classifies everything as bogus-- would have a 90\% Precision and 100\% Recall for the bogus class. An unbalanced training set could also create classifiers with large variance due to the small set of real samples.
+In such an uneven situation, a very unbalanced training set can create spurious results. As an example, imagine a training set with 90 bogus and 10 reals. 
+The very naive and simple Zero Rule Classifier --that is the classifier that classifies everything as bogus-- would have a very misleading 90\% accuracy.
+% 90\% Precision and 100\% Recall for the bogus class. 
+An unbalanced training set could also create classifiers with large variance due to the small set of real samples.
 
 `Recall' measures the fraction of samples of the relevant class that were retrieved by the classifier out of the total number of reals in the set.
 The class we are mainly interested in for the Recall is that of the real transient examples.
@@ -1612,6 +1615,31 @@ This totals 15,248 samples for training and validation.
 The features used for this classifier were selected from some of the parameters available in the source extractor software SExtractor. 
 We chose those features that had relation to the morphology of the source. We also constructed new features from those.
 The whole list of features is presented in table \ref{mlfeatures}.
+
+\begin{table}
+\centering
+\begin{tabular}{|l| >{\itshape}l|}
+  \hline
+  x2 & Sum of the x squared values $\sum x^2 $ \\ \hline
+  y2 & Sum of the y squared values $\sum y^2 $\\ \hline
+  xy & Sum of the product of x and y values $\sum xy $\\ \hline
+  cxx, cyy, cxy & Same as x2, y2 and xy in the convolved image  \\ \hline
+  a, b, theta & semi-major axis, semi-minor axis and orientation of the best ellipse fit to the object \\ \hline
+  mag\_aper & Aperture magnitude of the object in the subtraction image \\ \hline     magerr\_aper & Error of mag\_aper \\ \hline
+  flux\_aper & Aperture flux in counts of the object in the subtraction image \\ \hline
+  fluxerr\_aper & Error of flux\_aper \\ \hline
+%threshold & \\ \hline
+flux\_max & Maximum value of the flux \\ \hline
+fwhm & Full width at half maximum \\ \hline
+deltax & Width in pixels of the object (X\_MAX - X\_MIN) \\ \hline
+deltay & Height in pixels of the object (Y\_MAX - Y\_MIN) \\ \hline
+ratio & $\min$(deltax, deltay)/ $\max$(deltax,deltay,1) \\ \hline
+roundness & a/b\\ \hline
+peak\_centroid & Distance in pixels from the pixel with highest count to the centroid of the object \\ \hline
+\end{tabular}
+\caption{Random Forest Features}
+\label{mlfeatures}
+\end{table}
 
 The performance of the Random Forest classifier was determined by several efficiency parameters or `scores'.
 They are all based on the Confusion Matrix, which lists the number of correct and incorrect classifications for each class.
@@ -1643,32 +1671,7 @@ $F = 2 (P\times R)/(P + R)$
 \item[Receiver Operating Characteristic (ROC) Curve:] A graph of the true positive rate against the false positive rate for different values of the discriminating threshold of the classifier.
 \end{description}
 
-Several scores about the performance of the classifier on the training data are condensed in the scores table (\ref{mlscores}).
-
-\begin{table}
-\centering
-\begin{tabular}{|l| >{\itshape}l|}
-  \hline
-  x2 & Sum of the x squared values $\sum x^2 $ \\ \hline
-  y2 & Sum of the y squared values $\sum y^2 $\\ \hline
-  xy & Sum of the product of x and y values $\sum xy $\\ \hline
-  cxx, cyy, cxy & Same as x2, y2 and xy in the convolved image  \\ \hline
-  a, b, theta & semi-major axis, semi-minor axis and orientation of the best ellipse fit to the object \\ \hline
-  mag\_aper & Aperture magnitude of the object in the subtraction image \\ \hline     magerr\_aper & Error of mag\_aper \\ \hline
-  flux\_aper & Aperture flux in counts of the object in the subtraction image \\ \hline
-  fluxerr\_aper & Error of flux\_aper \\ \hline
-%threshold & \\ \hline
-flux\_max & Maximum value of the flux \\ \hline
-fwhm & Full width at half maximum \\ \hline
-deltax & Width in pixels of the object (X\_MAX - X\_MIN) \\ \hline
-deltay & Height in pixels of the object (Y\_MAX - Y\_MIN) \\ \hline
-ratio & $\min$(deltax, deltay)/ $\max$(deltax,deltay,1) \\ \hline
-roundness & a/b\\ \hline
-peak\_centroid & Distance in pixels from the pixel with highest count to the centroid of the object \\ \hline
-\end{tabular}
-\caption{Random Forest Features}
-\label{mlfeatures}
-\end{table}
+Several scores of the performance of the classifier on the training data are condensed in the scores table (\ref{mlscores}).
 
 \begin{table}
 \centering
@@ -1721,6 +1724,8 @@ We can see that none of the features by itself clearly separates the data, as it
 \caption{Histograms for the 4 most important features as given by the Random Forest fit, separated by the real and bogus population.}
 \label{fig:rbfeathist}
 \end{figure}
+
+\begin{comment}
 \subsection{Testing the classifier on real data}
 
 Once we have trained our classifier with training data, we wanted to also test it in a more real situation. For that we apply the classifier to the rest of the cstar\_june\_selection data set in search of actual transients of the image.
@@ -1732,15 +1737,22 @@ Setting the probability to 0.9, the classifier returns the most likely transient
 Some examples of these are shown in figure ??.
 
 For very faint events or events that comprise very few pixels in the image, we can have additional filters that weed them out. Although, some of this could be of astronomical interest and discarding them could result in its loss.
+\end{comment}
 
 \section{Results}
 
-We created a pipeline that is capable of responding to alerts sent by LVC.
-It will do so by parsing the VOEvent file for the alert, capturing metadata of the alert, download the skymaps for the localization uncertainty
-and creating targets for the telescopes, based on criteria of potential host galaxy, visibility at the time of the event and probability of hosting the event.
+We created a pipeline that is capable of responding to detection alerts sent by LVC.
+The set of processes that trigger the alert are condensed into a script running on one of the University of Texas Rio Grande Valley servers.
+The script parses the VOEvent alert file, capturing metadata of the detection, downloads the skymaps for the localization uncertainty
+and creates targets for the telescopes, based on criteria of potential host galaxy, visibility at the time of the event and probability of hosting the event.
 
-The mock run on CSTAR data showed that the difference image analysis together with Real-Bogus trained on the same data set 
+The mock run on CSTAR data showed that the differential photometry analysis together with a Real-Bogus ML classifier trained on the same data set 
 can be used to select possible candidates of counterpart transients.
+
+The Real-Bogus classifier achieved scores above 99\% on validation sets of synthetic examples that we generated.
+
+Incidentally, we also tested the alignment routines to stack images for subtraction, and several types of different Optimal Subtraction algorithms.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1753,7 +1765,7 @@ On April 2014, TOROS signed a Memorandum Of Understanding (MOU) with the LIGO Vi
 in a program to perform follow-up observations of GW candidate events with the benefit of access to LVC proprietary information.
 
 The MOU signing was a very important step that allowed TOROS to participate in the O1 LIGO campaign with positive results.
-The MOU allowed TOROS to receive the LIGO alerts, which were private and confidential at the time of O1 and O2, 
+The MOU allowed TOROS to receive the LIGO alerts, which were private and confidential at the time of O1, 
 and to be part of a publication as part of a broader collaboration with other institutions for the electromagnetic counterpart search of the first announced GW ever, namely GW150914.
 
 The O1 campaign was a 4 month run, officially started on September 18, 2015 and ended on January 12, 2016.
