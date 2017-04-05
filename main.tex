@@ -1613,30 +1613,35 @@ The features used for this classifier were selected from some of the parameters 
 We chose those features that had relation to the morphology of the source. We also constructed new features from those.
 The whole list of features is presented in table \ref{mlfeatures}.
 
-Random Forest can also provide an importance score based on how up in the tree structure it is position within a tree.
-The features with most discriminative power are selected as first decision nodes.
-In figure \ref{fig:featureimportance} we show a graph listing the importance for each of the features along with one standard deviation.
-The importance was calculated with a single Random Forest classifier with 10,000 trees and a maximum depth of 10.
-We can see that the first 10 or so features carry the most information, but except for the flux, most of them are equally important.
-We can also see that we could drop the last 4 (delta\_x, delta\_y, ratio and threshold) without significantly affecting the overall performance.
+The performance of the Random Forest classifier was determined by several efficiency parameters or `scores'.
+They are all based on the Confusion Matrix, which lists the number of correct and incorrect classifications for each class.
+I briefly describe each score definition below:
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.6]{figures/featureimportance}
-\caption{The relative `importance' of each feature calculated with Random Forest algorithm.}
-\label{fig:featureimportance}
-\end{figure}
-
-In figure \ref{ig:rbfeathist} we can see the histograms for the real population and the bogus populations separated, for the 4 most 
-important features given by the Random Forest fit.
-We can see that none of the features by itself clearly separates the data, as it is usual the case for typical features.
-
-\begin{figure}
-\centering
-\includegraphics[scale=0.6]{figures/hist_rbfeatures}
-\caption{Histograms for the 4 most important features as given by the Random Forest fit, separated by the real and bogus population.}
-\label{fig:rbfeathist}
-\end{figure}
+\begin{description}
+\item[Confusion Matrix:] A square matrix the size of the number of classes whose $(i, j)$ element represents the number of classifications of the class $i$ that were classified as class $j$.\\
+The diagonal has the True Positive and True Negative classifications, and the misclassifications lie on the off diagonal elements (the False Positive and False Negative cases).
+A completely diagonal matrix represents a perfect classifier. \\
+When the numbers are represented as proportions, they are an estimate for the True Positive Rate, the False Positive Rate, etc. In that case, it is sometimes called a ``contingency table''. \\
+Confusion Matrix = $
+\begin{bmatrix}
+TP & FN \\ 
+FP & TN
+\end{bmatrix}
+$ where $TP$ is true positive, $FP$ is false positive, $FN$ is false negative and $TN$ is true negative. The total number of instances is $N=TP+TN+FP+FN$. 
+\item[Accuracy:] The proportion of true results (both true positives and true negatives) among the total number of classifications.
+This score does not emphasize one class over the other. ($A = (TP+TN)/N$)
+\item[Precision:] Precision is used when we are interested in one particular positive class (the `reals') over the other. 
+Precision is then the fraction of retrieved instances that are positive.
+Retrieved instances are those classified as `real', regardless of their true class. The fraction of those that are actually `real' is the {\em precision}. \\
+$P = TP/(TP+FP)$
+\item[Recall:] The fraction of relevant instances that are retrieved. \\
+Like with precision, it is the fraction of the total number of `reals' that were actually retrieved.\\
+$R = TP/(TP + FN)$
+\item[F-measure:]  Like precision and recall, the F-measure or F1, is often used in the field of information retrieval when we have one positive class. 
+F-measures do not take the true negatives into account, but it combines the precision and recall into a single performance score between 0 and 1 (1 being a perfect classifier).\\
+$F = 2 (P\times R)/(P + R)$
+\item[Receiver Operating Characteristic (ROC) Curve:] A graph of the true positive rate against the false positive rate for different values of the discriminating threshold of the classifier.
+\end{description}
 
 Several scores about the performance of the classifier on the training data are condensed in the scores table (\ref{mlscores}).
 
@@ -1692,6 +1697,30 @@ On the training data, the performance is quite good, with all indicators scoring
 
 In the confusion matrix we see that only 65 out of 7,624 of the reals were mis-classified as bogus, and only 33 bogus out of the 7,624 were mis-classified as reals. These very low numbers explain the very high performance scores of the classifier.
 
+Random Forest can also provide an importance score based on how up in the tree structure it is within a tree.
+The features with most discriminative power are selected as first decision nodes.
+In figure \ref{fig:featureimportance} we show a graph listing the importance for each of the features along with one standard deviation.
+The importance was calculated with a single Random Forest classifier with 10,000 trees and a maximum depth of 10.
+We can see that the first 10 or so features carry the most information, but except for the flux, most of them are equally important.
+We can also see that we could drop the last 4 (delta\_x, delta\_y, ratio and threshold) without significantly affecting the overall performance.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{figures/featureimportance}
+\caption{The relative `importance' of each feature calculated with Random Forest algorithm.}
+\label{fig:featureimportance}
+\end{figure}
+
+In figure \ref{fig:rbfeathist} we can see the histograms for the real population and the bogus populations separated, for the 4 most 
+important features given by the Random Forest fit.
+We can see that none of the features by itself clearly separates the data, as it is usually the case for typical features.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{figures/hist_rbfeatures}
+\caption{Histograms for the 4 most important features as given by the Random Forest fit, separated by the real and bogus population.}
+\label{fig:rbfeathist}
+\end{figure}
 \subsection{Testing the classifier on real data}
 
 Once we have trained our classifier with training data, we wanted to also test it in a more real situation. For that we apply the classifier to the rest of the cstar\_june\_selection data set in search of actual transients of the image.
