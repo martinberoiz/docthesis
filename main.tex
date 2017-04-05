@@ -1148,7 +1148,7 @@ By the time the LALINFERENCE maps are released, most of the observations will be
 
 The retrieval of the low latency sky maps is done through authenticated HTML GET requests to the Grace Database of the GCN/TAN website.
 
-\section{Target Selection}
+\section{Target Selection} \label{targetselection}
 
 The target selection is done with a separate module imported from the alert receiver robot.
 Having it in a separate module allows us to run it independently, in case of failure of the robot.
@@ -1800,11 +1800,9 @@ The remaining of this chapter refer to the observation campaign for the GW150914
 
 \section{GW150914}
 
-As mentioned before, GW150914 was detected on September 14, 2015, that is 4 days before O1 officially began (see figure \ref{fig:GW150914ligosignal}).
-Because LIGO was on the engineering run E7 at the moment of the detection, the alert was not sent to MOU observatories until two days after.
-On the night of September 16, 2015, the LIGO alert arrived through the TOROS alert receiver system.
-Despite the premature arrival of the alert, TOROS could scan a region of the LIGO localization map 
-and contribute to the EM counterpart search. 
+GW150914 was detected on September 14, 2015 at 09:50:45 UT (see figure \ref{fig:GW150914ligosignal}).
+LIGO had not officially started the O1 campaign at that time, which was scheduled to start on September 18, 4 days later. 
+It was instead at the end of the last engineering run E7.
 
 \begin{figure}
 \centering
@@ -1817,8 +1815,20 @@ Bottom row: A time frequency representation of the strain data.}
 \label{fig:GW150914ligosignal}
 \end{figure}
 
+Despite the premature arrival of the GW detection, LIGO sent the alert via a private GCN initial circular (Singer 2015, GCN\#18330) to the MOU partners two days later.
+This unexpected detection constituted the first detection of the merger of a binary black hole (BBH) system and the first direct detection of gravitational waves. 
 
-Besides LIGO and Virgo Collaborations, other 24 institutions participated in the optical counterpart search for the GW150914 event along with TOROS.
+TOROS received the alert through the robot alert system and we began our imaging campaign immediately after receiving, on the night of of 2015 September 16. 
+Additional observations were obtained the following night, and a second epoch of imaging was acquired on 2015 December 5 \& 6. 
+
+The initial GCN alert contained a coherent Wave Burst (cWB) all sky localization map, and a subsequent update GCN notice delivered an Omicron+LALInference Burst (oLIB) skymap. 
+Both skymaps are based on a search for unmodeled signals. 
+The first one, a rapid localization analysis just searches for coherent power across both detectors while the second one assumes a Sine-Gaussian content. 
+The maps provided initial spatial localization of 50\% and 90\% confidence regions encompassing about 200 and 750 square degrees, respectively.
+
+The targets were selected based on the first skymap provided, the cWB localization map.
+
+Besides the LIGO-Virgo Collaboration, other 24 institutions participated in the optical counterpart search for the GW150914 event along with TOROS.
 These are detailed in table \ref{gw150914participants}.
 
 \begin{table}
@@ -1858,28 +1868,62 @@ The Vista Collaboration & Optical and Infrared \\
 \label{gw150914participants}
 \end{table}
 
-%The search did not show up any transient associated with the event,
+For the observations we used the 1.5-m telescope at Estacion Astronomica Bosque Alegre (EABA) in Cordoba, Argentina (the smaller telescope at Macon was not operational at the time).
+The telescope uses an Apogee Alta U9 camera with a field of view (FoV) of 12.'7 $\times$ 8.'5 and
+an effective plate scale of 0.''75pix after 3 $\times$ 3 binning. 
+% Tell what is the pixel width and height!
+Since we wanted to maximize our sensitivity, we conducted unfiltered (``white light'') observations spanning 0.35 < $\lambda/\mu$m < 1. 
+We obtained individual exposures of 60 s with a median seeing (FWHM) of (2.8 $\pm$ 0.6)''. 
+We typically obtained 10 images per field, reaching 5$\sigma$ limiting magnitudes of r = 21.7 $\pm$ 0.3 mag in the AB system.
 
-We conducted unfiltered CCD observations (0.35--1$\mu$m) with the 1.5-m telescope 
-at Estacion Astronomica Bosque Alegre (EABA) telescope in Cordoba, Argentina.
-
-
-Because of the unexpected timing of the event, the alert was received 2 days later, and our observations started about 2.5 days after the alarm was received by LIGO.
-
-This unexpected detection --observed four days before the first scientific run of the detectors was scheduled to start-- constituted the first detection of the merger of a binary black hole (BBH) system and the first direct detection of gravitational waves. Due to the unexpected timing of the event, LVC provided spatial location information two days later, in the form of probability sky maps via a private GCN circular (Singer 2015, GCN\#18330). TOROS was one of 25 teams that participated in the search for an electromagnetic counterpart search in the southern hemisphere.
-
-On 2015 September 16, the LIGO Virgo Collaboration (LVC) provided two all-sky localization probability maps for the event, based on them.
-Both, the coherent Wave Burst (cWB; Klimenko et al. 2016) and the Omicron+LALInference Burst (oLIB; Lynch et al. 2015) search for unmodeled signals. The first one, a rapid localization analysis just searches for coherent power across both detectors while the second one, more refined, assumes a Sine-Gaussian content. The maps provided initial spatial localization of 50\% and 90\% confidence regions encompassing about 200 and 750 square degrees, respectively (Singer 2015, GCN\#18330).
-
-We started our imaging campaign immediately after
-receiving, on the night of 2015 September 16, utilizing the
-cWB map. Additional observations were obtained the
-following night, and a second epoch of imaging was acquired on 2015 December 5 \& 6. We used an Apogee Alta
-U9 camera with a field of view (FoV) of 12.'7 $\times$ 8.'5 and
-an effective plate scale of 0.''75pix after 3 $\times$ 3 binning. Since we wished to maximize our sensitivity, we conducted unfiltered (``white light'') observations spanning 0.35 < $\lambda/\mu$m < 1. We obtained individual exposures of 60 s with a median seeing (FWHM) of (2.8 $\pm$ 0.6)''. 
-We typically obtained 10 images per field, reaching 5$\sigma$ limiting magnitudes of r = 21.7 $\pm$ 0.3 mag.
-
+We were able to scan a small region of the LIGO localization map and contribute to the EM counterpart search, 
+even though the search did not show up any transient associated with the event.
 Despite the little area covered by TOROS, the O1 campaign allowed the collaboration to test the detection and response systems to the alerts.
+
+\section{Target Selection}
+
+The LIGO localization regions are very poorly constrained because they are based mainly on triangulation.
+Confidence regions can span several hundred square degrees (see figure \ref{fig:pointings}), and they also vary depending on the algorithm. 
+For instance, the 90\% credible localization area for the cWB skymap covers 310 square degrees, 
+while others span up to 750 square degrees (see table 1 in \citet{2016ApJS..225....8A}). 
+It greatly exceeds the fields of view of most radio, optical, and X-ray telescopes.
+Regardless, all sky maps are consistent with a broad long arc in the Southern hemisphere and a smaller extension in the Northern hemisphere. 
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{figures/pointings}
+\caption{cWB, LIB, BYST, LALinf Sky-maps re-scaled regions that mark TOROS targets (red dots).}
+\label{fig:pointings}
+\end{figure}
+
+The algorithm utilized for the cWB estimations produces reasonably accurate maps for BBH signals, but underestimates the extent of high-confidence regions (\citet{2015ApJ...800...81E}). 
+As seen in figure \ref{fig:pointings}), the adoption of maps from alternative algorithms (not available at the time our observations started) 
+significantly reduced the fraction of the high-confidence region probed by our small field of view.
+
+As the LIGO analysis was underway at the time our observations began and the nature of the binary was unknown, 
+we optimized the use of our small field of view by targeting nearby galaxies with the highest probability of hosting the event.
+As we described in section \ref{targetselection}, the target selection is based on two main criteria: 
+the localization (un)certainty on the target pixel in the all-sky map given by LIGO at the time of the alert, 
+and several filter cuts on distance, blue luminosity and apparent magnitude on the list of galaxies in the GW Galaxy Catalog (GWGC) (\citet{2011CQGra..28h5016W}).This marriage between GW and Optical parameters of observability ensures the targets are visible at each telescope site, 
+and that they have some significant probability of being the host. 
+The list of filter cuts for the observations are summarized in table \ref{obsfilters}.
+
+\begin{table}
+\centering
+\begin{tabular}{|l|c|}
+  \hline
+ Parameter & Limit value \\ \hline
+Observability from location & $30^{\circ} > \delta > -70^{\circ}$ for EABA \\ \hline
+Apparent Magnitude & $B \le 21$ mag \\ \hline
+Distance  & $D < 60$ Mpc \\ \hline
+Absolute Magnitude & $MB \le -21$ mag \\ \hline
+\end{tabular}
+\caption{Parameter Cuts}
+\label{obsfilters}
+\end{table}
+
+The list of the galaxies that came up in the search are summarized in table \ref{o1targets}.Galaxies PGC381152 and PGC075108 are actually contained in the same frame.
+For galaxies IC1933, NGC1529 and IC2038, we tiled four frames around the galaxy to cover more area around the target. 
 
 \begin{table}
 \centering
@@ -1907,156 +1951,47 @@ Despite the little area covered by TOROS, the O1 campaign allowed the collaborat
 \end{table}
 
 
+%Maybe add the probability at the center of the galaxy?
 
+%We show some of the target frames in figure \ref{}.
 
 \begin{comment}
+ADD THIS FROM THE PAPER!!
 
-The compact binary coalescence (CBC) search targets gravitational-wave emission from compact-object binaries 
-with individual masses from 1$M\odot$ to 99$M\odot$, total mass less than 100$M\odot$, and dimensionless spins up to 0.99.
-
-Sky location is ligo is very poor because it's based mainly on triangulation of detectors.
-	Sky error regions are very large (e.g. $\approx$ 850 deg2 for GW150914; Abbott et al. 2016).
-	With Virgo and KAGRA and INDIGO will be of of 10-100 square degrees or less (e.g., Fairhurst 2011, Nissanke et al. 2013, Rodriguez et al. 2014). 
-	It still greatly exceeds the fields of view of most radio, optical, and X-ray telescopes.
-
-Identifying host galaxies of GW is important. We can know:
-	Age of stellar population.
-	Displacement due to SN birth kicks.
-	Determine distance to GW source. This reduces degeneracies in the GW parameter estimation, especially of the binary inclination with respect to the line of sight.
-
-Based on their derived peak luminosities being approximately one thousand times brighter than a nova, Metzger et al. (2010) first introduced the term `kilonova' to describe the EM counterparts of NS mergers powered by the decay of r-process nuclei
-
-GRB emission is collimated and jetted, so the chances to detect one along a GW are very low.
-
-Observational (e.g., Fong et al. 2013) and theoretical (e.g. Eichler et al. 1989, Narayan et al. 1992) evidence suggest a relation between merges with at least one NS and the ``short duration'' class of GRBs (Nakar 2007, Berger 2014). 
-
-[literal] Short GRBs are commonly believed to be powered by the accretion of a massive remnant disk onto the compact BH or NS remnant following the merger. This is typically expected to occur within seconds of the GW chirp, making their temporal association with the GWs unambiguous (the gamma-ray sky is otherwise quiet).
-
-For the majority of GW-detected mergers, the jetted GRB emission will be relativistically beamed out of our line of sight.
-The off-axis afterglow probably does not provide a promising counterpart for most observers
-
-critical four-way connection between kilonovae, short GRBs, GWs from NS-NS/BH-NS mergers, and the astrophysical origin of the r-process nuclei. Metzger et al. (2010)
-
-NS-NS/BH-NS mergers are also predicted to be accompanied by a more isotropic counterpart, commonly known as a `kilonova'. Kilonovae are day to week-long thermal, supernova-like transients, which are powered by the radioactive decay of heavy, neutron-rich elements synthesized in the expanding merger ejecta (Li \& Paczynski 1998). They provide both a robust EM counterpart to the GW chirp, which is expected to accompany a fraction of BH-NS mergers and essentially all NS-NS mergers, as well as a direct probe of the un- known astrophysical origin of the heaviest elements (e.g., Metzger et al. 2010).
-
-The most significant of those is no doubt, the Kilonova emission produced by rapid capturing of neutrons.
-Neutron capture has to be faster than the beta decay rate of the neutron and that's why it has to be rapid.
-This capture process is called r-process. R is for rapid.
-The r-process physics is quite complicated and involves a bunch of stuff, much of which is modeled to certain confidence, 
-but many other elements are not well known. Several ingredients to the model are not considered fully. 
-
-Blinnikov et al. (1984) and Paczynski (1986) first suggested a connection between NS-NS mergers and GRBs.
-
-Even prior to the discovery of the first binary pulsar (Hulse \& Taylor 1975), Lattimer \& Schramm (1974, 1976) proposed that the merger of compact star binaries --in particular the collision of BH-NS systems-- could give rise to the r-process by the decompression of highly neutron-rich ejecta (e.g. Meyer 1989). 
-
-As compared to the earlier predictions (e.g. Metzger et al. 2010), these higher opacities push the bolometric light curve to peak later in time (1 week instead of a 1 day timescale), and at a lower luminosity (Barnes \& Kasen, 2013). More importantly, the enormous optical opacity caused by line blanketing moved the spectral peak from optical/UV frequencies to the near-infrared (NIR).
-
-TOROS, the Transient Optical Robotic Observatory of the South, is a collaboration formed to respond to GW events as detected by the LVC.
-Its main purpose then is to detect transient events compatible with expected (or not) signatures of events that can give mutual birth to GW and optical triggers.
-
-Being in its early stages of development, and given the new nature of the multi-messenger astronomy, the TOROS team is building up the tools and infrastructure that will make it capable in the future to promptly respond to this alerts.
-
-Several things can enter in consideration for this task, from software development to forging ties with existing observatories. 
-
-My thesis will focus on several challenges in the development of the software infrastructure needed to process the observatory data. 
-
-At the moment of this writing, TOROS Collaboration consists of several astronomical institutions that showed interest in doing a search and possible follow-ups of candidates to interesting events.
-
-At UT Rio Grande Valley, we developed extensive analysis and web code to allow for the interaction between the institutions \textcolor{red}{(just the broker page, really)}. 
+This cut in absolute magnitude will be motivated by the expectation that in the nearby Universe the distribution of BNS and BHs 
+should follow recent star formation due to the short merger timescales (see e.g. Phinney 1991; Belczynski et al. 2002).
+Once we cross-matched the LIGO sky maps with the filtered galaxies, 
+we ranked the results by assigning individual probabilities Pg,i (with i being the sky map pixel that contained the g-th galaxy). 
+This enabled us to prioritize targets according to their location within the sky maps and their observability.
+Lastly, we ensured that all targets were mapped out to about 5kpc, which corresponds to the median offset distance of short GRBs 
+from hosts galaxies measured from the optical afterglow observations (Church et al. 2011; Fong & Berger 2013; Berger 2014).
+This required tiling to cover the appropriate area for some targets. 
+A total of 21 fields were observed.
 
 \end{comment}
 
-\section{Target Selection}
-
-The LIGO localization regions span several hundred square degrees (see Fig. 1) and vary depending on the algorithm. For instance, the 90\% credible localization area for cWB covers to 310 square degrees while others span up to 750 square degrees (see table 1 in Abbott et al. 2016c). Regardless, all sky maps are consistent with a broad long arc in the Southern hemisphere and a smaller extension in the Northern hemisphere. The algorithm utilized for the CWB estimations produces reasonably accurate maps for BBH signals, but underestimates the extent of high-confidence regions (Essick et al. 2015). As seen in Fig. 1, the adoption of maps from alternative algorithms (not available at the time our observations started) significantly reduces the fraction of the high-confidence region probed by our small FoV.
-
-\begin{figure}
-\centering
-\includegraphics[scale=0.5]{figures/pointings}
-\caption{cWB, LIB, BYST, LALinf Sky-maps re-scaled regions that mark TOROS targets (red dots).}
-\label{fig:pointings}
-\end{figure}
-
-As mentioned before, the target selection is done with a separate script.
-This script makes use of the sky-map provided in the alert notice and the 
-Gravitational Waves Galaxy Catalog (GWGC) (A List of Galaxies for Gravitational Wave Searches, Darren J. White et al, 2011)
-
-The White's catalog is a homogeneous list of 53,255 galaxies within 100Mpc.
-It is a compilation from 4 different catalogs: an updated version of the Tully Nearby Galaxy Catalog,
-the Catalog of Neighboring Galaxies, the V8k catalogue and HyperLEDA.
-
-GWGC contains information on sky position, distance, blue magnitude, major and minor diameters, position angle, and galaxy type.
-Also included in the catalog are 150 Milky Way globular clusters.
-
-The authors claim (ref) that GWGC is more complete --within 100 Mpc-- than other catalogs,
-due to their use of more up-to-date input catalogs
-and the fact that they don't make a blue luminosity cut.
-
-Another catalog along these lines is the Glade GW Catalog. Glade Catalog has xxxx galaxies listed, this many more than CWGC and extends up to XX Mpc.
-Nonetheless many distances are inferred by Machine Learning Methods, and completitude of the Catalog... bla bla
-
-The target selection is based on two main criteria: the localization (un)certainty on the target pixel in the all-sky map given by LIGO at the time of the alert,
-and several filter cuts on distance, blue luminosity and apparent magnitude.
-
-This marriage between GW and Optical parameters of observability ensures the targets are visible at each telescope site, and that they have some significant probability of being the host.
-The list of filter cuts are summarized in table \ref{obsfilters}.
-
-\begin{table}
-\centering
-\begin{tabular}{|l|c|}
-  \hline
- Parameter & Limit value \\ \hline
-Observability from location & $30^{\circ} > \delta > -70^{\circ}$ for EABA \\ \hline
-Apparent Magnitude & $B \le 21$ mag \\ \hline
-Distance  & $D < 60$ Mpc \\ \hline
-Absolute Magnitude & $MB \le -21$ mag \\ \hline
-\end{tabular}
-\caption{Parameter Cuts}
-\label{obsfilters}
-\end{table}
 
 \section{Image Reduction}
 
 
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%			O1 ANALYSIS
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\chapter{Data Analysis for GW150914 Optical Counterparts}
-
-
 \section{Difference Imaging Analysis}
 
-To search for potential transients on the images taken as described in the last chapter, we performed a difference image analysis (DIA) on them.
-
-Common methods of DIA like HOTPANTS (\citet{2015ascl.soft04004B}) or ISIS use the method developed by \citet{1998ApJ...503..325A}.
-The method uses a kernel, combination of 2 or more Gaussians, modulated by a polynomial to match and scale the point-spread-function (PSF) between two epochs.
-This leads to difficulties in fitting irregular shaped PSFs that depart considerably from the Gaussian profile.
+To search for potential transients on the images taken we performed a differential photometry analysis on them.
 
 Our method follows the work of \citet{2008MNRAS.386L..77B} and \citet{2008PASP..120..449M} in a Python implementation of the 
-algorithms\footnote{For more information on the package implementation, see section \ref{section:ois}.}.
-The method uses a `Dirac delta' basis across the entire frame, so that each pixel in the kernel is fit independently.
-With this method there are no free parameters to adjust like with the multi-Gaussian method, so the user does not need to estimate parameters (which can lead to poor PSF matching).
-The method uses the information from all the pixels on the image, wether is a background pixel or a source pixel,
+algorithms (see section \ref{section:ois} for more details).
+
+As explained in section \ref{section:dia}, the Bramich method uses the information from all the pixels on the image, wether is part of the background or a source,
 so we don't need to select specific stars to take stamps around.
-Although using all the pixels in the image gives the advantage of the algorithm run automatically without any input from the user, the use of stamps has some advantages.
-The main one being the speed-up calculation, since the optimization is done only on a restricted set of pixels (those of the stamp set) 
-and another advantage is that the user can manually exclude bad sources or outliers during the optimization.
-A compromise between the two can be met if the program chooses sources automatically like in \citet{2008PASP..120..449M}.
-We did not use stamps but it is a planned update to be done in the future.
+We partitioned the images in a 2$\times$3 grid to compensate for possible PSF variability across the field of view.
+Even though the Python {\em ois} module can do a simultaneous background estimation to be subtracted, 
+we noticed that for images with large extended objects on the image, like tile \#16 for NGC1559, 
+the background was introducing large depressions of negative pixels and we had to turn background estimation on those.
 
-The optimal kernel, or its coefficients, for the convolution is done by the least-squares method.
-Even though the Python module can do a simultaneous background estimation to be subtracted, 
-we could see that for images with large extended objects on the image, the background was introducing large depressions of negative pixels and we turned background estimation on those.
-
-The reference images were taken a posteriori a few months after the alert, on December 2015, using the same telescope in Bosque Alegre.
+The reference images were taken a posteriori a few months after the alert, on 2015 December 5 \& 6, using the same telescope in Bosque Alegre.
 The reference images were taken with about the same exposure time for all fields and the same binning.
-The references images were aligned pixel to pixel to the science images with the software Astroalign (see section \ref{section:astroalign} for more details on this Python module).
-
+The references images were aligned pixel to pixel to the science images with the software astroalign (see section \ref{section:astroalign} for more details on this Python module).
 
 \section{Real-Bogus classification and detection of potential transients}
 
