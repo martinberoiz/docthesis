@@ -2156,6 +2156,26 @@ given our temporal and areal coverage, and with the later classification of the 
 
 \chapter{Software Developed}
 
+The first attempts to build software for the TOROS pipeline lacked modularity, or in the language of Computer Science, {\em separation of concerns}.
+Separation of concerns (SoC) is a design principle in Computer Science for separating a computer program into distinct sections,
+such that each section addresses a separate concern. 
+% A concern is a set of information that affects the code of a computer program.
+In our pipeline we had many different concerns: the alert system; the image preprocessing; the alignment of images; and the differential photometry of the subtractions.
+
+As the code matured, each area of concerned became naturally separated from the main trunk of development, which was at the moment rather monolithic in nature. 
+
+The Python way to address SoC is through the use of modules and packages, so this separation naturally led to the creation of Python modules of more general use, 
+that were later integrated back into the pipeline as external imports.
+
+As is well known, modularity is achieved by encapsulating information inside a section of code that has a well-defined interface.
+Having well-separated concerns ensures that each part can be reused and also helps in the maintenance and updating of the code.
+
+The modules are released under MIT License and are hosted on a organization repository in the popular Git repository hosting service, 
+github\footnote{\url{https://github.com/toros-astro/}}.
+Two of them have unit tests and hooked to travis-ci website for continuous-integration and code coverage.
+
+In the following sections I describe some of the Python modules we developed in more detail.
+
 \section{Astroalign }\label{section:astroalign}
 
 The core idea of the algorithm consists on characterizing asterisms (for example triangles or quadrilaterals) by using quantities invariant to translation, rotation or even scaling and flipping. Similar asterisms will have similar invariant tuples in both images so a correspondence can be made between those invariant quantities. 
