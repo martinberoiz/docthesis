@@ -1018,6 +1018,7 @@ SciPy &  Python-based ecosystem of open-source software for mathematics, science
 Astropy &  ``The Astropy Project is a community effort to develop a single core package for Astronomy in Python and foster interoperability between Python astronomy packages.'' \\ \hline
 photutils & Tools for detecting and performing photometry of astronomical sources \\ \hline
 sep & A rewrite of SExtractor. A C library and Python module for Source Extraction and Photometry \\ \hline
+reproject & Implements image reprojection (resampling) methods for astronomical images (uses WCS data) \\ \hline
 matplotlib & General visualization and graphing outines \\ \hline
 APLpy & Module based on matplotlib, to produce publication-quality plots of astronomical imaging data in FITS format \\ \hline
 scikit-learn & Tools for data mining and data analysis \\ \hline
@@ -1197,7 +1198,7 @@ The parameter cuts can be fixed in a separate configuration file and loaded at t
 This marriage between GW and Optical parameters of observability ensures the targets are visible at each telescope site, 
 and that they have some significant probability of being the host.
 
-\section{The Broker}
+\section{The Broker} \label{section:broker}
 
 Once the list of targets is done, we need to communicate the targets to each telescope.
 This is done through a broker website written in Python using the Django\footnote{\url{https://www.djangoproject.com}} web framework (see figure \ref{fig:brokerhead})
@@ -2159,9 +2160,7 @@ given our temporal and areal coverage, and with the later classification of the 
 The first attempts to build software for the TOROS pipeline lacked modularity, or in the language of Computer Science, {\em separation of concerns}.
 Separation of concerns (SoC) is a design principle in Computer Science for separating a computer program into distinct sections,
 such that each section addresses a separate concern. 
-% A concern is a set of information that affects the code of a computer program.
-In our pipeline we had many different concerns: the alert system; the image preprocessing; the alignment of images; and the differential photometry of the subtractions.
-
+In our pipeline we had many different areas of concern: the alert system; the image preprocessing; the alignment of images; and the differential photometry of the subtractions.
 As the code matured, each area of concerned became naturally separated from the main trunk of development, which was at the moment rather monolithic in nature. 
 
 The Python way to address SoC is through the use of modules and packages, so this separation naturally led to the creation of Python modules of more general use, 
@@ -2178,59 +2177,84 @@ In the following sections I describe some of the Python modules we developed in 
 
 \section{Astroalign }\label{section:astroalign}
 
-The core idea of the algorithm consists on characterizing asterisms (for example triangles or quadrilaterals) by using quantities invariant to translation, rotation or even scaling and flipping. Similar asterisms will have similar invariant tuples in both images so a correspondence can be made between those invariant quantities. 
+Astroalign was developed to address the need to align two images before subtraction.
+There are currently two other Python modules with similar functionality.
+The module {\em reproject} will resample or reproject images when WCS information is provided, but it does not address the problem of registration when one or both images lack WCS information.
+The module {\em alipy} does not rely on WCS information, but uses external programs like IRAF and SExtractor and deals exclusively in the FITS format for images.
+Astroalign works with the raw pixel information in memory, so it's agnostic about the source of the images.
+It is also self contained, so does not rely on any external program to perform the alignment
+and it is written entirely in Python.
 
-As an example, the lengths of the sides of a triangle are invariant to translation and rotation. They remain the same whatever position or orientation the triangle may have. Any function of the {\em ratio} of the sides will, in addition, be invariant to scaling.
+Astroalign is inspired by the method of the C program astrometry.net (citet{2010AJ....139.1782L}).
 
-The idea for the algorithm can be summarized in a few steps
+Astrometry.net's goal is much more ambitious than our present problem of aligning two images.
+Their program's main goal is to identify the portion of the sky that an image belongs to, and it solves this problem remarkably well.
+It will also generate WCS header information along with other details like pixel scale and orientation.
+The process can take several minutes to complete and requires downloading a few invariant databases for the specific case we need.
 
-\begin{enumerate}
-\item Do for both images \begin{enumerate}
-\item Make a catalog of a few brightest sources (but not too few!)
-\item Create a 2D tree of the sources to quickly query for close neighbors. (A kd-tree data structure for k=2)
-\item For each star, select the 4 nearest neighbors (5 sources including the star itself).
-\item Form all the ${5}\choose{3}$ posible triangles from that set of stars.
-\item For each triangle in that set, calculate the tuple of invariants that fully characterize the triangle and push the invariant tuple into another kd-tree.
-\item There could be many duplicate triangles on the previous list, so it's best to remove them leaving only unique elements.
-\end{enumerate}
-\item Now do a matching between the two invariant kd-trees to find matches for similar triangles. Two similar triangles will have similar invariant features.
-\item Even within a triangle match, one can make a correspondence between individual points by looking at which sides the point belongs to. This way, one can make a point to point correspondence for each triangle correspondence.
-\item Pass the invariant matches set to a RANSAC algorithm that will decide which triangles suggest a transformation that fits many other triangles.
-\end{enumerate}
+Astrometry.net uses 4-star asterisms (or quadrilaterals) from the image,
+to match them against a previously-created huge database of asterisms from catalogs of stars of the whole sky.
+The efficiency of astrometry.net is on the power of this database of cataloged stars.
 
+For {\em astroalign}, we don't need a catalog of the whole sky, since we are only interested in the region of the sky covered by the image at hand. 
+We can create a catalog of the region of interest, using the reference frame.
+In essence we will have a catalog of some bright reference stars on each image, 
+and we want to match them in some way to find the appropriate affine transformation between the images.
 
-\subsection{Selecting Asterisms and Invariant Features}
+As we mentioned before, the core idea of the algorithm consists on characterizing asterisms on the image in a unique way, 
+by using quantities invariant to translation, rotation or even scaling and flipping.
+For astroalign, I use 3-star asterisms (or triangles) to perform the matching, and a RANSAC algorithm to decide on the final transformation.
+Similar asterisms will have the same invariant tuples in both images so a correspondence can be made between those invariant quantities. In a way, this invariants are proxies or unique ID's for the asterisms.
 
-To find a correspondence we need to fix which figures will we search for in both images. 
-The simplest figure is the triangle. A triangle (with all different sides) can determine a unique transformation between two images. 
-Another possibility is to search for polygons with more sides. 
-The package Astrometry.net uses quadrilaterals for this purpose, but even pentagons or other polygons can be used. 
-We will focus on the triangle matching on this note.
+The lengths of the sides of a triangle are invariant to translation and rotation, they remain the same whatever position or orientation the triangle may have, but are not invariant to scaling.
+If we want to fully characterize a triangle up to a global scaling, then knowing 2 inner angles is enough. 
+Equivalently, knowing 2 independent ratios of the side lengths is also sufficient.
+In fact any function of 2 independent length ratios will also do.
 
-For a triangle, knowledge of all its 3 side lengths is enough to fully characterize it, irrespective of position or orientation. 
-If we want to characterize it up to a global scaling, then knowing 2 inner angles is enough. 
-Equivalently, knowing 2 independent ratios of the side lengths is also enough. 
-In fact any function of 2 independent length ratios is enough.
+For astroalign, we used the following simple invariants.
 
-So, for example the tuple $(\frac{L_2}{L_1}, \frac{L_1}{L_0})$ (where $L_2 > L_1 > L_0$) is a valid invariant tuple that fully describe the triangle up to translation, rotation and scaling, and even coordinate flipping.
-
-\subsection{Analysis of the invariants}
-
-Let's analyze here the example invariant set given in the previous section.
-
-\begin{align*} 
-I_{1}(L_i,L_j,L_k) =& \left( \frac{L_2}{L_1}, \frac{L_1}{L_0} \right)  \numberthis \label{inv01} \\ 
+\begin{align*}
+I(L_i,L_j,L_k) =& \left( \frac{L_2}{L_1}, \frac{L_1}{L_0} \right) = (I_{1}, I_{2}) \numberthis \label{invdef} \\ 
  & \text{where} \left\{
   \begin{array}{lll} 
- L_2 &=& \max\{L\} \\
- L_1&=&\text{middle}\{L\} \\ 
- L_0 &=& \min\{L\}
+ L_2 &=& \max\{L_{i}\}_{i=1,2,3} \\
+ L_1&=&\text{middle}\{ L_{i} \}_{i=1,2,3} \\ 
+ L_0 &=& \min\{ L _{i} \}_{i=1,2,3}
   \end{array}
 \right.
 \end{align*}
 
+The idea for the astroalign algorithm can be summarized in a few steps
+
+\begin{enumerate}
+\item Do for both images \begin{enumerate}
+\item Make a catalog of a few brightest sources (but not too few!)
+\item Push these sources into a 2d-tree to quickly query for close neighbors\footnote{A kd-tree data structure for k=2 retrieves nearest neighbors in $\mathcal{O}(N \log N)$ number of operations on average.}.
+\item For each star, select the 4 nearest neighbors (5 sources including the star itself).
+\item Form all the ${5}\choose{3}$ possible triangles from that set of stars.
+\item For each triangle in that set, calculate the tuple of invariants in \ref{}, that uniquely identify the triangle and push the invariant tuple into another kd-tree.
+\item There could be many duplicate triangles on the previous list, so it's best to remove them leaving only unique elements.
+\end{enumerate}
+\item Do with RANSAC \begin{enumerate}
+	\item For a randomly chosen invariant in the image, find a corresponding (if any) invariant on the reference kd-tree.
+	\item As long as the triangle is not equilateral, one can further make a correspondence of individual stars within a triangle pair, by looking at which side of the triangle they belong.
+	This way, one can make a star to star identification on both images, and have a candidate transformation matrix based on this triangle match.
+	\item The transformation is considered satisfactory is it can match at least 80\% of the other stars in the catalog.
+	If it is not satisfactory, iterate RANSAC until one affine transformation is found, or until we reach the maximum number of iterations.
+\end{enumerate}
+\end{enumerate}
+
+Astroalign needs reference stars to work with and for that reason it is not suitable for images of extended objects with no visible stars.
+On the opposite situation, it will also struggle in very crowded fields like globular clusters because of the large quantity of similarly bright stars.
+Astroalign's optimal use is in stellar images where stars are relatively isolated from their neighbors.
+
+
+\subsection{Analysis of the Asterism Invariants}
+
+Let's analyze here the invariant set \ref{invdef} given in the previous section.
+
 This choice of invariants maps the positive octant of $\mathbb{R}^3$ of all possible side lengths of a triangle, 
-onto a region of the positive quadrant of $\mathbb{R}^2$ in the invariant-features space 
+onto a region of the positive quadrant of $\mathbb{R}^2$ in the invariant-features space.
 
 To find out what this region is, we notice that since $L_2 > L_1 > L_0$,
 
@@ -2246,20 +2270,24 @@ L_2 \leq L_1 + L_0 \implies & x \leq 1 + \frac{1}{y} \\
 & y \leq \frac{1}{x-1}
 \end{align*}
 
-The curve $y = (x-1)^{-1}$ corresponds to colinear points.
+The curve $y = (x-1)^{-1}$ corresponds to co-linear points.
 
-Also, it's worth noting that any equilateral triangle will map to the point $(1,1)$ and an isosceles triangle will map either to $x=1$ or $y=1$ line depending on whether the unequal side is the largest or smallest.
+Also, it's worth noting that any equilateral triangle will map to the point $(1,1)$; 
+and an isosceles triangle will map to either the $x=1$ or $y=1$ line, depending on whether the unequal side is the longest or the shortest.
 
-Very peaky triangles will tend to accumulate between the colinear points curve and the $x=1$ line for large values of $y$.
+Very peaky triangles will tend to accumulate between the co-linear points curve and the $x=1$ line for large values of $y$.
 
 All these observations can be summarized in figure \ref{fig:inv_region}.
 
-\begin{figure}[htbp]
+\begin{figure}
    \centering
-   \includegraphics[width = \linewidth]{figures/astroalign/invariantMap01.pdf}
-   \caption{Region for a particular invariant mapping}
+   \includegraphics[scale=0.5]{figures/astroalign/invariantMap01.pdf}
+   \caption{Range of the mapping for the astroalign invariants in equation \ref{invdef}.}
    \label{fig:inv_region}
 \end{figure}
+
+Other invariant mappings will have different mapped regions with potential better spatial distribution of the triangles on the invariant space.
+But our choice of invariance proved to work successfully in the situations we need.
 
 
 %Other invariant sets can be constructed, each with a particular mapping from the set of side lengths of triangles to a region in the 2D plane of invariants.
@@ -2273,9 +2301,8 @@ All these observations can be summarized in figure \ref{fig:inv_region}.
 %   \label{fig:inv_maps}
 %\end{figure}
 
-%\lipsum
 
-\subsection{An Ideal Example}
+\subsection{An Example}
 
 Let's see how the algorithm performs on an ideal example.
 
@@ -2288,11 +2315,11 @@ For this, we create several stars at random positions and we rotate and translat
    \label{fig:ideal_sources}
 \end{figure}
 
-The invariant features in (\ref{inv01}) from this set of stars is plotted in figure \ref{fig:ideal_inv}.
+The invariant features in (\ref{invdef}) from this set of stars is plotted in figure \ref{fig:ideal_inv}.
 
 \begin{figure}
    \centering
-   \includegraphics[width = \linewidth]{figures/astroalign/idealInvariants.pdf}
+   \includegraphics[scale=0.3]{figures/astroalign/idealInvariants.pdf}
    \caption{Invariants for the ideal example}
    \label{fig:ideal_inv}
 \end{figure}
@@ -2367,45 +2394,93 @@ Doing a simple propagation of errors we see that for nearly equilateral triangle
 the errors in the invariants go like $\Delta I_{i} \sim \frac{\Delta L}{L}$.
 This means that, for invariants near $(I_{1}, I_{2}) = (1, 1)$ errors in the determination of the lengths of the triangle side will not magnify errors in the invariants.
 
-%This is done by \citet{1995PASP..107.1119V}.
-
-
 \section{OIS Python Package} \label{section:ois}
 	
-OIS (Optimal Image Subtraction) is a Python module that implements several Difference Image Analysis methods as described in section X.
+Optimal Image Subtraction ({\em ois}) is a Python module that implements several Difference Image Analysis methods as described in section \ref{section:dia}.
+The math behind this implementation is explained in detail in Appendix \ref{appendix:dia}.
 
-It works on Numpy arrays, so that way is agnostic on the origin of the image. 
+OIS works on Numpy arrays, so that way is agnostic on the origin of the image. 
 
 Bad pixels that need to be ignored in the image are marked using Numpy's masked arrays (True on bad pixel).
 
-The interface to the user has two entry points: the module methods optimal\_system and subtract\_on\_grid. The latter is just a convenient method to partition the image in a certain grid and perform the former on each grid, taking into account pixels outside the grid when necessary.
+The interface to the user has two entry points: the module methods optimal\_system and subtract\_on\_grid. 
+The latter is just a convenient method to partition the image in a certain grid and perform the former on each grid, taking into account pixels outside the grid when necessary.
 
-optimal\_system will return ...
+optimal\_system will return the difference image along with the optimal image to be subtracted (the ruined reference), the kernel of the convolution and the subtracted background.
+optimal\_system and subtract\_on\_grid will return the same elements, but a list of kernels for each grid element instead of just one like the previous case.
 
-OIS has documentation on the popular documentation site readthedocs.io.
-OIS is released under MIT Licence and has a GitHub page on ...
+OIS currently supports 3 different methods for subtraction: Alard-Lupton, Bramich, and Adaptive Bramich (an adaptive version of Bramich).
 
-\section{Corral Pipeline Framework}
+The documentation and usage for the code can be found in http://optimal-image-subtraction.readthedocs.io.
+The source code is available in the TOROS GitHub repository at https://github.com/toros-astro/ois.
+OIS is released under MIT License.
 
-As part of the 
+\section{Corral: The Pipeline Framework}
+
+One particular problem about the implementation of the pipeline is the necessity of maintaining a large database for the astronomical observations.
+Our current implementation of the pipeline lacks a database back-end to store and query past observations in an ordered manner.
+
+Juan Bautista Cabral, a collaborator for the TOROS project, developed the Corral framework (\citet{2017Corral..B}) to ease in the building of the pipeline.
+The framework is part of a separate project, following the SoC paradigm and can be installed via a pip command.
+
+Starting a robotic observatory in the extreme environment of Cordon Macon, Argentina introduces serious challenges.
+Given the isolation of this geographic location (the place is at \textasciitilde 4600 m above sea level and the closest town is 300 km away), 
+it was clear that human interaction would be spotty at best and full internet connectivity may not be guaranteed.
+This imposes strong demands on the pipeline data processing and storage to be in location, with failure tolerance arising as a key constrain feature.
+
+To asses this issue, Corral provides the formalization of a pipeline framework based on the concepts of Steps and Models following the 
+well known design pattern \textit{Model--View--Controller} (MVC) and built on top of a SQL Relational Database.
+
+% an Open Source BSD-3 License pure Python package capable of creating a high performance abstraction layer over a data warehouse, with multiprocessing data manipulation, and expose to the 
+% scientist a simple Object Oriented structures that seizes the power of modern multi-core computer hardware.
+
+Every Model instance can be thought of a table in the database and represents a component or piece of data in the pipeline.
+We can have a model for a light frame, a model for image stacks, a model for subtraction images, a model for a candidate of a transient, etc.
+Models contain all the information relating a particular component, including its `status' within the pipeline process.
+This helps when we want to inquire about unfinished processes or about a particular set of images.
+
+Steps are the fundamental blocks of the pipeline, acting on the Model instances by doing the actual processing and updating their status on the database.
+They can also create new Model instances and corresponding registers on the database.
+The pipeline will execute the Steps consecutively when needed and will do parallel processing when allowed.
+
+A special kind of Step, named Loader allows to initialize the database or load it from an external source to the pipeline.
+The pipeline also allows for the creation of Alerts, which are special kind of steps raised by some particular state of the data stream.
+When one of these is raised, it is compulsory an Alert will notify the research group as specified in the implementation.
+
+The formalization of the pipeline into the Corral framework allows the developer to deal with the specifics of the manipulation steps 
+without worrying about creating code for multi-processing workflow, coding architecture or code to interact with the database.
+Working on the Corral framework has the additional perk of estimating a Quality Index for the code, and automatic documentation generation.
+
+Source code for the project is hosted in the TOROS GitHub page \url{https://github.com/toros-astro/corral}.
+Documentation and a tutorial to get started can be found in \url{http://corral.readthedocs.io/}.
 
 \section{Winnow - Human classification of Real/Bogus}
 
-Blue is from Hotwiring the Transient Universe:
+Along with the broker website (see section \ref{section:broker}), the web server for the TOROS project hosts {\em winnow}, 
+an interactive Real/Bogus {\em web-app} for human classification.
+The website was developed using the Django web framework.
 
-\textcolor{blue}{While machines are capable of many types of information processing, they are not so good where something new is present that has not been programmed. Certainly we expect the future flood of events to be mostly handled by machines, with the uninteresting ones never seen by a human expert, but some may be escalated in importance and come to the attention of such experts through a message, or even being urgently awoken in the night.}
+The website at \url{https://toros.utrgv.edu/winnow/}, is a web interface that presents users cut-outs of possible real transients.
+The user votes on the categories `real' or `bogus' and is presented with the next cut-out.
 
-\textcolor{blue}{There could be a large number of other people also involved in the enterprise, volunteers recruited from the internet, with some, but by no means expert, ability. All people have excellent image analysis capabilities: they could, for example, look at an image of a star field and determine quickly and accurately if there is an artifact, such as a satellite trail, interference from a nearby bright star, or one of many Earthbound artifacts: from the telescope, camera, or electronics. While many of these types of common artifacts can be detected by machine, there are always new types, or artifacts that are a combination of known types. Since the transient detection software is looking for differences between new and past observations, such artifacts, though rare, will be inevitably found and thus pollute the event stream.}
+This kind of `citizen science' has been popular and extremely useful in 
+GalaxyZoo (see for example \citet{2008MNRAS.389.1179L}) and CitizenSky (\citet{2012POBeo..91..307T}).
+The natural pattern recognition in humans is excellent. 
+With little training, humans can look at an image of a subtraction field and determine quickly and accurately which are potential transients among the hundreds bogus artifacts.
 
-\textcolor{blue}{This type of `citizen science' has been both popular and extremely useful in GalaxyZoo[6] and CitizenSky[7], and we expect it to be the same with events. A new aspect with events, different from the traditional web-based citizen science, could be that events are `pushed' to the volunteers, so they can respond with their mobile device immediately. Another novel aspect to citizen science could be the recruiting of a cadre of dedicated volunteers to work at a more expert level, looking at light curves or other non-image data; they would need to be sufficiently motivated to study and take a test, to be inducted to this higher level.}
+The original idea for the website was to create a training set, using the power of community to label examples.
+One of the hardest tasks in obtaining a good data set to train Machine Learning agents is labelling instances, 
+since relevant astronomical transients on the sky can't announce themselves as such.
 
-\textcolor{blue}{Given that there will be tens of thousands of transient candidates competing for scarce resources, it is impossible to eyeball even those that survive the myriad of classification steps mentioned earlier. Human neural networks can come to the rescue in such a case. Details about citizen science are provided elsewhere in this book. Here we would like to highlight one particular aspect, the synergy between machine learning and human pattern recognition expertise to improve the machine learning methodologies.}
+Winnow made use of a database to record the votes and even has an interface to admin users to retrieve the classification.
+Earlier attempts to ML relied on sets of data generated by the contribution of undergraduate students at UT Rio Grande Valley.
+Unfortunately, these data sets suffered from great class imbalance.
+Winnow was a visual data mining tool, but due to the natural scarcity of real transients in the images, it was hard to extract the positive examples.
 
-It is worth mentioning that the web server also hosts a related project `winnow', a web interface to manually classify potential transients
-on subtraction images, by voting on `real' or `bogus' categories. 
-This voting allows to have good training sets to later train automatic classifiers to do the same task.
-The website was tested successfully with many undergraduate and graduate students, 
-and there are plans to apply it to high-school students as a way of citizen science project.
+The imbalance of the training set could be mitigated by some techniques in ML, like oversampling, undersampling, bagging or SMOTE.
+In particular, SMOTE gave the best results.
+
+Even though the results achieved with humanly generated data sets were not ideal, winnow proved to be a useful tool for educational purposes.
 
     
 \chapter{Conclusions}
