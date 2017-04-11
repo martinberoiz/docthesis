@@ -154,19 +154,47 @@ the contribution of the other author(s). The signatures of the Supervising
 Committee which precede all other material in the Masters Thesis/Recital
 Document or Doctoral Dissertation attest to the accuracy of this statement.}\end{singlespace}
 \end{acknowledgements}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%                         ABSTRACT
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-The upcoming research in the Gravitational Wave domain has introduced new challenges to Astronomy and has opened a new window to the universe.
+The novel research in the Gravitational Wave domain has introduced new challenges to Astronomy and has opened a new window to the universe.
+The mission of the Transient Optical Robotic Observatory of the South (TOROS) in the context of multi-messenger and time-domain astronomy,
+is to create a facility ready to respond to gravitational wave detections for prompt follow-up observations searching for optical counterparts.
+This thesis will discuss the implementation of a software {\em pipeline} for the TOROS project and the results obtained during the O1 campaign of LIGO.
 
-\textcolor{red}{Write abstract}
+In the first chapter, I introduce some of the theoretical and experimental background for gravitational waves.
 
-In the first chapter, I introduce the concepts and frame on which my thesis developed.
+In chapter 2, I discuss the field of multi-messenger and time domain Astronomy, and I discuss the expected electromagnetic counterparts to some of the gravitational wave signals,
+in particular the Kilonova, the most promising electromagnetic counterpart.
 
-In the second chapter, I discuss the two main elements of a modern transient search. That is, Image Difference and Machine Learning classification.
+In chapter 3, I discuss techniques and software developed for the TOROS pipeline. 
+At the core of this pipeline lies an Image Difference algorithm along with a Machine Learning classifier to propose transient candidates.
+
+In chapter 4 I show results of the O1 campaign for the follow-up of GW150914, the first gravitational wave detected by LIGO.
+
+In chapter 5 I discuss some of the software that complements the TOROS pipeline, that were developed during my PhD.
+
+Chapter 6 brings up conclusions and further work needed to complete this work.
 
 \end{abstract}
 
 \pageone{}
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%                         INTRODUCTION
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Introduction}
 
 In February 2016, celebrating the centenary anniversary of Albert Einstein's first paper on gravitational 
@@ -189,9 +217,6 @@ For this reason, Electro-Magnetic (EM) and Optical Astronomy has become an even 
 Together they will uncover even more details of the inner mechanisms of the celestial bodies and their interactions.
 
 In the following sections, I offer a brief introduction of GWs and their relation to Optical Astronomy.
-
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2232,7 +2257,7 @@ The idea for the astroalign algorithm can be summarized in a few steps
 \item Push these sources into a 2d-tree to quickly query for close neighbors\footnote{A kd-tree data structure for k=2 retrieves nearest neighbors in $\mathcal{O}(N \log N)$ number of operations on average.}.
 \item For each star, select the 4 nearest neighbors (5 sources including the star itself).
 \item Form all the ${5}\choose{3}$ possible triangles from that set of stars.
-\item For each triangle in that set, calculate the tuple of invariants in \ref{}, that uniquely identify the triangle and push the invariant tuple into another kd-tree.
+\item For each triangle in that set, calculate the tuple of invariants in \ref{invdef}, that uniquely identify the triangle and push the invariant tuple into another kd-tree.
 \item There could be many duplicate triangles on the previous list, so it's best to remove them leaving only unique elements.
 \end{enumerate}
 \item Do with RANSAC \begin{enumerate}
