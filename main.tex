@@ -103,6 +103,7 @@
 
 % Committee Members
 \supervisor{Mario Diaz, Ph.D.}
+\cosupervisor{}
 \committeeB{Lucas Macri, Ph.D.}
 \committeeC{Matthew Benacquista, Ph.D.}
 \committeeD{Eric Schlegel, Ph.D.}
@@ -452,18 +453,18 @@ EN mi sugerencia 1.1 es como lo tenes, 1.2 es distintas fuentes astrofisica, 1.3
 
 
 \begin{comment}
-%The successful operation of Advanced LIGO is expected to transform the field from GW detection to GW astrophysics. We illustrate the potential using compact binary coalescences. Detection rate estimates for CBCs can be made using a combination of extrapolations from observed binary pulsars, stellar birth rate estimates and population synthesis models. There are large uncertainties inherent in all of these methods, however, leading to rate estimates that are uncertain by several orders of magnitude. We therefore quote a range of rates, spanning plausible pessimistic and optimistic estimates, as well as a likely rate. For a NS mass of 1.4 sm and a BH mass of 10 sm, these rate estimates for Advanced LIGO are: 0.4 400 yr, with a likely rate of 40 yr for NS???NS binaries; 0.2 300 yr , with a likely rate of 10 yr for NS???BH binaries; 2 4000 yr, with a likely rate of 30 yr for BH-BH binaries.
+The successful operation of Advanced LIGO is expected to transform the field from GW detection to GW astrophysics. We illustrate the potential using compact binary coalescences. Detection rate estimates for CBCs can be made using a combination of extrapolations from observed binary pulsars, stellar birth rate estimates and population synthesis models. There are large uncertainties inherent in all of these methods, however, leading to rate estimates that are uncertain by several orders of magnitude. We therefore quote a range of rates, spanning plausible pessimistic and optimistic estimates, as well as a likely rate. For a NS mass of 1.4 sm and a BH mass of 10 sm, these rate estimates for Advanced LIGO are: 0.4 400 yr, with a likely rate of 40 yr for NS???NS binaries; 0.2 300 yr , with a likely rate of 10 yr for NS???BH binaries; 2 4000 yr, with a likely rate of 30 yr for BH-BH binaries.
 
 LIGO was designed so that its data could be searched for GWs from many different sources. The sources can be broadly characterized as either transient or continuous in nature, and for each type, the analysis techniques depend on whether the gravitational waveforms can be accurately modeled or whether only less specific spectral characterizations are possible. We therefore organize the searches into four categories according to source type and analysis technique.
-%(i) Transient, modeled waveforms: the compact binary coalescence search. The name follows from the fact that the best understood transient sources are the final stages of binary inspirals [52], where each component of the binary may be a NS or a BH. For these sources the waveform can be calculated with good precision, and matched-filter analysis can be used.
+(i) Transient, modeled waveforms: the compact binary coalescence search. The name follows from the fact that the best understood transient sources are the final stages of binary inspirals [52], where each component of the binary may be a NS or a BH. For these sources the waveform can be calculated with good precision, and matched-filter analysis can be used.
 (ii) Transient, unmodeled waveforms: the gravitational-wave bursts search. Transient systems, such as core-collapse supernovae [53], BH mergers and NS quakes, may produce GW bursts that can only be modeled imperfectly, if at all, and more general analysis techniques are needed.
 (iii) Continuous, narrow-band waveforms: the continuous wave sources search. An example of a continuous source of GWs with a well-modeled waveform is a spinning NS (e.g. a pulsar) that is not perfectly symmetric about its rotation axis [54].
 (iv) Continuous, broadband waveforms: the gravitational-wave background search. Processes operating in the early universe, for example, could have produced a background of GWs that is continuous but stochastic in character [55].
 
-%The detectors provided unprecedented sensitivity to gravitational waves over a range of frequencies from 30 Hz to several kHz [1], 
-%which covers the frequencies of gravitational waves emitted during the late inspiral, merger, and ringdown of stellar-mass binary black holes (BBHs).
+The detectors provided unprecedented sensitivity to gravitational waves over a range of frequencies from 30 Hz to several kHz [1], 
+which covers the frequencies of gravitational waves emitted during the late inspiral, merger, and ringdown of stellar-mass binary black holes (BBHs).
 
-%In physics, GW detection could provide information about strong-field gravitation, the untested domain of strongly curved space where Newtonian gravitation is no longer even a poor approximation. In astrophysics, the sources of GWs that LIGO might detect include binary NSs (like PSR 1913 + 16 but much later in their evolution); binary systems where a black hole (BH) replaces one or both of the NSs; a stellar core collapse which triggers a type II supernova; rapidly rotating, non-axisymmetric NSs; and possibly processes in the early universe that produce a stochastic background of GWs [3].
+In physics, GW detection could provide information about strong-field gravitation, the untested domain of strongly curved space where Newtonian gravitation is no longer even a poor approximation. In astrophysics, the sources of GWs that LIGO might detect include binary NSs (like PSR 1913 + 16 but much later in their evolution); binary systems where a black hole (BH) replaces one or both of the NSs; a stellar core collapse which triggers a type II supernova; rapidly rotating, non-axisymmetric NSs; and possibly processes in the early universe that produce a stochastic background of GWs [3].
 
 % Use info in EMCounterpartsReview1512.05435v1.pdf for EM counterparts to expected GW sources
 % Add: These detectors are most sensitive to GWs from the late stages of the binary inspiral.
@@ -2456,9 +2457,6 @@ This imposes strong demands on the pipeline data processing and storage to be in
 To asses this issue, Corral provides the formalization of a pipeline framework based on the concepts of Steps and Models following the 
 well known design pattern \textit{Model--View--Controller} (MVC) and built on top of a SQL Relational Database.
 
-% an Open Source BSD-3 License pure Python package capable of creating a high performance abstraction layer over a data warehouse, with multiprocessing data manipulation, and expose to the 
-% scientist a simple Object Oriented structures that seizes the power of modern multi-core computer hardware.
-
 Every Model instance can be thought of a table in the database and represents a component or piece of data in the pipeline.
 We can have a model for a light frame, a model for image stacks, a model for subtraction images, a model for a candidate of a transient, etc.
 Models contain all the information relating a particular component, including its `status' within the pipeline process.
@@ -2507,9 +2505,55 @@ In particular, SMOTE gave the best results.
 
 Even though the results achieved with humanly generated data sets were not ideal, winnow proved to be a useful tool for educational purposes.
 
-    
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%                              CONCLUSIONS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusions}
-* The future of LIGO, TOROS and multi messenger astronomy
+
+The novel research in the Gravitational Wave domain has introduced new challenges to Astronomy and has opened a new window to the universe.
+The mission of the Transient Optical Robotic Observatory of the South (TOROS) in the context of multi-messenger and time-domain astronomy,
+is to create a facility ready to respond to gravitational wave detections for prompt follow-up observations searching for optical counterparts.
+This thesis will discuss the implementation of a software {\em pipeline} for the TOROS project and the results obtained during the O1 campaign of LIGO.
+
+We created a pipeline that is capable of responding to detection alerts sent by LVC.
+The set of processes that trigger the alert are condensed into a script running on one of the University of Texas Rio Grande Valley servers.
+The script parses the VOEvent alert file, capturing metadata of the detection, downloads the skymaps for the localization uncertainty
+and creates targets for the telescopes, based on criteria of potential host galaxy, visibility at the time of the event and probability of hosting the event.
+
+The mock run on CSTAR data showed that the differential photometry analysis together with a Real-Bogus ML classifier trained on the same data set 
+can be used to select possible candidates of counterpart transients.
+
+The Real-Bogus classifier achieved scores above 99\% on validation sets of synthetic examples that we generated.
+
+Incidentally, we also tested the alignment routines to stack images for subtraction, and several types of different Optimal Subtraction algorithms.
+
+The TOROS collaboration conducted a prompt search for the electromagnetic counterpart of the 
+first gravitational-wave event reported by LIGO using the 1.5-m telescope of Estacion Astrofisica Bosque Alegre (EABA) in Cordoba, Argentina. 
+
+Our search spanned two nights, during which we targeted 14 targets in 21 fields containing nearby (D < 60 Mpc) luminous (MB <  21 mag) 
+galaxies with high probabilities of hosting the event. 
+We covered 0.62 square degrees which corresponds to an integrated probability of about 0.03\% in the cWB map and less than 0.01\% in the rest of the skymaps.
+We reached a 5$\sigma$ limiting AB magnitude of r = 21.7.
+
+The fact that we did not find any genuine transient in our search is not surprising given the small area surveyed (\textasciitilde 0.62 sq. degrees) 
+and the low cadence of the observations (with only two epochs per target, separated by 73$\pm$3d). 
+The fact that we did not find any genuine transient in our search is not surprising given the small area surveyed (\textasciitilde{}0.62 sq. degrees) 
+and the low cadence of the observations (with only two epochs per target, separated by 73$\pm$3d). 
+
+Based on our temporal sampling and photometric precision, we scaled the results of \citet{2015AJ....149...50O} 
+to estimate that only 1 in \textasciitilde{}3,030 stars in our fields would exhibit variability detectable at the 5$\sigma$ level over this timescale. 
+
+Given that only 4,200 stars were detected across all fields by DAOPHOT, we would only expect to detect \textasciitilde1 variable star.
+Regarding extragalactic transients, based on supernova Ia rate for R < 21 mag of 10 events per square degree per year
+(\citet{1996ApJ...473..356P, 2004IBVS.5519....1G}) and a 30\% fraction of SN Ia among local SNe (\citet{2016ApJ...822...48G}), 
+we estimate an 11\% probability of finding such an object across all our fields. 
+Finally, our result is consistent with the LIGO detection of a binary black hole merger, for which no optical EM counterpart is expected.
+
+No bona fide events were found, a result that is consistent with the low probability of detecting stellar or extragalactic variability 
+given our temporal and areal coverage, and with the later classification of the GW event as a merger of two stellar-mass black holes.
 
 
 \appendix
