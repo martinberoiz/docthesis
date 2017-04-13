@@ -111,11 +111,10 @@
 
 \informationitems{Doctor of Philosophy in Physics}{Ph.D.}{M.Sc.}{Department of Physics And Astronomy}{College of Sciences}{August}{ 2017 }
 
-%\thesiscopyright{Copyright 2017 Martin Beroiz \\
-%All rights reserved. }
+\thesiscopyright{Copyright 2017 Martin Beroiz \\
+All rights reserved. }
 
 %\dedication{\emph{To all the people that helped me reach this far}}
-\dedication{}
 
 \title{\textbf{OPTICAL COUNTERPARTS TO GRAVITATIONAL WAVES}}
 
@@ -167,24 +166,18 @@ Document or Doctoral Dissertation attest to the accuracy of this statement.}\end
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-The novel research in the Gravitational Wave domain has introduced new challenges to Astronomy and has opened a new window to the universe.
-The mission of the Transient Optical Robotic Observatory of the South (TOROS) in the context of multi-messenger and time-domain astronomy,
-is to create a facility ready to respond to gravitational wave detections for prompt follow-up observations searching for optical counterparts.
-This thesis will discuss the implementation of a software {\em pipeline} for the TOROS project and the results obtained during the O1 campaign of LIGO.
+The novel field of Gravitational Wave Astronomy has opened a new window to the universe.
+Never before we received signals from distant celestial objects carried away by space-time perturbations.
+But these signals, however faint, lack of localization accuracy. 
+Their position in the sky can have uncertainties of hundreds of square degrees.
 
-In the first chapter, I introduce some of the theoretical and experimental background for gravitational waves.
+Traditional Astronomy can complement the GW detection weaknesses where optical astronomy is stronger, in localization.
+Nonetheless this will also pose technological challenges of a different kind.
+In the era of multi-messenger and time-domain Astronomy, low latency response times after detection is a technical challenge without which will be impossible to identify the originator of the signal.
 
-In chapter 2, I discuss the field of multi-messenger and time domain Astronomy, and I discuss the expected electromagnetic counterparts to some of the gravitational wave signals,
-in particular the Kilonova, the most promising electromagnetic counterpart.
+The mission of the Transient Optical Robotic Observatory of the South (TOROS) in the context of multi-messenger and time-domain astronomy, is to create a facility ready to respond to gravitational wave detections for prompt follow-up observations searching for optical counterparts.
 
-In chapter 3, I discuss techniques and software developed for the TOROS pipeline. 
-At the core of this pipeline lies an Image Difference algorithm along with a Machine Learning classifier to propose transient candidates.
-
-In chapter 4 I show results of the O1 campaign for the follow-up of GW150914, the first gravitational wave detected by LIGO.
-
-In chapter 5 I discuss some of the software that complements the TOROS pipeline, that were developed during my PhD.
-
-Chapter 6 brings up conclusions and further work needed to complete this work.
+This thesis will discuss the implementation of a software pipeline for the TOROS project and the results obtained during the O1 campaign of LIGO.
 
 \end{abstract}
 
@@ -1788,6 +1781,16 @@ Incidentally, we also tested the alignment routines to stack images for subtract
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Observations for GW150914 Optical Counterparts}
+
+{\em Note: Part the work described in this chapter has been previously published in a 2016 paper with the title 
+``GW150914: First search for the electromagnetic counterpart of a gravitational-wave event by the TOROS collaboration''
+in {\it The Astrophysical Journal Letters}, Volume 828, Issue 2, article id. L16, 6 pp. 
+The authors of this publication are Mario C. Diaz, Martin Beroiz, Tania Penuela, Lucas M. Macri, Ryan J. Oelkers, 
+Diego Garcia Lambas, Juan Cabral, Carlos Colazo, Mariano Dominguez, Bruno Sanchez, Sebastian Gurovich,
+Marcelo Lares, Dario Grana, Victor Renzi, Horacio Rodriguez, Manuel Starck, Ruben Vrech, Rodolfo Artola, 
+Antonio Chiavassa Ferreyra, Carla Girardini, Cecilia Quinones, Luis Tapia, Marina Tornatore, Jennifer L. Marshall,
+Darren L. DePoy, Marica Branchesi, Enzo Brocato, Nelson Padilla, Nicolas A. Pereyra, Soma Mukherjee, Matthew Benacquista and Joey Key.
+}
 
 On April 2014, TOROS signed a Memorandum Of Understanding (MOU) with the LIGO Virgo Collaboration, in order to participate 
 in a program to perform follow-up observations of GW candidate events with the benefit of access to LVC proprietary information.

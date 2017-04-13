@@ -460,18 +460,18 @@
       \end{center}
       \end{singlespace}
     \fi
-    
+
 % 4. Dedication (optional, counted, not typed)
-    \newpage
+%    \newpage
 %    \ifx \@empty\@thesiscopyright
 %	    \pagenumbering{roman} %counting starts
 %    \fi
-    \pagestyle{empty} % not typed
-    \begin{center}
-    {\bf DEDICATION}
-    \end{center}
-    \vspace{2ex}
-    \@dedication
+%    \pagestyle{empty} % not typed
+%    \begin{center}
+%   {\bf DEDICATION}
+%   \end{center}
+%  \vspace{2ex}
+%  \@dedication
 
     \newpage
     \pagestyle{plain} % page number typed starts
@@ -504,7 +504,8 @@
 \newcommand{\supervisor}[1]{\def\@supervisor{#1} 
 \def\@committeeA{#1, Chair}}%
 \newcommand{\cosupervisor}[1]{ \def\@cosupervisor{#1}%
-\def\@committeeA{\@supervisor, Co-Chair}%
+%\def\@committeeA{\@supervisor, Co-Chair}% Modified to read Chair instead
+\def\@committeeA{\@supervisor, Chair}%
 \def\@committeeB{#1, Co-Chair}}%
 \newcommand{\committeeB}[1]{\def\@committeeB{#1}}%
 \newcommand{\committeeC}[1]{\def\@committeeC{#1}}%
