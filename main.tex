@@ -2535,50 +2535,40 @@ Once we receive the alert the following processes are launched in order:
 
 \begin{itemize}
 \item Parsing the VOEvent alert file, capturing information and metadata for the detection.
-\item Send email notifications to individual members of the collaboration, alerting of the new detection and providing relevant information about the event gathered in the previous step.
+\item Send email notifications to designated members of the collaboration, alerting of the new detection and providing relevant information about the event gathered in the previous step.
 \item Download the skymap files for the localization uncertainty of the event.
-\item Send skymap FITS and PNG files over email to members of the collaboration.
+\item Send skymap FITS and PNG files over email to designated members of the collaboration.
 \item Process skymaps to create observation targets for each of the telescopes, based on criteria of potential host galaxy, visibility at the time of the event and the localization probability given by LIGO.
 \item Upload the targets to a broker website to inform the participating telescopes the observation targets for the night.
 \end{itemize}
 
 If TOROS were a truly robotic observatory, the observations could be scheduled programmatically without human intervention,
-and then retrieved to perform the next stages of the pipeline.
+and then automatically retrieved to perform the next stages of the pipeline.
 The robotization of the telescope is the ultimate goal of TOROS, but at this time, the telescopes that participate in the collaboration are manually operated, in consequence the automatic flow of the pipeline is interrupted at this step.
+Even without robotization, implementing transfer and storage protocols for the data would help in making a more automatic work-flow, but this is an issue that has not been resolved at the time of this writing. 
 
-However, we also developed code that can be executed after the images are taken, to complete the stages of transient detection and recovery.
+In spite of this technical issue, we also developed code that can be executed after the images are taken, to complete the stages of transient detection and recovery.
 As we said, these subsequent steps are not triggered by any event, but have to be executed manually, once the images are received back from the telescopes.
 
-The transient recovery is done with Image Difference Analysis and a Machine Learning algorithm to rake over the sources present in the image to identify possible candidates.
-We tested the algorithms on a test data set of 600+ images for the Chinese mission CSTAR.
-The results of this mock run showed that xx\% of the simulated transients were recovered and that from those recovered, only xx\% were misclassified bogus.
-It also shows that simple parameters of source extraction programs like SExtractor, and others derived from them, are sufficient to achieve acceptable levels of detection and minimum contamination, at least for the data that we tested.
-The Real-Bogus classifier achieved scores above 99\% on validation sets of synthetic examples that we generated.
-In this mock run, we also tested the alignment routines to stack images for subtraction, and several types of different Optimal Subtraction algorithms.
+The transient recovery is done with an Image Difference Analysis and a Machine Learning algorithm to rake over the sources present in the image to identify possible candidates.
+We tested the algorithms in a data set of 626 images of the South Celestial Pole taken by the Chinese mission CSTAR.
+The results of the simulation showed that 99.15\% of the simulated transients were recovered (the \emph{recall} score) and only 0.43% of the transients were misclassified subtraction artifacts.
+It also shows that simple parameters of source extraction programs like SExtractor, and others derived from them, are sufficient to achieve acceptable levels of detection and minimum contamination, at least in this data set that we tested.
 
-During the observational LIGO campaign of O1, TOROS participated in the follow-up search along other 2x observatories.
+During the observational LIGO campaign of O1, TOROS participated in the follow-up search along with other 23 observatories.
 The TOROS collaboration conducted a prompt search for the electromagnetic counterpart of the 
-first gravitational wave event reported by LIGO using the 1.5 m telescope of Estacion Astrofisica Bosque Alegre (EABA) in Cordoba, Argentina. 
+first gravitational wave event reported by LIGO in September 14, 2015, using the 1.5 m telescope of Estacion Astrofisica Bosque Alegre (EABA) in Cordoba, Argentina. This event was the first ever direct detection of a gravitational wave.
 
-Our search spanned two nights, during which we observed 14 targets in 21 fields containing nearby (D < 60 Mpc) luminous (MB <  21 mag) 
-galaxies with high probabilities of hosting the event. 
-We covered 0.62 square degrees which corresponds to an integrated probability of about 0.03\% in the cWB map and less than 0.01\% in the rest of the skymaps.
-We reached a 5$\sigma$ limiting AB magnitude of r = 21.7.
+We observed for two consecutive nights immediately after we received the alert, searching on 14 targets in 21 fields containing nearby (D < 60 Mpc) luminous (MB <  21 mag) galaxies with high probabilities of hosting the event. 
+We covered 0.62 square degrees which corresponds to an integrated probability of about 0.03\% in the cWB map and less than 0.01\% in the rest of the skymaps. We reached a 5$\sigma$ limiting AB magnitude of r = 21.7.
 
+We applied to the images the same process than our mock run on the CSTAR data, with a-posteriori references images taken a few months after, in December 2015.
+The Image Difference + Machine Learning analysis did not show any transient of astronomical origin.
 The fact that we did not find any genuine transient in our search is not surprising given the small area surveyed (\textasciitilde 0.62 sq. degrees) 
 and the low cadence of the observations (with only two epochs per target, separated by 73$\pm$3d). 
 
-Based on our temporal sampling and photometric precision, we scaled the results of \citet{2015AJ....149...50O} 
-to estimate that only 1 in \textasciitilde{}3,030 stars in our fields would exhibit variability detectable at the 5$\sigma$ level over this timescale. 
+More importantly, our null results are consistent with the LIGO detection of a binary black hole merger, for which no optical EM counterpart is expected.
 
-Given that only 4,200 stars were detected across all fields by DAOPHOT, we would only expect to detect \textasciitilde1 variable star.
-Regarding extragalactic transients, based on supernova Ia rate for R < 21 mag of 10 events per square degree per year
-(\citet{1996ApJ...473..356P, 2004IBVS.5519....1G}) and a 30\% fraction of SN Ia among local SNe (\citet{2016ApJ...822...48G}), 
-we estimate an 11\% probability of finding such an object across all our fields. 
-Finally, our result is consistent with the LIGO detection of a binary black hole merger, for which no optical EM counterpart is expected.
-
-No bona fide events were found, a result that is consistent with the low probability of detecting stellar or extragalactic variability 
-given our temporal and areal coverage, and with the later classification of the GW event as a merger of two stellar-mass black holes.
 
 \appendix
 
