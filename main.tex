@@ -31,8 +31,8 @@
 \floatname{algorithm}{\protect\algorithmname}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
-\usepackage{UTSAthesis}      
-\usepackage{times}            
+\usepackage{UTSAthesis}
+\usepackage{times}
 \usepackage{latexsym}
 
 %Bibliography packages
@@ -123,6 +123,15 @@ All rights reserved. }
 \maketitle
 \begin{acknowledgements}
 
+\begin{comment}
+I would like to thank first of all to my advisor Mario Diaz
+Mariano Dominguez has been such a great pleasure to meet and work with him during his stay at the Rio Grande. His  of will stay with me.
+I want to thank Tania Pe\~nuelas for her many good advice and help.
+Bruno Sanchez
+Juan Bautista Cabral for his disinterested help
+I will like to In memory of Cristina Torres who gave me .
+\end{comment}
+
 \textcolor{red}{Add acknowledgements}
 
 %(Notice: If any part of the thesis/dissertation has been published
@@ -154,9 +163,9 @@ describing the students contribution to the work and acknowledging
 the contribution of the other author(s). The signatures of the Supervising
 Committee which precede all other material in the Masters Thesis/Recital
 Document or Doctoral Dissertation attest to the accuracy of this statement.}\end{singlespace}
+
+
 \end{acknowledgements}
-
-
 
 
 
@@ -168,12 +177,12 @@ Document or Doctoral Dissertation attest to the accuracy of this statement.}\end
 \begin{abstract}
 
 The novel field of Gravitational Wave Astronomy has opened a new window to the universe.
-Never before we received signals from the distant celestial bodies dragged away by space-time perturbations, until the detection of GW150914.
+Never before we received signals from the distant celestial bodies carried away by space-time perturbations, until the detection of GW150914.
 But these signals, however faint, carry very little information about their position on the sky. 
 The localization can have uncertainties that span up to a few hundreds square degrees.
 
 Traditional Astronomy can complement this weakness in gravitational wave detection where optical astronomy is stronger, that is localization.
-Nonetheless, this poses other technological challenges of a different kind.
+However, this poses other technological challenges of a different kind.
 In the era of multi-messenger Astronomy, low latency response times after detection is crucial to have any hope in detecting 
 the optically faint electromagnetic counterparts of the originator of the signal.
 
@@ -196,7 +205,7 @@ This dissertation discusses the implementation of a software pipeline for the TO
 \chapter{Introduction}
 
 In February 2016, celebrating the centenary anniversary of Albert Einstein's first paper on gravitational 
-waves (\citet{1916SPAW.......688E})\footnote{``Approximate integration of the field equations of gravitation'' - A. Einstein. (1916)}, 
+waves\footnote{``Approximate integration of the field equations of gravitation'' - A. Einstein. (1916)} (\citet{1916SPAW.......688E}), 
 the LVC collaboration announced the first ever direct detection of a gravitational wave, coded GW150914.
 With this, a new window of the universe for the purely relativistic astronomical phenomena was opened. 
 
@@ -230,7 +239,7 @@ In the following sections, I offer a brief introduction of GWs and their relatio
 %As with electromagnetic waves, GWs travel at the speed of light and are transverse in character, i.e. the strain oscillations occur in directions orthogonal to the direction in which the wave is propagating.
 \end{comment}
 
-General Relativity predicts that very massive or energetic events will create traveling perturbations of the underlying spacetime metric in the form of {\em gravitational waves}.
+General Relativity predicts that very massive or energetic events will create traveling perturbations of the underlying spacetime metric in the form of \emph{gravitational waves}.
 These are linear disturbances on a flat background metric, that are propagated outwards with the speed of light fading with the inverse of the distance.
 These tensorial transversal waves will modify the local metric as it travels through space.
 
@@ -284,7 +293,7 @@ The decrease in period rate was proof that the energy was being radiated away in
 Nonetheless, a direct detection of GW wouldn't come for yet another 50 years.
 In September 14, 2015, a GW detection labeled GW150914 was finally detected by the LIGO Collaboration (\cite{2016PhRvL.116f1102A}).
 
-Direct detection {\em in situ} of GW requires a transducer of GW in some other form measurable by common instruments.
+Direct detection \emph{in situ} of GW requires a transducer of GW in some other form measurable by common instruments.
 
 One pioneer work along this line was the work done by Joseph Weber in the late 1960s and early 70s. 
 He proposed using a 2 meters in length and 1 meter in diameter aluminum cylinder, that would resonate with passing GW at 1660 Hz.
@@ -391,7 +400,7 @@ Between Initial LIGO and Advanced LIGO (aLIGO) more science were made under Enha
 which provided enhancements that improved sensitivity by a factor of 2. 
 
 But the real revolution came with Advanced LIGO, a set of additions that improved LIGO sensitivity by a factor of 10 over Initial LIGO 
-and widened the frequency range all the way down to 10 Hz (known as the {\em seismic wall}).
+and widened the frequency range all the way down to 10 Hz (known as the \emph{seismic wall}).
 
 Among the improvements is the upgrading of the laser power to 200 W. 
 An increase in the test masses to 40 kg in order to reduce radiation pressure noise and to allow larger beam sizes. 
@@ -489,7 +498,7 @@ LSST\footnote{http://www.lsst.org, http://www.lsst.org/files/docs/sciencebook/SB
 (\citet{2008arXiv0805.2366I, 2009arXiv0912.0201L}).
 The data load makes it unmanageable if not done by automated agents.
 
-Buried in this huge amount of data, lie many short-lived events, or {\em transients}, that will only be registered for a short period of time.
+Buried in this huge amount of data, lie many short-lived events, or \emph{transients}, that will only be registered for a short period of time.
 Although ephemeral, these transient events can uncover important information on the nature and evolution of the universe.
 The most striking example is the discovery of Super Novae events that brought invaluable information on the final stage of stars.
 
@@ -509,12 +518,12 @@ this make it necessary to study them in the field of time domain.
 
 Nonetheless, time domain astronomy poses at least two big main challenges.
 The first one deals with the huge amount of data and the process of recovering interesting transients from it. 
-This is a {\em Data Mining} problem.
+This is a \emph{Data Mining} problem.
 
 The second challenge has to do with the prompt dissemination of a transient discovery
 to the scientific community to do follow-up observations in different bands of the spectrum.
 The huge interest in Gamma Ray Bursts propelled most of the infrastructure that we have now to deal with this issue.
-We cover {\em multi-messenger Astronomy} (MMA) and some examples of it in the following sections.
+We cover \emph{multi-messenger Astronomy} (MMA) and some examples of it in the following sections.
 
 \section{Mining Transients}
 
@@ -656,7 +665,7 @@ Although the creation of GCN/TAN was propelled by the interest in GRBs, now it s
 In the LIGO-Virgo era, GCN/TAN now also serves GW detection notices to some selected observatory partners (of which TOROS is one).
 
 %With the new GW detections of LIGO, a new kind of multi-messenger Astronomy is at hand.
-%LIGO will bring information of a completely new information carrier: the {\em graviton}.
+%LIGO will bring information of a completely new information carrier: the \emph{graviton}.
 
 In the same way that long GRBs sparked the multi-band follow-up observations across the spectrum,
 a new type of event associated with short GRBs can also prompt a new kind of MMA.
@@ -664,7 +673,7 @@ Short GRBs are believed to have originators in the merger of compact objects (\c
 Compact object mergers are also the originators of the expected GW signals that LIGO will detect.
 Along with the GW produced in these mergers, a companion EM thermal radiation will radiate isotropically from the merger.
 This EM counterpart, is believed to shine about a thousand times brighter than a Nova, and it was named accordingly 
-`Kilonova'\footnote{It is also referenced in the literature under the name {\em macronova}}.
+`Kilonova'\footnote{It is also referenced in the literature under the name \emph{macronova}}.
 Models of Kilonovae afterglows peak about a day after the GW emission (\citet{2010MNRAS.406.2650M})
 and last for about a week.
 Just as for the case for GRBs, Kilonovae can narrow the localization of GW to a few arcseconds.
@@ -761,10 +770,10 @@ The actual value for $M_{crit}$ is highly dependent on the equation of state (EO
 but it ranges between 2.6 and 3.9$M_{\odot}$.
 
 Below the $M_{crit}$ value, we can still have a NS remnant supported by rotation, at least temporarily.
-A massive NS remnant, which is supported exclusively by its differential rotation, is known as a {\em hypermassive} NS (HMNS).
+A massive NS remnant, which is supported exclusively by its differential rotation, is known as a \emph{hypermassive} NS (HMNS).
 (\citet{2000ApJ...528L..29B, 2010ApJ...724L.199O, 2014ApJ...790...19K})
 
-If the NS remnant is somewhat less massive, it can also be supported by its solid body rotation and it is known as a {\em supramassive} NS (SMNS).
+If the NS remnant is somewhat less massive, it can also be supported by its solid body rotation and it is known as a \emph{supramassive} NS (SMNS).
 HMSN will decay rapidly into a BH after a few hundreds milliseconds after the merger, while SMNS can remain stable for minutes or much longer before collapsing
 (\citet{2006PhRvD..73f4027S, 2006PhRvL..96c1101D, 2013PhRvD..87l1302S}).
 Finally, if the NS remnant has a total mass less than the maximum mass of a non-rotating NS, it will remain a stable NS
@@ -1080,7 +1089,7 @@ Most notices are sent in real-time, while the event is still ongoing,
 others are delayed due to telemetry down-link delays.
 
 The subsequent reports of follow-up observations made by ground-based observers, are done by submitting circulars to that same site.
-This makes the GCN/TAN network {\em ``a one-stop shopping network for follow-up sites and GRB and transient researchers.''}
+This makes the GCN/TAN network \emph{``a one-stop shopping network for follow-up sites and GRB and transient researchers.''}
 
 The LIGO-Virgo Collaboration makes use of the GCN network to disseminate GW detection
 notices to the participating observatories searching for EM counterparts.
@@ -1094,7 +1103,7 @@ The VOEvent Transport Protocol is a simple TCP-based protocol for transporting V
 VOEvent is the International Virtual Observatory Alliance\footnote{http://ivoa.net} (IVOA) recommended mechanism for describing astronomical transients.
 It has been adopted as an international standard.
 According to its main website\footnote{\href{http://wiki.ivoa.net/twiki/bin/view/IVOA/IvoaVOEvent}{http://wiki.ivoa.net/twiki/bin/view/IVOA/IvoaVOEvent}},
-a VOEvent is an XML file notice that ``{\em defines the content and meaning of a standard information packet for representing, transmitting, publishing and archiving information 
+a VOEvent is an XML file notice that ``\emph{defines the content and meaning of a standard information packet for representing, transmitting, publishing and archiving information 
 about a transient celestial event, with the implication that timely follow-up is of interest.}'' 
 
 In our case, we registered two static IPs with GCN, one in Texas at UT RGV and another one for Cordoba in Argentina at IATE Institute.
@@ -1279,13 +1288,13 @@ The temperature ranges from -80${}^{\circ}$C to -60${}^{\circ}$C and it has unin
 
 The image set that we used was taken during the Antarctic winter of 2010.
 The original array of CSTAR telescopes consisted of four similar telescopes with different filters on them.
-Three of them had standard SDSS {\em gri} filters and the fourth one was a {\em clear} filter.
-Only the images from filter {\em i} in 2010 were usable since the other 3 telescopes failed to return data.
+Three of them had standard SDSS \emph{gri} filters and the fourth one was a \emph{clear} filter.
+Only the images from filter \emph{i} in 2010 were usable since the other 3 telescopes failed to return data.
 The telescopes are a Schmidt-Cassegrain with 145 mm aperture and a 20.1 square degrees field of view.
 They are equipped with an ANDOR DV435 1K$\times$1K frame-transfer CCD with a pixel size of 13$\mu$m.
 The telescopes do not track and have no moving parts.
 They are pointed to the South Celestial Pole and the exposure time is such that the drift time covers less than a pixel.
-The CSTAR 2010 {\em i} set has a median exposure time of 42 s.
+The CSTAR 2010 \emph{i} set has a median exposure time of 42 s.
 
 The entire data set for the winter of 2010 consists of 251,818 images spanning from April 30 2010 to September 27 2010.
 Since the amount of data is so large, for the purpose of training, we created a subset of 626 images, 
@@ -1318,13 +1327,13 @@ We then re-aligned the reference image to each one of the 626 image in the cstar
 Searches for time-varying and position-changing objects are undertaken by comparing a reference image of a particular region of the sky 
 with a second image taken at the moment in which we are interested. 
 The two images have to be aligned pixel by pixel and then subtracted to reveal any changes in light.
-In our case, we used a reference image constructed by stacking several CSTAR images from the best-{\em seeing} month of June 
+In our case, we used a reference image constructed by stacking several CSTAR images from the best-\emph{seeing} month of June 
 and then we aligned this to each of the frames in the data set.
 
-To make a suitable subtraction of the two images, one has to match the frames to exactly the same {\em seeing}. 
+To make a suitable subtraction of the two images, one has to match the frames to exactly the same \emph{seeing}. 
 Image Difference, also known as Optimal Subtraction or Differential Photometry, is a technique to find a convolution kernel that best describes 
 (in some minimization sense) the change in point spread function between the images. 
-The idea is to degrade the good {\em seeing} image ---our reference image--- to match the {\em seeing} of our second image. 
+The idea is to degrade the good \emph{seeing} image ---our reference image--- to match the \emph{seeing} of our second image. 
 Finding the proper convolution kernel can be a delicate operation and there's plenty of literature on the subject. 
 Methods range from PSF modeling through common Gaussian profiles; to unmodeled PSF's; to Information Theory; and Fourier Domain.
 
@@ -1343,7 +1352,7 @@ The kernel $K$ will try to correct for the PSF difference between the two images
 It's worth noting here, that even though it could be practical to the reader to think so, 
 the kernel $K$ is neither the PSF of the reference nor the PSF of the image.
 
-Ideally, the reference image is the one with the best {\em seeing}, 
+Ideally, the reference image is the one with the best \emph{seeing}, 
 because it can be done by median-stacking good images, or using Speckle Imaging (\citet{1978JOSA...68.1651F}) or some other method.
 
 The inversion problem \ref{thdiaeq} can be computationally very expensive to invert directly.
@@ -1362,7 +1371,7 @@ Even with moderate levels of noise the results were not always good.
 \citet{1998ApJ...503..325A} were the first to propose a solution in image space (as opposed to Fourier space). 
 %They also summarize previous efforts in their introduction and references therein. 
 In their paper, they propose an optimization solution by converting the convolution inversion into a linear problem.
-First, they decompose the kernel into a linear combination of ``{\em basis}'' kernels $B$.
+First, they decompose the kernel into a linear combination of ``\emph{basis}'' kernels $B$.
 
 \begin{equation} \label{thkernel_linear}
 K(u,v) = \sum_{i} a_{i} B_{i}(u,v)
@@ -1436,7 +1445,7 @@ The spatial variation is accounted for by further expanding each coefficient int
 This makes the number of spatial dependance coefficients proportional to the original number of free parameters.
 The introduction of yet more coefficients to adjust could make the method computationally prohibitive.
 In \citet{2000A&AS..144..363A}, they propose an approximation to the problem using for the calculation 
-only pixels on {\em stamps} around sources and considering a nearly constant PSF on each stamp.
+only pixels on \emph{stamps} around sources and considering a nearly constant PSF on each stamp.
 
 HOTPANTS (\citet{2015ascl.soft04004B}) and its predecesor ISIS (\citet{2000A&AS..144..363A}) are implementations of this method written in C.
 
@@ -1452,7 +1461,7 @@ They are significantly more than those of \citet{1998ApJ...503..325A} growing wi
 The \citet{2008MNRAS.386L..77B} method can also accommodate for a simultaneous fit of background and a spatial varying kernels.
 To tackle the problem of PSF spatial variability he proposes dividing the image on a grid and perform a subtraction on each grid element.
 
-In \citet{2008PASP..120..449M} they propose a method similar to \citet{1998ApJ...503..325A} with the use of {\em stamps} to deal with PSF variation.
+In \citet{2008PASP..120..449M} they propose a method similar to \citet{1998ApJ...503..325A} with the use of \emph{stamps} to deal with PSF variation.
 It's worth noting that introducing new coefficients for space variation is more costly on the Delta basis because of the larger number of original variables to fit in the kernel.
 
 One particular problem with all these methods based on least-square optimization, 
@@ -1465,8 +1474,8 @@ The inversion itself can be done very quickly with any algebra package,
 but the number of operations for each element of the matrix system scales quadratically with the number of free parameters.
 This is something to take into account when choosing the number of Gaussians and the polynomial degree or the kernel side for the Delta basis.
 
-The implementation of these set of algorithms spun the creation of a new Python module named {\em ois}\footnote{\url{https://github.com/toros-astro/ois}}.
-For more details on the {\em ois} Python implementation we refer the reader to section \ref{section:ois}.
+The implementation of these set of algorithms spun the creation of a new Python module named \emph{ois}\footnote{\url{https://github.com/toros-astro/ois}}.
+For more details on the \emph{ois} Python implementation we refer the reader to section \ref{section:ois}.
 
 For our set of images, I applied the \citet{2008MNRAS.386L..77B} method on a 4$\times$4 grid.
 We also simultaneously fit and subtracted a third degree polynomial background.
@@ -1540,7 +1549,7 @@ These defects can easily confuse algorithms of source detection like SExtractor 
 For that, it is needed to have a computerized agent capable of discriminating bogus sources from real transients on the subtracted image. 
 
 This is the task for a Machine Learning (ML) agent. 
-Machine Learning in its {\em supervised} variant, is the general name given to a set of algorithms that can 
+Machine Learning in its \emph{supervised} variant, is the general name given to a set of algorithms that can 
 figure out (or ``learn'') how to classify instances by generalizing from given examples.
 To be able to generalize over the given examples, a classifier must rely on some knowledge or assumptions beyond the given data.
 This is referred as ``Bias''. A classifier with a large bias is very restrictive about what kind of decisions it can make on its own hypothesis space.
@@ -1684,7 +1693,7 @@ $ where $TP$ is true positive, $FP$ is false positive, $FN$ is false negative an
 This score does not emphasize one class over the other. ($A = (TP+TN)/N$)
 \item[Precision:] Precision is used when we are interested in one particular positive class (the `reals') over the other. 
 Precision is then the fraction of retrieved instances that are positive.
-Retrieved instances are those classified as `real', regardless of their true class. The fraction of those that are actually `real' is the {\em precision}. \\
+Retrieved instances are those classified as `real', regardless of their true class. The fraction of those that are actually `real' is the \emph{precision}. \\
 $P = TP/(TP+FP)$
 \item[Recall:] The fraction of relevant instances that are retrieved. \\
 Like with precision, it is the fraction of the total number of `reals' that were actually retrieved.\\
@@ -1785,7 +1794,7 @@ Incidentally, we also tested the alignment routines to stack images for subtract
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Observations for GW150914 Optical Counterparts}
 
-{\em Note: Part the work described in this chapter has been previously published in a 2016 paper with the title 
+\emph{Note: Part the work described in this chapter has been previously published in a 2016 paper with the title 
 ``GW150914: First search for the electromagnetic counterpart of a gravitational-wave event by the TOROS collaboration''
 in {\it The Astrophysical Journal Letters}, Volume 828, Issue 2, article id. L16, 6 pp. 
 The authors of this publication are Mario C. Diaz, Martin Beroiz, Tania Penuela, Lucas M. Macri, Ryan J. Oelkers, 
@@ -2041,7 +2050,7 @@ This resulted in some tiles having shorter effective exposure time (see table \r
 During the stacking of the science images, we replaced the bad pixels with noise consistent with the normal background distribution on the image.
 Finally, we used circular masks to cover saturated stars on the frames. 
 
-The same procedure was done on the {\em a posteriori} reference frames.
+The same procedure was done on the \emph{a posteriori} reference frames.
 The reference images were taken a few months after the alert, on 2015 December 5 \& 6, using the same telescope in Bosque Alegre.
 They were taken with the same exposure time for all fields and the same binning.
 
@@ -2063,7 +2072,7 @@ algorithms (see section \ref{section:ois} for more details).
 As explained in section \ref{section:dia}, the Bramich method uses the information from all the pixels on the image, wether is part of the background or a source,
 so we don't need to select specific stars to take stamps around.
 We partitioned the images in a 2$\times$3 grid to compensate for possible PSF variability across the field of view.
-Even though the Python {\em ois} module can do a simultaneous background estimation to be subtracted, 
+Even though the Python \emph{ois} module can do a simultaneous background estimation to be subtracted, 
 we noticed that for images with large extended objects on the image, like tile \#16 for NGC1559, 
 the background was introducing large depressions of negative pixels and we had to turn background estimation on those.
 
@@ -2072,7 +2081,7 @@ the background was introducing large depressions of negative pixels and we had t
 To inspect for the possibility of transients on the science images we perform a Real/Bogus search on the difference images, 
 as we did with the CSTAR image set in section \ref{section:realbogus}.
 We erase stars on the reference images to create fictitious transients after a subtraction is made.
-We perform the subtraction using the Python module {\em ois} (see section \ref{section:ois}).
+We perform the subtraction using the Python module \emph{ois} (see section \ref{section:ois}).
 
 Once the subtraction is done, we run SExtractor on the subtraction to recover these fabricated transients and their associated SExtractor parameters.
 One difference with the procedure done with CSTAR is that we do not separate sources into flux bins, because we have relatively much fewer stars in the field.
@@ -2085,7 +2094,7 @@ With these we trained a classifier.
 The classifier had very good score statistics, but not as good as the one with CSTAR, most likely because of the lower sampling of `transient' examples.
 Nonetheless all performance statistics score above 90\%.
 
-The particular Random Forest algorithm we used is the one provided in {\em scikit-learn} (\citet{2012arXiv1201.0490P}), a popular Python package for Machine Learning analysis.
+The particular Random Forest algorithm we used is the one provided in \emph{scikit-learn} (\citet{2012arXiv1201.0490P}), a popular Python package for Machine Learning analysis.
 We have 10 Decision Trees in the ensemble, each one with a `Gini impurity' criterion to decide on the split of the branches.
 Each tree decides based on the square root of the number of features. On our case, with the features in table \ref{mlfeatures}, 
 the algorithm will branch its decisions based on 4 features randomly chosen.
@@ -2190,7 +2199,7 @@ given our temporal and areal coverage, and with the later classification of the 
 
 \chapter{Software Developed}
 
-The first attempts to build software for the TOROS pipeline lacked modularity, or in the language of Computer Science, {\em separation of concerns}.
+The first attempts to build software for the TOROS pipeline lacked modularity, or in the language of Computer Science, \emph{separation of concerns}.
 Separation of concerns (SoC) is a design principle in Computer Science for separating a computer program into distinct sections,
 such that each section addresses a separate concern. 
 In our pipeline we had many different areas of concern: the alert system; the image preprocessing; the alignment of images; and the differential photometry of the subtractions.
@@ -2212,8 +2221,8 @@ In the following sections I describe some of the Python modules we developed in 
 
 Astroalign was developed to address the need to align two images before subtraction.
 There are currently two other Python modules with similar functionality.
-The module {\em reproject} will resample or reproject images when WCS information is provided, but it does not address the problem of registration when one or both images lack WCS information.
-The module {\em alipy} does not rely on WCS information, but uses external programs like IRAF and SExtractor and deals exclusively in the FITS format for images.
+The module \emph{reproject} will resample or reproject images when WCS information is provided, but it does not address the problem of registration when one or both images lack WCS information.
+The module \emph{alipy} does not rely on WCS information, but uses external programs like IRAF and SExtractor and deals exclusively in the FITS format for images.
 Astroalign works with the raw pixel information in memory, so it's agnostic about the source of the images.
 It is also self contained, so does not rely on any external program to perform the alignment
 and it is written entirely in Python.
@@ -2229,7 +2238,7 @@ Astrometry.net uses 4-star asterisms (or quadrilaterals) from the image,
 to match them against a previously-created huge database of asterisms from catalogs of stars of the whole sky.
 The efficiency of astrometry.net is on the power of this database of cataloged stars.
 
-For {\em astroalign}, we don't need a catalog of the whole sky, since we are only interested in the region of the sky covered by the image at hand. 
+For \emph{astroalign}, we don't need a catalog of the whole sky, since we are only interested in the region of the sky covered by the image at hand. 
 We can create a catalog of the region of interest, using the reference frame.
 In essence we will have a catalog of some bright reference stars on each image, 
 and we want to match them in some way to find the appropriate affine transformation between the images.
@@ -2384,7 +2393,7 @@ This is where the RANSAC algorithm comes in.
 
 From its Wikipedia page 
 
-{\em ``The Random sample consensus (RANSAC) algorithm is an iterative method to estimate parameters of a mathematical model from a set of observed data which contains outliers.''}
+\emph{``The Random sample consensus (RANSAC) algorithm is an iterative method to estimate parameters of a mathematical model from a set of observed data which contains outliers.''}
 
 In our case the mathematical model is the similarity transformation between both images and the parameters are those of the transformation, i.e. the rotation, translation and uniform scaling parameters.
 
@@ -2429,7 +2438,7 @@ This means that, for invariants near $(I_{1}, I_{2}) = (1, 1)$ errors in the det
 
 \section{OIS Python Package} \label{section:ois}
 	
-Optimal Image Subtraction ({\em ois}) is a Python module that implements several Difference Image Analysis methods as described in section \ref{section:dia}.
+Optimal Image Subtraction (\emph{ois}) is a Python module that implements several Difference Image Analysis methods as described in section \ref{section:dia}.
 The math behind this implementation is explained in detail in Appendix \ref{appendix:dia}.
 
 OIS works on Numpy arrays, so that way is agnostic on the origin of the image. 
@@ -2486,8 +2495,8 @@ Documentation and a tutorial to get started can be found in \url{http://corral.r
 
 \section{Winnow - Human classification of Real/Bogus}
 
-Along with the broker website (see section \ref{section:broker}), the web server for the TOROS project hosts {\em winnow}, 
-an interactive Real/Bogus {\em web-app} for human classification.
+Along with the broker website (see section \ref{section:broker}), the web server for the TOROS project hosts \emph{winnow}, 
+an interactive Real/Bogus \emph{web-app} for human classification.
 The website was developed using the Django web framework.
 
 The website at \url{https://toros.utrgv.edu/winnow/}, is a web interface that presents users cut-outs of possible real transients.
@@ -2520,34 +2529,43 @@ Even though the results achieved with humanly generated data sets were not ideal
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusions}
 
-The novel research in the Gravitational Wave domain has introduced new challenges to Astronomy and has opened a new window to the universe.
-The mission of the Transient Optical Robotic Observatory of the South (TOROS) in the context of multi-messenger and time-domain astronomy,
-is to create a facility ready to respond to gravitational wave detections for prompt follow-up observations searching for optical counterparts.
-This thesis will discuss the implementation of a software {\em pipeline} for the TOROS project and the results obtained during the O1 campaign of LIGO.
+A multi-messenger project like TOROS --that was established to follow-up gravitational wave detections to find potential optical counterparts-- requires a fast responsive system to deal with the ephemeral nature of the transient events of interest.
+Following this requirement, we developed software to immediately respond to GW alerts by triggering an automatic chain of processes.
+Once we receive the alert the following processes are launched in order:
 
-We created a pipeline that is capable of responding to detection alerts sent by LVC.
-The set of processes that trigger the alert are condensed into a script running on one of the University of Texas Rio Grande Valley servers.
-The script parses the VOEvent alert file, capturing metadata of the detection, downloads the skymaps for the localization uncertainty
-and creates targets for the telescopes, based on criteria of potential host galaxy, visibility at the time of the event and probability of hosting the event.
+\begin{itemize}
+\item Parsing the VOEvent alert file, capturing information and metadata for the detection.
+\item Send email notifications to individual members of the collaboration, alerting of the new detection and providing relevant information about the event gathered in the previous step.
+\item Download the skymap files for the localization uncertainty of the event.
+\item Send skymap FITS and PNG files over email to members of the collaboration.
+\item Process skymaps to create observation targets for each of the telescopes, based on criteria of potential host galaxy, visibility at the time of the event and the localization probability given by LIGO.
+\item Upload the targets to a broker website to inform the participating telescopes the observation targets for the night.
+\end{itemize}
 
-The mock run on CSTAR data showed that the differential photometry analysis together with a Real-Bogus ML classifier trained on the same data set 
-can be used to select possible candidates of counterpart transients.
+If TOROS were a truly robotic observatory, the observations could be scheduled programmatically without human intervention,
+and then retrieved to perform the next stages of the pipeline.
+The robotization of the telescope is the ultimate goal of TOROS, but at this time, the telescopes that participate in the collaboration are manually operated, in consequence the automatic flow of the pipeline is interrupted at this step.
 
+However, we also developed code that can be executed after the images are taken, to complete the stages of transient detection and recovery.
+As we said, these subsequent steps are not triggered by any event, but have to be executed manually, once the images are received back from the telescopes.
+
+The transient recovery is done with Image Difference Analysis and a Machine Learning algorithm to rake over the sources present in the image to identify possible candidates.
+We tested the algorithms on a test data set of 600+ images for the Chinese mission CSTAR.
+The results of this mock run showed that xx\% of the simulated transients were recovered and that from those recovered, only xx\% were misclassified bogus.
+It also shows that simple parameters of source extraction programs like SExtractor, and others derived from them, are sufficient to achieve acceptable levels of detection and minimum contamination, at least for the data that we tested.
 The Real-Bogus classifier achieved scores above 99\% on validation sets of synthetic examples that we generated.
+In this mock run, we also tested the alignment routines to stack images for subtraction, and several types of different Optimal Subtraction algorithms.
 
-Incidentally, we also tested the alignment routines to stack images for subtraction, and several types of different Optimal Subtraction algorithms.
-
+During the observational LIGO campaign of O1, TOROS participated in the follow-up search along other 2x observatories.
 The TOROS collaboration conducted a prompt search for the electromagnetic counterpart of the 
-first gravitational-wave event reported by LIGO using the 1.5-m telescope of Estacion Astrofisica Bosque Alegre (EABA) in Cordoba, Argentina. 
+first gravitational wave event reported by LIGO using the 1.5 m telescope of Estacion Astrofisica Bosque Alegre (EABA) in Cordoba, Argentina. 
 
-Our search spanned two nights, during which we targeted 14 targets in 21 fields containing nearby (D < 60 Mpc) luminous (MB <  21 mag) 
+Our search spanned two nights, during which we observed 14 targets in 21 fields containing nearby (D < 60 Mpc) luminous (MB <  21 mag) 
 galaxies with high probabilities of hosting the event. 
 We covered 0.62 square degrees which corresponds to an integrated probability of about 0.03\% in the cWB map and less than 0.01\% in the rest of the skymaps.
 We reached a 5$\sigma$ limiting AB magnitude of r = 21.7.
 
 The fact that we did not find any genuine transient in our search is not surprising given the small area surveyed (\textasciitilde 0.62 sq. degrees) 
-and the low cadence of the observations (with only two epochs per target, separated by 73$\pm$3d). 
-The fact that we did not find any genuine transient in our search is not surprising given the small area surveyed (\textasciitilde{}0.62 sq. degrees) 
 and the low cadence of the observations (with only two epochs per target, separated by 73$\pm$3d). 
 
 Based on our temporal sampling and photometric precision, we scaled the results of \citet{2015AJ....149...50O} 
@@ -2561,7 +2579,6 @@ Finally, our result is consistent with the LIGO detection of a binary black hole
 
 No bona fide events were found, a result that is consistent with the low probability of detecting stellar or extragalactic variability 
 given our temporal and areal coverage, and with the later classification of the GW event as a merger of two stellar-mass black holes.
-
 
 \appendix
 
