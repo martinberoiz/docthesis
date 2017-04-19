@@ -123,16 +123,18 @@ All rights reserved. }
 \maketitle
 \begin{acknowledgements}
 
-\begin{comment}
-I would like to thank first of all to my advisor Mario Diaz
-Mariano Dominguez has been such a great pleasure to meet and work with him during his stay at the Rio Grande. His  of will stay with me.
-I want to thank Tania Pe\~nuelas for her many good advice and help.
-Bruno Sanchez
-Juan Bautista Cabral for his disinterested help
-I will like to In memory of Cristina Torres who gave me .
-\end{comment}
+I would like to thank first of all, to my advisor Mario Diaz for his many advice and encouragement in the difficult times and having me on board of TOROS.
 
-\textcolor{red}{Add acknowledgements}
+To Mariano Dominguez, who has been such a great pleasure to meet and work with during his stay at the Rio Grande Valley. 
+Your unstoppable flow of creativity left me an impression that will be hard to forget.
+
+I want to thank Tania Pe\~nuelas for her many good advice and help.
+
+To my friends Marc Normandin, Shihan Weerathunga and Ervin Vilchis, partners in this journey that was the doctoral program.
+
+To Bruno Sanchez and Juan Bautista Cabral for his disinterested help and friendship.
+
+I want to dedicate this to the memory of Cristina Torres, a wonderful person, ready to reach out to help people. May she rest in peace.
 
 %(Notice: If any part of the thesis/dissertation has been published
 %before, the following two paragraphs should be included without alteration).
@@ -181,15 +183,15 @@ Never before we received signals from the distant celestial bodies carried away 
 But these signals, however faint, carry very little information about their position on the sky. 
 The localization can have uncertainties that span up to a few hundreds square degrees.
 
-Traditional Astronomy can complement this weakness in gravitational wave detection where optical astronomy is stronger, that is localization.
+Traditional Astronomy can complement this limitation in gravitational wave detection where optical astronomy is stronger: localization.
 However, this poses other technological challenges of a different kind.
-In the era of multi-messenger Astronomy, low latency response times after detection is crucial to have any hope in detecting 
-the optically faint electromagnetic counterparts of the originator of the signal.
+In the era of multi-messenger Astronomy, low latency response time after detection is crucial to have any hope in detecting 
+the optically faint electromagnetic counterparts of the event.
 
 The mission of the Transient Optical Robotic Observatory of the South (TOROS) in the context of multi-messenger and time-domain astronomy, 
 is to create a facility ready to respond to gravitational wave detections for prompt follow-up observations searching for optical counterparts.
 
-This dissertation discusses the implementation of a software pipeline for the TOROS project and the results obtained during the O1 LIGO campaign.
+This dissertation discusses the implementation of a software pipeline for the TOROS project and the results obtained during the O1 campaign of Advanced LIGO.
 
 \end{abstract}
 
@@ -213,17 +215,18 @@ The history of GW was not without controversies.
 From the discussion of whether GW would carry energy to the experiments of Joseph Weber, 
 Gravitational Waves made its way from the theoretical realm into a stronghold position in Astrophysics (see for example \citet{2016arXiv161008803C}).
 
-The detection of the first Gravitational Wave GW150914 firmly established the foundations for the Gravitational Wave Astronomy.
+The detection of the first Gravitational Wave GW150914 firmly established the foundations for Gravitational Wave Astronomy.
 %The graviton and its wave counterpart will from now on be a new --purely relativistic in nature-- messenger of the universe.
-Gravitational Waves (GW from here on) will bring us information about strong gravitational fields, compact massive objects and more.
+Gravitational Waves (GW from here on) will bring us information about strong gravitational fields around compact massive objects.
 It will let us probe into the physics of the extreme gravitational field celestial bodies.
 
 The GW information will complete, refine and expand the understanding of our universe.
-It will complement our telescopes in every light frequency band. 
-For this reason, Electro-Magnetic (EM) and Optical Astronomy has become an even more important partner in this search.
-Together they will uncover even more details of the inner mechanisms of the celestial bodies and their interactions.
-
-In the following sections, I offer a brief introduction of GWs and their relation to Optical Astronomy.
+The full waveform of the GW gives us information that is not available in the light we gather in our traditional telescopes.
+On the other hand, traditional Astronomy can help GW Astronomy in localizing the source, thus improving the estimated parameters of the merger, 
+especially so in the case for the parameters that are correlated with localization, 
+like the geometrical parameters of the inclination of the merger with the line of sight, and total luminosity. 
+In this way, Optical Astronomy is a vital partner in the understanding of the physics in compact mergers.
+Together they can uncover more details of the inner mechanisms of the celestial bodies and their interactions.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -236,25 +239,23 @@ In the following sections, I offer a brief introduction of GWs and their relatio
 \begin{comment}
 %Quadrupole radiation is the lowest allowed form and is thus usually the dominant form. In this case, the GW field strength is proportional to the second time derivative of the quadrupole moment of the source, and it falls off in amplitude inversely with distance from the source.
 
-%As with electromagnetic waves, GWs travel at the speed of light and are transverse in character, i.e. the strain oscillations occur in directions orthogonal to the direction in which the wave is propagating.
 \end{comment}
 
 General Relativity predicts that very massive or energetic events will create traveling perturbations of the underlying spacetime metric in the form of \emph{gravitational waves}.
-These are linear disturbances on a flat background metric, that are propagated outwards with the speed of light fading with the inverse of the distance.
+These are linear disturbances of a flat background metric, that are propagated outwards with the speed of light fading with the inverse of the distance.
 These tensorial transversal waves will modify the local metric as it travels through space.
 
-%Since GWs are weakly interacting, any waves produced will traverse the universe without being scattered or absorbed
-Putting it in more technical terms, in an asymptotically flat spacetime, removed from any strong source so that one can assume an almost flat local solution, one can study weak-field perturbations to the flat Minkowski metric.
-In mathematical form, we study the spacetime metric $g$ as Minkowski flat metric $\eta$ plus a perturbation $h$.
+In technical terms, in an asymptotically flat spacetime, removed from any strong source so that one can assume an almost flat local solution, one can study weak-field perturbations to the flat Minkowski metric.
+In mathematical form, we study the spacetime metric $g$ as Minkowski flat metric $\eta$ plus a small perturbation $h$.
 
 \begin{equation}
 g_{\mu \nu} = \eta_{\mu \nu} + h_{\mu \nu}
 \end{equation} 
 
-In this regime and choosing appropriate gauges, the linearized Einstein field equations present themselves in the form of a wave equation.
-Solutions to this wave equations are what people refer to as Gravitational Waves.
+In this regime, and choosing appropriate gauges, the linearized Einstein field equations present themselves in the form of a wave equation.
+Solutions to this wave equations are what people refer to as gravitational waves.
 
-The GW tensor metric in the TT gauge coordinate frame, has the form\footnote{We refer the reader to Appendix \ref{gwderivation} for a more complete derivation of the metric.}:
+The GW tensor metric in the transverse-traceless (TT) gauge coordinate frame, has the form\footnote{We refer the reader to Appendix \ref{gwderivation} for a more complete derivation of the metric.}:
 
 \begin{equation}
 h_{\mu \nu} = 
@@ -268,25 +269,25 @@ h_{\mu \nu} =
 
 Aside from the usual sinusoidal factors for the wave propagation, we note that the GW tensor has two independent modes, or `polarizations' $h_{+}$ and $h_{\times}$. 
 These polarizations are just like light polarization, except that these are at 45 degrees of each other, unlike the 90 degrees symmetry of light polarization.
-To be more clear, the effect on test particles of a purely $h_{\times}$ polarization would be the same as the $h_{+}$ polarization rotated 45 degrees.
+More specifically, the effect on test particles of a purely $h_{\times}$ polarization would be the same as the $h_{+}$ polarization rotated 45 degrees.
 
-Since a spacetime metric is a measure for the distance between pair of events, the metric perturbation wave will modify the relative distance between points in space as it passes by. 
+Since a spacetime metric is a measure for the distance between pair of events, the metric perturbation wave will modify --in a 3+1 decomposition-- the relative distance between points in space as it passes by. 
 It is in fact an effective oscillating strain or tidal force between free test masses.
-It is in principle possible then, to devise an instrument to detect these relative differences in distance for such test masses.
+It is then in principle possible, to devise an instrument to detect these relative differences in distance for such test masses.
 
 But because of the very `perturbative' nature of GW, these differences are very small. 
-In fact, it was Einstein himself who said in his 1916 paper ``it is obvious that $A$ [the radiation formula] has, in all imaginable cases, a practically vanishing value.''
-To have any chance of detection, one must look into the extreme side of gravity: very massive compact astrophysical objects with big gravitational fields, moving at relativistic velocities.
-Even the most powerful astronomical events, like a black hole merger will produce disturbances the order of $10^{-23}$m at a few hundreds Mpc of distance.
+In fact, it was Einstein himself who said in his 1916 paper ``\emph{it is obvious that $A$ [the radiation formula] has, in all imaginable cases, a practically vanishing value.}''
+To have any chance of detection, one must look into the extreme side of gravity: very massive compact astrophysical objects with strong gravitational fields, moving at relativistic speeds.
+Even the most powerful astronomical events, like a black hole merger will produce disturbances the order of $10^{-23}$ m at a distance of a few hundreds Mpc.
 
 Perhaps the first experimental evidence for the existence of GWs came 50 years after their prediction with the work of Hulse and Taylor. 
 For decades, they studied the pulses we receive from 
 PSR B1913+16\footnote{It is also known as PSR J1915+1606, PSR 1913+16, and the Hulse--Taylor binary}, 
-a Neutron Star (NS) in a Neutron Star Binary system.
+a Neutron Star (NS) in a Binary Neutron Star (BNS) system.
 The slow rate of period decrease of the pulses for this pulsar matched precisely the rate 
-at which they were losing energy in Gravitational Waves, as predicted by General Relativity.
+at which they were losing energy in gravitational waves, as predicted by General Relativity.
 The discovery and analysis awarded them the 1993 Nobel Prize in Physics 
-``for the discovery of a new type of pulsar, a discovery that has opened up new possibilities for the study of gravitation.''
+``\emph{for the discovery of a new type of pulsar, a discovery that has opened up new possibilities for the study of gravitation.}''
 This important work also settled the debate on wether GW could carry energy with them.
 The decrease in period rate was proof that the energy was being radiated away into GW.
 
@@ -301,7 +302,7 @@ In his paper, he states that the strain oscillations on the cylinder would be of
 Although very small, these tiny resonant oscillations could in principle be measured.
 But even though ingenious, the carefully devised experiment could not yield positive reproducible results 
 that convinced the scientific community.
-It was nonetheless a very important milestone in the development of `in-situ' GW detection.
+It was nonetheless a very important milestone in the development of \emph{in-situ} GW detection.
 The experimental sensitivity that this experiment achieved brought us orders of magnitude closer to the required LIGO strain sensitivity.
 Bar detectors like Weber's were subsequently improved. 
 The latest iteration, the Nautilus GW detector ran continuously from December 1995 to December 1996.
@@ -323,7 +324,7 @@ Indigo is a planned observatory that will be in India.
 
 The frequency range in which these Earth-based interferometers are sensitive depends mainly on the length of the arms.
 As a rule of thumb, the length of one arm is about half the shortest wavelength it can detect.
-A few kilometers long arms make them sensitive up to the kHz.
+A few kilometers long arm make them sensitive up to the kHz.
 As an example, aLIGO is now sensitive in the 10 Hz --7 kHz range.
 
 Besides the Earth-based GW interferometers, there are also advanced plans to build space based detectors.
@@ -394,18 +395,18 @@ To reach this sensitivity, the detectors need highly stable lasers, multiple lay
 From the initial period, LIGO had five short science runs (each labelled S1 to S5), each one improving over the previous one, 
 culminating with S5 at design sensitivity. 
 The S5 run collected a full year of triple-detector coincident data from November 2005 to September 
-2007.\footnote{At the time of Initial LIGO there were 3 detectors operating, 2 in Louisiana y and 1 in Washington.}
+2007.\footnote{At the time of Initial LIGO there were 3 detectors operating, 2 in Louisiana and 1 in Washington.}
 
-Between Initial LIGO and Advanced LIGO (aLIGO) more science were made under Enhanced LIGO, 
+Between Initial LIGO and Advanced LIGO (aLIGO) more science was made under Enhanced LIGO, 
 which provided enhancements that improved sensitivity by a factor of 2. 
 
 But the real revolution came with Advanced LIGO, a set of additions that improved LIGO sensitivity by a factor of 10 over Initial LIGO 
 and widened the frequency range all the way down to 10 Hz (known as the \emph{seismic wall}).
 
-Among the improvements is the upgrading of the laser power to 200 W. 
+Among the improvements, is the upgrading of the laser power to 200 W. 
 An increase in the test masses to 40 kg in order to reduce radiation pressure noise and to allow larger beam sizes. 
 Larger beams and better dielectric mirror coatings combine to reduce the test mass thermal noise by a factor of 5 compared with initial LIGO.
-An improvement in vibration isolation, including vertical isolation comparable to the horizontal isolation all almost all stages.
+An improvement in vibration isolation, including vertical isolation comparable to the horizontal isolation at almost all stages.
 New suspension system based on fused silica rather than steel wires to reduce suspension thermal noise by almost a hundred.
 New two-stage active seismic isolation instead of the passive one-stage isolation brought the seismic noise to negligible levels above approximately 10 Hz.
 (\citet{2009RPPh...72g6901A})
@@ -448,9 +449,7 @@ The projected sensitivity for each of the runs is presented in table \ref{ligoru
 \label{ligoruns}
 \end{table}
 
-\textcolor{red}{Needs to add: Observables of LIGO, especially Compact Binary Mergers. Rates, etc.}
-
-
+%Needs to add: Observables of LIGO, especially Compact Binary Mergers. Rates, etc.
 \begin{comment}
 De Mario:
 
@@ -491,43 +490,38 @@ As we move away from the traditional one person project and manual way to deal w
 the amount of data that needs processing becomes unmanageable by humans. 
 This is not to say that individual work has no place in science, but that the collective gathering of information have become ubiquitous.
 
-For Astronomy, the sizes of sky surveys have been increasing steadily and dramatically over the years.
+The size of sky surveys in Astronomy has been increasing steadily and dramatically over the years.
 From a situation where data lies in the hundreds of MB and about a hundred events per night now, 
 we are heading to a regime of several tens of TB and the order of million events per night in the 
 LSST\footnote{http://www.lsst.org, http://www.lsst.org/files/docs/sciencebook/SB\_8.pdf} era 
 (\citet{2008arXiv0805.2366I, 2009arXiv0912.0201L}).
 The data load makes it unmanageable if not done by automated agents.
 
-Buried in this huge amount of data, lie many short-lived events, or \emph{transients}, that will only be registered for a short period of time.
+Buried in this huge amount of data, lies many short-lived events, or \emph{transients}, that will only be registered for a short period of time.
 Although ephemeral, these transient events can uncover important information on the nature and evolution of the universe.
-The most striking example is the discovery of Super Novae events that brought invaluable information on the final stage of stars.
-
-The time scales of transient events cover over several orders of magnitudes.
-They can last from milliseconds, like Fast Radio Bursts, to a span of tens of days like Super Nova (SN) explosions, and these can fade away in as much as hundreds of days.
-Some of these events are recurring, with or without predictability of the next event, and some of them are only a one-time occurrence.
-
-\begin{comment}
-List of transients:
-- soft gamma repeater (SGR) flares; these are highly magnetized (1015G) neutron stars that emit gamma-ray flares sporadically
-- M-dwarf flares occur and disappear within minutes but recur often although unpredictably
-\end{comment}
+The most striking example is the discovery of Super Novae events that expanded our knowledge about the final stage of stars.
 
 Transient events are present in --and enhanced the knowledge of-- almost every field of Astronomy.
-They are most often unpredictable, they do not have periodic variability, and will only last for a relatively short period of time, 
-this make it necessary to study them in the field of time domain.
+Their time scales cover over several orders of magnitude.
+They can last from milliseconds, like Fast Radio Bursts, to a span of tens of days like Super Nova (SN) explosions, 
+or even larger periods like the astoundingly persistent X-ray emission of SN1978K (\citet{2010AAS...21543002S}).
+% and these can fade away in as much as hundreds of days.
+Transients are most often unpredictable, but some of them are recurring, with or without predictability of the next event; they lack periodic variability; 
+and some of them are only a one-time occurrence and will only last for a relatively short period of time.
+This make it necessary to study them in the field of time domain.
 
 Nonetheless, time domain astronomy poses at least two big main challenges.
-The first one deals with the huge amount of data and the process of recovering interesting transients from it. 
+The first one deals with the huge amount of data, and the process of recovering interesting transients from it. 
 This is a \emph{Data Mining} problem.
 
 The second challenge has to do with the prompt dissemination of a transient discovery
 to the scientific community to do follow-up observations in different bands of the spectrum.
-The huge interest in Gamma Ray Bursts propelled most of the infrastructure that we have now to deal with this issue.
+The huge interest in Gamma Ray Bursts propelled most of the infrastructure that we have today to deal with this.
 We cover \emph{multi-messenger Astronomy} (MMA) and some examples of it in the following sections.
 
 \section{Mining Transients}
 
-The identification of transients in data sets hast to be done against the static or slowly varying background sky.
+The identification of transients in data sets has to be done against the static or slowly varying background sky.
 Fortunately for us, a huge portion of transients, even though they may be fundamentally different phenomena, look about the same at the instance of discovery.
 That is, new transient phenomena presents itself on an image, as a new or much brighter spot, relative to previous epochs.
 
@@ -544,7 +538,7 @@ This subtraction tries to compensate for different point-spread functions (PSF),
 After the subtraction is done, a source-detection algorithm is run over the subtraction image searching for any residual sources.
 These residual sources are the candidates for transients.
 
-Each method has its advantages and disadvantages, difference image is typically more computationally expensive but 
+Each method has its pros and cons, difference image analysis is typically more computationally expensive but 
 performs well around extended objects such as galaxies. It can detect variability in non-stellar profiles, and can perform better in crowded fields.
 It also has the biggest disadvantage of leaving behind many spurious residual objects from poorly subtracted star profiles. 
 This can be compensated by Machine Learning methods, as we shall see later.
@@ -559,46 +553,43 @@ Machine Learning classifiers can sort out the relevant transients from a pile of
 enabling rapid follow-ups that would be impossible with a manual approach. 
 Especially so, if the transients of interest are rare and data is highly contaminated.
 
-% We will cover Machine Learning classifiers in future chapters.
-
 
 \section{Multi-Messenger Astronomy}
 
 The second challenge relates to the issue of multi-messenger Astronomy.
-One event discovered with a certain messenger, can be studied in all the other frequencies.
+One event discovered with a certain messenger, can be studied across the spectrum with different telescopes.
 For this to be possible, the transmission of the information about the localization has to be sent faster than the typical duration of the event.
 This is especially true with afterglows of very energetic events.
 
-An event like a SN explosion may be first detected as a long GRB event (\citet{2006ARA&A..44..507W}) in one of the space based Gamma Ray Telescopes orbiting Earth.
+An event like a SN explosion may be first detected as a long GRB event (\citet{2006ARA&A..44..507W}) in one of the space based Gamma Ray Telescopes orbiting the Earth.
 Stellar core collapse during a SN releases roughly $10^{52}$ ergs of gravitational binding energy in less than one second.
 The released radiation starts with bright $\gamma$-rays and subsequent afterglows across the whole spectrum up to radio frequencies.
 Localization information of the GRB needs to be quickly sent to the Astronomy community to study its emission across the EM spectrum.
 
 It was actually GRBs what ignited excitement in the astronomy community about transient astronomical events, 
 it was one of the first objects to be studied in a multi-band fashion, 
-and it triggered the building for most of the infrastructure we see today to deal effectively with multi-messenger astronomy.
-
-GRBs are explosions as energetic as $10^{51}$-$10^{52}$ ergs , 
+and it triggered the building for most of the infrastructure we have today to deal effectively with multi-messenger astronomy.
 
 Gamma Ray Busts were first discovered by the Vela satellites, a set of 6 pair of satellites (Vela 1a,b through Vela 6a,b) 
 launched by the United States to orbit the Earth. 
 The original purpose of the array of satellites was to monitor the nuclear activities of other countries during the Cuba Missile Crisis in the 60's.
 The satellites were designed to detect the hard-to-shield high energy signature emissions ($\gamma$ and X rays) of nuclear detonations.
-Instead of this, they found strange, very energetic bursts of gamma rays coming from outer space (\citet{1973ApJ...182L..85K}).
+Instead, they found strange, very energetic bursts of gamma rays coming from outer space (\citet{1973ApJ...182L..85K}).
 
-The many GRBs detected in the first few decades rapidly show that the direction they were coming were isotropically distributed in the sky.
+The many GRBs detected in the first few decades rapidly show that the directions they were coming from, were isotropically distributed in the sky.
 Although suggestive, this alone was not enough to conclude the extragalactic origin of GRBs.
 Given the huge scale of energies involved, many people favored the idea that GRBs were being produced in the outer halo of our Milky Way.
 More data was needed to resolve this issue.
 
-In the late 1970s, NASA approved the construction of a new telescope that would be ten times more sensitive than previous GRB detectors in space 
+In the late 1970s, NASA approved the construction of the Burst And Transient Source Experiment (BATSE),
+a new telescope that would be ten times more sensitive than previous GRB detectors in space 
 and that would detect about 1 GRB a day with a 10 degree precision in localization. 
 It was finally launched on April 5, 1991.
 Unfortunately, BATSE could not help in the optical afterglow localization of GRBs.
 
 But it was BeppoSAX (formally, the ``Satellite per Astronomia a Raggi X''), 
 an Italian satellite equipped with a GRB monitor and an X-ray coded mask imager, 
-the one that would bring us closer to scan the multiband afterglow.
+the one that would bring us closer to scan the multi-band afterglow.
 
 BeppoSAX X-ray imager could find X-ray counterparts for GRBs, and narrow the localization uncertainty to 5 to 10 arcminute radius.
 This was already possible with the network of GRB detectors in space at the time, 
@@ -608,7 +599,7 @@ If we wanted to find optical afterglows, we would need to find more accurate loc
 BeppoSAX did precisely that reducing the time of localization to only a few hours.
 
 This reduction in the time of localization opened the game for telescopes around the globe to try to find optical and radio afterglows.
-On February 28, 1997 BeppoSAX localized a GRB with an X-ray counterpart that vanished after 3 days.
+On February 28, 1997, BeppoSAX localized a GRB with an X-ray counterpart that vanished after 3 days.
 Twenty hours after the GRB event, a group from the Netherlands lead by Jan van Paradijs, 
 used La Palma telescope in Canary Islands, Spain, to image the region.
 This was the first time an optical afterglow could pinpoint the sky position down to the unprecedented precision of 1 arcsecond.
@@ -654,7 +645,7 @@ producing $\gamma$-rays then subsequent X-rays and optical afterglows
 The prompt dissemination of GRB discoveries became so important that sparked the creation of a collective centre for transient discovery notification.
 The gamma-ray burst coordinates network (GCN) started with the BATSE coordinates distribution network (BACODINE). 
 The GCN, along with the Transient Astronomy Network 
-(collectively called the GCN/TAN network\footnote{https://gcn.gsfc.nasa.gov}),
+(collectively, the GCN/TAN network\footnote{https://gcn.gsfc.nasa.gov}),
 is now a distribution network of transient event notices dependent on Goddard NASA.
 
 The GCN/TAN disseminates transient event information mostly in real time, while the event is still ongoing, or with short delay depending on the instrument,  
@@ -662,13 +653,10 @@ detected by various spacecrafts (Swift, Fermi, MAXI, INTEGRAL, IPN, and others).
 It also serves as a repository for the follow-up observation reports submitted by the GRB/transient community through the use of GCN Circulars.
 
 Although the creation of GCN/TAN was propelled by the interest in GRBs, now it serves as a point of communication for all sort of transient events.
-In the LIGO-Virgo era, GCN/TAN now also serves GW detection notices to some selected observatory partners (of which TOROS is one).
-
-%With the new GW detections of LIGO, a new kind of multi-messenger Astronomy is at hand.
-%LIGO will bring information of a completely new information carrier: the \emph{graviton}.
+In the LIGO-Virgo era, GCN/TAN also serves GW detection notices to some selected observatory partners (of which TOROS is one).
 
 In the same way that long GRBs sparked the multi-band follow-up observations across the spectrum,
-a new type of event associated with short GRBs can also prompt a new kind of MMA.
+a new type of event associated with short GRBs gave birth to a new kind of MMA.
 Short GRBs are believed to have originators in the merger of compact objects (\citet{2007PhR...442..166N}).
 Compact object mergers are also the originators of the expected GW signals that LIGO will detect.
 Along with the GW produced in these mergers, a companion EM thermal radiation will radiate isotropically from the merger.
@@ -713,8 +701,8 @@ It lasts for about a week and it peaks in the NIR sector of the light spectrum.
 The intensity of such event can reach brightness of a thousand times those of a Nova, and for this reason it was termed `Kilonova' (\citet{2010MNRAS.406.2650M}).
 
 Rapid neutron capture, or r-process for short, is the main driver of the radiation we see during a Kilonova.
-In dense neutron-rich environments, if the neutron capture timescale of lighter seed atom nucleus (like Iron) 
-is shorter than the neutron beta-decay timescale, nuclei can capture extra neutrons for themselves.
+In a dense neutron-rich environment, if the neutron capture timescale of lighter seed atom nucleus (like Iron) 
+is shorter than the neutron $\beta$-decay timescale, nuclei can capture extra neutrons for themselves.
 The newly formed nuclei will later decay emitting radiation.
 \citet{1957RvMP...29..547B} and \citet{1992ApJ...395L..83N} had already proposed that approximately half of the elements heavier than iron are synthesized in this way.
 
@@ -730,13 +718,13 @@ As a first approximation we can imagine the ejecta expanding radially outwards w
 Ejecta right after the merger can exceed billions of degrees at the radius of the merger (\textasciitilde100 km), but 
 during its expansion, the ejecta cools down due to adiabatic expansion.
 
-The thermal radiation cannot initially escape as radiation because of the high optical depth at early times and the correspondingly long photon diffusion timescale through the ejecta. 
+The thermal radiation cannot initially escape as radiation because of the high optical depth at early times and the correspondingly long photon diffusion times through the ejecta. 
 Nonetheless, as the ejecta expands, the diffusion time decreases until eventually radiation can escape and the medium becomes transparent to radiation.
 The condition at which ejecta first becomes transparent is crucial since it determines how much after the GW signal will the light curve peak.
 
 Devoid of any other external source of heating, the ejecta would be so cold when it first becomes transparent, 
 that the whole transient would be basically invisible.
-It is the continued heating of the ejecta by external processes what can brighten the Kilonova.
+It is the continued heating of the ejecta by external processes what brightens the Kilonova.
 
 As we mentioned before, the primary heating mechanism is the radioactive heating by r-process nuclei decay.
 This alone is enough to heat the environment to shine as much as 1,000 times brighter than a Nova.
@@ -755,7 +743,7 @@ In the BH-NS merger case, there is a chance of Kilonova emission if there is eno
 to get a suitable environment with enough neutron rich ejecta to spark r-process and the subsequent radioactive heating.
 This can only happen in situations where the BH mass is low enough so that it won't swallow the NS entirely during the inspiral phase and if the BH is rotating rapidly.
 The condition is roughly that the tidal radius of the NS exceed the innermost stable circular orbit of the BH.
-For a NS of radius 12 km and mass 1.4 solar M, the BH mass can be as high as 12 solar masses (for a spin parameter of 0.95) but not higher.
+For a NS of radius 12 km and mass 1.4 $M_{\odot}$, the BH mass can be as high as 12 $M_{\odot}$ (for a spin parameter of 0.95) but not higher.
 A non-spinning BH would have to be very small to allow for tidal disruption and hence will yield a non-detectable signal.
 (\citet{2012PhRvD..85d4015F} and references therein).
 
@@ -859,11 +847,13 @@ with magnitude r = 21.56 $\pm$ 0.02 mag at 8.2 hr and r $\gtrsim$ 24.8 mag (3$\s
 
 Even though the source was very faint, the magnitude and color observed by HST 
 were in accordance to the prediction of numerical merger models for a Kilonova.
+However, the sources were too faint to make any conclusive statement about its nature.
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.3]{figures/tanvir_kilonova}
-\caption{HST imaging of the location of SGRB 130603B. The left-hand panel shows the host and surrounding field. The next panels show in sequence the first epoch and second epoch imaging, and difference (upper row F606W/optical and lower row F160W/nIR). From \citet{2013Natur.500..547T}.}
+\caption{HST imaging of the location of SGRB 130603B. The left-hand panel shows the host and surrounding field. 
+The next panels show in sequence the first epoch and second epoch imaging, and difference (upper row F606W/optical and lower row F160W/nIR). From \citet{2013Natur.500..547T}.}
 \label{fig:tanvir}
 \end{figure}
 
@@ -874,7 +864,7 @@ Finding a Kilonova companion to a GW NS-NS merger or BH-NS would be a direct con
 between Kilonovae, the r-process during a compact object merger, and the short kind of GRBs.
 
 
-\subsection{Conclusion}
+\section{Conclusion}
 
 In summary, Kilonova emission is an ideal EM counterpart to the LIGO observations.
 As previously said, unlike SGRBs, Kilonova emission is isotropic. 
@@ -891,8 +881,8 @@ especially of the binary inclination with respect to the line of sight.
 It will also give a better estimate of the energies involved in the merger.
 Other interesting environment properties can be derived from the Kilonova detection, like age of the stellar population and possible displacements due to SN birth kicks.
 
-But most importantly, the merger of a binary system involving a NS is very complex and several kind of factors can effect the radiation pattern and light-curve of the Kilonova as well as the GRW waveform. 
-The optical light curve can serve as a probe into the core and shed light to the intricacies and details of the merge process.
+But most importantly, the merger of a binary system involving a NS is very complex and several kind of factors can effect the radiation pattern and light-curve of the Kilonova as well as the GW waveform. 
+The optical light curve can serve as a probe into the core of the system and shed light to the intricacies and details of the merge process.
 
 \begin{comment}
 
@@ -958,7 +948,7 @@ This broadened the TOROS project into a wider collaboration of telescopes instea
 %The collaboration has now partners in Mexico, and the Gemini spectrograph as well as the telescopes in Chile and Cordoba previously mentioned. \textcolor{red}{Use this paragraph to include all the participating institutions}
 
 Whether it be the original design or the new dynamic proposed by the enlargement of the collaboration, 
-the interesting targets to TOROS remain to be mergers with at least one NS, because of its several radiation messengers.
+the interesting targets to TOROS remain the mergers with at least one NS, because of its several radiation messengers.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -970,10 +960,10 @@ the interesting targets to TOROS remain to be mergers with at least one NS, beca
 \section{Building a software pipeline for TOROS}
 
 Since the ultimate goal of the TOROS Project is the robotization of the telescope,
-it is important to have in place a software `pipeline' that accompanies the process
-at all stages, from receiving the alert to propose new transient candidates.
+it is important to have in place a software `pipeline' that makes the processing as automatic as possible,
+removing the need for human intervention at all stages, from receiving the alert to propose new transient candidates.
 
-The whole operation of TOROS processing can be divided in several stages
+The whole operation of TOROS can be divided in several stages
 as in the diagram of figure \ref{fig:flowchart}.
 
 \begin{figure}
@@ -1023,22 +1013,22 @@ as in the diagram of figure \ref{fig:flowchart}.
 The pipeline is written entirely in Python, following the latest trend in Astronomy.
 
 Python is an interpreted language like Java, as opposed to other compiled languages like C/C++ or Fortran.
-While this may seem a disadvantage, it becomes very useful to quickly prototype and integrate projects into working systems.
+While this may seem a disadvantage, it becomes very useful to quickly prototype and integrate different projects into working systems.
 Python code can be executed line by line in command line interpreters, in a cell by cell manner like MATLAB\footnote{https://www.mathworks.com/products/matlab.html}
 or as a script.
 
 Python is fully Object-Oriented but it also allows to encapsulate functionality into modules or packages that can be imported into your own project.
 This modularity makes it very easy to expand an existing project by adding external functionality (much like with libraries in compiled languages)
-in a transparent to the user in a one-line import.
+in a transparent to the user one-line import.
 
-Another advantage of python is the ease to install these packages. Python counts with a standard package installer that takes cares of dependencies (compilable or not).
-These are just a few features of the language ecosystem that it's making Python gain traction in the Astronomy community.
+Another advantage of Python is the ease to install these packages. Python has a standard package manager module (\emph{pip}) that takes cares of dependencies, compilable or not.
+These are just a few features of the language ecosystem that is making Python gain traction in the Astronomy community.
 Python along with tools like git (and the github repository website) and virtual environments make Python projects reproducible and installable in almost any Unix-like system with minimum effort.
 
 Python popularity in the science community started with the introduction of two main packages: numpy and scipy (which collected the linear algebra routines found in BLAS/LAPACK).
-After this, another project ``astropy'' began porting popular IRAF methods to python. 
-Nowadays the list of Python scientific packages is too long to enumerate, but we describe some useful packages and modules on table \ref{pythonpackages}
-This project itself spun the creation of two new modules astroalign and ois (see sections \ref{section:astroalign} and \ref{section:ois}) to align stellar images and perform image subtraction respectively.
+A few years later, another project ``astropy'' began porting popular IRAF methods to python. 
+Nowadays the list of Python scientific packages is too long to enumerate, but we describe some useful packages and modules on table \ref{pythonpackages}.
+This project itself spun the creation of two new modules: astroalign and ois (see sections \ref{section:astroalign} and \ref{section:ois}) to align stellar images and perform image subtraction respectively.
 
 \begin{table}
 \centering
@@ -1081,12 +1071,9 @@ It is a Python script that runs uninterruptedly waiting for a detection alert fr
 Gamma-Ray burst Coordinates Network (GCN) and the Transient Astronomy Network (TAN),
 a service of NASA delivered on a specific port reserved for this purpose.
 
-The GCN/TAN network is a distribution network of transient event notices dependent on Goddard NASA.
-As its name suggests, it was primarily intended for the distribution of GRBs detection notices
+As we mentioned before, the GCN/TAN network is a distribution network of transient event notices.
+It was primarily intended for the distribution of GRBs detection notices
 from space telescopes like Fermi, Swift and other spacecrafts, to the rest of the Astronomy community. 
-Later on, they allowed for the dissemination of other types of interesting transient phenomena.
-Most notices are sent in real-time, while the event is still ongoing, 
-others are delayed due to telemetry down-link delays.
 
 The subsequent reports of follow-up observations made by ground-based observers, are done by submitting circulars to that same site.
 This makes the GCN/TAN network \emph{``a one-stop shopping network for follow-up sites and GRB and transient researchers.''}
@@ -1100,8 +1087,8 @@ using the VOEvent Transport Protocol.
 
 The VOEvent Transport Protocol is a simple TCP-based protocol for transporting VOEvent messages from authors, through brokers, to subscribers.
 
-VOEvent is the International Virtual Observatory Alliance\footnote{http://ivoa.net} (IVOA) recommended mechanism for describing astronomical transients.
-It has been adopted as an international standard.
+VOEvent is the International Virtual Observatory Alliance\footnote{http://ivoa.net} (IVOA) recommended mechanism 
+for describing astronomical transients that has been adopted as an international standard.
 According to its main website\footnote{\href{http://wiki.ivoa.net/twiki/bin/view/IVOA/IvoaVOEvent}{http://wiki.ivoa.net/twiki/bin/view/IVOA/IvoaVOEvent}},
 a VOEvent is an XML file notice that ``\emph{defines the content and meaning of a standard information packet for representing, transmitting, publishing and archiving information 
 about a transient celestial event, with the implication that timely follow-up is of interest.}'' 
@@ -1109,18 +1096,19 @@ about a transient celestial event, with the implication that timely follow-up is
 In our case, we registered two static IPs with GCN, one in Texas at UT RGV and another one for Cordoba in Argentina at IATE Institute.
 Only the one in Texas is functional at the moment.
 
-The VOEvent is received by a continuously running Python script that listens on the specific port and creates an alert email involving the heads and some staff at each TOROS partner.
+The VOEvent is received by a continuously running Python script that listens on the specific port and creates an alert email 
+sent to individual collaborators at each TOROS partner telescope.
 
 The PyGCN module developed by Leo Singer, handles the reception GCN notices from LVC using the TCP protocol.
 Once a notice is received, PyGCN calls a call-back function that performs the rest of operations on the notice.
 
-The first thing the listener script does is sending an email with the VOEvent attached to a list of recipients in the TOROS collaboration.
+The first step the listener script does, is send an email with the VOEvent attached to a list of recipients in the TOROS collaboration.
 
-The second thing, is parsing the XML file.
+The second step is parsing the XML file.
 The VOEvent comes in the Extensible Markup Language (XML) format, a well established worldwide standard in web technologies.
 The XML schema provides a structured way to build a nested hierarchy of elements, to attach attributes to those elements, and to assign values to them. 
 The structured text is parsed with a Python native package to scavenge the relevant information from within the nested hierarchy.
-Some of the information contained in the VOEvent are listed in table \ref{voeventinfo}
+Some of the information contained in the VOEvent is listed on table \ref{voeventinfo}
 
 \begin{table}
 \centering
@@ -1161,15 +1149,15 @@ It will not use the GW parameters from the reconstruction of the wave-form, like
 
 LIGO has other three localization estimation codes: LALINFERENCE\_MCMC, LALINFERENCE\_NEST and LALINFERENCE\_BAMBI.
 The LIGO Algorithm Library (LAL) is a collection of routines for various pipelines inside LIGO for which LAL Inference is specific to parameter estimation.
-These three codes are stochastic MCMC samplers that estimate the full GW parameter space, 
-they can give a localization skymaps by marginalizing over every parameter that is not the sky location.
+These three codes are stochastic Markov Chain Monte Carlo (MCMC) samplers that estimate the full GW parameter space, 
+they can generate localization skymaps by marginalizing over every parameter that is not the sky location.
 The LALINFERENCE localization estimations may take days to complete, and weeks if the spin of the compact objects is taken into account.
 These are far more computationally expensive than BAYESTAR, but they will improve the estimations for the localization, 
 especially when the GW signal is very weak in one detector.
 
 Another LAL code for unmodeled bursts is the LAL Inference Burst, or oLIB (\citet{2015arXiv151105955L}).
 This LAL code, unlike the others in LAL Inference, has low latency.
-The algorithm relies in excess of power detection; coincidence between different detectors; and analysis of coincident events using Markov Chain Monte Carlo Bayesian inference.
+The algorithm relies in excess of power detection; coincidence between different detectors; and analysis of coincident events using MCMC Bayesian inference.
 
 The coherent WaveBurst (cWB) (\citet{2016PhRvD..93d2004K}) is another real-time detection and localization estimation code
 that makes little to no assumptions on source models.
@@ -1177,16 +1165,16 @@ To estimate localization, they use a maximum likelihood approach on their calcul
 The code allows for very low latency (only a few minutes).
 
 At the time of the detection, observatories will rely on the position estimation of BAYESTAR, cWB or oLIB.
-By the time the LALINFERENCE maps are released, most of the observations will be already done.
+By the time the LALINFERENCE maps are released, most of the observations will have taken place.
 
 The retrieval of the low latency sky maps is done through authenticated HTML GET requests to the Grace Database of the GCN/TAN website.
 
 \section{Target Selection} \label{targetselection}
 
 The target selection is done with a separate module imported from the alert receiver robot.
-Having it in a separate module allows us to run it independently, in case of failure of the robot.
+Having it in a separate module allows us to run it independently, in case of failure.
 
-The skymaps provided with the alert typically cover an order of \textasciitilde200 square degrees for the 60\% confidence region (\citet{2014ApJ...795..105S}).
+The skymaps provided with the alert typically cover about 200 square degrees for the 60\% confidence region (\citet{2014ApJ...795..105S}).
 For telescopes that have not wide enough field of views to tile the region in a few pointings, it becomes an absolute necessity 
 to adopt some kind of target selection strategy to maximize the chances of discovery.
 
@@ -1204,14 +1192,11 @@ The authors claim that GWGC is more complete --within 100 Mpc-- than other catal
 due to their use of more up-to-date input catalogs
 and the fact that they don't make a blue luminosity cut.
 
-In \citet{2014ApJ...784....8H} they find that the use of galaxy catalogs can improve success rates by \textasciitilde10\% 
+Regarding the efficiency of using catalogs, \citet{2014ApJ...784....8H} found that the use of galaxy catalogs can improve success rates by \textasciitilde10\% 
 to a factor of 4 relative to follow-up strategies that do not utilize this kind of catalogs.
 
 Our target selection (scheduler) module makes use of the sky-map provided in the alert notice and the 
 GWGC catalog.
-
-%Another catalog along these lines is the Glade GW Catalog. Glade Catalog has xxxx galaxies listed, this many more than CWGC and extends up to XX Mpc.
-%Nonetheless many distances are inferred by Machine Learning Methods, and completitude of the Catalog... bla bla
 
 The target selection for our optical search is based on three main criteria: 
 the localization (un)certainty on the target pixel in the all-sky map given by LIGO at the time of the alert,
@@ -1225,7 +1210,7 @@ With those filtered objects, we run for each observatory further filters on Decl
 The remaining objects are ordered according to the probability of the skymap pixel in their location 
 and we assign a few dozens of the most likely to each observatory to be followed-up.
 
-The parameter cuts can be fixed in a separate configuration file and loaded at the time of execution.
+The parameter cuts are set in a separate configuration file that is loaded at the time of execution.
 
 This marriage between GW and Optical parameters of observability ensures the targets are visible at each telescope site, 
 and that they have some significant probability of being the host.
@@ -1259,9 +1244,9 @@ Each telescope representative has assigned a username and password to access a
 website\footnote{\url{http://toros.utrgv.edu/winnow/broker/}} hosted in UT RGV servers.
 This website has a simple interface of tables for each observatory and a list of targets observable from each location, obtained by the target selection method on the previous step.
 
-Each telescope admin then selects targets from the list, to reserve them for his or her observatory (see figure \ref{fig:brokerdetail}). 
+Each telescope administrator then selects targets from the list, to reserve them for his or her observatory (see figure \ref{fig:brokerdetail}). 
 The website enforces that the list of targets be unique and that no two observatories are observing the same target.
-It does so, by ignoring targets previously selected by others on the query.
+It does so, by ignoring targets previously selected by others on the query and marking them in red in all of the other tables.
 
 Each observatory then carries the observations for the successive nights 
 and will mark the targets on their observatory table once they are observed.
@@ -1298,9 +1283,9 @@ The CSTAR 2010 \emph{i} set has a median exposure time of 42 s.
 
 The entire data set for the winter of 2010 consists of 251,818 images spanning from April 30 2010 to September 27 2010.
 Since the amount of data is so large, for the purpose of training, we created a subset of 626 images, 
-with a cadence of about an hour during the best seeing month of June (May 31st to June 30th, 2010). 
+with a cadence of about an hour during the best \emph{seeing} month of June (May 31st to June 30th, 2010). 
 The subset was named `cstar\_june\_selection'. 
-The first 10 images of this set (named cstar\_june\_01) is used for training purposes and the rest can be used to search for transients. 
+The first 10 images of this set (named cstar\_june\_01) are used for training purposes and the rest was used to search for transients. 
 
 The images we worked with were preprocessed, i.e. they were bias and flat corrected.
 The CCD had a few dead columns and rows and bright stars suffer from `bleeding' (see figure \ref{fig:bleeding}) even though they have low exposure time.
@@ -1316,19 +1301,20 @@ This bleeding is very significative for bright stars and less so for dimmer star
 The bled stars were covered with the median and a separate mask was created for the covered pixels for future reference.
 This pixel mask also includes defective pixels (dead lines and columns in the CCD).
 
-The date-time information on the header was also updated according to \citet{2013AJ....146..139W}.
-The GPS receiver in the telescope to maintain time synchronization had a communication problem with the main computer that caused a drift in the time stamp of the FITS images.
+As noted in \citet{2013AJ....146..139W}, the GPS receiver in the telescope to maintain time synchronization had a communication problem 
+with the main computer that caused a drift in the time stamp of the FITS images.
+We corrected date-time information on the header according to \citet{2013AJ....146..139W}.
 
 Because the CSTAR telescope points to the South Celestial Pole and has no tracking, the images show the Earth rotation and minor translations with respect to each other.
-We then re-aligned the reference image to each one of the 626 image in the cstar\_june set using the package `astroalign' (see section \ref{section:astroalign}).
+We re-aligned the reference image to each one of the 626 image in the cstar\_june set using the package `astroalign' (see section \ref{section:astroalign}).
 
 \section{Optimal Subtraction} \label{section:dia}
 
 Searches for time-varying and position-changing objects are undertaken by comparing a reference image of a particular region of the sky 
 with a second image taken at the moment in which we are interested. 
 The two images have to be aligned pixel by pixel and then subtracted to reveal any changes in light.
-In our case, we used a reference image constructed by stacking several CSTAR images from the best-\emph{seeing} month of June 
-and then we aligned this to each of the frames in the data set.
+In our case, we used a previously constructed reference image, that consists of a median stacking of several CSTAR images from the best-\emph{seeing} month of June.
+We aligned this reference image to each of the frames in our data set.
 
 To make a suitable subtraction of the two images, one has to match the frames to exactly the same \emph{seeing}. 
 Image Difference, also known as Optimal Subtraction or Differential Photometry, is a technique to find a convolution kernel that best describes 
@@ -1379,7 +1365,7 @@ K(u,v) = \sum_{i} a_{i} B_{i}(u,v)
 
 These $B_{i}$ could in principle be any reasonable set of functions. 
 
-Using this linear combination, the convolution will be
+Using this linear combination, the convolution transforms into
 
 \begin{align}
 (R \mathbin{*} K)(x,y) & = \sum_{i} a_{i} \left( R \mathbin{*} B_{i} \right)(x,y) \\
@@ -1427,30 +1413,33 @@ This very simple description captures the essence of a collection of algorithms 
 For a more extended discussion of this method and enhancements, we refer the reader to appendix \ref{appendix:dia}.
 
 \citet{1998ApJ...503..325A} were the first to introduce this least-squares method to find an optimal image. 
-They propose the use of multi-Gaussian functions with modulating polynomials as the kernel basis.
+They proposed the use of multi-Gaussian functions with modulating polynomials as the kernel basis.
 
 \begin{equation}
 B_{n,d_n^{x}, d_n^{y}}(u,v) = e^{-(u^2+v^2)/2 \sigma_n^2} \times u^{d_n^{x}} v^{d_n^{y}}
 \end{equation}
 
 This basis works well when the PSF differences are approximately Gaussian, but in many situations the modulated Gaussian ansatz can be too restrictive.
-Many PSF differences can not be modeled accurately this way, especially when there is very little difference between the image and its reference.
+Many PSF differences can not be modeled accurately in this way, especially when there is very little difference between the image and its reference.
 Another drawback is that the method can not fit for the $\sigma$ spread for the Gaussian functions and it has to be determined empirically from the data.
 
 \citet{1998ApJ...503..325A} also introduced the simultaneous fit of background differences between the images.
 Background estimation can be done previous to the subtraction or be included in the least-squares optimization.
 
 In \citet{1998ApJ...503..325A} and \citet{2000A&AS..144..363A}, they also discuss the issue of PSF spatial variation.
+The PSF of smal fields of view can usually be considered constant across the image, but for large fields of view this is no longer true.
+Lens aberrations and other effects make spatial variations of PSF noticeable especially near the image borders.
+
 The spatial variation is accounted for by further expanding each coefficient into a polynomial on the $(x, y)$ position on the image.
 This makes the number of spatial dependance coefficients proportional to the original number of free parameters.
-The introduction of yet more coefficients to adjust could make the method computationally prohibitive.
-In \citet{2000A&AS..144..363A}, they propose an approximation to the problem using for the calculation 
+The introduction of yet more coefficients to adjust can yield this method computationally prohibitive.
+In \citet{2000A&AS..144..363A}, they propose an work-around to the computational problem, using for the calculation of the $M$ matrix,
 only pixels on \emph{stamps} around sources and considering a nearly constant PSF on each stamp.
 
 HOTPANTS (\citet{2015ascl.soft04004B}) and its predecesor ISIS (\citet{2000A&AS..144..363A}) are implementations of this method written in C.
 
 \citet{2008MNRAS.386L..77B} proposed a similar method in which every pixel of the kernel is fit independently.
-This is equivalent to choosing a basis of Kronecker Delta centered on each pixel.
+This is equivalent to choosing a basis of Kronecker Deltas centered on each pixel.
 The obvious advantage of this method is the great flexibility of the kernel shape.
 This method can account (and correct) for small misalignments of the order of the kernel side.
 %On the down side, the kernel shape is more sensitive to the noise outside the sources.
@@ -1558,7 +1547,7 @@ That is, the efficiency of the classification has little ``Variance'' over diffe
 
 The inverse situation is also true, classifiers with little ``Bias'' (large freedom when choosing decision boundaries) 
 have big ``Variance'' of efficiency on different data sets. 
-Little bias leads to the overfit of noisy features of the training examples that are not typical of larger sample sets.
+A small bias leads to the overfit of noisy features of the training examples that are not typical of larger sample sets.
 For example, fitting 10 noisy points with a 10 degree polynomial has very little bias but huge variance.
 On the other hand, a linear fit to the same points has a large bias, but it may well have very little variance for different sets of similar example points.
 The moral is that a good classifier must have a good balance between Bias and Variance.
@@ -1600,7 +1589,7 @@ Most of the time, the decrease in variance vastly compensates for the increase i
 In this case, a Random Forest is an `ensemble' of Decision Trees. 
 A Decision Tree is basically a tree of nodes. 
 Each node represent a bifurcation based on one feature. 
-The features and branching threshold on each node are chosen maximizing the expected information gain (or entropy loss) on the training set. 
+The features and branching threshold on each node are chosen to maximize the expected information gain (or entropy loss) on the training set. 
 That is, how well the bifurcation separates the training data for each class.
 
 Random Forest bootstraps the data so that each subset of data will train a Decision Tree on a random subset of the features. 
@@ -1624,13 +1613,13 @@ We are mainly interested in only one class, the real transients, and we need to 
 
 In such an uneven situation, a very unbalanced training set can create spurious results. As an example, imagine a training set with 90 bogus and 10 reals. 
 The very naive and simple Zero Rule Classifier --that is the classifier that classifies everything as bogus-- would have a very misleading 90\% accuracy.
-% 90\% Precision and 100\% Recall for the bogus class. 
 An unbalanced training set could also create classifiers with large variance due to the small set of real samples.
 
-`Recall' measures the fraction of samples of the relevant class that were retrieved by the classifier out of the total number of reals in the set.
+In situations of unbalanced sets, the `recall' measure is a more meaningful score of the classification.
+`Recall' is the fraction of samples of the relevant class that were retrieved by the classifier out of the total number of reals in the set.
 The class we are mainly interested in for the Recall is that of the real transient examples.
 
-To generate a balanced training set with comparable amounts of reals and bogus, I generate reals by selecting sources on an image and erasing them on the reference. 
+To generate a balanced training set with comparable amounts of reals and bogus, I generate synthetic reals by selecting sources on an image and erasing the corresponding source on the reference. 
 That way, after a subtraction, those sources will pop up in the subtraction as transient events, that is, objects in the image that don't have a corresponding object on the reference.
 
 The advantage of this method, compared to other methods like injecting fake sources, is that the `transients' obtained this way will have all the particular characteristics of the CCD and instrument from the image set in which we are interested to work. It will also have the characteristics of the subtraction method imperfections, but this is not exclusive to this method.
@@ -1733,7 +1722,7 @@ On the training data, the performance is quite good, with all indicators scoring
 
 In the confusion matrix we see that only 65 out of 7,624 of the reals were mis-classified as bogus, and only 33 bogus out of the 7,624 were mis-classified as reals. These very low numbers explain the very high performance scores of the classifier.
 
-Random Forest can also provide an importance score based on how up in the tree structure it is within a tree.
+Random Forest can also provide an importance score for each feature, based on how up in the tree structure it is within a tree.
 The features with most discriminative power are selected as first decision nodes.
 In figure \ref{fig:featureimportance} we show a graph listing the importance for each of the features along with one standard deviation.
 The importance was calculated with a single Random Forest classifier with 10,000 trees and a maximum depth of 10.
@@ -1749,7 +1738,7 @@ We can also see that we could drop the last 4 (delta\_x, delta\_y, ratio and thr
 
 In figure \ref{fig:rbfeathist} we can see the histograms for the real population and the bogus populations separated, for the 4 most 
 important features given by the Random Forest fit.
-We can see that none of the features by itself clearly separates the data, as it is usually the case for typical features.
+We can see that none of the features by itself clearly separates the data, as it is usually the case for typical Machine Learning problems.
 
 \begin{figure}
 \centering
@@ -1776,7 +1765,7 @@ For very faint events or events that comprise very few pixels in the image, we c
 
 We created a pipeline that is capable of responding to detection alerts sent by LVC.
 The set of processes that trigger the alert are condensed into a script running on one of the University of Texas Rio Grande Valley servers.
-The script parses the VOEvent alert file, capturing metadata of the detection, downloads the skymaps for the localization uncertainty
+The script parses the VOEvent alert file, capturing metadata of the detection, downloads the skymaps of localization uncertainty
 and creates targets for the telescopes, based on criteria of potential host galaxy, visibility at the time of the event and probability of hosting the event.
 
 The mock run on CSTAR data showed that the differential photometry analysis together with a Real-Bogus ML classifier trained on the same data set 
