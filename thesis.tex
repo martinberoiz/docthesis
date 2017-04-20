@@ -76,7 +76,8 @@
 \tikzstyle{obse} = [draw, rectangle, fill=green!30, node distance=3cm,
     text width=5em, text centered, rounded corners, minimum height=2em]
 
-\usepackage{minted}
+\usepackage{algorithm}
+%\usepackage{minted}
 %End of added by me
 
 \newenvironment{ruledcenter}{%
@@ -1132,7 +1133,7 @@ Once information is parsed, a second email is sent with the relevant information
 The third step in the process, is to generate a list of targets of observations for each observatory and upload them to the broker website.
 Although this is done by the alert receiver robot, we explain these steps in more depth in the following sections.
 
-\section{Skymaps}
+\section{Skymaps} \label{section:skymaps}
 
 LIGO relies on triangulation to localize the originator of the signal in the sky.
 With two detectors running, the localization will contain a degeneracy separated by 180${}^{\circ}$ 
@@ -1796,16 +1797,17 @@ Darren L. DePoy, Marica Branchesi, Enzo Brocato, Nelson Padilla, Nicolas A. Pere
 On April 2014, TOROS signed a Memorandum Of Understanding (MOU) with the LIGO Virgo Collaboration, in order to participate 
 in a program to perform follow-up observations of GW candidate events with the benefit of access to LVC proprietary information.
 
-The MOU signing was a very important step that allowed TOROS to participate in the O1 LIGO campaign with positive results.
+The MOU signing was a very important step that allowed TOROS to participate in the O1 LIGO campaign with positive results (\citet{2016APS..APRR14005B}).
 The MOU allowed TOROS to receive the LIGO alerts, which were private and confidential at the time of O1, 
-and to be part of a publication as part of a broader collaboration with other institutions for the electromagnetic counterpart search of the first announced GW ever, namely GW150914.
+and to be part of a publication as part of a broader collaboration with other institutions 
+for the electromagnetic counterpart search of the first announced GW ever, namely GW150914 (\citet{2016PhRvL.116f1102A}).
 
 The O1 campaign was a 4 month run, officially started on September 18, 2015 and ended on January 12, 2016.
 Two detectors were operational during the whole run, the H1-L1 network, operating with a BNS range of about 60 Mpc.
 The Virgo detector was being upgraded during O1 so it was not part of the operating detectors during the run.
 During O1, 3 alerts were issued for 3 different events.
 
-The first one was from an event detected by LIGO instruments on September 14, 2015 at 09:50:45 UTC (\citet{2016PhRvL.116f1102A}).
+The first one was from an event detected by LIGO instruments on September 14, 2015 at 09:50:45 UTC.
 The event was designated after confirmation, with the code GW150914.
 This was also the first confirmed Binary BH merger ever detected through its gravitational waves.
 TOROS observed several regions of the sky during the night that we received the alert.
@@ -1814,12 +1816,12 @@ GW150914 reached the LIGO instruments with a significance greater than 5.3$\sigm
 and a combined signal to noise ratio (SNR) of 23.7.
 The GW signal matched with a template for a binary with primary mass of $36.2^{+5.2}_{-3.8} M_{\odot}$ 
 and a secondary mass of $29.1^{+3.7}_{-4.4} M_{\odot}$.
-The final mass of the system after merger $62.3^{+3.7}_{-3.1} M_{\odot}$ with a final spin $0.68^{+0.05}_{0.06}$,
+The final mass of the system after merger is $62.3^{+3.7}_{-3.1} M_{\odot}$ with a final spin $0.68^{+0.05}_{0.06}$,
 that represents a total radiated energy of $3.0^{+0.5}_{-0.4} M_{\odot} c^2$.
 The luminosity distance to the merger is $420^{+150}_{-180}$Mpc, or a redshift $z=0.09^{+0.03}_{-0.04}$.
 
 The second one, LVT151012 (\citet{2016PhRvX...6d1015A}) did not cross the 5$\sigma$ significance threshold,
-but, according to the authors ``it is more likely to have resulted from a gravitational-wave signal than from an instrumental or environmental noise transient'' .
+but, according to the authors ``\emph{it is more likely to have resulted from a gravitational-wave signal than from an instrumental or environmental noise transient}'' .
 LVT151012 has a significance of $1.7 \sigma$ and a combined SNR of 9.7.
 If it is a result of a BBH merger, it would be a system with 23 and 13 $M_{\odot}$.
 
@@ -1828,7 +1830,7 @@ The GW signal was consistent with a template match for a binary system with mass
 The final mass of the merger is $20.8 M_{\odot}$, which means that $1 M_{\odot}$ was radiated away as gravitational radiation.
 
 TOROS did not participate in the optical search for LVT151012 or GW151226.
-The remaining of this chapter refer to the observation campaign for the GW150914 event follow-up search and its results.
+The remaining of this chapter refers to the observation campaign for the GW150914 event follow-up search and its results.
 
 \section{GW150914}
 
@@ -1843,18 +1845,18 @@ It was instead at the end of the last engineering run E7.
 Top row is the strain signal. Second row is the GW strain projected onto each detector in the 35--350 Hz band. 
 Solid lines show a numerical relativity waveform for a system with parameters consistent with those recovered from GW150914. 
 Third row: Residuals after subtracting the filtered numerical relativity waveform from the filtered detector time series. 
-Bottom row: A time frequency representation of the strain data.}
+Bottom row: A time frequency representation of the strain data. Figure from \citet{2016PhRvL.116f1102A}.}
 \label{fig:GW150914ligosignal}
 \end{figure}
 
 Despite the premature arrival of the GW detection, LIGO sent the alert via a private GCN initial circular (Singer 2015, GCN\#18330) to the MOU partners two days later.
 This unexpected detection constituted the first detection of the merger of a binary black hole (BBH) system and the first direct detection of gravitational waves. 
 
-TOROS received the alert through the robot alert system and we began our imaging campaign immediately after receiving, on the night of of 2015 September 16. 
-Additional observations were obtained the following night, and a second epoch of imaging was acquired on 2015 December 5 \& 6. 
+TOROS received the alert through the robot alert system and we began our imaging campaign immediately after receiving, on the night of of September 16, 2015.
+Additional observations were obtained the following night, and a second epoch of imaging was acquired on December 5 \& 6, 2015. 
 
 The initial GCN alert contained a coherent Wave Burst (cWB) all sky localization map, and a subsequent update GCN notice delivered an Omicron+LALInference Burst (oLIB) skymap. 
-Both skymaps are based on a search for unmodeled signals. 
+Both skymaps are based on a search for unmodeled signals (see section \ref{section:skymaps}). 
 The first one, a rapid localization analysis just searches for coherent power across both detectors while the second one assumes a Sine-Gaussian content. 
 The maps provided initial spatial localization of 50\% and 90\% confidence regions encompassing about 200 and 750 square degrees, respectively.
 
@@ -1900,9 +1902,9 @@ The Vista Collaboration & Optical and Infrared \\
 \label{gw150914participants}
 \end{table}
 
-For the observations we used the 1.5-m telescope at Estacion Astronomica Bosque Alegre (EABA) in Cordoba, Argentina (the smaller telescope at Macon was not operational at the time).
+For the observations we used the 1.5 m telescope at Estacion Astronomica Bosque Alegre (EABA) in Cordoba, Argentina (the smaller telescope at Macon was not operational at the time).
 The telescope uses an Apogee Alta U9 camera with a field of view (FoV) of 12.'7 $\times$ 8.'5 and
-an effective plate scale of 0.''75pix after 3 $\times$ 3 binning. 
+an effective plate scale of 0.''75/pix after 3 $\times$ 3 binning. 
 % Tell what is the pixel width and height!
 Since we wanted to maximize our sensitivity, we conducted unfiltered (``white light'') observations spanning 0.35 < $\lambda/\mu$m < 1. 
 We obtained individual exposures of 60 s with a median seeing (FWHM) of (2.8 $\pm$ 0.6)''. 
@@ -2008,13 +2010,13 @@ The first step for processing the images is to prepare the bias and flat frames.
 The bias frame is generated by reading the CCD with no exposure time (immediate read-out of 0 seconds exposure).
 When a CCD is read out, not all the pixels start out at a value of zero, because of the intrinsic CCD read noise.
 The bias frame needs to be subtracted from the image to bring all the pixels to an equal starting value.
-We used a median stack of XX bias frames taken the night of the observation. \textcolor{red}{complete using details}
+We used a median stack of 10 bias frames taken the night of the observation.
 
 The flat frame is an image with (ideally) the same exposure time as the images we need to preprocess, illuminated as uniformly as possible.
 Flat frames correct for dirt or dust in the telescope system, vignetting and internal reflections.
-Telescopes use either a ``dome flat'', which is typically images of a white screen installed on the dome of the telescope or ``sky flats'' which are images of the twilight sky.
+Telescopes use either a ``dome flat'', which is typically an image of a white screen installed on the dome of the telescope or ``sky flats'' which are images of the twilight sky.
 The observations for GW150914 had all dome flats, as well as most of the images taken for the a posteriori references, except for a few reference tiles that had a sky flat.
-Just like in the case of bias frames, flat frames are coadded using the median. \textcolor{red}{complete using details}
+Just like in the case of bias frames, the 25 flat frames we had for the observations were co-added using the median.
 
 Once we have a good bias and flat frame, we combine them with the light frames (target images) as per the following equation:
 
@@ -2022,9 +2024,10 @@ Once we have a good bias and flat frame, we combine them with the light frames (
 S = \frac{L - B}{F - B}
 \end{equation}
 
-where $S$ is the final science image, $L$ is the light frame, $B$ is the bias frame and $F$ is the flat frame.
+where $S$ is the science image, $L$ is the light frame, $B$ is the bias frame and $F$ is the flat frame.
+All science images for the same field are further median-stacked into a final science frame for that field.
 
-The registration of the image on the World Coordinate System (WCS) with at TAN/SIP proection, 
+The registration of the stack with the World Coordinate System (WCS) on at TAN/SIP projection, 
 was done with the program astrometry.net (\citet{2010AJ....139.1782L}).
 
 The CCD we used to take the images contained several dead pixels and bad columns that needed to be masked.
@@ -2033,7 +2036,7 @@ to identify those pixels with little to null response to light exposure.
 We then increased the bad pixel mask to 1 pixel in each direction to make sure any residual near the bad column or pixel is not identified as a real variation.
 A mask FITS file was created and propagated along through each of the following steps (registration, stacking and image differencing).
 
-The next step was to create median stacking of the science images to improve SNR and removing cosmic rays and artifacts.
+The next step was to create median stacking of the science images to improve SNR and remove cosmic rays and artifacts.
 After a visual inspection, we excluded some frames because they had visible motion blur, or were affected by partial cloud coverage.
 This resulted in some tiles having shorter effective exposure time (see table \ref{o1targets}).
 During the stacking of the science images, we replaced the bad pixels with noise consistent with the normal background distribution on the image.
@@ -2043,7 +2046,7 @@ The same procedure was done on the \emph{a posteriori} reference frames.
 The reference images were taken a few months after the alert, on 2015 December 5 \& 6, using the same telescope in Bosque Alegre.
 They were taken with the same exposure time for all fields and the same binning.
 
-The final step is to align the reference to the science images to perform the image subtraction.
+The final step is to align each reference frame to its corresponding science image to perform the image subtraction.
 We aligned the images using the Python module astroalign, which matches 3-star asterisms on both images to find the optimal affine transformation between the two frames. 
 It then performs a bi-cubic interpolation of the image to do the alignment (see section \ref{section:astroalign} for more details).
 For this work, we avoided the rotations, since they were all smaller than $10^{-7}$ rad, to prevent the creation of more bogus transients during the subtraction.
@@ -2053,7 +2056,7 @@ We propagated the headers through all the steps and created a new WCS for the al
 
 \section{Difference Imaging Analysis}
 
-To search for potential transients on the images taken we performed a differential photometry analysis on them.
+To search for potential transients on the images taken, we performed a differential photometry analysis on them.
 
 Our method follows the work of \citet{2008MNRAS.386L..77B} and \citet{2008PASP..120..449M} in a Python implementation of the 
 algorithms (see section \ref{section:ois} for more details).
@@ -2061,26 +2064,26 @@ algorithms (see section \ref{section:ois} for more details).
 As explained in section \ref{section:dia}, the Bramich method uses the information from all the pixels on the image, wether is part of the background or a source,
 so we don't need to select specific stars to take stamps around.
 We partitioned the images in a 2$\times$3 grid to compensate for possible PSF variability across the field of view.
-Even though the Python \emph{ois} module can do a simultaneous background estimation to be subtracted, 
+Even though the Python \emph{ois} module can do a simultaneous background estimation, 
 we noticed that for images with large extended objects on the image, like tile \#16 for NGC1559, 
 the background was introducing large depressions of negative pixels and we had to turn background estimation on those.
 
-\section{Real-Bogus classification and detection of potential transients}
+\section{Real-Bogus classification and the detection of potential transients}
 
-To inspect for the possibility of transients on the science images we perform a Real/Bogus search on the difference images, 
+To inspect for the possibility of transients on the science images, we filter the sources found in the subtraction with a Real/Bogus classifier, 
 as we did with the CSTAR image set in section \ref{section:realbogus}.
-We erase stars on the reference images to create fictitious transients after a subtraction is made.
-We perform the subtraction using the Python module \emph{ois} (see section \ref{section:ois}).
+The subtraction is done with the Python module \emph{ois} (see section \ref{section:ois}) and the training set of examples for the classifier 
+was generated by erasing stars on the reference image to create synthetic transients after the subtraction.
 
-Once the subtraction is done, we run SExtractor on the subtraction to recover these fabricated transients and their associated SExtractor parameters.
+Once the subtraction is done, we run SExtractor on it, to recover these fabricated transients and their associated SExtractor parameters.
 One difference with the procedure done with CSTAR is that we do not separate sources into flux bins, because we have relatively much fewer stars in the field.
 
-For each transient we generate this way we add an equal amount of subtraction bogus artifact, to keep the training set balanced in number.
+For each transient generated this way, we add an equal amount of subtraction bogus artifacts, to keep the training set balanced in number.
 We worked with 1511 examples of `real' transients and 1511 examples of `bogus' subtraction artifacts
 taken from tiles 13, 14, 16, 17, 18, 19 and 20 (see table \ref{o1targets}).
 With these we trained a classifier.
 
-The classifier had very good score statistics, but not as good as the one with CSTAR, most likely because of the lower sampling of `transient' examples.
+The classifier has very good score statistics, but not as good as the one with CSTAR, most likely because of the lower sampling of `transient' examples.
 Nonetheless all performance statistics score above 90\%.
 
 The particular Random Forest algorithm we used is the one provided in \emph{scikit-learn} (\citet{2012arXiv1201.0490P}), a popular Python package for Machine Learning analysis.
@@ -2152,8 +2155,9 @@ We therefore conclude that no transients were present in the 21 fields we target
 
 
 \section{Results}
+
 The TOROS collaboration conducted a prompt search for the electromagnetic counterpart of the 
-first gravitational-wave event reported by LIGO using the 1.5-m telescope of Estacion Astrofisica Bosque Alegre (EABA) in Cordoba, Argentina. 
+first gravitational-wave event reported by LIGO using the 1.5 m telescope of Estacion Astrofisica Bosque Alegre (EABA) in Cordoba, Argentina. 
 
 Our search spanned two nights, during which we targeted 14 targets in 21 fields containing nearby (D < 60 Mpc) luminous (MB <  21 mag) 
 galaxies with high probabilities of hosting the event. 
@@ -2161,8 +2165,6 @@ We covered 0.62 square degrees which corresponds to an integrated probability of
 We reached a 5$\sigma$ limiting AB magnitude of r = 21.7.
 
 The fact that we did not find any genuine transient in our search is not surprising given the small area surveyed (\textasciitilde 0.62 sq. degrees) 
-and the low cadence of the observations (with only two epochs per target, separated by 73$\pm$3d). 
-The fact that we did not find any genuine transient in our search is not surprising given the small area surveyed (\textasciitilde{}0.62 sq. degrees) 
 and the low cadence of the observations (with only two epochs per target, separated by 73$\pm$3d). 
 
 Based on our temporal sampling and photometric precision, we scaled the results of \citet{2015AJ....149...50O} 
@@ -2185,24 +2187,24 @@ given our temporal and areal coverage, and with the later classification of the 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 \chapter{Software Developed}
 
-The first attempts to build software for the TOROS pipeline lacked modularity, or in the language of Computer Science, \emph{separation of concerns}.
-Separation of concerns (SoC) is a design principle in Computer Science for separating a computer program into distinct sections,
+Our first attempts to build software for the TOROS pipeline lacked modularity, or in the language of Computer Science, \emph{separation of concerns}.
+Separation of concerns (SoC) is a design principle in Computer Science to separate a computer program into distinct sections,
 such that each section addresses a separate concern. 
-In our pipeline we had many different areas of concern: the alert system; the image preprocessing; the alignment of images; and the differential photometry of the subtractions.
-As the code matured, each area of concerned became naturally separated from the main trunk of development, which was at the moment rather monolithic in nature. 
+In our pipeline we have many different areas of concern: the alert system; the image preprocessing; the alignment of images; and the differential photometry for the subtractions.
+As the code matured, each area of concern separated more and more from the main development trunk, which was at the moment rather monolithic. 
 
-The Python way to address SoC is through the use of modules and packages, so this separation naturally led to the creation of Python modules of more general use, 
+The Python way to address SoC is through the use of modules and packages, so this separation led to the creation of Python modules of more general use, 
 that were later integrated back into the pipeline as external imports.
 
 As is well known, modularity is achieved by encapsulating information inside a section of code that has a well-defined interface.
-Having well-separated concerns ensures that each part can be reused and also helps in the maintenance and updating of the code.
+Having well-separated concerns ensures that each part can be reused and also helps in the maintenance and upgrading of the code.
 
-The modules are released under MIT License and are hosted on a organization repository in the popular Git repository hosting service, 
-github\footnote{\url{https://github.com/toros-astro/}}.
-Two of them have unit tests and hooked to travis-ci website for continuous-integration and code coverage.
+The modules are released under MIT License and are hosted on an organization repository in the popular git repository hosting service, 
+GitHub\footnote{\url{https://github.com/toros-astro/}}.
+Two of them have unit tests and hooked to Travis CI\footnote{\url{https://travis-ci.org}}
+website for continuous-integration and code coverage\footnote{\url{https://codecov.io/gh/toros-astro}}.
 
 In the following sections I describe some of the Python modules we developed in more detail.
 
@@ -2210,18 +2212,18 @@ In the following sections I describe some of the Python modules we developed in 
 
 Astroalign was developed to address the need to align two images before subtraction.
 There are currently two other Python modules with similar functionality.
-The module \emph{reproject} will resample or reproject images when WCS information is provided, but it does not address the problem of registration when one or both images lack WCS information.
-The module \emph{alipy} does not rely on WCS information, but uses external programs like IRAF and SExtractor and deals exclusively in the FITS format for images.
+The module \emph{reproject}\footnote{\url{https://reproject.readthedocs.io/}} will resample or reproject images when WCS information is provided, but it does not address the problem of registration when one or both images lack WCS information.
+The module \emph{alipy}\footnote{\url{https://github.com/japs/alipy}} does not rely on WCS information, but uses external programs like IRAF and SExtractor and deals exclusively in the FITS format for images.
 Astroalign works with the raw pixel information in memory, so it's agnostic about the source of the images.
 It is also self contained, so does not rely on any external program to perform the alignment
 and it is written entirely in Python.
 
-Astroalign is inspired by the method of the C program astrometry.net (citet{2010AJ....139.1782L}).
+Our contribution, astroalign, is inspired by the C implementation of the algorithm developed for astrometry.net (citet{2010AJ....139.1782L}).
 
 Astrometry.net's goal is much more ambitious than our present problem of aligning two images.
 Their program's main goal is to identify the portion of the sky that an image belongs to, and it solves this problem remarkably well.
 It will also generate WCS header information along with other details like pixel scale and orientation.
-The process can take several minutes to complete and requires downloading a few invariant databases for the specific case we need.
+The process can take several minutes to complete and requires downloading a few invariant databases for the specific case needed.
 
 Astrometry.net uses 4-star asterisms (or quadrilaterals) from the image,
 to match them against a previously-created huge database of asterisms from catalogs of stars of the whole sky.
@@ -2234,28 +2236,29 @@ and we want to match them in some way to find the appropriate affine transformat
 
 As we mentioned before, the core idea of the algorithm consists on characterizing asterisms on the image in a unique way, 
 by using quantities invariant to translation, rotation or even scaling and flipping.
-For astroalign, I use 3-star asterisms (or triangles) to perform the matching, and a RANSAC algorithm to decide on the final transformation.
-Similar asterisms will have the same invariant tuples in both images so a correspondence can be made between those invariant quantities. In a way, this invariants are proxies or unique ID's for the asterisms.
+For astroalign, we use 3-star asterisms (triangles) to perform the matching, and a RANSAC algorithm to decide on the final transformation.
+Similar asterisms will have the same invariant tuples in both images so a correspondence can be made between those invariant quantities. 
+In a way, invariants behave like \emph{hash codes} or unique ID's for the asterisms.
 
 The lengths of the sides of a triangle are invariant to translation and rotation, they remain the same whatever position or orientation the triangle may have, but are not invariant to scaling.
 If we want to fully characterize a triangle up to a global scaling, then knowing 2 inner angles is enough. 
 Equivalently, knowing 2 independent ratios of the side lengths is also sufficient.
-In fact any function of 2 independent length ratios will also do.
+In fact any function of 2 independent length ratios will work.
 
 For astroalign, we used the following simple invariants.
 
 \begin{align*}
-I(L_i,L_j,L_k) =& \left( \frac{L_2}{L_1}, \frac{L_1}{L_0} \right) = (I_{1}, I_{2}) \numberthis \label{invdef} \\ 
+I(L_1, L_2, L_3) =& \left( \frac{L_3}{L_2}, \frac{L_2}{L_1} \right) = (I_{1}, I_{2}) \numberthis \label{invdef} \\ 
  & \text{where} \left\{
   \begin{array}{lll} 
- L_2 &=& \max\{L_{i}\}_{i=1,2,3} \\
- L_1&=&\text{middle}\{ L_{i} \}_{i=1,2,3} \\ 
- L_0 &=& \min\{ L _{i} \}_{i=1,2,3}
+ L_3 &=& \max\{L_{i}\}_{i=1,2,3} \\
+ L_2&=&\text{middle}\{ L_{i} \}_{i=1,2,3} \\ 
+ L_1 &=& \min\{ L _{i} \}_{i=1,2,3}
   \end{array}
 \right.
 \end{align*}
 
-The idea for the astroalign algorithm can be summarized in a few steps
+The idea for the astroalign algorithm can be summarized in the following steps
 
 \begin{enumerate}
 \item Do for both images \begin{enumerate}
@@ -2266,8 +2269,8 @@ The idea for the astroalign algorithm can be summarized in a few steps
 \item For each triangle in that set, calculate the tuple of invariants in \ref{invdef}, that uniquely identify the triangle and push the invariant tuple into another kd-tree.
 \item There could be many duplicate triangles on the previous list, so it's best to remove them leaving only unique elements.
 \end{enumerate}
-\item Do with RANSAC \begin{enumerate}
-	\item For a randomly chosen invariant in the image, find a corresponding (if any) invariant on the reference kd-tree.
+\item Once both invariant catalog trees are made, we continue with the cross matching under a RANSAC algorithm \begin{enumerate}
+	\item For a randomly chosen invariant in the source image, find a corresponding (if any) invariant on the reference 2d-tree.
 	\item As long as the triangle is not equilateral, one can further make a correspondence of individual stars within a triangle pair, by looking at which side of the triangle they belong.
 	This way, one can make a star to star identification on both images, and have a candidate transformation matrix based on this triangle match.
 	\item The transformation is considered satisfactory is it can match at least 80\% of the other stars in the catalog.
@@ -2275,17 +2278,116 @@ The idea for the astroalign algorithm can be summarized in a few steps
 \end{enumerate}
 \end{enumerate}
 
-Astroalign needs reference stars to work with and for that reason it is not suitable for images of extended objects with no visible stars.
-On the opposite situation, it will also struggle in very crowded fields like globular clusters because of the large quantity of similarly bright stars.
-Astroalign's optimal use is in stellar images where stars are relatively isolated from their neighbors.
+\begin{comment}
+\begin{algorithm}
+\caption{The algorithm for astroalign} \label{alg:astroalign}
+\begin{algorithmic}
+\FOR{both images}
+\STATE Make a catalog of a few brightest sources (but not too few!)
+\STATE Push these sources into a 2d-tree to quickly query for close neighbors\footnote{A kd-tree data structure for k=2 retrieves nearest neighbors in $\mathcal{O}(N \log N)$ number of operations on average.}.
+\STATE For each star, select the 4 nearest neighbors (5 sources including the star itself).
+\STATE Form all the ${5}\choose{3}$ possible triangles from that set of stars.
+\STATE For each triangle in that set, calculate the tuple of invariants in \ref{invdef}, that uniquely identify the triangle and push the invariant tuple into another kd-tree.
+\STATE There could be many duplicate triangles on the previous list, so it's best to remove them leaving only unique elements.
+\ENDFOR
+\STATE Once both invariant catalog trees are made, we continue with the cross matching under a RANSAC algorithm
+\REPEAT
+\STATE For a randomly chosen invariant in the source image, find a corresponding (if any) invariant on the reference 2d-tree.
+\STATE As long as the triangle is not equilateral, one can further make a correspondence of individual stars within a triangle pair, by looking at which side of the triangle they belong.
+This way, one can make a star to star identification on both images, and have a candidate transformation matrix based on this triangle match.
+\STATE The transformation is considered satisfactory is it can match at least 80\% of the other stars in the catalog.
+If it is not satisfactory, iterate RANSAC 
+\UNTIL one satisfactory affine transformation is found, or we reach the maximum number of iterations.
+\end{algorithmic}
+\end{algorithm}
+\end{comment}
 
+\subsection{An Ideal Example}
+
+Let's see how the algorithm performs in an ideal example.
+For this, let's consider a toy problem with 10 ``sources'' at random positions, and a corresponding rotated and translated image of them, as seen in figure \ref{fig:ideal_sources}.
+
+\begin{figure}
+   \centering
+   \includegraphics[width = \linewidth]{figures/astroalign/idealSources.pdf}
+   \caption{Two ideal distribution of sources}
+   \label{fig:ideal_sources}
+\end{figure}
+
+The invariant features defined in (\ref{invdef}) from this set of stars is graphed in figure \ref{fig:ideal_inv}.
+The first thing to notice is that the invariant tuples are indeed the same for each image. 
+Points in red belong to the reference image and blue points come from the image to be transformed.
+They appear superimposed in our graph, every blue invariant point has its corresponding red invariant point on top. 
+
+\begin{figure}
+   \centering
+   \includegraphics[scale=0.3]{figures/astroalign/idealInvariants.pdf}
+   \caption{Invariants for the ideal example}
+   \label{fig:ideal_inv}
+\end{figure}
+
+The perfect match of all the invariants from both images is because all the sources in one image appear on the other one, there are no missing stars in any of the frames.
+In a real situation, some stars will be missing because they are out of the field of view or because they became too faint due to extinction or any other technical reason. 
+The algorithm will still work with missing or extra stars in the reference or test image. 
+
+We also notice that their distribution on the invariant space is fairly sparse, this will help the cross-identification phase when we try to match our triangles.
+
+Another issue with real images is that locating the position of a source is not entirely precise, so small errors will appear in the expected position of one source with respect to its partner in the other image.
+This error in turn creates an error on the lengths of the sides of the triangle and thus on the invariants calculated from it.
+Doing a simple propagation of errors we see that for nearly equilateral triangles $L_{1} \approx L_{2} \approx L_{3} \approx L$, 
+the errors in the invariants propagate as $\Delta I_{i} \sim \frac{\Delta L}{L}$.
+This means that, for invariants near $(I_{1}, I_{2}) = (1, 1)$, errors in the determination of the lengths of the triangle side will not magnify errors in the invariants.
+In practice, the invariant points will lay close to each other to a given small tolerance.
+
+Once we calculate the set of invariants from both images, we query a correspondence to the kd-tree for possible matches within a given tolerance radius. 
+Each returned match will represent a correspondence between a triangle in one image and another. 
+From each, we can make the point to point correspondence, provided all sides are unequal, and this will determine a unique transformation between the images.
+
+Some of the correspondences may arise from random pairing of unrelated asterisms that not represent the true transformation between the images.
+This is where the RANSAC algorithm comes in.
+
+The Random Sample Consensus (RANSAC) algorithm is an iterative method to estimate parameters of a mathematical model from a set of observed data which may contain outliers.
+In our case, the mathematical model is the similarity transformation between both images and the parameters are those of the transformation, i.e. the rotation, translation and uniform scaling parameters.
+RANSAC is designed to choose a transformation that fits most of the other stars while remaining robust to spurious outliers. 
+This algorithm is also used in the computer vision package OpenCV for a very similar purpose, to ignore outliers when trying to estimate an homography between two images. 
+
+In our case we look for the parameters $(t_x, t_y)$ of the translation in the $x$ and $y$ direction, the rotation angle $\alpha$ and the dilation parameter $\lambda$.
+The transformation to be applied to the translation-combined point $(x,y,1)$ will look like the following:
+
+\begin{align} \label{aa:tranfmatrix}
+\left(
+ \begin{array}{lll} 
+ \lambda \cos \alpha & \lambda \sin \alpha& \lambda t_x \\
+ - \lambda \sin \alpha & \lambda \cos \alpha& \lambda t_y \\
+ 0 & 0 & 1
+ \end{array}
+\right)
+\equiv
+\left(
+ \begin{array}{lll} 
+ a_0 & b_0 & c_0 \\
+-b_0 & a_0 & c_1 \\
+ 0 & 0 & 1
+ \end{array}
+\right)
+\end{align}
+
+To solve our problem in a linear fashion, we consider the parameters $a_0, b_0, c_0, c_1$ as independent.
+
+Two data points pairs are sufficient to determine uniquely a transformation for this 4 parameters. 
+More can be used if we use a linear square minimization.
+
+RANSAC then decides if the derived transformation will also correctly transform at least 80\% of the stars in our frame.
+When such a transformation is found, a final fit is done with all the matching stars to improve the parameter estimation of the transformation matrix \ref{aa:tranfmatrix}.
+
+%This candidate transformation $T$ will be tested against all the other triangle matches in a RANSAC algorithm.
 
 \subsection{Analysis of the Asterism Invariants}
 
-Let's analyze here the invariant set \ref{invdef} given in the previous section.
+Let's analyze here the invariant mapping \ref{invdef} defined in the previous subsection.
 
 This choice of invariants maps the positive octant of $\mathbb{R}^3$ of all possible side lengths of a triangle, 
-onto a region of the positive quadrant of $\mathbb{R}^2$ in the invariant-features space.
+onto a region in the positive quadrant of the invariant-features space $\mathbb{R}^2$.
 
 To find out what this region is, we notice that since $L_2 > L_1 > L_0$,
 
@@ -2308,7 +2410,7 @@ and an isosceles triangle will map to either the $x=1$ or $y=1$ line, depending 
 
 Very peaky triangles will tend to accumulate between the co-linear points curve and the $x=1$ line for large values of $y$.
 
-All these observations can be summarized in figure \ref{fig:inv_region}.
+All these observations are summarized in figure \ref{fig:inv_region}.
 
 \begin{figure}
    \centering
@@ -2318,7 +2420,7 @@ All these observations can be summarized in figure \ref{fig:inv_region}.
 \end{figure}
 
 Other invariant mappings will have different mapped regions with potential better spatial distribution of the triangles on the invariant space.
-But our choice of invariance proved to work successfully in the situations we need.
+But our choice of invariance proved to work successfully in the situations we tested.
 
 
 %Other invariant sets can be constructed, each with a particular mapping from the set of side lengths of triangles to a region in the 2D plane of invariants.
@@ -2332,118 +2434,41 @@ But our choice of invariance proved to work successfully in the situations we ne
 %   \label{fig:inv_maps}
 %\end{figure}
 
+\subsection{Implementation}
 
-\subsection{An Example}
+Astroalign has a simple interface, once imported, the main method (align\_image) will return a transformed image that coincides pixel to pixel with reference\_image.
 
-Let's see how the algorithm performs on an ideal example.
+\begin{verbatim}
+>>> import astroalign as aa
+>>> aligned_image = aa.align_image(reference_image, image2transform)
+\end{verbatim}
 
-For this, we create several stars at random positions and we rotate and translate them as seen in figure \ref{fig:ideal_sources}.
+Astroalign needs reference stars to work with and for that reason it is not suitable for images of extended objects with no visible stars.
+On the opposite situation, it will also struggle in very crowded fields like globular clusters because of the large quantity of similarly bright stars.
+Astroalign's optimal use is in stellar images where stars are relatively isolated from their neighbors.
 
-\begin{figure}[htbp]
-   \centering
-   \includegraphics[width = \linewidth]{figures/astroalign/idealSources.pdf}
-   \caption{Two ideal distribution of sources}
-   \label{fig:ideal_sources}
-\end{figure}
-
-The invariant features in (\ref{invdef}) from this set of stars is plotted in figure \ref{fig:ideal_inv}.
-
-\begin{figure}
-   \centering
-   \includegraphics[scale=0.3]{figures/astroalign/idealInvariants.pdf}
-   \caption{Invariants for the ideal example}
-   \label{fig:ideal_inv}
-\end{figure}
-
-We note that some invariants belong to collinear points, and the distribution of points is fairly sparse. 
-This will help the identification phase when we try to match our triangles.
-
-In the figure, the invariant points for both images were plotted. They appear superimposed in the plot.
-
-We note that every blue invariant point has its corresponding red invariant point on top. 
-There are no points without a partner for neither of the images. 
-This is because all the sources in one image appear in the other one, there are no missing stars.
-In a real situation, some stars will be missing because they are out of the field of view or because they became too faint due to extinction or any other technical reason. 
-The algorithm should still work with missing or extra stars in the reference or test image. 
-
-Another issue with real images is that locating the position of a source is not entirely precise, so small errors will appear in the expected position of one source with respect to its partner in the other image.
-This error in turn creates an error on the lengths of the sides of the triangle and thus on the invariants calculated from it.
-In practice, the invariant points will lay close to each other to a given small tolerance.
-
-Once we have the set of invariants from both images, we query a correspondence to the kd-tree for possible matches within a given tolerance radius. 
-Each returned match will be a correspondence between a triangle in one image and another. 
-From each, we can make the point to point correspondence, provided all sides are unequal, and this will determine a unique transformation between the images.
-
-Some of the correspondences won't be real ones. It could be that by chance there are two similar triangles in the images that belong to different set of stars.
-
-This is where the RANSAC algorithm comes in.
-
-\subsection{The RANSAC algorithm}
-
-From its Wikipedia page 
-
-\emph{``The Random sample consensus (RANSAC) algorithm is an iterative method to estimate parameters of a mathematical model from a set of observed data which contains outliers.''}
-
-In our case the mathematical model is the similarity transformation between both images and the parameters are those of the transformation, i.e. the rotation, translation and uniform scaling parameters.
-
-RANSAC is capable of choosing a transformation that fits most of the other triangles and is not affected by the rest of spurious outliers. 
-
-This algorithm is also used in the computer vision package OpenCV for a very similar purpose, to ignore outliers when trying to estimate an homography between two images. 
-
-In our case we look for the parameters $t_x$, $t_y$ for the translation in the $x$ and $y$ direction, the rotation angle $\alpha$ and the dilation parameter $\lambda$.
-
-The transformation applied to a point $(x,y)$ will look like this:
-
-\begin{align*}
-\left(
- \begin{array}{lll} 
- \lambda \cos \alpha & \lambda \sin \alpha& \lambda t_x \\
- - \lambda \sin \alpha & \lambda \cos \alpha& \lambda t_y \\
- 0 & 0 & 1
- \end{array}
-\right)
-\equiv
-\left(
- \begin{array}{lll} 
- a_0 & b_0 & c_0 \\
--b_0 & a_0 & c_1 \\
- 0 & 0 & 1
- \end{array}
-\right)
-\end{align*}
-
-To make our problem linear, we will consider the parameters $a_0, b_0, c_0, c_1$ as if they were independent.
-
-Two data points pairs are sufficient to determine uniquely a transformation for this 4 parameters. 
-More can be used if we use a linear square minimization.
-
-%This candidate transformation $T$ will be tested against all the other triangle matches in a RANSAC algorithm.
-
-\subsection{Error propagation}
-
-Doing a simple propagation of errors we see that for nearly equilateral triangles $L_{1} \approx L_{2} \approx L_{3} \approx L$, 
-the errors in the invariants go like $\Delta I_{i} \sim \frac{\Delta L}{L}$.
-This means that, for invariants near $(I_{1}, I_{2}) = (1, 1)$ errors in the determination of the lengths of the triangle side will not magnify errors in the invariants.
 
 \section{OIS Python Package} \label{section:ois}
 	
 Optimal Image Subtraction (\emph{ois}) is a Python module that implements several Difference Image Analysis methods as described in section \ref{section:dia}.
-The math behind this implementation is explained in detail in Appendix \ref{appendix:dia}.
+A more detailed mathematical explanation is developed in Appendix \ref{appendix:dia}.
 
 OIS works on Numpy arrays, so that way is agnostic on the origin of the image. 
 
 Bad pixels that need to be ignored in the image are marked using Numpy's masked arrays (True on bad pixel).
 
 The interface to the user has two entry points: the module methods optimal\_system and subtract\_on\_grid. 
-The latter is just a convenient method to partition the image in a certain grid and perform the former on each grid, taking into account pixels outside the grid when necessary.
+The latter is just a convenience method to partition the image on a grid and perform the former on each grid, 
+taking into account border issues within the grid boundaries when necessary.
 
-optimal\_system will return the difference image along with the optimal image to be subtracted (the ruined reference), the kernel of the convolution and the subtracted background.
-optimal\_system and subtract\_on\_grid will return the same elements, but a list of kernels for each grid element instead of just one like the previous case.
+The first method, optimal\_system will return the difference image along with the optimal image to be subtracted (the ruined reference), 
+the kernel of the convolution and the subtracted background.
+The second, optimal\_system and subtract\_on\_grid will return the same elements, but a list of kernels for each grid element instead of just one like the previous case.
 
 OIS currently supports 3 different methods for subtraction: Alard-Lupton, Bramich, and Adaptive Bramich (an adaptive version of Bramich).
 
-The documentation and usage for the code can be found in http://optimal-image-subtraction.readthedocs.io.
-The source code is available in the TOROS GitHub repository at https://github.com/toros-astro/ois.
+The documentation and usage for the code can be found in \url{http://optimal-image-subtraction.readthedocs.io}.
+The source code is available in the TOROS GitHub repository at \url{https://github.com/toros-astro/ois}.
 OIS is released under MIT License.
 
 \section{Corral: The Pipeline Framework}
@@ -2451,12 +2476,12 @@ OIS is released under MIT License.
 One particular problem about the implementation of the pipeline is the necessity of maintaining a large database for the astronomical observations.
 Our current implementation of the pipeline lacks a database back-end to store and query past observations in an ordered manner.
 
-Juan Bautista Cabral, a collaborator for the TOROS project, developed the Corral framework (\citet{2017Corral..B}) to ease in the building of the pipeline.
-The framework is part of a separate project, following the SoC paradigm and can be installed via a pip command.
+Juan Bautista Cabral, a collaborator for the TOROS project, developed the Corral framework (\citet{2017Corral..B}) 
+with contributions from myself and Bruno Sanchez, to ease the building of the pipeline.
+The framework is part of a separate project, following the SoC paradigm and can be installed via a \emph{pip} command.
 
 Starting a robotic observatory in the extreme environment of Cordon Macon, Argentina introduces serious challenges.
-Given the isolation of this geographic location (the place is at \textasciitilde 4600 m above sea level and the closest town is 300 km away), 
-it was clear that human interaction would be spotty at best and full internet connectivity may not be guaranteed.
+The isolation of this geographic location, makes it likely that human interaction will be spotty at best and full internet connectivity may not be guaranteed.
 This imposes strong demands on the pipeline data processing and storage to be in location, with failure tolerance arising as a key constrain feature.
 
 To asses this issue, Corral provides the formalization of a pipeline framework based on the concepts of Steps and Models following the 
@@ -2464,7 +2489,7 @@ well known design pattern \textit{Model--View--Controller} (MVC) and built on to
 
 Every Model instance can be thought of a table in the database and represents a component or piece of data in the pipeline.
 We can have a model for a light frame, a model for image stacks, a model for subtraction images, a model for a candidate of a transient, etc.
-Models contain all the information relating a particular component, including its `status' within the pipeline process.
+Models contain all the information relating a particular component, including its status within the pipeline process.
 This helps when we want to inquire about unfinished processes or about a particular set of images.
 
 Steps are the fundamental blocks of the pipeline, acting on the Model instances by doing the actual processing and updating their status on the database.
@@ -2477,7 +2502,8 @@ When one of these is raised, it is compulsory an Alert will notify the research 
 
 The formalization of the pipeline into the Corral framework allows the developer to deal with the specifics of the manipulation steps 
 without worrying about creating code for multi-processing workflow, coding architecture or code to interact with the database.
-Working on the Corral framework has the additional perk of estimating a Quality Index for the code, and automatic documentation generation.
+Working on the Corral framework has the additional perk of estimating a Quality Index for the code, 
+automatic documentation generation and a profiling tool for each step.
 
 Source code for the project is hosted in the TOROS GitHub page \url{https://github.com/toros-astro/corral}.
 Documentation and a tutorial to get started can be found in \url{http://corral.readthedocs.io/}.
@@ -2500,7 +2526,7 @@ The original idea for the website was to create a training set, using the power 
 One of the hardest tasks in obtaining a good data set to train Machine Learning agents is labelling instances, 
 since relevant astronomical transients on the sky can't announce themselves as such.
 
-Winnow made use of a database to record the votes and even has an interface to admin users to retrieve the classification.
+Winnow made use of a database to record the votes and has an interface to admin users to retrieve the classification.
 Earlier attempts to ML relied on sets of data generated by the contribution of undergraduate students at UT Rio Grande Valley.
 Unfortunately, these data sets suffered from great class imbalance.
 Winnow was a visual data mining tool, but due to the natural scarcity of real transients in the images, it was hard to extract the positive examples.
@@ -2516,7 +2542,7 @@ Even though the results achieved with humanly generated data sets were not ideal
 %                              CONCLUSIONS
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Conclusions}
+\chapter{Conclusion}
 
 A multi-messenger project like TOROS --that was established to follow-up gravitational wave detections to find potential optical counterparts-- requires a fast responsive system to deal with the ephemeral nature of the transient events of interest.
 Following this requirement, we developed software to immediately respond to GW alerts by triggering an automatic chain of processes.
@@ -2541,23 +2567,24 @@ As we said, these subsequent steps are not triggered by any event, but have to b
 
 The transient recovery is done with an Image Difference Analysis and a Machine Learning algorithm to rake over the sources present in the image to identify possible candidates.
 We tested the algorithms in a data set of 626 images of the South Celestial Pole taken by the Chinese mission CSTAR.
-The results of the simulation showed that 99.15\% of the simulated transients were recovered (the \emph{recall} score) and only 0.43% of the transients were misclassified subtraction artifacts.
-It also shows that simple parameters of source extraction programs like SExtractor, and others derived from them, are sufficient to achieve acceptable levels of detection and minimum contamination, at least in this data set that we tested.
+The results of the simulation showed that 99.15\% of the simulated transients were recovered (the \emph{recall} score) and only 0.43\% of the transients were misclassified subtraction artifacts.
+It also shows that simple parameters of source extraction programs like SExtractor, and others derived from them, 
+are enough to achieve acceptable levels of detection and minimum contamination, at least in the data set that we tested.
 
-During the observational LIGO campaign of O1, TOROS participated in the follow-up search along with other 23 observatories.
+During the observational O1 Advanced LIGO campaign, TOROS participated in the follow-up search along with 23 other observatories.
 The TOROS collaboration conducted a prompt search for the electromagnetic counterpart of the 
-first gravitational wave event reported by LIGO in September 14, 2015, using the 1.5 m telescope of Estacion Astrofisica Bosque Alegre (EABA) in Cordoba, Argentina. This event was the first ever direct detection of a gravitational wave.
+first gravitational wave event reported by LIGO in September 14, 2015, using the 1.5 m telescope at Estacion Astrofisica Bosque Alegre (EABA) in Cordoba, Argentina. 
+This event was the first ever direct detection of a gravitational wave.
 
 We observed for two consecutive nights immediately after we received the alert, searching on 14 targets in 21 fields containing nearby (D < 60 Mpc) luminous (MB <  21 mag) galaxies with high probabilities of hosting the event. 
 We covered 0.62 square degrees which corresponds to an integrated probability of about 0.03\% in the cWB map and less than 0.01\% in the rest of the skymaps. We reached a 5$\sigma$ limiting AB magnitude of r = 21.7.
 
-We applied to the images the same process than our mock run on the CSTAR data, with a-posteriori references images taken a few months after, in December 2015.
+We applied to the images the same process than our mock run on the CSTAR data, with \emph{a-posteriori} references images taken a few months after, in December 2015.
 The Image Difference + Machine Learning analysis did not show any transient of astronomical origin.
 The fact that we did not find any genuine transient in our search is not surprising given the small area surveyed (\textasciitilde 0.62 sq. degrees) 
 and the low cadence of the observations (with only two epochs per target, separated by 73$\pm$3d). 
 
 More importantly, our null results are consistent with the LIGO detection of a binary black hole merger, for which no optical EM counterpart is expected.
-
 
 \appendix
 
@@ -2565,11 +2592,10 @@ More importantly, our null results are consistent with the LIGO detection of a b
 
 Gravitational waves are a particular kind of solution to the Einstein's field equations of General Relativity.
 
-In many situations we can consider, we are in a flat background situation, in which our metric does not differ much locally from the Minkowski metric.
+In many situations we can consider, we are in a flat background situation, in which our metric does not differ locally much from the Minkowski metric.
 Suppose we are far away, removed from any strong source in an asymptotically flat spacetime.
 
 In such situation we can assume that locally our metric is the Minkowski metric $\eta$ plus some small deviation $h$. We want to study the dynamics of such small perturbation in a linearized Einstein field equation. 
-
 
 To do that, we consider the metric $g = \eta + h$ in the linearized Einstein's field equations. Linearized here means that quadratic and higher factors of $h$ will be simply ignored, as they are assumed much smaller than the flat metric.
 
@@ -2587,37 +2613,35 @@ The Christoffel symbols to first order in $h$ are:
 
 \begin{align}
 \Gamma_{abc} &= \frac{1}{2} \left( g_{ca,b} + g_{cb,a} - g_{ab,c} \right) \\
-  &= \frac{1}{2} \left( (\eta + h)_{ca,b} + (\eta + h)_{cb,a} - (\eta + h)_{ab,c} \right) \\
- &=\frac{1}{2} \left( h_{ca,b} + h_{cb,a} - h_{ab,c} \right) 
+  &= \frac{1}{2} \left( (\eta + h)_{ca,b} + (\eta + h)_{cb,a} - (\eta + h)_{ab,c} \right) \nonumber \\
+ &=\frac{1}{2} \left( h_{ca,b} + h_{cb,a} - h_{ab,c} \right)  \nonumber
 \end{align}
 
 At this point we must note that we will still call $g^{ab}$ the inverse of $g_{ab}$, which is $g^{ab} = \eta^{ab} - h^{ab}$ to first order in $h$. 
 
 And thus,
 \begin{align}
-\Gamma^{a}_{bc} &= g^{cd} \Gamma_{abd} \\
- &=(\eta - h)^{cd} \Gamma_{abd} \\
- &= \frac{1}{2} \eta^{cd} \left( h_{ca,b} + h_{cb,a} - h_{ab,c} \right) + \order(h^2)
+\Gamma^{a}_{bc} &= g^{cd} \Gamma_{abd} \\ 
+ &=(\eta - h)^{cd} \Gamma_{abd}  \nonumber \\
+ &= \frac{1}{2} \eta^{cd} \left( h_{ca,b} + h_{cb,a} - h_{ab,c} \right) + \order(h^2) \nonumber
 \end{align}
 
 Similarly, the Ricci tensor to first order in $h$ will be:
 
 \begin{align}
 R_{ab} &= \Gamma^{c}_{ab,c} - \Gamma^{c}_{cb,a} \\
-&= \frac{1}{2} \left( h_{a}{}^{c}{}_{,bc} + h_{b}{}^{c}{}_{,ac} - h_{ab,c}{}^{c} - h_{c}{}^{c}{}_{,ab} \right)
+&= \frac{1}{2} \left( h_{a}{}^{c}{}_{,bc} + h_{b}{}^{c}{}_{,ac} - h_{ab,c}{}^{c} - h_{c}{}^{c}{}_{,ab} \right) \nonumber
 \end{align}
 
-Which will finally lead us to the Einstein's tensor $G$:
+Which finally lead us to the Einstein's tensor $G$:
 
 \begin{align}
 G_{ab} &= R_{ab} - \frac{1}{2}g_{ab}R \\
-&= R_{ab} - \frac{1}{2}\eta_{ab}R + \order(h^2) \\
-&= \frac{1}{2} \left( h_{ac,b}{}^{c} + h_{bc,a}{}^{c} - h_{ab,c}{}^{c} - h_{c}{}^{c}{}_{,ab} -\eta_{ab} \left( h_{cd,}{}^{cd} - h_{c}{}^{c}{}_{,d}{}^{d} \right) \right)
+&= R_{ab} - \frac{1}{2}\eta_{ab}R + \order(h^2)  \nonumber \\
+&= \frac{1}{2} \left( h_{ac,b}{}^{c} + h_{bc,a}{}^{c} - h_{ab,c}{}^{c} - h_{c}{}^{c}{}_{,ab} -\eta_{ab} \left( h_{cd,}{}^{cd} - h_{c}{}^{c}{}_{,d}{}^{d} \right) \right) \nonumber
 \end{align}
 
-This can be brought to a shorter form defining $\bar{h}{}_{ab} = h_{ab} - \eta_{ab} h$
-
-Where $h = h_{c}{}^{c}$ is the trace of the metric tensor $h$.
+This can be brought to a shorter form defining $\bar{h}{}_{ab} = h_{ab} - \eta_{ab} h$, where $h = h_{c}{}^{c}$ is the trace of the metric tensor $h$.
 With this definition, the Einstein's field equation becomes:
 
 \begin{align}
@@ -2626,7 +2650,8 @@ With this definition, the Einstein's field equation becomes:
 
 \section{Gauge choices}
 
-There is a gauge freedom in General Relativity corresponding to the group of diffeomorphisms, that can be used to simplify the equations even more. Just like the Gauge freedom in electrodynamics $A \rightarrow A + \partial \chi$ we can chose $h$ to satisfy $\bar{h}{}_{ab,}{}^{b} = 0$
+There is a gauge freedom in General Relativity corresponding to the group of diffeomorphisms, that can be used to simplify the equations even more. 
+Just like the Gauge freedom in electrodynamics $A \rightarrow A + \partial \chi$ we can chose $h$ to satisfy $\bar{h}{}_{ab,}{}^{b} = 0$
 
 In this ``Lorentz Gauge'', the linearized Einstein field equations, reduce to the usual wave equation for each component of $\bar{h}$:
 
@@ -2634,16 +2659,17 @@ In this ``Lorentz Gauge'', the linearized Einstein field equations, reduce to th
 \bar{h}_{ab,c}{}^{c} = \Box{\bar{h}{}_{ab}} = 0
 \end{align}
 
-Further gauge choices can let us choose the trace of $\bar{h}$ to be zero and each $h_{0\mu}$ component to be zero for $\mu = 0,1,2,3$. Notice that once the trace of $\bar{h}$ is set to zero, it implies that $\bar{h}{}_{ab} = h_{ab}$
+Further gauge choices let us choose the trace of $\bar{h}$ to be zero and each $h_{0\mu}$ component to be zero for $\mu = 0,1,2,3$. 
+Notice that once we set the trace of $\bar{h}$ to zero, this implies that $\bar{h}{}_{ab} = h_{ab}$
 
 \begin{align} \label{gaugecond}
 & \Box{h_{ab}} = 0 \\
-& h_{ab,}{}^{b} = 0 \\
-& h_{a}{}^{a} = 0 \\
-& h_{0 \mu} = 0; \; \mu=0,1,2,3
+& h_{ab,}{}^{b} = 0 \nonumber \\
+& h_{a}{}^{a} = 0  \nonumber \\
+& h_{0 \mu} = 0; \; \mu=0,1,2,3 \nonumber
 \end{align}
 
-This is called the transverse traceless (TT) gauge. The reader can refer the full derivation for the gauge choices in Misner or Wald.
+This is called the transverse traceless (TT) gauge. %The reader can refer the full derivation for the gauge choices in Misner or Wald.
 
 With the conditions in (\ref{gaugecond}), we seek solutions in the form of plane waves of the form $h_{ab} = H_{ab}e^{\pm \imath k_{\mu}x^{\mu}}$.
 
@@ -2651,8 +2677,8 @@ Our gauge conditions impose similar conditions on $k$ and $H$:
 
 \begin{align}
 & k^{\mu} H_{\mu \nu} = 0 \\
-& H_{\mu}{}^{\mu} = 0 \\
-& H_{0 \mu} = 0; \; \mu=0,1,2,3
+& H_{\mu}{}^{\mu} = 0 \nonumber \\
+& H_{0 \mu} = 0; \; \mu=0,1,2,3 \nonumber
 \end{align}
 
 This leaves $H$ with only two independent components. If we consider a wave propagating in the z direction, the most general form for a transverse traceless metric will be:
@@ -2660,9 +2686,9 @@ This leaves $H$ with only two independent components. If we consider a wave prop
 \begin{equation}
 \begin{bmatrix}
 0 & 0 & 0 & 0 \\
-0 & h_{+} & h_{\times} & 0 \\
+0 & h_{+} & h_{\times} & 0  \\
 0 & h_{\times} & -h_{+} & 0 \\
-0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0  \\
 \end{bmatrix}
 e^{\pm \imath k_{\mu}x^{\mu}}
 \end{equation}
@@ -2713,9 +2739,9 @@ The kernel $K$ will try to correct for the PSF difference between the two images
 It's worth noting here, that even though it could be practical to the reader to think so, the kernel $K$ is neither the PSF of the reference nor the PSF of the image.
 
 Usually, the reference image is the one with the best {\em seeing}, 
-because it can be done by median-stacking good images, or using Lucky Imaging [add ref] or some other method.
+because it can be done by median-stacking good images, or using Lucky Imaging, or some other method.
 
-To convert the problem into a linear one, we decompose the kernel into a linear combination of ``{\em basis}'' functions $B$.
+To convert the problem into a linear one, we decompose the kernel into a linear combination of ``\emph{basis}'' functions $B$.
 
 \begin{equation} \label{kernel_linear}
 K(u,v) = \sum_{i} a_{i} B_{i}(u,v)
@@ -2728,7 +2754,7 @@ Using this linear combination, the convolution will be
 
 \begin{align}
 (R \mathbin{*} K)(x,y) & = \sum_{i} a_{i} \left( R \mathbin{*} B_{i} \right)(x,y) \\
- & \equiv \sum_{i} a_{i} C_{i}(x,y)
+ & \equiv \sum_{i} a_{i} C_{i}(x,y) \nonumber
 \end{align}
 
 where the last line defines $C_{i}(x,y)$.
@@ -2738,7 +2764,7 @@ Define a cost function $Q$:
 
 \begin{align}
 Q &= \int \left( I(x,y) - (R \mathbin{*} K)(x,y) \right)^2 \\
- & = \int \left( I(x,y) - \sum_{i} a_{i} C_{i}(x,y) \right)^2,
+ & = \int \left( I(x,y) - \sum_{i} a_{i} C_{i}(x,y) \right)^2, \nonumber
 \end{align}
 
 and let's minimize $Q$ over the set of $a$'s:
@@ -2786,7 +2812,7 @@ The parameter $\sigma_n$ in each Gaussian is fixed beforehand by the user.
 The number of Gaussians used in the expansion is given by $n$, and for each one of them we have $(D_n + 1)(D_n + 2)/2$ terms in the modulating polynomial.
 That gives a total of $n(D_n + 1)(D_n + 2)/2$ unknown $a_i$ coefficients to solve for.
 
-A simpler basis was proposed by \citet{2008MNRAS.386L..77B} and it's effectively a Dirac Delta function for each pixel.
+A simpler basis was proposed by \citet{2008MNRAS.386L..77B} and it's effectively a Kronecker Delta function for each pixel.
 
 \begin{equation}
 B_{i}(x,y) = \delta(x-i,y-j)
@@ -2914,9 +2940,10 @@ b_{i} &=  \int_{\Omega} I(x,y) C_{i}(x,y)
 When dealing with large field of views, a simple solution suggested by Bramich 2010, is to partition the image into grids, and apply Image Differencing on each grid element.
 
 Another solution is to include in the derivation, a space-varying kernel.
-This has the advantage of addressing the issue directly, but we have to quit to the niceties of having convolutions done with FFT.
+This has the advantage of addressing the issue directly, but we have to quit to the niceties of having fast convolutions with a Fast Fourier Transform (FFT) algorithm.
 
-The derivation follows the usual least squares derivation, except this time we consider each kernel basis element modulated by a polynomial variation across the image. Following Miller (2008):
+The derivation follows the usual least squares derivation, except this time we consider each kernel basis element modulated by a polynomial variation across the image. 
+Following \citet{2008PASP..120..449M}:
 
 \begin{align}
 K(u, v) &= \sum_n a_n(x,y) B_n(u, v) \\
@@ -2935,10 +2962,11 @@ Notice that the last equation involves an unusual type of ``convolution'' where 
 \section{Cost of building matrix M and b}
 
 Recall that we have to solve the system of equations \eqref{matrix_eq} with definitions in \eqref{matrix_def}.
-
 This implies that each component of the matrix $M$ will involve a convolution and an integration over the whole image.
+Therefore, not only the inversion problem is expensive, but even calculating the matrix is also an expensive operation.
+The cost of building each element of matrix $M$ is $\mathcal{O}(N^2)$, where $N$ is the number of free parameters in the minimization.
 
-Therefore, not only the inversion problem is expensive, but even calculating the matrix can be an expensive operation.
+This trade-off between computational cost and speed can favor one method or another depending on the degree of accuracy desired.
 
 \pagebreak{}
 
