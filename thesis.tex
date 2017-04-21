@@ -76,7 +76,7 @@
 \tikzstyle{obse} = [draw, rectangle, fill=green!30, node distance=3cm,
     text width=5em, text centered, rounded corners, minimum height=2em]
 
-\usepackage{algorithm}
+%\usepackage{algorithm}
 %\usepackage{minted}
 %End of added by me
 
@@ -420,9 +420,10 @@ with gaps between them on which more improvements will be implemented until it r
 
 The projected sensitivity for each of the runs is presented in table \ref{ligoruns} (\citet{2016LRR....19....1A, 2014ApJ...795..105S})
 
-
 \begin{table}
-\centering
+\caption{LVC Observation Runs Projection}
+\label{ligoruns}
+\noindent \centering
 \begin{tabular}{*{9}{|c}|}
   \hline
    & Estimated & 
@@ -430,24 +431,23 @@ The projected sensitivity for each of the runs is presented in table \ref{ligoru
   \multicolumn{2}{c|}{}
   & Number &
   \multicolumn{2}{c|}{\% BNS Localized} \\
-   & Run & 
+  Epoch & Run & 
   \multicolumn{2}{c|}{Burst Range (Mpc)}&
   \multicolumn{2}{c|}{BNS Range (Mpc)} &
   of BNS &
   \multicolumn{2}{c|}{within} \\
-  Epoch & Duration & 
+  & Duration & 
   LIGO & Virgo &
   LIGO & Virgo &
   Detections &
-  5 deg${}^2$ & 20 deg${}^2$ \\ \hline
+  5 deg${}^2$ & 20 deg${}^2$ \tabularnewline
+  \hline \hline
 2015 & 3 months & 40 -- 60 & --- & 40 -- 80 & --- & 0.0004 -- 3 & --- & --- \\ 
 2016-17 & 6 months & 60 -- 75 & 20 -- 40 & 80 -- 120 & 20 -- 60 & 0.006 -- 20 & 2 & 5 -- 12 \\
 2017-18 & 9 months & 75 -- 90 & 40 -- 50 & 120 -- 170 & 60 -- 85 & 0.04 -- 100 & 1 -- 2 & 10 -- 12 \\
 2019$+$ & (per year) & 105 & 40 -- 70 & 200 & 65 -- 130 & 0.2 -- 200 & 3 -- 8 & 8 -- 28 \\
 2022$+$ (India) & (per year) & 105 & 80 & 200 & 130 & 0.4 - 400 & 17 & 48 \\ \hline
 \end{tabular}
-\caption{LVC Observation Runs Projection}
-\label{ligoruns}
 \end{table}
 
 %Needs to add: Observables of LIGO, especially Compact Binary Mergers. Rates, etc.
@@ -1033,10 +1033,12 @@ Nowadays the list of Python scientific packages is too long to enumerate, but we
 This project itself spun the creation of two new modules: astroalign and ois (see sections \ref{section:astroalign} and \ref{section:ois}) to align stellar images and perform image subtraction respectively.
 
 \begin{table}
-\centering
-\begin{tabular}{l m{10cm}}
+\noindent \centering
+\caption{Some of the scientific packages available for Python}
+\begin{tabular}{| l | m{10cm} | }
 \hline
-Package Name & Description \\ \hline
+Package Name & Description \tabularnewline 
+\hline \hline
 NumPy & Collection of Numerical routines for Python \\ \hline
 SciPy &  Python-based ecosystem of open-source software for mathematics, science, and engineering. \\ \hline
 Astropy &  ``The Astropy Project is a community effort to develop a single core package for Astronomy in Python and foster interoperability between Python astronomy packages.'' \\ \hline
@@ -1049,7 +1051,6 @@ scikit-learn & Tools for data mining and data analysis \\ \hline
 PyGCN & Module to connect to the GCN/TAN network \\ \hline
 Django & Web Framework for backend web development \\ \hline
 \end{tabular}
-\caption{Some of the scientific packages available for Python}
 \label{pythonpackages}
 \end{table}
 
@@ -1113,7 +1114,8 @@ The structured text is parsed with a Python native package to scavenge the relev
 Some of the information contained in the VOEvent is listed on table \ref{voeventinfo}
 
 \begin{table}
-\centering
+\noindent \centering
+\caption{A few examples of the kind of information provided in the VOEvent notice.}
 \begin{tabular}{| l | >{\itshape}m{9cm}|}
 \hline
 GraceID & Identifier in the Grace Database \\ \hline
@@ -1124,7 +1126,6 @@ ProbHasNS & Probability that at least one object in the binary is less than 3 so
 ProbHasRemnant  & Probability that there is matter in the surroundings of the central object \\ \hline
 ISOTime & The time of the event in ISO format \\ \hline
 \end{tabular}
-\caption{A few examples of the kind of information provided in the VOEvent notice.}
 \label{voeventinfo}
 \end{table}
 
@@ -1641,8 +1642,9 @@ We chose those features that had relation to the morphology of the source. We al
 The whole list of features is presented in table \ref{mlfeatures}.
 
 \begin{table}
-\centering
-\begin{tabular}{|l| >{\itshape}l|}
+\noindent \centering
+\caption{Random Forest Features}
+\begin{tabular}{| l | >{\itshape}m{13cm} |}
   \hline
   x2 & Sum of the x squared values $\sum x^2 $ \\ \hline
   y2 & Sum of the y squared values $\sum y^2 $\\ \hline
@@ -1652,7 +1654,7 @@ The whole list of features is presented in table \ref{mlfeatures}.
   mag\_aper & Aperture magnitude of the object in the subtraction image \\ \hline     magerr\_aper & Error of mag\_aper \\ \hline
   flux\_aper & Aperture flux in counts of the object in the subtraction image \\ \hline
   fluxerr\_aper & Error of flux\_aper \\ \hline
-%threshold & \\ \hline
+ threshold & flux threshold for source detection \\ \hline
 flux\_max & Maximum value of the flux \\ \hline
 fwhm & Full width at half maximum \\ \hline
 deltax & Width in pixels of the object (X\_MAX - X\_MIN) \\ \hline
@@ -1661,7 +1663,6 @@ ratio & $\min$(deltax, deltay)/ $\max$(deltax,deltay,1) \\ \hline
 roundness & a/b\\ \hline
 peak\_centroid & Distance in pixels from the pixel with highest count to the centroid of the object \\ \hline
 \end{tabular}
-\caption{Random Forest Features}
 \label{mlfeatures}
 \end{table}
 
@@ -1698,7 +1699,8 @@ $F = 2 (P\times R)/(P + R)$
 Several scores of the performance of the classifier on the training data are condensed in the scores table (\ref{mlscores}).
 
 \begin{table}
-\centering
+\caption{Random Forest Scores}
+\noindent \centering
 \begin{tabular}{| >{\itshape}l | l |}
   \hline
   Accuracy & 0.9935 \\ \hline
@@ -1714,9 +1716,9 @@ Several scores of the performance of the classifier on the training data are con
 \cline{2-3}
 {\it Classified as} bogus & 65 & 7559 \\
 \cline{2-3}
-\end{tabular} \\ \hline
+\end{tabular} \\ & \\ 
+\hline
 \end{tabular}
-\caption{Random Forest Scores}
 \label{mlscores}
 \end{table}
 
@@ -1867,10 +1869,12 @@ Besides the LIGO-Virgo Collaboration, other 24 institutions participated in the 
 These are detailed in table \ref{gw150914participants}.
 
 \begin{table}
-\centering
-\begin{tabular}{|l|c|}
+\noindent \centering
+\caption{Participating Institutions in the GW150914 EM Counterpart Search}
+\begin{tabular}{| m{12cm} | c |}
 \hline
-Institution name & Band \\ \hline
+Institution name & Band \tabularnewline 
+\hline \hline
 The LIGO Scientific Collaboration & GW \\
 The Virgo Collaboration & GW \\
 The Australian Square Kilometer Array Pathfinder (ASKAP) Collaboration & Radio \\
@@ -1899,7 +1903,6 @@ The TOROS Collaboration & Optical \\
 The Vista Collaboration & Optical and Infrared \\ 
 \hline
 \end{tabular}
-\caption{Participating Institutions in the GW150914 EM Counterpart Search}
 \label{gw150914participants}
 \end{table}
 
@@ -1956,16 +1959,17 @@ and that they have some significant probability of being the host.
 The list of filter cuts for the observations are summarized in table \ref{obsfilters}.
 
 \begin{table}
-\centering
-\begin{tabular}{|l|c|}
+\caption{Parameter Cuts}
+\noindent \centering
+\begin{tabular}{| l | c |}
   \hline
- Parameter & Limit value \\ \hline
+ Parameter & Limit value \tabularnewline
+ \hline \hline
 Observability from location & $30^{\circ} > \delta > -70^{\circ}$ for EABA \\ \hline
 Apparent Magnitude & $B \le 21$ mag \\ \hline
 Distance  & $D < 60$ Mpc \\ \hline
 Absolute Magnitude & $MB \le -21$ mag \\ \hline
 \end{tabular}
-\caption{Parameter Cuts}
 \label{obsfilters}
 \end{table}
 
@@ -1974,11 +1978,13 @@ Galaxies PGC381152 and PGC075108 are actually contained in the same frame.
 For galaxies IC1933, NGC1529 and IC2038, we tiled four frames around the galaxy to cover more area around the target. 
 
 \begin{table}
-\centering
+\noindent \centering
+\caption{Targeted host galaxies}
 \begin{tabular}{|*{7}{c|}}
   \hline
  Date & GWGC & RA & Dec & $t_{exp}$ & Tile & D \\ 
- (Local Time) & ID & [Deg] & [Deg] & [s] & Number & [Mpc] \\ \hline
+ (Local Time) & ID & [Deg] & [Deg] & [s] & Number & [Mpc] \tabularnewline
+ \hline \hline
 2015-09-16 & IC1933 & 51.416101 & -52.78547 & 600 & 1,2,3,4 & 17.45 \\
 2015-09-16 & NGC1529 & 61.833301 & -62.89993 & 600 & 5,6,7,8 & 54.76 \\
 2015-09-16 & IC2038 & 62.225246 & -55.99074 & 600 & 9,10,11,12 & 7.00 \\
@@ -1994,7 +2000,6 @@ For galaxies IC1933, NGC1529 and IC2038, we tiled four frames around the galaxy 
 2015-09-17 & PGC381152 & 63.584547 & -58.20726 & 1200 & 21 & 13.26 \\
 2015-09-17 & PGC075108 & 63.670349 & -58.13199 & 1200 & 21 & 13.29 \\ \hline
 \end{tabular}
-\caption{Targeted host galaxies}
 \label{o1targets}
 \end{table}
 
@@ -2100,26 +2105,10 @@ It reaches its minimum (zero) when all cases in the node fall into a single targ
 Several scores of the training are given on table \ref{gwscores} including the confusion matrix of the training.
 The receiver operating characteristic (ROC) curve is presented in figure \ref{fig:roc_gw150914}.
 
-\begin{comment}
-\begin{table}
-\centering
-\begin{tabular}{ l|c|c| }
-\multicolumn{1}{r}{}
- &  \multicolumn{1}{c}{real}
- & \multicolumn{1}{c}{bogus} \\
-\cline{2-3}
-{\it Classified as} real & 1390 & 121 \\
-\cline{2-3}
-{\it Classified as} bogus & 144 & 1367 \\
-\cline{2-3}
-\end{tabular}
-\caption{Confusion Matrix}
-\label{gwconfusionmatrix}
-\end{table}
-\end{comment}
 
 \begin{table}
-\centering
+\noindent \centering
+\caption{Random Forest Scores}
 \begin{tabular}{| >{\itshape}l | l |}
   \hline
   accuracy & 0.9123 \\ \hline
@@ -2135,9 +2124,9 @@ The receiver operating characteristic (ROC) curve is presented in figure \ref{fi
 \cline{2-3}
 {\it Classified as} bogus & 144 & 1367 \\
 \cline{2-3}
-\end{tabular} \\ \hline
+\end{tabular} \\ & \\
+\hline
 \end{tabular}
-\caption{Random Forest Scores}
 \label{gwscores}
 \end{table}
 
@@ -2251,7 +2240,7 @@ In fact any function of 2 independent length ratios will work.
 
 For astroalign, we used the following simple invariants.
 
-\begin{align*}
+\begin{align}
 I(L_1, L_2, L_3) =& \left( \frac{L_3}{L_2}, \frac{L_2}{L_1} \right) = (I_{1}, I_{2}) \numberthis \label{invdef} \\ 
  & \text{where} \left\{
   \begin{array}{lll} 
@@ -2260,10 +2249,11 @@ I(L_1, L_2, L_3) =& \left( \frac{L_3}{L_2}, \frac{L_2}{L_1} \right) = (I_{1}, I_
  L_1 &=& \min\{ L _{i} \}_{i=1,2,3}
   \end{array}
 \right.
-\end{align*}
+\end{align}
 
-The idea for the astroalign algorithm can be summarized in the following steps
+The astroalign algorithm is explained in Algorithm~\ref{alg:astroalign}.
 
+\begin{algorithm} 
 \begin{enumerate}
 \item Do for both images \begin{enumerate}
 \item Make a catalog of a few brightest sources (but not too few!)
@@ -2281,6 +2271,9 @@ The idea for the astroalign algorithm can be summarized in the following steps
 	If it is not satisfactory, iterate RANSAC until one affine transformation is found, or until we reach the maximum number of iterations.
 \end{enumerate}
 \end{enumerate}
+\caption{The astroalign algorithm.}
+\label{alg:astroalign}
+\end{algorithm}
 
 \begin{comment}
 \begin{algorithm}
