@@ -279,7 +279,7 @@ It is then in principle possible, to devise an instrument to detect these relati
 But because of the very `perturbative' nature of GW, these differences are very small. 
 In fact, it was Einstein himself who said in his 1916 paper ``\emph{it is obvious that $A$ [the radiation formula] has, in all imaginable cases, a practically vanishing value.}''
 To have any chance of detection, one must look into the extreme side of gravity: very massive compact astrophysical objects with strong gravitational fields, moving at relativistic speeds.
-Even the most powerful astronomical events, like a black hole merger will produce disturbances the order of $10^{-23}$ m at a distance of a few hundreds Mpc.
+Even the most powerful astronomical events, like a black hole merger will produce disturbances the order of $10^{-18}$ m at a distance of a few hundreds Mpc.
 
 Perhaps the first experimental evidence for the existence of GWs came 50 years after their prediction with the work of Hulse and Taylor. 
 For decades, they studied the pulses we receive from 
@@ -312,7 +312,7 @@ This bar has already reached a strain sensitivity of $10^{-21}$ Hz${}^{-1/2}$ in
 
 A whole other category of GW detectors are those based on Michelson interferometry of lasers running on two or more kilometric long arms.
 Interferometer GW detectors transduce a GW warp in space to the shrinking and stretching of relative distances of masses put far apart in two or more --mostly perpendicular-- long interferometers. 
-In the case of Earth based observatories, each interferometer is one arm several kilometers long, of an L shape facility.
+In the case of Earth based observatories, each interferometer is one arm several kilometers long, of an L-shaped facility.
 The test masses are the end mirrors on each arm that reflect a laser beam pointed in each arm direction. 
 On normal circumstances, the beams from two different arms can be set to be (`locked') on a dark or bright fringe of the interferometer diffraction pattern.
 When a GW passes by, it will alter the relative distances of the mirror masses, thus changing the optical path of the laser beams. 
@@ -567,7 +567,7 @@ Stellar core collapse during a SN releases roughly $10^{52}$ ergs of gravitation
 The released radiation starts with bright $\gamma$-rays and subsequent afterglows across the whole spectrum up to radio frequencies.
 Localization information of the GRB needs to be quickly sent to the Astronomy community to study its emission across the EM spectrum.
 
-It was actually GRBs what ignited excitement in the astronomy community about transient astronomical events, 
+It was actually GRBs that ignited excitement in the astronomy community about transient astronomical events, 
 it was one of the first objects to be studied in a multi-band fashion, 
 and it triggered the building for most of the infrastructure we have today to deal effectively with multi-messenger astronomy.
 
@@ -812,9 +812,9 @@ every 0.1 days after merger, within a wavelength range of 200--30000 \r{A}.
 They also generated synthetic light curves in three different wavelength ranges: 3500--5000 \r{A} (``blue''), 5000--7000 \r{A} (``red'') and 1--3$\mu$m (``infrared'').
 See figure \ref{fig:KNlightcurve}.
 
-Peak luminosities for the blue emission ranges between 4--10 10${}^{40}$ erg/s depending on the model, 
-in the red band it has a peak intensity of 2--40 10${}^{40}$ ergs/s 
-and in the infrared band it peaks with an intensity of about 1--2 10${}^{40}$ ergs/s.
+Peak luminosities for the blue emission ranges between 4--10$\times$10${}^{40}$ erg/s depending on the model, 
+in the red band it has a peak intensity of 2--40$\times$10${}^{40}$ ergs/s 
+and in the infrared band it peaks with an intensity of about 1--2$\times$10${}^{40}$ ergs/s.
 The light curves peak about 2 days after the merger for the red and blue components and decays steeply in about a day.
 The infrared curve peaks about 3 days after the merger with a much slower decay rate and remains on the same order of magnitude brightness for about a week before fading.
 
@@ -854,7 +854,8 @@ However, the sources were too faint to make any conclusive statement about its n
 \centering
 \includegraphics[scale=0.3]{figures/tanvir_kilonova}
 \caption{HST imaging of the location of SGRB 130603B. The left-hand panel shows the host and surrounding field. 
-The next panels show in sequence the first epoch and second epoch imaging, and difference (upper row F606W/optical and lower row F160W/nIR). From \citet{2013Natur.500..547T}.}
+The next panels show in sequence the first epoch and second epoch imaging, and difference (upper row F606W/optical and lower row F160W/nIR). 
+Figure from \citet{2013Natur.500..547T}.}
 \label{fig:tanvir}
 \end{figure}
 
@@ -868,7 +869,7 @@ between Kilonovae, the r-process during a compact object merger, and the short k
 \section{Conclusion}
 
 In summary, Kilonova emission is an ideal EM counterpart to the LIGO observations.
-As previously said, unlike SGRBs, Kilonova emission is isotropic. 
+As previously said, unlike GRBs, Kilonova emission is isotropic. 
 Even though short GRBs emission is also present during the BNS merger, the r-process emission in the jet and other merger neutron ejecta, is fairly isotropic.
 The chances to detect the GRB jet are very limited by the collimation of the jet and our line of sight, but r-process radiation is not. 
 
@@ -1606,17 +1607,17 @@ On the next section I explain how the training data was prepared.
 
 \subsection{The Training Data and the Classifier}
 
-The main challenge to generate training data is the great unbalance between bogus sources due to imperfect subtraction and actual real transients.
+The main challenge to generate training data is the great imbalance between bogus sources due to imperfect subtraction and actual real transients.
 
 On a typical image, the number of bogus sources can be about a hundred, and the rate of real transients are usually $\lesssim$ 5. 
 The Machine Learning problem becomes one of `Information Retrieval'. 
 We are mainly interested in only one class, the real transients, and we need to retrieve samples of that class from a sea of bogus transients.
 
-In such an uneven situation, a very unbalanced training set can create spurious results. As an example, imagine a training set with 90 bogus and 10 reals. 
+In such an uneven situation, a very imbalanced training set can create spurious results. As an example, imagine a training set with 90 bogus and 10 reals. 
 The very naive and simple Zero Rule Classifier --that is the classifier that classifies everything as bogus-- would have a very misleading 90\% accuracy.
-An unbalanced training set could also create classifiers with large variance due to the small set of real samples.
+An imbalanced training set could also create classifiers with large variance due to the small set of real samples.
 
-In situations of unbalanced sets, the `recall' measure is a more meaningful score of the classification.
+In situations of imbalanced sets, the `recall' measure is a more meaningful score of the classification.
 `Recall' is the fraction of samples of the relevant class that were retrieved by the classifier out of the total number of reals in the set.
 The class we are mainly interested in for the Recall is that of the real transient examples.
 
@@ -2087,11 +2088,14 @@ The classifier has very good score statistics, but not as good as the one with C
 Nonetheless all performance statistics score above 90\%.
 
 The particular Random Forest algorithm we used is the one provided in \emph{scikit-learn} (\citet{2012arXiv1201.0490P}), a popular Python package for Machine Learning analysis.
-We have 10 Decision Trees in the ensemble, each one with a `Gini impurity' criterion to decide on the split of the branches.
-Each tree decides based on the square root of the number of features. On our case, with the features in table \ref{mlfeatures}, 
-the algorithm will branch its decisions based on 4 features randomly chosen.
+We have 10 Decision Trees in the ensemble, each one bootstraping on a susbset of the features, and branching according to the `Gini impurity' criterion.
 
-% self, n_estimators=10, criterion='gini', max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features='auto', max_leaf_nodes=None, min_impurity_split=1e-07, bootstrap=True, oob_score=False, n_jobs=1, random_state=None, verbose=0, warm_start=False, class_weight=None
+The number of bootstrapped features on each tree, is the square root of the total number of features. 
+In our case, with the features in table \ref{mlfeatures}, the algorithm will branch its decisions based on 4 features randomly chosen.
+
+Gini impurity is a measure of how often a randomly chosen element from the set would be incorrectly labeled if it was randomly labeled according to the distribution of labels in the subset. 
+Gini impurity can be computed by summing the probability $f_i$ of an item with label $i$ being chosen, times the probability $1-f_i$ of a mistake in categorizing that item. 
+It reaches its minimum (zero) when all cases in the node fall into a single target category.
 
 Several scores of the training are given on table \ref{gwscores} including the confusion matrix of the training.
 The receiver operating characteristic (ROC) curve is presented in figure \ref{fig:roc_gw150914}.
@@ -2218,7 +2222,7 @@ Astroalign works with the raw pixel information in memory, so it's agnostic abou
 It is also self contained, so does not rely on any external program to perform the alignment
 and it is written entirely in Python.
 
-Our contribution, astroalign, is inspired by the C implementation of the algorithm developed for astrometry.net (citet{2010AJ....139.1782L}).
+Our contribution, astroalign, is inspired by the C implementation of the algorithm developed for astrometry.net (\citet{2010AJ....139.1782L}).
 
 Astrometry.net's goal is much more ambitious than our present problem of aligning two images.
 Their program's main goal is to identify the portion of the sky that an image belongs to, and it solves this problem remarkably well.
@@ -2234,7 +2238,7 @@ We can create a catalog of the region of interest, using the reference frame.
 In essence we will have a catalog of some bright reference stars on each image, 
 and we want to match them in some way to find the appropriate affine transformation between the images.
 
-As we mentioned before, the core idea of the algorithm consists on characterizing asterisms on the image in a unique way, 
+As we mentioned before, the core idea of the algorithm consists of characterizing asterisms on the image in a unique way, 
 by using quantities invariant to translation, rotation or even scaling and flipping.
 For astroalign, we use 3-star asterisms (triangles) to perform the matching, and a RANSAC algorithm to decide on the final transformation.
 Similar asterisms will have the same invariant tuples in both images so a correspondence can be made between those invariant quantities. 
@@ -2461,7 +2465,7 @@ The interface to the user has two entry points: the module methods optimal\_syst
 The latter is just a convenience method to partition the image on a grid and perform the former on each grid, 
 taking into account border issues within the grid boundaries when necessary.
 
-The first method, optimal\_system will return the difference image along with the optimal image to be subtracted (the ruined reference), 
+The first method, optimal\_system will return the difference image along with the optimal image to be subtracted (the degraded reference), 
 the kernel of the convolution and the subtracted background.
 The second, optimal\_system and subtract\_on\_grid will return the same elements, but a list of kernels for each grid element instead of just one like the previous case.
 
@@ -2531,8 +2535,10 @@ Earlier attempts to ML relied on sets of data generated by the contribution of u
 Unfortunately, these data sets suffered from great class imbalance.
 Winnow was a visual data mining tool, but due to the natural scarcity of real transients in the images, it was hard to extract the positive examples.
 
-The imbalance of the training set could be mitigated by some techniques in ML, like oversampling, undersampling, bagging or SMOTE.
-In particular, SMOTE gave the best results.
+The imbalance of the training set can be mitigated using SMOTE, the Synthetic Minority Oversampling Technique (\citet{2011arXiv1106.1813C}). 
+The technique creates new samples of the rare class, by interpolating between two randomly chosen instances.
+This ensures that the newly created synthetic examples remain in the convex hull of the class.
+However, the synthetic new examples can only mitigate the scarcity of its class, but can't compensate for the lack of knowledge of their true distribution.
 
 Even though the results achieved with humanly generated data sets were not ideal, winnow proved to be a useful tool for educational purposes.
 
@@ -2716,41 +2722,23 @@ The two independent polarizations are called ``h plus'' ($h_+$) and ``h cross'' 
 
 \chapter{Difference Image Analysis} \label{appendix:dia}
 
-Searches for time-varying and position-changing objects are undertaken by comparing a reference image of a particular region of the sky with a second image taken at the moment in which we are interested. Ideally, the reference image is taken with the same telescope using the same filter and CCD. The two images have to be aligned pixel by pixel and then subtracted to reveal any changes in light.
+Let's summarize here the method introduced in \citet{1998ApJ...503..325A} to mitigate the subtraction errors caused by different PSFs.
 
-To make a suitable subtraction of two images, one has to match the frames to exactly the same seeing. Image Difference is a technique to find a convolution kernel that best describes (in some minimization sense) the change in point spread function between the images. The idea is to degrade the good seeing image---our reference image---to match the seeing of our second image. Finding the proper kernel can be a delicate operation and there's plenty of literature on the subject. Methods range from PSF modeling through common Gaussian profiles to unmodeled PSF's to Information Theory and Fourier Domain.
-
-The first attempts at image subtraction relied on Fourier decomposition of the images, 
-but the technique suffered when noise levels were even moderate and the results were not always good.
-\citet{1998ApJ...503..325A} were the first to propose a solution in image space (as opposed to Fourier space). 
-They also summarize previous efforts in their introduction and references therein. 
-In that paper, they propose an optimization problem that we describe briefly as follows.
-
-We have an image $I$ and a reference image $R$, for which we want to find a convolution kernel $K$ such that
+For our problem, we have an image $I$ and a reference image $R$, 
+for which we want to find a convolution kernel $K$ such that $I$ approximates a degraded version of $R$:
 
 \begin{align}
 I(x,y) & \approx (R \mathbin{*} K)(x,y) \\
  & \approx \int \mathrm{d}u \mathrm{d}v {R (u,v) K(x-u,y-v)}
 \end{align}
  
-The integral symbol has to be understood in practice, as a sum over all the pixels $(x,y)$ on the image. 
-
-The kernel $K$ will try to correct for the PSF difference between the two images.
-It's worth noting here, that even though it could be practical to the reader to think so, the kernel $K$ is neither the PSF of the reference nor the PSF of the image.
-
-Usually, the reference image is the one with the best {\em seeing}, 
-because it can be done by median-stacking good images, or using Lucky Imaging, or some other method.
-
-To convert the problem into a linear one, we decompose the kernel into a linear combination of ``\emph{basis}'' functions $B$.
+To convert the problem into a linear one, we decompose the kernel into a linear combination of ``basis'' functions $B$.
 
 \begin{equation} \label{kernel_linear}
 K(u,v) = \sum_{i} a_{i} B_{i}(u,v)
 \end{equation}
 
-These $B_{i}$ could in principle be any reasonable set of functions. 
-%The two most popular choices are modulated Gaussians and the Delta basis, which will be explained in further detail in section \ref{basis}.
-
-Using this linear combination, the convolution will be
+Using this linear combination, the convolution transforms into:
 
 \begin{align}
 (R \mathbin{*} K)(x,y) & = \sum_{i} a_{i} \left( R \mathbin{*} B_{i} \right)(x,y) \\
@@ -2792,13 +2780,11 @@ M_{ij}  &=   \int  C_{i}(x,y)  C_{j}(x,y) \\
 b_{i} &=  \int I(x,y) C_{i}(x,y)  \nonumber
 \end{align}
 
-We can find the coefficients $a_{i}$ of the optimal kernel for the subtraction by inverting the system \eqref{matrix_eq}.
+The coefficients $a_{i}$ of the optimal kernel for the subtraction are the solutions to the system \eqref{matrix_eq}.
 
-\section{Different basis functions}
+Regarding the basis functions, two particular choices are the most popular.
 
-As stated above, any choice of basis in the linearization \eqref{kernel_linear} could work, but two particular choices are the most popular.
-
-The first one was proposed by \citet{1998ApJ...503..325A} and it consist of modulated centered Gaussians:
+The first one was proposed by \citet{1998ApJ...503..325A} and consists of modulated centered Gaussians:
 
 \begin{equation}
 B_{n,d_n^{x}, d_n^{y}}(u,v) = e^{-(u^2+v^2)/2 \sigma_n^2} \times u^{d_n^{x}} v^{d_n^{y}}
@@ -2806,36 +2792,11 @@ B_{n,d_n^{x}, d_n^{y}}(u,v) = e^{-(u^2+v^2)/2 \sigma_n^2} \times u^{d_n^{x}} v^{
 
 where the exponents in $u$ and $v$ add at most up to $D$, the degree of the modulation polynomial.
 
-This choice of linearization gives enough freedom to approximate the kernel as a sum of modulated Gaussians, which is suitable for many situations.
-The parameter $\sigma_n$ in each Gaussian is fixed beforehand by the user.
-
-The number of Gaussians used in the expansion is given by $n$, and for each one of them we have $(D_n + 1)(D_n + 2)/2$ terms in the modulating polynomial.
-That gives a total of $n(D_n + 1)(D_n + 2)/2$ unknown $a_i$ coefficients to solve for.
-
-A simpler basis was proposed by \citet{2008MNRAS.386L..77B} and it's effectively a Kronecker Delta function for each pixel.
+A simpler basis was proposed by \citet{2008MNRAS.386L..77B} and it's effectively a Dirac Delta function for each pixel.
 
 \begin{equation}
-B_{i}(x,y) = \delta(x-i,y-j)
+B_{ij}(x,y) = \delta(x-i, y-j)
 \end{equation}
-
-This choice of basis makes every pixel value in the kernel be determined independently by the minimization process.
-Obviously, this allows for a greater variety of kernels than in the Gaussian case.
-It also comes at a cost: now the number of unknowns to invert for grows quadratically with the kernel side length.
-For a kernel of side 11 pixels, we have to create a matrix 121$\times$121 and then invert it. 
-
-As we will see at the end of the chapter, even calculating the elements of the matrix to invert is an expensive operation,
-so this absolute freedom in the kernel shape comes at the cost of a much higher numerical complexity.
-
-Despite this complexity, the Delta basis can account for situations that the Gaussian basis can't address.
-For example, if the images are very similar in PSF, then the compensating kernel of our problem should be an actual delta at the center 
----the identity kernel---or a very peaky function.
-
-Bramich's method can actually return the correct kernel, while the Gaussian method will have trouble adjusting (potentially broad) Gaussians.
-
-Another issue that Delta basis corrects very well is for tiny misalignments between our reference image and the image we are processing.
-In fact, translations are included in the set of convolutions represented by displaced deltas on the kernel.
-Convolving with a kernel with a delta displaced $(\Delta x, \Delta y)$ pixels away from the center will effectively translate the image by that same amount,
-so misalignments due to small translations (the order of the kernel side) can be completely accounted for in the Delta basis.
 
 \section{Add a varying background}
 
@@ -2989,7 +2950,7 @@ During this time, Martin Beroiz worked with Dr. Richard Price first, and later w
 
 His current interests include General Relativity, Particle Physics but also Software Engineering, in particular algorithms, simulations and web development.
 
-He will in the future keep working on the TOROS project, perfecting the software and training newcomer students.
+He will in the future keep working on the TOROS project, completing the software and training newcomer students.
 
 \begin{comment}
 \section*{Education}
