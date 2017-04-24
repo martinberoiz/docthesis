@@ -76,6 +76,7 @@
 \tikzstyle{obse} = [draw, rectangle, fill=green!30, node distance=3cm,
     text width=5em, text centered, rounded corners, minimum height=2em]
 
+%\usepackage{subfig}
 %\usepackage{algorithm}
 %\usepackage{minted}
 %End of added by me
@@ -124,18 +125,22 @@ All rights reserved. }
 \maketitle
 \begin{acknowledgements}
 
-I would like to thank first of all, to my advisor Mario Diaz for his many advice and encouragement in the difficult times and having me on board of TOROS.
+I would like to thank first of all, to my advisor Mario Diaz for giving me the opportunity to work on the TOROS project. 
+I also appreciate his disinterested advice and encouragement during difficult times in my career.
+Mario is certainly a noble person of principles that cares for others.
 
 To Mariano Dominguez, who has been such a great pleasure to meet and work with during his stay at the Rio Grande Valley. 
 Your unstoppable flow of creativity left me an impression that will be hard to forget.
 
 I want to thank Tania Pe\~nuelas for her many good advice and help.
+Her professionalism and dedication to this project has been an inspiration to me.
 
 To my friends Marc Normandin, Shihan Weerathunga and Ervin Vilchis, partners in this journey that was the doctoral program.
 
 To Bruno Sanchez and Juan Bautista Cabral for his disinterested help and friendship.
 
-I want to dedicate this to the memory of Cristina Torres, a wonderful person, ready to reach out to help people. May she rest in peace.
+I want to dedicate this to the memory of Cristina Torres, a wonderful person, ready to reach out to help people. 
+May she rest in peace.
 
 %(Notice: If any part of the thesis/dissertation has been published
 %before, the following two paragraphs should be included without alteration).
@@ -1925,12 +1930,44 @@ while others span up to 750 square degrees (see table 1 in \citet{2016ApJS..225.
 It greatly exceeds the fields of view of most radio, optical, and X-ray telescopes.
 Regardless, all sky maps are consistent with a broad long arc in the Southern hemisphere and a smaller extension in the Northern hemisphere. 
 
+
 \begin{figure}
-\centering
-\includegraphics[scale=0.5]{figures/pointings}
-\caption{cWB, LIB, BYST, LALinf Sky-maps re-scaled regions that mark TOROS targets (red dots).}
-\label{fig:pointings}
+\noindent \begin{centering}
+\subfloat[cWB Sky map]{\noindent \begin{centering}
+\begin{minipage}[t]{0.5\columnwidth}
+\includegraphics[scale=0.7]{figures/skymap_cwb}
+\end{minipage}
+\par\end{centering}
+}
+\subfloat[Bayestar Sky map]{\noindent \begin{centering}
+\begin{minipage}[t]{0.5\columnwidth}
+\includegraphics[scale=0.7]{figures/skymap_bayestar}
+\end{minipage}
+\par\end{centering}
+}
+
+\subfloat[LIB Sky map]{\noindent \begin{centering}
+\begin{minipage}[t]{0.5\columnwidth}
+\includegraphics[scale=0.7]{figures/skymap_lib}
+\end{minipage}
+\par\end{centering}
+}
+\subfloat[LALinf Sky map]{\noindent \begin{centering}
+\begin{minipage}[t]{0.5\columnwidth}
+\includegraphics[scale=0.7]{figures/skymap_lalinf}
+\end{minipage}
+\par\end{centering}
+}
+\par\end{centering}
+\caption{Section of a gnomonic projection of the cWB, LIB, Bayestar and LALinf skymaps with TOROS targets in blue dots.}
 \end{figure}
+
+%\begin{figure}
+%\centering
+%\includegraphics[scale=0.5]{figures/pointings}
+%\caption{cWB, LIB, BYST, LALinf Sky-maps re-scaled regions that mark TOROS targets (red dots).}
+%\label{fig:pointings}
+%\end{figure}
 
 The algorithm utilized for the cWB estimations produces reasonably accurate maps for BBH signals, but underestimates the extent of high-confidence regions (\citet{2015ApJ...800...81E}). 
 As seen in figure \ref{fig:pointings}), the adoption of maps from alternative algorithms (not available at the time our observations started) 
