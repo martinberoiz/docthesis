@@ -1959,6 +1959,7 @@ Regardless, all sky maps are consistent with a broad long arc in the Southern he
 }
 \par\end{centering}
 \caption{Section of a gnomonic projection of the cWB, LIB, Bayestar and LALinf skymaps with TOROS targets in blue dots.}
+\label{fig:pointings}
 \end{figure}
 
 %\begin{figure}
@@ -2302,7 +2303,7 @@ The astroalign algorithm is explained in Algorithm~\ref{alg:astroalign}.
 \item Make a catalog of a few brightest sources (but not too few!)
 \item Push these sources into a 2d-tree to quickly query for close neighbors\footnote{A kd-tree data structure for k=2 retrieves nearest neighbors in $\mathcal{O}(N \log N)$ number of operations on average.}.
 \item For each star, select the 4 nearest neighbors (5 sources including the star itself).
-\item Form all the ${5}\choose{3}$ possible triangles from that set of stars.
+\item Form all the $\binom{5}{3}$ possible triangles from that set of stars.
 \item For each triangle in that set, calculate the tuple of invariants in \ref{invdef}, that uniquely identify the triangle and push the invariant tuple into another kd-tree.
 \item There could be many duplicate triangles on the previous list, so it's best to remove them leaving only unique elements.
 \end{enumerate}
