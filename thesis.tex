@@ -125,22 +125,21 @@ All rights reserved. }
 \maketitle
 \begin{acknowledgements}
 
-I would like to thank first of all, to my advisor Mario Diaz for giving me the opportunity to work on the TOROS project. 
-I also appreciate his disinterested advice and encouragement during difficult times in my career.
-Mario is certainly a noble person of principles that cares for others.
+My utmost thanks go to my advisor, Mario Diaz, for giving me the opportunity to work on the TOROS project. 
+I benefited greatly from his advice and encouragement throughout my career, especially during difficult times.
+Mario is certainly a noble person of principles that cares deeply for others.
 
 To Mariano Dominguez, who has been such a great pleasure to meet and work with during his stay at the Rio Grande Valley. 
 Your unstoppable flow of creativity left me an impression that will be hard to forget.
 
-I want to thank Tania Pe\~nuelas for her many good advice and help.
+I want to thank Tania Pe\~nuelas for providing good advice and help.
 Her professionalism and dedication to this project has been an inspiration to me.
 
-To my friends Marc Normandin, Shihan Weerathunga and Ervin Vilchis, partners in this journey that was the doctoral program.
+To my friends Marc Normandin, Dr. Shihan Weerathunga and Ervin Vilchis, partners in this journey that was the doctoral program.
 
-To Bruno Sanchez and Juan Bautista Cabral for his disinterested help and friendship.
+To Bruno Sanchez and Juan Bautista Cabral for their disinterested help and friendship.
 
-I want to dedicate this to the memory of Cristina Torres, a wonderful person, ready to reach out to help people. 
-May she rest in peace.
+I want to dedicate this to the memory of Cristina Torres, a wonderful person, who was always ready to reach out to help others, including myself. May she rest in peace.
 
 %(Notice: If any part of the thesis/dissertation has been published
 %before, the following two paragraphs should be included without alteration).
@@ -185,13 +184,13 @@ Document or Doctoral Dissertation attest to the accuracy of this statement.}\end
 \begin{abstract}
 
 The novel field of Gravitational Wave Astronomy has opened a new window to the universe.
-Never before we received signals from the distant celestial bodies carried away by space-time perturbations, until the detection of GW150914.
-But these signals, however faint, carry very little information about their position on the sky. 
-The localization can have uncertainties that span up to a few hundreds square degrees.
+Never before had we received gravitational waves from the distant celestial bodies carried away by space-time perturbations, until the detection of GW150914 on September 14, 2015.
+But these signals, however faint, carry very little information about their positions on the sky. 
+The sky localization can have uncertainties that span up to a few hundreds square degrees, which makes locating the sources very difficult.
 
-Traditional Astronomy can complement this limitation in gravitational wave detection where optical astronomy is stronger: localization.
+Traditional Astronomy can complement this limitation of gravitational wave detection where optical astronomy is stronger: localization.
 However, this poses other technological challenges of a different kind.
-In the era of multi-messenger Astronomy, low latency response time after detection is crucial to have any hope in detecting 
+In the era of multi-messenger Astronomy, a low latency response time after detection is crucial in order to have any hope of detecting 
 the optically faint electromagnetic counterparts of the event.
 
 The mission of the Transient Optical Robotic Observatory of the South (TOROS) in the context of multi-messenger and time-domain astronomy, 
@@ -214,24 +213,24 @@ This dissertation discusses the implementation of a software pipeline for the TO
 
 In February 2016, celebrating the centenary anniversary of Albert Einstein's first paper on gravitational 
 waves\footnote{``Approximate integration of the field equations of gravitation'' - A. Einstein. (1916)} (\citet{1916SPAW.......688E}), 
-the LVC collaboration announced the first ever direct detection of a gravitational wave, coded GW150914.
+the LVC collaboration announced the first ever direct detection of a gravitational wave, named GW150914.
 With this, a new window of the universe for the purely relativistic astronomical phenomena was opened. 
 
-The history of GW was not without controversies. 
-From the discussion of whether GW would carry energy to the experiments of Joseph Weber, 
+The history of gravitational waves (GWs) was not without controversies. 
+From the discussion of whether GWs would carry energy, to the experiments of Joseph Weber, 
 Gravitational Waves made its way from the theoretical realm into a stronghold position in Astrophysics (see for example \citet{2016arXiv161008803C}).
 
-The detection of the first Gravitational Wave GW150914 firmly established the foundations for Gravitational Wave Astronomy.
+The detection of the first Gravitational Wave, GW150914, firmly established the foundations for Gravitational Wave Astronomy.
 %The graviton and its wave counterpart will from now on be a new --purely relativistic in nature-- messenger of the universe.
 Gravitational Waves (GW from here on) will bring us information about strong gravitational fields around compact massive objects.
-It will let us probe into the physics of the extreme gravitational field celestial bodies.
+It will let us probe into the physics of the extreme gravitational field of celestial bodies.
 
-The GW information will complete, refine and expand the understanding of our universe.
+The GW information will complete, refine, and expand the understanding of our universe.
 The full waveform of the GW gives us information that is not available in the light we gather in our traditional telescopes.
 On the other hand, traditional Astronomy can help GW Astronomy in localizing the source, thus improving the estimated parameters of the merger, 
 especially so in the case for the parameters that are correlated with localization, 
 like the geometrical parameters of the inclination of the merger with the line of sight, and total luminosity. 
-In this way, Optical Astronomy is a vital partner in the understanding of the physics in compact mergers.
+In this way, Optical Astronomy is a vital partner in our understanding of the physics in compact mergers.
 Together they can uncover more details of the inner mechanisms of the celestial bodies and their interactions.
 
 
@@ -248,7 +247,7 @@ Together they can uncover more details of the inner mechanisms of the celestial 
 \end{comment}
 
 General Relativity predicts that very massive or energetic events will create traveling perturbations of the underlying spacetime metric in the form of \emph{gravitational waves}.
-These are linear disturbances of a flat background metric, that are propagated outwards with the speed of light fading with the inverse of the distance.
+These are linear disturbances of a flat background spacetime metric, that are propagated outwards from the source at the speed of light and which fade with the inverse of the distance.
 These tensorial transversal waves will modify the local metric as it travels through space.
 
 In technical terms, in an asymptotically flat spacetime, removed from any strong source so that one can assume an almost flat local solution, one can study weak-field perturbations to the flat Minkowski metric.
@@ -259,7 +258,7 @@ g_{\mu \nu} = \eta_{\mu \nu} + h_{\mu \nu}
 \end{equation} 
 
 In this regime, and choosing appropriate gauges, the linearized Einstein field equations present themselves in the form of a wave equation.
-Solutions to this wave equations are what people refer to as gravitational waves.
+Solutions to this wave equation are what people refer to as gravitational waves.
 
 The GW tensor metric in the transverse-traceless (TT) gauge coordinate frame, has the form\footnote{We refer the reader to Appendix \ref{gwderivation} for a more complete derivation of the metric.}:
 
@@ -274,19 +273,19 @@ h_{\mu \nu} =
 \end{equation}
 
 Aside from the usual sinusoidal factors for the wave propagation, we note that the GW tensor has two independent modes, or `polarizations' $h_{+}$ and $h_{\times}$. 
-These polarizations are just like light polarization, except that these are at 45 degrees of each other, unlike the 90 degrees symmetry of light polarization.
+These polarizations are just like light polarization, except that these are at 45 degrees to one another, unlike the 90 degrees separation of light polarization.
 More specifically, the effect on test particles of a purely $h_{\times}$ polarization would be the same as the $h_{+}$ polarization rotated 45 degrees.
 
 Since a spacetime metric is a measure for the distance between pair of events, the metric perturbation wave will modify --in a 3+1 decomposition-- the relative distance between points in space as it passes by. 
 It is in fact an effective oscillating strain or tidal force between free test masses.
-It is then in principle possible, to devise an instrument to detect these relative differences in distance for such test masses.
+It is then, in principle, possible to devise an instrument to detect these relative differences in distance for such test masses.
 
 But because of the very `perturbative' nature of GW, these differences are very small. 
 In fact, it was Einstein himself who said in his 1916 paper ``\emph{it is obvious that $A$ [the radiation formula] has, in all imaginable cases, a practically vanishing value.}''
 To have any chance of detection, one must look into the extreme side of gravity: very massive compact astrophysical objects with strong gravitational fields, moving at relativistic speeds.
 Even the most powerful astronomical events, like a black hole merger will produce disturbances the order of $10^{-18}$ m at a distance of a few hundreds Mpc.
 
-Perhaps the first experimental evidence for the existence of GWs came 50 years after their prediction with the work of Hulse and Taylor. 
+The first experimental evidence for the existence of GWs came 50 years after their prediction with the work of Hulse and Taylor. 
 For decades, they studied the pulses we receive from 
 PSR B1913+16\footnote{It is also known as PSR J1915+1606, PSR 1913+16, and the Hulse--Taylor binary}, 
 a Neutron Star (NS) in a Binary Neutron Star (BNS) system.
@@ -294,16 +293,16 @@ The slow rate of period decrease of the pulses for this pulsar matched precisely
 at which they were losing energy in gravitational waves, as predicted by General Relativity.
 The discovery and analysis awarded them the 1993 Nobel Prize in Physics 
 ``\emph{for the discovery of a new type of pulsar, a discovery that has opened up new possibilities for the study of gravitation.}''
-This important work also settled the debate on wether GW could carry energy with them.
-The decrease in period rate was proof that the energy was being radiated away into GW.
+This important work also settled the debate on wether GWs could carry energy with them.
+The decrease in period rate was proof that the energy was being radiated away as GWs.
 
-Nonetheless, a direct detection of GW wouldn't come for yet another 50 years.
-In September 14, 2015, a GW detection labeled GW150914 was finally detected by the LIGO Collaboration (\cite{2016PhRvL.116f1102A}).
+Nonetheless, a direct detection of GWs wouldn't come for yet another 50 years.
+On September 14, 2015, a GW detection labeled GW150914 was finally detected by the LIGO Collaboration (\cite{2016PhRvL.116f1102A}).
 
-Direct detection \emph{in situ} of GW requires a transducer of GW in some other form measurable by common instruments.
+Direct detection \emph{in situ} of GWs requires a transducer of GW into some other form measurable by common electronic instruments.
 
 One pioneer work along this line was the work done by Joseph Weber in the late 1960s and early 70s. 
-He proposed using a 2 meters in length and 1 meter in diameter aluminum cylinder, that would resonate with passing GW at 1660 Hz.
+He proposed using a 2 meter in length and 1 meter in diameter aluminum cylinder, that would resonate upon passing GW at 1660 Hz.
 In his paper, he states that the strain oscillations on the cylinder would be of about one part in $10^{16}$.
 Although very small, these tiny resonant oscillations could in principle be measured.
 But even though ingenious, the carefully devised experiment could not yield positive reproducible results 
@@ -315,7 +314,7 @@ The latest iteration, the Nautilus GW detector ran continuously from December 19
 Nautilus is a cryogenic, high Q-factor bar at a temperature of 0.1 K.
 This bar has already reached a strain sensitivity of $10^{-21}$ Hz${}^{-1/2}$ in the kHz region. (\citet{1997APh.....7..231A})
 
-A whole other category of GW detectors are those based on Michelson interferometry of lasers running on two or more kilometric long arms.
+A whole other category of GW detectors are those based on Michelson interferometry using lasers running along two kilometer long, or greater, arms.
 Interferometer GW detectors transduce a GW warp in space to the shrinking and stretching of relative distances of masses put far apart in two or more --mostly perpendicular-- long interferometers. 
 In the case of Earth based observatories, each interferometer is one arm several kilometers long, of an L-shaped facility.
 The test masses are the end mirrors on each arm that reflect a laser beam pointed in each arm direction. 
@@ -323,29 +322,29 @@ On normal circumstances, the beams from two different arms can be set to be (`lo
 When a GW passes by, it will alter the relative distances of the mirror masses, thus changing the optical path of the laser beams. 
 This in turn, will translate into a shift in the diffraction pattern consistent with the deformation of space.
 
-Several of this kind are built on different parts of the planet. 
-Most notably among them are the LIGO observatory (see section \ref{ligosection}) and Virgo in Europe.
+Several GW detectors of this kind have been built around the the globe.
+Most notable among them are the LIGO observatory (see section \ref{ligosection}) and Virgo in Europe.
 GEO600 and TAMA are also detectors of this kind in Germany and Japan respectively.
-Indigo is a planned observatory that will be in India.
+Indigo is a planned observatory to be located in India.
 
 The frequency range in which these Earth-based interferometers are sensitive depends mainly on the length of the arms.
 As a rule of thumb, the length of one arm is about half the shortest wavelength it can detect.
 A few kilometers long arm make them sensitive up to the kHz.
 As an example, aLIGO is now sensitive in the 10 Hz --7 kHz range.
 
-Besides the Earth-based GW interferometers, there are also advanced plans to build space based detectors.
+Besides the Earth-based GW interferometers, there are also plans to build advanced space-based detectors.
 eLISA (the Evolved Laser Interferometer Space Antenna) is a proposed GW interferometer to be set in space trailing the Earth's orbit.
-Initially a NASA project, it is now an ESA mission.
-eLISA will consist of three spacecrafts in an equilateral triangle configuration separated 2.5 million kilometers from each other.
-The project successfully launched so far the ``LISA pathfinder'' spacecraft, whose mission is to test technologies needed for the final mission.
+Initially a NASA project, it is now an European Space Agency (ESA) mission.
+eLISA will consist of three separate spacecraft orbiting in an equilateral triangle configuration separated 2.5 million kilometers from each other.
+The project has successfully launched the ``LISA pathfinder'' spacecraft, whose mission is to test technologies needed for the final mission.
 The final launch of eLISA is planned for 2034.
-LISA will detect GW in the low-frequency band of the spectrum, roughly from the mHz to about 1 Hz in range.
+LISA will detect GW in the low-frequency band of the spectrum, roughly from the mHz to about 1 Hz in range. At this frequency range, binary neutron stars will comprise much of the signals it detects.
 
-Other indirect methods of GW detection include the Pulsar Timing Array (PTA) effort.
-PTA searches for correlated delays in the pulses arrival times for an array of preselected millisecond pulsars.
+Other indirect methods of GW detection include the Pulsar Timing Array (PTA) technique.
+PTA searches for correlated delays in the pulse arrival times for an array of preselected millisecond pulsars.
 These delays can then be analyzed in search for signatures of passing GW.
 This type of projects aim to detect very low frequency GW, from pHz to $\mu$Hz. 
-Potential sources for this very low frequency signals are mergers of massive black hole binaries at the center of galaxies.
+Potential sources for this very low frequency signals are mergers of suepermassive black hole binaries at the center of galaxies.
 
 
 
@@ -374,29 +373,28 @@ Additionally, noise from the instrument itself, from the laser beam and electron
 
 LIGO --the Laser Interferometer Gravitational-Wave Observatory-- (\citet{1992Sci...256..325A}) is an American observatory set to detect the GW predicted by General Relativity.
 
-It actually consists of two separate observatories, one in the state of Washington and another one in Louisiana.
+It is comprised of two separate observatories, one in Hanford, Washington, called LIGO Hanford, and another one in Livingston, Louisiana, called LIGO Livingston.
 
-Co-founded in 1992 by Kip Thorne and Ronald Drever of Caltech and Rainer Weiss of MIT, LIGO is a joint project between scientists at MIT, Caltech, and many other colleges and universities.
+Co-founded in 1992 by Kip Thorne and Ronald Drever of Caltech and Rainer Weiss of MIT, LIGO is a NSF-funded joint project between scientists at MIT, Caltech, and many other colleges and universities.
 
-Virgo is a similar observatory in Europe. 
-Originally a project from France and Italy, it soon became a collaboration from five different countries: France, Italy, the Netherlands, Poland, and Hungary. 
-The Virgo observatory is located in the countryside near Pisa, Italy.
+Virgo is a similar observatory in located in the countryside near Pisa, Italy.
+Originally a project between France and Italy, it soon became a collaboration of five different countries: France, Italy, the Netherlands, Poland, and Hungary. 
 
-Since 2007, The LIGO Scientific Collaboration (LSC) and Virgo joined efforts in an umbrella collaboration named LVC, the LIGO-Virgo Collaboration.
+In 2007, the LIGO Scientific Collaboration (LSC) and Virgo joined efforts in an umbrella collaboration named the LIGO-Virgon Collaboration (LVC).
 
-Even though, LIGO and Virgo have comparable noise levels and detection rates, only the two interferometers in LIGO were operational at the time of the GW150914 event. 
+Even though, LIGO and Virgo have comparable noise levels and detection rates, only the two interferometers in LIGO were operational at the time to detect GW150914.
 In fact, Virgo was being upgraded to Advanced Virgo, which will have a sensitivity 10 times greater than Initial Virgo. 
 When the upgrade is finished, it will join LIGO in the joint collection of GW data. This will improve errors in the parameter estimation, especially localization errors will greatly improve.
 
-LIGO went through similar upgrades along the years.
+LIGO went through similar upgrades along the years: Initial LIGO, Enhanced LIGO, and now Advanced LIGO.
 
-Each LIGO observatory consists of two long arms, 4 km long, of an isolated vacuum tube where the lasers run and hit the mirror test masses.
+Each LIGO observatory consists of two 4km long arms, which are vacuum tubes where the lasers run and hit the mirror test masses.
 The initial LIGO detectors were designed to be sensitive to GWs in the frequency band 40-7000 Hz, and capable of detecting a GW strain amplitude as small as one part in $10^{21}$.
 
 To picture the order of magnitude of these displacements, consider that the change in length of one arm of the interferometer 
 is only about $10^{-18}$ m, a thousand times smaller than the diameter of a proton.
 
-To reach this sensitivity, the detectors need highly stable lasers, multiple layers of vibration isolation and advanced optic techniques.
+To reach this sensitivity, the detectors need highly stable lasers, multiple layers of vibration isolation and advanced optical techniques.
 
 From the initial period, LIGO had five short science runs (each labelled S1 to S5), each one improving over the previous one, 
 culminating with S5 at design sensitivity. 
@@ -420,8 +418,8 @@ New two-stage active seismic isolation instead of the passive one-stage isolatio
 All these improvements combined gave Advanced LIGO a 10-fold increase in sensitivity. 
 This increase also means that fainter sources can now be detected, increasing the exploration volume for GW by a factor of a thousand.
 
-Advanced LIGO will have several observations runs, labelled O1, O2, etc. (similar to the scientific runs S1-S5) 
-with gaps between them on which more improvements will be implemented until it reaches design sensitivity in 2020.
+Advanced LIGO will have several observation runs, labelled O1, O2, etc. (similar to the scientific runs S1-S5) 
+with gaps between them on which more improvements will be implemented until it reaches the full design sensitivity in 2020.
 
 The projected sensitivity for each of the runs is presented in table \ref{ligoruns} (\citet{2016LRR....19....1A, 2014ApJ...795..105S})
 
@@ -492,7 +490,7 @@ In physics, GW detection could provide information about strong-field gravitatio
 In this so-called ``Information Age'', data is king.
 As we move away from the traditional one person project and manual way to deal with information, 
 the amount of data that needs processing becomes unmanageable by humans. 
-This is not to say that individual work has no place in science, but that the collective gathering of information have become ubiquitous.
+This is not to say that individual work has no place in science, but that the collective gathering of information has become ubiquitous.
 
 The size of sky surveys in Astronomy has been increasing steadily and dramatically over the years.
 From a situation where data lies in the hundreds of MB and about a hundred events per night now, 
@@ -512,7 +510,8 @@ or even larger periods like the astoundingly persistent X-ray emission of SN1978
 % and these can fade away in as much as hundreds of days.
 Transients are most often unpredictable, but some of them are recurring, with or without predictability of the next event; they lack periodic variability; 
 and some of them are only a one-time occurrence and will only last for a relatively short period of time.
-This make it necessary to study them in the field of time domain.
+This makes it necessary to study them in the field of time domain.
+% 'time domain' astronomy?
 
 Nonetheless, time domain astronomy poses at least two big main challenges.
 The first one deals with the huge amount of data, and the process of recovering interesting transients from it. 
@@ -530,7 +529,7 @@ Fortunately for us, a huge portion of transients, even though they may be fundam
 That is, new transient phenomena presents itself on an image, as a new or much brighter spot, relative to previous epochs.
 
 There are basically two main methods to unbury transients from images.
-Both of the transient retrieval methods require a comparison with a reference and a search that tries to find unexpected objects for that region of the sky.
+Both of the transient retrieval methods require a comparison with a reference image and a search that tries to find unexpected objects for that region of the sky.
 
 The first kind is based on catalogs. 
 In this method, a calibrated catalog of sources is done on a new image and is compared against a reference catalog.
@@ -549,9 +548,9 @@ This can be compensated by Machine Learning methods, as we shall see later.
 
 The best advantage of catalog-based methods is that they don't require reference images and are typically computationally less intensive.
 It also has the advantage of being able to better handle differences in catalogs from different telescopes.
-The disadvantage is that it requires more careful photometric and astrometric calibration and does not perform as well near extended objects.
+The disadvantage is that it requires more careful photometric and astrometric calibration and does not perform as well near extended objects such as galaxies.
 
-In either case, the task remains to identify interesting transients after we `mined' our images looking for potential candidates.
+In either case, the task remains to identify interesting transients after we have `mined' our images looking for potential candidates.
 Such classification of transient events is nowadays done with the aid of classification agents trained with Machine Learning techniques.
 Machine Learning classifiers can sort out the relevant transients from a pile of thousands in an effective and fast way, 
 enabling rapid follow-ups that would be impossible with a manual approach. 
@@ -580,7 +579,7 @@ The original purpose of the array of satellites was to monitor the nuclear activ
 The satellites were designed to detect the hard-to-shield high energy signature emissions ($\gamma$ and X rays) of nuclear detonations.
 Instead, they found strange, very energetic bursts of gamma rays coming from outer space (\citet{1973ApJ...182L..85K}).
 
-The many GRBs detected in the first few decades rapidly show that the directions they were coming from, were isotropically distributed in the sky.
+The many GRBs detected in the first few decades rapidly showed that the directions they were coming from, were isotropically distributed in the sky.
 Although suggestive, this alone was not enough to conclude the extragalactic origin of GRBs.
 Given the huge scale of energies involved, many people favored the idea that GRBs were being produced in the outer halo of our Milky Way.
 More data was needed to resolve this issue.
@@ -646,25 +645,25 @@ producing $\gamma$-rays then subsequent X-rays and optical afterglows
 
 \end{comment}
 
-The prompt dissemination of GRB discoveries became so important that sparked the creation of a collective centre for transient discovery notification.
+The prompt dissemination of GRB discoveries became so important that it sparked the creation of a collective centre for transient discovery notification.
 The gamma-ray burst coordinates network (GCN) started with the BATSE coordinates distribution network (BACODINE). 
 The GCN, along with the Transient Astronomy Network 
 (collectively, the GCN/TAN network\footnote{https://gcn.gsfc.nasa.gov}),
 is now a distribution network of transient event notices dependent on Goddard NASA.
 
-The GCN/TAN disseminates transient event information mostly in real time, while the event is still ongoing, or with short delay depending on the instrument,  
-detected by various spacecrafts (Swift, Fermi, MAXI, INTEGRAL, IPN, and others).
+The GCN/TAN disseminates transient event information mostly in real time, while the event is still ongoing, or with a short delay depending on the instrument,  
+detected by various spacecraft (Swift, Fermi, MAXI, INTEGRAL, IPN, and others).
 It also serves as a repository for the follow-up observation reports submitted by the GRB/transient community through the use of GCN Circulars.
 
-Although the creation of GCN/TAN was propelled by the interest in GRBs, now it serves as a point of communication for all sort of transient events.
+Although the creation of GCN/TAN was propelled by the interest in GRBs, it now serves as a point of communication for all sorts of transient events.
 In the LIGO-Virgo era, GCN/TAN also serves GW detection notices to some selected observatory partners (of which TOROS is one).
 
 In the same way that long GRBs sparked the multi-band follow-up observations across the spectrum,
 a new type of event associated with short GRBs gave birth to a new kind of MMA.
 Short GRBs are believed to have originators in the merger of compact objects (\citet{2007PhR...442..166N}).
-Compact object mergers are also the originators of the expected GW signals that LIGO will detect.
-Along with the GW produced in these mergers, a companion EM thermal radiation will radiate isotropically from the merger.
-This EM counterpart, is believed to shine about a thousand times brighter than a Nova, and it was named accordingly 
+Compact object mergers are also the originators of the GW signals that LIGO has detected.
+Along with the GWs produced in these mergers, a companion EM thermal radiation will radiate isotropically from the merger.
+This EM counterpart is believed to shine about a thousand times brighter than a Nova, and it was named accordingly 
 `Kilonova'\footnote{It is also referenced in the literature under the name \emph{macronova}}.
 Models of Kilonovae afterglows peak about a day after the GW emission (\citet{2010MNRAS.406.2650M})
 and last for about a week.
@@ -692,7 +691,7 @@ as well as the luminosity distance.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Kilonova, A New Case For Multi-Messenger Astronomy} \label{kilonovachapter}
 
-It has long been suggested, both by observational and theoretical grounds, 
+It has long been suggested, both on observational and theoretical grounds, 
 that Binary Compact Mergers --where at least one of the merging bodies is a NS-- are the progenitors for the short class of GRBs. 
 But it was not until the late 90's that a second class of EM emission was theorized to be present during these type of merging events.
 
@@ -702,7 +701,7 @@ This new class of thermal emission would be powered by the radioactive heating f
 
 Unlike short GRB emission, where most of the energy is collimated into a radiation beam, Kilonova emission is isotropic.
 It lasts for about a week and it peaks in the NIR sector of the light spectrum. 
-The intensity of such event can reach brightness of a thousand times those of a Nova, and for this reason it was termed `Kilonova' (\citet{2010MNRAS.406.2650M}).
+The intensity of such an event can reach brightness of a thousand times those of a Nova, and for this reason it was termed `Kilonova' (\citet{2010MNRAS.406.2650M}).
 
 Rapid neutron capture, or r-process for short, is the main driver of the radiation we see during a Kilonova.
 In a dense neutron-rich environment, if the neutron capture timescale of lighter seed atom nucleus (like Iron) 
@@ -751,7 +750,7 @@ For a NS of radius 12 km and mass 1.4 $M_{\odot}$, the BH mass can be as high as
 A non-spinning BH would have to be very small to allow for tidal disruption and hence will yield a non-detectable signal.
 (\citet{2012PhRvD..85d4015F} and references therein).
 
-Finally, even thought BH-BH mergers can have strong GW emission signals, they lack EM counterpart, 
+Finally, even though BH-BH mergers can have strong GW emission signals, they lack an EM counterpart, 
 except perhaps in very specific situations, mainly due to lack of baryonic matter.
 
 The end product of a NS-NS or BH-NS merger is a central compact remnant, either a BH or a NS.
@@ -881,13 +880,13 @@ It was based on their derived peak luminosities, of approximately 1,000 times br
 
 Another fundamental element that the multi-messenger astronomy contributes with,
 is the identification of host galaxies.
-The inference of the distance to the GW event using redshift of host galaxy will greatly reduce degeneracy in the GW parameter estimation,
+The inference of the distance to the GW event using the redshift of the host galaxy will greatly reduce degeneracy in the GW parameter estimation,
 especially of the binary inclination with respect to the line of sight.
 It will also give a better estimate of the energies involved in the merger.
 Other interesting environment properties can be derived from the Kilonova detection, like age of the stellar population and possible displacements due to SN birth kicks.
 
 But most importantly, the merger of a binary system involving a NS is very complex and several kind of factors can effect the radiation pattern and light-curve of the Kilonova as well as the GW waveform. 
-The optical light curve can serve as a probe into the core of the system and shed light to the intricacies and details of the merge process.
+The optical light curve can serve as a probe into the core of the system and shed light to the intricacies and details of the merger process.
 
 \begin{comment}
 
@@ -968,7 +967,7 @@ Since the ultimate goal of the TOROS Project is the robotization of the telescop
 it is important to have in place a software `pipeline' that makes the processing as automatic as possible,
 removing the need for human intervention at all stages, from receiving the alert to propose new transient candidates.
 
-The whole operation of TOROS can be divided in several stages
+The whole operation of TOROS can be divided into several stages
 as in the diagram of figure \ref{fig:flowchart}.
 
 \begin{figure}
@@ -1022,11 +1021,11 @@ While this may seem a disadvantage, it becomes very useful to quickly prototype 
 Python code can be executed line by line in command line interpreters, in a cell by cell manner like MATLAB\footnote{https://www.mathworks.com/products/matlab.html}
 or as a script.
 
-Python is fully Object-Oriented but it also allows to encapsulate functionality into modules or packages that can be imported into your own project.
+Python is fully Object-Oriented but it also allows one to encapsulate functionality into modules or packages that can be imported into your own project.
 This modularity makes it very easy to expand an existing project by adding external functionality (much like with libraries in compiled languages)
-in a transparent to the user one-line import.
+in a transparent, to the user, one-line import.
 
-Another advantage of Python is the ease to install these packages. Python has a standard package manager module (\emph{pip}) that takes cares of dependencies, compilable or not.
+Another advantage of Python is the ease to install these packages. Python has a standard package manager module (\emph{pip}) that takes care of dependencies, compilable or not.
 These are just a few features of the language ecosystem that is making Python gain traction in the Astronomy community.
 Python along with tools like git (and the github repository website) and virtual environments make Python projects reproducible and installable in almost any Unix-like system with minimum effort.
 
@@ -1105,7 +1104,7 @@ Only the one in Texas is functional at the moment.
 The VOEvent is received by a continuously running Python script that listens on the specific port and creates an alert email 
 sent to individual collaborators at each TOROS partner telescope.
 
-The PyGCN module developed by Leo Singer, handles the reception GCN notices from LVC using the TCP protocol.
+The PyGCN module, developed by Leo Singer, handles the reception of GCN notices from LVC using the TCP protocol.
 Once a notice is received, PyGCN calls a call-back function that performs the rest of operations on the notice.
 
 The first step the listener script does, is send an email with the VOEvent attached to a list of recipients in the TOROS collaboration.
@@ -1135,7 +1134,7 @@ ISOTime & The time of the event in ISO format \\ \hline
 Once information is parsed, a second email is sent with the relevant information from the VOEvent along with the skymaps retrieved from the provided URL
 (see SKYMAP\_URL\_FITS\_BASIC on table \ref{voeventinfo}) and its corresponding PNG file. 
 
-The third step in the process, is to generate a list of targets of observations for each observatory and upload them to the broker website.
+The third step in the process is to generate a list of targets of observations for each observatory and upload them to the broker website.
 Although this is done by the alert receiver robot, we explain these steps in more depth in the following sections.
 
 \section{Skymaps} \label{section:skymaps}
