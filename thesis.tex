@@ -193,7 +193,7 @@ However, this poses other technological challenges of a different kind.
 In the era of multi-messenger Astronomy, a low latency response time after detection is crucial in order to have any hope of detecting 
 the optically faint electromagnetic counterparts of the event.
 
-The mission of the Transient Optical Robotic Observatory of the South (TOROS) in the context of multi-messenger and time-domain astronomy, 
+The mission of the Transient Optical Robotic Observatory of the South (TOROS), in the context of multi-messenger and time-domain astronomy, 
 is to create a facility ready to respond to gravitational wave detections for prompt follow-up observations searching for optical counterparts.
 
 This dissertation discusses the implementation of a software pipeline for the TOROS project and the results obtained during the O1 campaign of Advanced LIGO.
@@ -493,24 +493,24 @@ the amount of data that needs processing becomes unmanageable by humans.
 This is not to say that individual work has no place in science, but that the collective gathering of information has become ubiquitous.
 
 The size of sky surveys in Astronomy has been increasing steadily and dramatically over the years.
-From a situation where data lies in the hundreds of MB and about a hundred events per night now, 
+From a situation where data is in the hundreds of MB and about a hundred events per night now, 
 we are heading to a regime of several tens of TB and the order of million events per night in the 
 LSST\footnote{http://www.lsst.org, http://www.lsst.org/files/docs/sciencebook/SB\_8.pdf} era 
 (\citet{2008arXiv0805.2366I, 2009arXiv0912.0201L}).
 The data load makes it unmanageable if not done by automated agents.
 
-Buried in this huge amount of data, lies many short-lived events, or \emph{transients}, that will only be registered for a short period of time.
+Buried in this huge amount of data, are many short-lived events, or \emph{transients}, that will only be registered for a short period of time.
 Although ephemeral, these transient events can uncover important information on the nature and evolution of the universe.
 The most striking example is the discovery of Super Novae events that expanded our knowledge about the final stage of stars.
 
-Transient events are present in --and enhanced the knowledge of-- almost every field of Astronomy.
-Their time scales cover over several orders of magnitude.
+Transient events are present in --and enhance the knowledge of-- almost every field of Astronomy.
+Their time scales range over several orders of magnitude.
 They can last from milliseconds, like Fast Radio Bursts, to a span of tens of days like Super Nova (SN) explosions, 
 or even larger periods like the astoundingly persistent X-ray emission of SN1978K (\citet{2010AAS...21543002S}).
 % and these can fade away in as much as hundreds of days.
 Transients are most often unpredictable, but some of them are recurring, with or without predictability of the next event; they lack periodic variability; 
 and some of them are only a one-time occurrence and will only last for a relatively short period of time.
-This makes it necessary to study them in the field of time domain.
+This makes it necessary to study them in the field of time domain astronomy.
 % 'time domain' astronomy?
 
 Nonetheless, time domain astronomy poses at least two big main challenges.
@@ -554,7 +554,7 @@ In either case, the task remains to identify interesting transients after we hav
 Such classification of transient events is nowadays done with the aid of classification agents trained with Machine Learning techniques.
 Machine Learning classifiers can sort out the relevant transients from a pile of thousands in an effective and fast way, 
 enabling rapid follow-ups that would be impossible with a manual approach. 
-Especially so, if the transients of interest are rare and data is highly contaminated.
+Especially so, if the transients of interest are rare and the data is highly contaminated.
 
 
 \section{Multi-Messenger Astronomy}
@@ -564,7 +564,7 @@ One event discovered with a certain messenger, can be studied across the spectru
 For this to be possible, the transmission of the information about the localization has to be sent faster than the typical duration of the event.
 This is especially true with afterglows of very energetic events.
 
-An event like a SN explosion may be first detected as a long GRB event (\citet{2006ARA&A..44..507W}) in one of the space based Gamma Ray Telescopes orbiting the Earth.
+An event like a SN explosion may be first detected as a long GRB event (\citet{2006ARA&A..44..507W}) in one of the space-based Gamma Ray Telescopes orbiting the Earth.
 Stellar core collapse during a SN releases roughly $10^{52}$ ergs of gravitational binding energy in less than one second.
 The released radiation starts with bright $\gamma$-rays and subsequent afterglows across the whole spectrum up to radio frequencies.
 Localization information of the GRB needs to be quickly sent to the Astronomy community to study its emission across the EM spectrum.
@@ -573,13 +573,13 @@ It was actually GRBs that ignited excitement in the astronomy community about tr
 it was one of the first objects to be studied in a multi-band fashion, 
 and it triggered the building for most of the infrastructure we have today to deal effectively with multi-messenger astronomy.
 
-Gamma Ray Busts were first discovered by the Vela satellites, a set of 6 pair of satellites (Vela 1a,b through Vela 6a,b) 
+Gamma Ray Busts were first discovered by the Vela satellites, a set of 6 pairs of satellites (Vela 1a,b through Vela 6a,b) 
 launched by the United States to orbit the Earth. 
-The original purpose of the array of satellites was to monitor the nuclear activities of other countries during the Cuba Missile Crisis in the 60's.
+The original purpose of the array of satellites was to monitor the nuclear activities of other countries during the Cuban Missile Crisis in the 60's.
 The satellites were designed to detect the hard-to-shield high energy signature emissions ($\gamma$ and X rays) of nuclear detonations.
 Instead, they found strange, very energetic bursts of gamma rays coming from outer space (\citet{1973ApJ...182L..85K}).
 
-The many GRBs detected in the first few decades rapidly showed that the directions they were coming from, were isotropically distributed in the sky.
+The many GRBs detected in the first few decades rapidly showed that the directions they were coming from were isotropically distributed on the sky.
 Although suggestive, this alone was not enough to conclude the extragalactic origin of GRBs.
 Given the huge scale of energies involved, many people favored the idea that GRBs were being produced in the outer halo of our Milky Way.
 More data was needed to resolve this issue.
@@ -592,14 +592,14 @@ Unfortunately, BATSE could not help in the optical afterglow localization of GRB
 
 But it was BeppoSAX (formally, the ``Satellite per Astronomia a Raggi X''), 
 an Italian satellite equipped with a GRB monitor and an X-ray coded mask imager, 
-the one that would bring us closer to scan the multi-band afterglow.
+that would bring us closer to scan the multi-band afterglow.
 
 BeppoSAX X-ray imager could find X-ray counterparts for GRBs, and narrow the localization uncertainty to 5 to 10 arcminute radius.
 This was already possible with the network of GRB detectors in space at the time, 
 but it involved cross-analyzing data from diverse sensors and the process took several days to finish.
 It was known at the time that there were no optical counterparts after a week of the event.
 If we wanted to find optical afterglows, we would need to find more accurate localization much faster.
-BeppoSAX did precisely that reducing the time of localization to only a few hours.
+BeppoSAX did precisely that by reducing the time of localization to only a few hours.
 
 This reduction in the time of localization opened the game for telescopes around the globe to try to find optical and radio afterglows.
 On February 28, 1997, BeppoSAX localized a GRB with an X-ray counterpart that vanished after 3 days.
@@ -613,10 +613,10 @@ About two months later, on May 8, 1997, BeppoSAX detected another GRB and a comp
 Caltech imaged the uncertainty region using Keck II telecsope in Hawaii and found a clear optical afterglow.
 This afterglow and its spectrogram confirmed that GRB970508 was 5 Gpc away.
 
-This discovery and the subsequent follow-up observations finally settled the debate on the origins of GRBs.
+This discovery and the subsequent follow-up observations finally settled the debate as to the origins of GRBs.
 GRBs were clearly of extragalactic origin.
 Furthermore, radio follow-up observations, along with the estimated distance from optical, 
-strongly suggested that the emitting surface was expanding at close the speed of light.
+strongly suggested that the emitting surface was expanding at close to the speed of light.
 The distance estimation greatly helped understanding the intrinsic luminosity and possible mechanisms for it.
 
 So much more was there to find about GRB970508 and GRBs in general, 
@@ -667,7 +667,7 @@ This EM counterpart is believed to shine about a thousand times brighter than a 
 `Kilonova'\footnote{It is also referenced in the literature under the name \emph{macronova}}.
 Models of Kilonovae afterglows peak about a day after the GW emission (\citet{2010MNRAS.406.2650M})
 and last for about a week.
-Just as for the case for GRBs, Kilonovae can narrow the localization of GW to a few arcseconds.
+Just as for the case for GRBs, Kilonovae can narrow the localization of GWs to a few arcseconds.
 
 Conversely, if there is a chance to detect the relatively faint Kilonova, 
 it will be greatly helped if we have prompt information of its GW counterpart, or its associated GRB.
@@ -676,8 +676,8 @@ It is then very important to complement such information with the EM counterpart
 Both, the GW and the EM information contribute with different pieces of the puzzle, 
 they can paint a more complete picture of the phenomena.
 EM counterparts can most notably help where GW information fails harder, in localization.
-Localization by means of the EM counterpart, not only helps on this few parameters of the position in the sky, 
-but will also help to separate the uncertainty degeneracy on the geometrical disposition of a merger.
+Localization by means of the EM counterpart, not only helps on this few parameters of the position on the sky, 
+but it will also help to separate the uncertainty degeneracy on the geometrical disposition of a merger.
 This way, improving other estimates for the parameters of the merge, such as masses and spins involved, 
 as well as the luminosity distance.
 
@@ -702,6 +702,7 @@ This new class of thermal emission would be powered by the radioactive heating f
 Unlike short GRB emission, where most of the energy is collimated into a radiation beam, Kilonova emission is isotropic.
 It lasts for about a week and it peaks in the NIR sector of the light spectrum. 
 The intensity of such an event can reach brightness of a thousand times those of a Nova, and for this reason it was termed `Kilonova' (\citet{2010MNRAS.406.2650M}).
+\begin{comment}this is a repeat of line 666\end{comment}
 
 Rapid neutron capture, or r-process for short, is the main driver of the radiation we see during a Kilonova.
 In a dense neutron-rich environment, if the neutron capture timescale of lighter seed atom nucleus (like Iron) 
@@ -1027,7 +1028,7 @@ in a transparent, to the user, one-line import.
 
 Another advantage of Python is the ease to install these packages. Python has a standard package manager module (\emph{pip}) that takes care of dependencies, compilable or not.
 These are just a few features of the language ecosystem that is making Python gain traction in the Astronomy community.
-Python along with tools like git (and the github repository website) and virtual environments make Python projects reproducible and installable in almost any Unix-like system with minimum effort.
+Python along with tools like git (and the GitHub repository website) and virtual environments make Python projects reproducible and installable in almost any Unix-like system with minimum effort.
 
 Python popularity in the science community started with the introduction of two main packages: numpy and scipy (which collected the linear algebra routines found in BLAS/LAPACK).
 A few years later, another project ``astropy'' began porting popular IRAF methods to python. 
@@ -1080,7 +1081,7 @@ As we mentioned before, the GCN/TAN network is a distribution network of transie
 It was primarily intended for the distribution of GRBs detection notices
 from space telescopes like Fermi, Swift and other spacecrafts, to the rest of the Astronomy community. 
 
-The subsequent reports of follow-up observations made by ground-based observers, are done by submitting circulars to that same site.
+The subsequent reports of follow-up observations made by ground-based observers are done by submitting circulars to that same site.
 This makes the GCN/TAN network \emph{``a one-stop shopping network for follow-up sites and GRB and transient researchers.''}
 
 The LIGO-Virgo Collaboration makes use of the GCN network to disseminate GW detection
@@ -1152,7 +1153,7 @@ The rapid response is achieved by using only information of the coincident trigg
 along with prior probability distributions of source parameters.
 It will not use the GW parameters from the reconstruction of the wave-form, like costly post-Newtonian GW wave-form calculations.
 
-LIGO has other three localization estimation codes: LALINFERENCE\_MCMC, LALINFERENCE\_NEST and LALINFERENCE\_BAMBI.
+LIGO has three other localization estimation codes: LALINFERENCE\_MCMC, LALINFERENCE\_NEST and LALINFERENCE\_BAMBI.
 The LIGO Algorithm Library (LAL) is a collection of routines for various pipelines inside LIGO for which LAL Inference is specific to parameter estimation.
 These three codes are stochastic Markov Chain Monte Carlo (MCMC) samplers that estimate the full GW parameter space, 
 they can generate localization skymaps by marginalizing over every parameter that is not the sky location.
@@ -1162,7 +1163,7 @@ especially when the GW signal is very weak in one detector.
 
 Another LAL code for unmodeled bursts is the LAL Inference Burst, or oLIB (\citet{2015arXiv151105955L}).
 This LAL code, unlike the others in LAL Inference, has low latency.
-The algorithm relies in excess of power detection; coincidence between different detectors; and analysis of coincident events using MCMC Bayesian inference.
+The algorithm relies on excess power detection; coincidence between different detectors; and analysis of coincident events using MCMC Bayesian inference.
 
 The coherent WaveBurst (cWB) (\citet{2016PhRvD..93d2004K}) is another real-time detection and localization estimation code
 that makes little to no assumptions on source models.
@@ -1245,8 +1246,8 @@ Thus, the database is easy to browse and modify.
 The database handles information for the GW Galaxy Catalog, the user information as well as permissions and login information,
 and data about the observatories.
 
-Each telescope representative has assigned a username and password to access a 
-website\footnote{\url{http://toros.utrgv.edu/winnow/broker/}} hosted in UT RGV servers.
+Each telescope representative is assigned a username and password to access a 
+website\footnote{\url{http://toros.utrgv.edu/winnow/broker/}} that is hosted in UT RGV servers.
 This website has a simple interface of tables for each observatory and a list of targets observable from each location, obtained by the target selection method on the previous step.
 
 Each telescope administrator then selects targets from the list, to reserve them for his or her observatory (see figure \ref{fig:brokerdetail}). 
@@ -1294,7 +1295,7 @@ The first 10 images of this set (named cstar\_june\_01) are used for training pu
 
 The images we worked with were preprocessed, i.e. they were bias and flat corrected.
 The CCD had a few dead columns and rows and bright stars suffer from `bleeding' (see figure \ref{fig:bleeding}) even though they have low exposure time.
-This bleeding is very significative for bright stars and less so for dimmer stars but still present nonetheless.
+This bleeding is very significant for bright stars and less so for dimmer stars but still present nonetheless.
 
 \begin{figure}
 \centering
@@ -1321,7 +1322,7 @@ The two images have to be aligned pixel by pixel and then subtracted to reveal a
 In our case, we used a previously constructed reference image, that consists of a median stacking of several CSTAR images from the best-\emph{seeing} month of June.
 We aligned this reference image to each of the frames in our data set.
 
-To make a suitable subtraction of the two images, one has to match the frames to exactly the same \emph{seeing}. 
+To make a suitable subtraction of the two images, one has to match the frames to be exactly the same \emph{seeing}. 
 Image Difference, also known as Optimal Subtraction or Differential Photometry, is a technique to find a convolution kernel that best describes 
 (in some minimization sense) the change in point spread function between the images. 
 The idea is to degrade the good \emph{seeing} image ---our reference image--- to match the \emph{seeing} of our second image. 
@@ -1432,13 +1433,13 @@ Another drawback is that the method can not fit for the $\sigma$ spread for the 
 Background estimation can be done previous to the subtraction or be included in the least-squares optimization.
 
 In \citet{1998ApJ...503..325A} and \citet{2000A&AS..144..363A}, they also discuss the issue of PSF spatial variation.
-The PSF of smal fields of view can usually be considered constant across the image, but for large fields of view this is no longer true.
+The PSF of small fields of view can usually be considered constant across the image, but for large fields of view this is no longer true.
 Lens aberrations and other effects make spatial variations of PSF noticeable especially near the image borders.
 
 The spatial variation is accounted for by further expanding each coefficient into a polynomial on the $(x, y)$ position on the image.
 This makes the number of spatial dependance coefficients proportional to the original number of free parameters.
 The introduction of yet more coefficients to adjust can yield this method computationally prohibitive.
-In \citet{2000A&AS..144..363A}, they propose an work-around to the computational problem, using for the calculation of the $M$ matrix,
+In \citet{2000A&AS..144..363A}, they propose a work-around to the computational problem, using for the calculation of the $M$ matrix,
 only pixels on \emph{stamps} around sources and considering a nearly constant PSF on each stamp.
 
 HOTPANTS (\citet{2015ascl.soft04004B}) and its predecesor ISIS (\citet{2000A&AS..144..363A}) are implementations of this method written in C.
@@ -1453,7 +1454,7 @@ They are significantly more than those of \citet{1998ApJ...503..325A} growing wi
 %this results in that the multi-Gaussian basis can be significantly faster.
 
 The \citet{2008MNRAS.386L..77B} method can also accommodate for a simultaneous fit of background and a spatial varying kernels.
-To tackle the problem of PSF spatial variability he proposes dividing the image on a grid and perform a subtraction on each grid element.
+To tackle the problem of PSF spatial variability he proposes dividing the image on a grid and to perform a subtraction on each grid element.
 
 In \citet{2008PASP..120..449M} they propose a method similar to \citet{1998ApJ...503..325A} with the use of \emph{stamps} to deal with PSF variation.
 It's worth noting that introducing new coefficients for space variation is more costly on the Delta basis because of the larger number of original variables to fit in the kernel.
@@ -1557,7 +1558,7 @@ For example, fitting 10 noisy points with a 10 degree polynomial has very little
 On the other hand, a linear fit to the same points has a large bias, but it may well have very little variance for different sets of similar example points.
 The moral is that a good classifier must have a good balance between Bias and Variance.
 
-Machine Learning is such an extensive and intensive area of research.
+Machine Learning is an extensive and intensive area of research.
 It is used in web search, spam filters, recommender systems, ad placement, credit scoring, fraud detection, stock trading, drug design and many others.
 Because the field is so wide, to conduct a ML experiment one must first make a few decisions. 
 Even most importantly than the particular algorithm, 
@@ -1581,7 +1582,7 @@ than a rougher simpler boundary if the data classes are well separated to begin 
 Contrary to what one would expect, the choice of the ML algorithm is not crucial in obtaining a good classification.
 The main actors for a good performance in ML classification is the amount and quality of data and the feature selection.
 
-For our main test, I decide to train a Random Forest ML algorithm on a training set developed especially for this.
+For our main test, I decided to train a Random Forest ML algorithm on a training set developed especially for this.
 The real bogus classifier, as it is referred to in the literature (\citet{2012PASP..124.1175B}),
 relies on --mostly morphological-- features to perform the discrimination between ``real'' and ``bogus'' transients.
 
@@ -1593,20 +1594,20 @@ Most of the time, the decrease in variance vastly compensates for the increase i
 
 In this case, a Random Forest is an `ensemble' of Decision Trees. 
 A Decision Tree is basically a tree of nodes. 
-Each node represent a bifurcation based on one feature. 
+Each node represents a bifurcation based on one feature. 
 The features and branching threshold on each node are chosen to maximize the expected information gain (or entropy loss) on the training set. 
 That is, how well the bifurcation separates the training data for each class.
 
 Random Forest bootstraps the data so that each subset of data will train a Decision Tree on a random subset of the features. 
 After all Decision Trees are trained this way, the collection of Trees will give the final classification.
 
-A single Decision Tree suffers of great variance, even for big amounts of data. 
+A single Decision Tree suffers from great variance, even for big amounts of data. 
 The bifurcations on the greedy algorithm are naturally very dependent on the training set. 
-A small variation on it may create a complete different tree. 
+A small variation on it may create a completely different tree. 
 Random Forest reduces this variance by averaging over many trees. 
 This also creates more realistic and fuzzy class boundaries on the feature space.
 
-On the next section I explain how the training data was prepared.
+In the next section I explain how the training data was prepared.
 
 \subsection{The Training Data and the Classifier}
 
@@ -1835,7 +1836,7 @@ The GW signal was consistent with a template match for a binary system with mass
 The final mass of the merger is $20.8 M_{\odot}$, which means that $1 M_{\odot}$ was radiated away as gravitational radiation.
 
 TOROS did not participate in the optical search for LVT151012 or GW151226.
-The remaining of this chapter refers to the observation campaign for the GW150914 event follow-up search and its results.
+The remaining parts of this chapter refer to the observation campaign for the GW150914 event follow-up search and its results.
 
 \section{GW150914}
 
@@ -2082,7 +2083,7 @@ was done with the program astrometry.net (\citet{2010AJ....139.1782L}).
 
 The CCD we used to take the images contained several dead pixels and bad columns that needed to be masked.
 To identify the bad pixels on the CCD, we stacked all of the bias frames and applied a threshold cut on the pixel value, 
-to identify those pixels with little to null response to light exposure.
+to identify those pixels with little to no response to light exposure.
 We then increased the bad pixel mask to 1 pixel in each direction to make sure any residual near the bad column or pixel is not identified as a real variation.
 A mask FITS file was created and propagated along through each of the following steps (registration, stacking and image differencing).
 
@@ -2111,7 +2112,7 @@ To search for potential transients on the images taken, we performed a different
 Our method follows the work of \citet{2008MNRAS.386L..77B} and \citet{2008PASP..120..449M} in a Python implementation of the 
 algorithms (see section \ref{section:ois} for more details).
 
-As explained in section \ref{section:dia}, the Bramich method uses the information from all the pixels on the image, wether is part of the background or a source,
+As explained in section \ref{section:dia}, the Bramich method uses the information from all the pixels on the image, whether part of the background or a source,
 so we don't need to select specific stars to take stamps around.
 We partitioned the images in a 2$\times$3 grid to compensate for possible PSF variability across the field of view.
 Even though the Python \emph{ois} module can do a simultaneous background estimation, 
@@ -2271,7 +2272,7 @@ We can create a catalog of the region of interest, using the reference frame.
 In essence we will have a catalog of some bright reference stars on each image, 
 and we want to match them in some way to find the appropriate affine transformation between the images.
 
-As we mentioned before, the core idea of the algorithm consists of characterizing asterisms on the image in a unique way, 
+As we mentioned before, the core idea of the algorithm consists in characterizing asterisms on the image in a unique way, 
 by using quantities invariant to translation, rotation or even scaling and flipping.
 For astroalign, we use 3-star asterisms (triangles) to perform the matching, and a RANSAC algorithm to decide on the final transformation.
 Similar asterisms will have the same invariant tuples in both images so a correspondence can be made between those invariant quantities. 
@@ -2384,7 +2385,7 @@ Once we calculate the set of invariants from both images, we query a corresponde
 Each returned match will represent a correspondence between a triangle in one image and another. 
 From each, we can make the point to point correspondence, provided all sides are unequal, and this will determine a unique transformation between the images.
 
-Some of the correspondences may arise from random pairing of unrelated asterisms that not represent the true transformation between the images.
+Some of the correspondences may arise from random pairing of unrelated asterisms that do not represent the true transformation between the images.
 This is where the RANSAC algorithm comes in.
 
 The Random Sample Consensus (RANSAC) algorithm is an iterative method to estimate parameters of a mathematical model from a set of observed data which may contain outliers.
@@ -2522,13 +2523,13 @@ with contributions from myself and Bruno Sanchez, to ease the building of the pi
 The framework is part of a separate project, following the SoC paradigm and can be installed via a \emph{pip} command.
 
 Starting a robotic observatory in the extreme environment of Cordon Macon, Argentina introduces serious challenges.
-The isolation of this geographic location, makes it likely that human interaction will be spotty at best and full internet connectivity may not be guaranteed.
-This imposes strong demands on the pipeline data processing and storage to be in location, with failure tolerance arising as a key constrain feature.
+The isolation of this geographic location, makes it likely that human interaction will be spotty at best and full Internet connectivity may not be guaranteed.
+This imposes strong demands on the pipeline data processing and storage to be on location, with failure tolerance arising as a key constrain feature.
 
 To asses this issue, Corral provides the formalization of a pipeline framework based on the concepts of Steps and Models following the 
 well known design pattern \textit{Model--View--Controller} (MVC) and built on top of a SQL Relational Database.
 
-Every Model instance can be thought of a table in the database and represents a component or piece of data in the pipeline.
+Every Model instance can be thought of as a table in the database and represents a component or piece of data in the pipeline.
 We can have a model for a light frame, a model for image stacks, a model for subtraction images, a model for a candidate of a transient, etc.
 Models contain all the information relating a particular component, including its status within the pipeline process.
 This helps when we want to inquire about unfinished processes or about a particular set of images.
@@ -2539,10 +2540,10 @@ The pipeline will execute the Steps consecutively when needed and will do parall
 
 A special kind of Step, named Loader allows to initialize the database or load it from an external source to the pipeline.
 The pipeline also allows for the creation of Alerts, which are special kind of steps raised by some particular state of the data stream.
-When one of these is raised, it is compulsory an Alert will notify the research group as specified in the implementation.
+When one of these is raised, it is compulsory that an Alert will notify the research group as specified in the implementation.
 
 The formalization of the pipeline into the Corral framework allows the developer to deal with the specifics of the manipulation steps 
-without worrying about creating code for multi-processing workflow, coding architecture or code to interact with the database.
+without worrying about creating code for multi-processing workflows, coding architecture or code to interact with the database.
 Working on the Corral framework has the additional perk of estimating a Quality Index for the code, 
 automatic documentation generation and a profiling tool for each step.
 
@@ -2987,7 +2988,7 @@ During this time, Martin Beroiz worked with Dr. Richard Price first, and later w
 
 His current interests include General Relativity, Particle Physics but also Software Engineering, in particular algorithms, simulations and web development.
 
-He will in the future keep working on the TOROS project, completing the software and training newcomer students.
+He will in the future keep working on the TOROS project, completing the software and training incoming students.
 
 \begin{comment}
 \section*{Education}
