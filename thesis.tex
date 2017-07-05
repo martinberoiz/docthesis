@@ -455,15 +455,15 @@ The merger rate of binary systems is an area of active research and estimates re
 Compact binaries are formed similarly in stellar field populations of galaxies (\citet{2012LRR....15....8F}).
 Most population synthesis calculations of compact coalescence agree to within 1 to 2 orders of magnitude, 
 a result consistent with the typical uncertainties that remain once all possible sources of errors are propagated in the population synthesis models.
-Estimates range from 0.01 to 10 mergers per Mpc${}^{3}$ per Myr.
+Estimates for BNS mergers range from 0.01 to 10 mergers per Mpc${}^{3}$ per Myr.
 For a conservative merge rate of 1 Mpc${}^{-3}$Myr${}^{-1}$, and a projected observable radius of 200 Mpc at the design sensitivity of Advanced LIGO, 
-the discovery rate of CBC mergers will be of approximately 40/yr.
+the discovery rate of BNS mergers will be of approximately 40/yr (\citet{2014ApJ...795..105S}).
 
 {\bf Continuous or Periodic} sources are those that have roughly constant frequency and amplitude compared to its observation time.
 Primary sources of the continuous kind are rotating Neutron Stars (pulsars) with some non-axisymmetric anisotropy.
 The emitted gravitational wave frequency is twice the rotation frequency, and for many known pulsars, they fall within the LIGO sensitivity band (\citet{1998ApJ...501L..89B}). 
 Searches for continuous periodic signals (\citet{2005PhRvD..72j2004A, 2007PhRvD..76d2001A}) involve the integration of large portions of the time series, spanning many cycles of the pulsar, 
-correcting for Doppler shift for the motion of the Earth around the Sun, and spin-down of the pulsar, among other effects.
+correcting for Doppler shift for the motion of the Earth around the Sun, anmd spin-down of the pulsar, among other effects.
 Although the GW amplitude is generally weaker compared to CBC sources, a longer integration time means that continuous sources may also achieve detectable SNRs.
 
 {\bf Burst}-type sources are associated with large energy emission in cataclysmic events like Super Nova explosions, 
@@ -1727,9 +1727,15 @@ On the training data, the performance is quite good, with all indicators scoring
 
 In the confusion matrix we see that only 65 out of 7,624 of the reals were mis-classified as bogus, and only 33 bogus out of the 7,624 were mis-classified as reals. These very low numbers explain the very high performance scores of the classifier.
 
-Random Forest can also provide an importance score for each feature, based on how fat up in the tree structure it is within a tree.
-The features with most discriminative power are selected as first decision nodes.
-In figure \ref{fig:featureimportance} we show a graph listing the importance for each of the features along with one standard deviation.
+Random Forest can also provide an importance score for each feature, based on how far up in the tree structure it is within a tree, 
+since the features with most discriminative power are selected as first decision nodes.
+More precisely, the importance is defined as the error reduction (or the decrease in impurity) on a node, multiplied by the number of samples that were routed to that node.
+This quantity is added to the feature doing the branching at that node, and it is computed for each internal node of the tree and then averaged over the forest.
+Nodes high up in a tree tend to branch off more samples, and accordingly receive a higher multiplicative factor.
+The importances are finally normalized by the sum, so that they all add up to 1.
+
+In figure \ref{fig:featureimportance} we show a graph listing the relative importance for each of the features along with one standard deviation.
+
 The importance was calculated with a single Random Forest classifier with 10,000 trees and a maximum depth of 10.
 We can see that the first 10 or so features carry the most information, but except for the flux, most of them are equally important.
 We can also see that we could drop the last 4 (delta\_x, delta\_y, ratio and threshold) without significantly affecting the overall performance.
@@ -1737,7 +1743,7 @@ We can also see that we could drop the last 4 (delta\_x, delta\_y, ratio and thr
 \begin{figure}
 \centering
 \includegraphics[scale=0.6]{figures/featureimportance}
-\caption{The relative `importance' of each feature calculated with Random Forest algorithm.}
+\caption{The relative `importance' of each feature calculated with Random Forest algorithm. All the importances are normalized so that they add to 1.}
 \label{fig:featureimportance}
 \end{figure}
 
@@ -2802,7 +2808,7 @@ Regarding the basis functions, two particular choices are the most popular.
 The first one was proposed by \citet{1998ApJ...503..325A} and consists of modulated centered Gaussians:
 
 \begin{equation}
-B_{n,d_n^{x}, d_n^{y}}(u,v) = e^{-(u^2+v^2)/2 \sigma_n^2} \times u^{d_n^{x}} v^{d_n^{y}}
+B_{n,p, q}(u,v) = e^{-(u^2+v^2)/2 \sigma_n^2} \times u^{p} v^{q}
 \end{equation}
 
 where the exponents in $u$ and $v$ add at most up to $D$, the degree of the modulation polynomial.
