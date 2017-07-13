@@ -123,6 +123,7 @@ All rights reserved. }
 
 \author{Martin Beroiz}
 \maketitle
+
 \begin{acknowledgements}
 
 My utmost thanks go to my advisor, Mario Diaz, for giving me the opportunity to work on the TOROS project. 
@@ -144,6 +145,7 @@ I want to dedicate this to the memory of Cristina Torres, a wonderful person, wh
 %(Notice: If any part of the thesis/dissertation has been published
 %before, the following two paragraphs should be included without alteration).
 
+\begin{comment}
 \begin{singlespace}
 \emph{This Masters Thesis/Recital Document or Doctoral Dissertation
 was produced in accordance with guidelines which permit the inclusion
@@ -170,7 +172,7 @@ describing the students contribution to the work and acknowledging
 the contribution of the other author(s). The signatures of the Supervising
 Committee which precede all other material in the Masters Thesis/Recital
 Document or Doctoral Dissertation attest to the accuracy of this statement.}\end{singlespace}
-
+\end{comment}
 
 \end{acknowledgements}
 
@@ -1228,7 +1230,7 @@ and that they have some significant probability of being the host.
 \section{The Broker} \label{section:broker}
 
 Once the list of targets is done, we need to communicate the targets to each telescope.
-This is done through a broker website written in Python using the Django\footnote{\url{https://www.djangoproject.com}} web framework (see figure \ref{fig:brokerhead})
+This is done through a broker website written in Python using the Django\footnote{\href{https://www.djangoproject.com}{https://www.djangoproject.com}} web framework (see figure \ref{fig:brokerhead})
 and a light database on Sqlite 3.
 
 \begin{figure}
@@ -1251,7 +1253,7 @@ The database handles information for the GW Galaxy Catalog, the user information
 and data about the observatories.
 
 Each telescope representative is assigned a username and password to access a 
-website\footnote{\url{http://toros.utrgv.edu/winnow/broker/}} that is hosted in UT RGV servers.
+website\footnote{\href{http://toros.utrgv.edu/winnow/broker/}{http://toros.utrgv.edu/winnow/broker/}} that is hosted in UT RGV servers.
 This website has a simple interface of tables for each observatory and a list of targets observable from each location, obtained by the target selection method on the previous step.
 
 Each telescope administrator then selects targets from the list, to reserve them for his or her observatory (see figure \ref{fig:brokerdetail}). 
@@ -1473,7 +1475,7 @@ The inversion itself can be done very quickly with any algebra package,
 but the number of operations for each element of the matrix system scales quadratically with the number of free parameters.
 This is something to take into account when choosing the number of Gaussians and the polynomial degree or the kernel side for the Delta basis.
 
-The implementation of these set of algorithms spun the creation of a new Python module named \emph{ois}\footnote{\url{https://github.com/toros-astro/ois}}.
+The implementation of these set of algorithms spun the creation of a new Python module named \emph{ois}\footnote{\href{https://github.com/toros-astro/ois}{https://github.com/toros-astro/ois}}.
 For more details on the \emph{ois} Python implementation we refer the reader to section \ref{section:ois}.
 
 For our set of images, I applied the \citet{2008MNRAS.386L..77B} method on a 4$\times$4 grid.
@@ -2223,9 +2225,9 @@ As is well known, modularity is achieved by encapsulating information inside a s
 Having well-separated concerns ensures that each part can be reused and also helps in the maintenance and upgrading of the code.
 
 The modules are released under MIT License and are hosted on an organization repository in the popular git repository hosting service, 
-GitHub\footnote{\url{https://github.com/toros-astro/}}.
-Two of them have unit tests and hooked to Travis CI\footnote{\url{https://travis-ci.org}}
-website for continuous-integration and code coverage\footnote{\url{https://codecov.io/gh/toros-astro}}.
+GitHub\footnote{\href{https://github.com/toros-astro}{https://github.com/toros-astro}}.
+Two of them have unit tests and hooked to Travis CI\footnote{\href{https://travis-ci.org}{https://travis-ci.org}}
+website for continuous-integration and code coverage\footnote{\href{https://codecov.io/gh/toros-astro}{https://codecov.io/gh/toros-astro}}.
 
 In the following sections I describe some of the Python modules we developed in more detail.
 
@@ -2233,8 +2235,8 @@ In the following sections I describe some of the Python modules we developed in 
 
 Astroalign was developed to address the need to align two images before subtraction.
 There are currently two other Python modules with similar functionality.
-The module \emph{reproject}\footnote{\url{https://reproject.readthedocs.io/}} will resample or reproject images when WCS information is provided, but it does not address the problem of registration when one or both images lack WCS information.
-The module \emph{alipy}\footnote{\url{https://github.com/japs/alipy}} does not rely on WCS information, but uses external programs like IRAF and SExtractor and deals exclusively in the FITS format for images.
+The module \emph{reproject}\footnote{\href{https://reproject.readthedocs.io}{https://reproject.readthedocs.io}} will resample or reproject images when WCS information is provided, but it does not address the problem of registration when one or both images lack WCS information.
+The module \emph{alipy}\footnote{\href{https://github.com/japs/alipy}{https://github.com/japs/alipy}} does not rely on WCS information, but uses external programs like IRAF and SExtractor and deals exclusively in the FITS format for images.
 Astroalign works with the raw pixel information in memory, so it's agnostic about the source of the images.
 It is also self contained, so does not rely on any external program to perform the alignment
 and it is written entirely in Python.
@@ -2492,8 +2494,9 @@ The second, optimal\_system and subtract\_on\_grid will return the same elements
 
 OIS currently supports 3 different methods for subtraction: Alard-Lupton, Bramich, and Adaptive Bramich (an adaptive version of Bramich).
 
-The documentation and usage for the code can be found in \url{http://optimal-image-subtraction.readthedocs.io}.
-The source code is available in the TOROS GitHub repository at \url{https://github.com/toros-astro/ois}.
+The documentation and usage for the code can be found in \href{http://optimal-image-subtraction.readthedocs.io}{readthedocs.io}\footnote{
+\href{http://optimal-image-subtraction.readthedocs.io}{http://optimal-image-subtraction.readthedocs.io}}.
+The source code is available in the TOROS GitHub repository\footnote{\href{https://github.com/toros-astro/ois}{https://github.com/toros-astro/ois}}.
 OIS is released under MIT License.
 
 \section{Corral: The Pipeline Framework}
@@ -2530,8 +2533,8 @@ without worrying about creating code for multi-processing workflows, coding arch
 Working on the Corral framework has the additional perk of estimating a Quality Index for the code, 
 automatic documentation generation and a profiling tool for each step.
 
-Source code for the project is hosted in the TOROS GitHub page \url{https://github.com/toros-astro/corral}.
-Documentation and a tutorial to get started can be found in \url{http://corral.readthedocs.io/}.
+Source code for the project is hosted in the TOROS GitHub page \href{https://github.com/toros-astro/corral}{https://github.com/toros-astro/corral}.
+Documentation and a tutorial to get started can be found in \href{http://corral.readthedocs.io/}{http://corral.readthedocs.io/}.
 
 \section{Winnow - Human classification of Real/Bogus}
 
@@ -2539,7 +2542,7 @@ Along with the broker website (see section \ref{section:broker}), the web server
 an interactive Real/Bogus \emph{web-app} for human classification.
 The website was developed using the Django web framework.
 
-The website at \url{https://toros.utrgv.edu/winnow/}, is a web interface that presents users cut-outs of possible real transients.
+The website at \href{https://toros.utrgv.edu/winnow}{https://toros.utrgv.edu/winnow}, is a web interface that presents users cut-outs of possible real transients.
 The user votes on the categories `real' or `bogus' and is presented with the next cut-out.
 
 This kind of `citizen science' has been popular and extremely useful in 
