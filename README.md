@@ -19,6 +19,20 @@ The mission of the Transient Optical Robotic Observatory of the South (TOROS), i
 
 This dissertation discusses the implementation of a software pipeline for the TOROS project and the results obtained during the O1 campaign of Advanced LIGO.
 
+### Compilation and installation
+
+To compile the LaTeX document, a makefile is provided. In Unix-like systems, type:
+
+    $ make
+
+This will create auxiliary files in `obj/` folder and the final pdf file in there as well.
+
+    $ make install
+
+simply copies the final document `thesis.pdf` at the makefile directory level.
+
+---
+
 ### Important Notice
 
 The git-version controlled copy of this thesis is intended as a live update of my doctoral thesis.
@@ -31,16 +45,6 @@ For the official doctoral thesis approved and published by the University of Tex
 
 Further versions and commits are intended to improve the software development side of the project but will seldom modify the content.
 
-### Compilation and installation
-
-To compile the LaTeX document, a makefile is provided. In Unix-like systems, type:
-
-    $ make
-
-This will create auxiliary files in `obj/` folder and the final pdf file in there as well.
-
-    $ make install
-
-simply copies the final document `thesis.pdf` at the makefile directory level.
+---
 
 **(c) Copyright 2017 Martin Beroiz All rights reserved.**
